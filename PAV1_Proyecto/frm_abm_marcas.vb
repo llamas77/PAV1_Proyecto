@@ -13,7 +13,7 @@
         '       Luego insertar/modificar en bd.
 
         ' Caso Insertar
-        Dim marca = New MarcaVO(txt_nombre.Text())
+        Dim marca = New MarcaDAO(txt_nombre.Text())
         MarcaDAO.insert(marca)
         ' Fin caso Insertar
 
