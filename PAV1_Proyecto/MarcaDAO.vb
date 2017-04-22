@@ -3,6 +3,8 @@
     '      Como parametros de entrada/salida trabaja con MarcaVO.
 
     Public Shared Function all() As ArrayList
+        ' IDEA: Tal vez sea mas optimo dejar un metodo que devuelva la tabla y asi evitar recorrerla 2 veces
+        '       
         Dim marcas As ArrayList = New ArrayList
         ' TODO: Hace un SELECT de la tabla entera y devuelve un conjunto de elementos.
         Return marcas
