@@ -1,0 +1,3 @@
+Dejo mi conection string 
+
+Provider=SQLNCLI11;Data Source=JUANI-PC\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=sistema_stock

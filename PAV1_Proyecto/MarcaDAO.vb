@@ -21,6 +21,7 @@
     End Sub
 
     Public Shared Sub save(ByRef marca As MarcaVO)
+        ' DOC: Si la marca existe actualiza, sino inserta.
         If marca.has_id() Then
             MarcaDAO.update(marca)
         Else
