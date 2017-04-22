@@ -7,8 +7,11 @@
     Dim nombre As String
 
     Public Sub New(ByVal id As Integer, ByVal nombre As String)
-        ' TODO: Validar ID > 0
-        Me.id = id
+        If id > 0 Then ' Valida que el ID sea >= 0 sino lo pone en 0
+            Me.id = id
+        Else
+            Me.id = 0
+        End If
         Me.nombre = nombre
     End Sub
 
@@ -18,6 +21,7 @@
     End Sub
 
     Public Sub set_id(ByVal new_id As Integer)
+        ' Warning: El ID se debe corresponder con la BD. Sino el comportamiento de MarcaDAO sera inesperado.
         If (new_id > 0 And Me.id = 0) Or (new_id = 0 And Me.id > 0) Then
             Me.id = new_id
         End If
@@ -28,9 +32,9 @@
         Return Me.id
     End Function
 
-    Public Function has_id() As Boolean
+    Public Function is_in_bd() As Boolean
         ' Si el ID es 0 no esta en la BD.
-        Return IIf(Me.id = 0, True, False)
+        Return IIf(Me.id = 0, False, True)
 
     End Function
 
