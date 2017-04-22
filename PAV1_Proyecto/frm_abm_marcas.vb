@@ -1,4 +1,4 @@
-﻿Public Class ABM_Marcas
+﻿Public Class frm_abm_marcas
     Private Sub ABM_Marcas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         recargar_lista_marcas()
     End Sub
@@ -11,6 +11,11 @@
         ' TODO: Debe diferenciar si se trata de un nuevo elemento o de una modificacion y actuar.
         '       Validar que el campo no esta vacio y no esta repetido en la BD.
         '       Luego insertar/modificar en bd.
+
+        ' Caso Insertar
+        Dim marca = New MarcaVO(txt_nombre.Text())
+        MarcaDAO.insert(marca)
+        ' Fin caso Insertar
 
         recargar_lista_marcas()
         txt_nombre.Text = ""

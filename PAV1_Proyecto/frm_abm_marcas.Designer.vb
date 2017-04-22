@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ABM_Marcas
+Partial Class frm_abm_marcas
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -82,7 +82,7 @@ Partial Class ABM_Marcas
         Me.btn_salir.Text = "Salir"
         Me.btn_salir.UseVisualStyleBackColor = True
         '
-        'ABM_Marcas
+        'frm_abm_marcas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -93,7 +93,7 @@ Partial Class ABM_Marcas
         Me.Controls.Add(Me.lst_marcas)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txt_nombre)
-        Me.Name = "ABM_Marcas"
+        Me.Name = "frm_abm_marcas"
         Me.Text = "ABM Marcas"
         Me.ResumeLayout(False)
         Me.PerformLayout()

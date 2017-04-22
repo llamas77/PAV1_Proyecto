@@ -84,6 +84,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataBase.vb" />
     <Compile Include="frm_abm_marcas.Designer.vb">
       <DependentUpon>frm_abm_marcas.vb</DependentUpon>
     </Compile>

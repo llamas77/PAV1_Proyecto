@@ -1,6 +1,17 @@
 ﻿Public Class MarcaVO
-    Private id As Integer = 0
+    Private id As Integer
     Dim nombre As String
+
+    Public Sub New(ByVal id As Integer, ByVal nombre As String)
+        ' TODO: Valida ID > 0
+        Me.id = id
+        Me.nombre = nombre
+    End Sub
+
+    Public Sub New(ByVal nombre As String)
+        Me.id = 0
+        Me.nombre = nombre
+    End Sub
 
     Public Sub set_id(ByVal new_id As Integer)
         If (new_id > 0 And Me.id = 0) Or (new_id = 0 And Me.id > 0) Then
@@ -14,7 +25,7 @@
     End Function
 
     Public Function has_id() As Boolean
-        ' Si el ID es 0 consideramos que no existe.
+        ' Si el ID es 0 no esta en la BD.
         Return IIf(Me.id = 0, True, False)
 
     End Function
