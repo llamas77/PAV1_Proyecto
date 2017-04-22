@@ -1,6 +1,6 @@
 ﻿Public Class MarcaDAO
-    ' DOC: Esta clase se encarga de las consultas SQL a la tabla de Marcas.
-    '      Como parametros de entrada/salida trabaja con MarcaVO.
+    ' DOC: (MarcaDataAccessObject) Esta clase se encarga de las consultas SQL a la tabla de Marcas.
+    '      Como parametros de entrada/salida generalmente trabaja con MarcaVO.
 
     Public Shared Sub all(ByRef tabla As DataTable)
         Dim marcas As ArrayList = New ArrayList

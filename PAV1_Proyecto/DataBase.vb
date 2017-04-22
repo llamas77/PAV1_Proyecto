@@ -4,12 +4,14 @@
 
     ' TODO: Crear un usuario en el SQL Server y poner el string de conexion.
     Private Shared instance As DataBase
-    Dim cadena_conexion As String = "Provider=SQLNCLI11;Data Source=JUANI-PC\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=sistema_stock"
+    Private cadena_conexion As String = "Provider=SQLNCLI11;Data Source=JUANI-PC\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=sistema_stock"
 
-    Private Sub New()
+    Private Sub New() ' Constructor Privado. Patron Singleton.
     End Sub
 
     Public Shared Function getInstance() As DataBase
+        ' DOC: Patron Singleton: Esta clase solo tendra una unica instancia como máximo.
+        '      No se le hace new a esta clase, se pide la instancia con getInstance().
         Return IIf(IsNothing(instance), New DataBase(), instance)
     End Function
 

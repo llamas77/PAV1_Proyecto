@@ -1,9 +1,13 @@
 ﻿Public Class MarcaVO
+    ' DOC: MarcaVO (MarcaValueObject) solo tiene atributos, getters y setters.
+    '      Representa una fila de la tabla Marcas. Se la utiliza para ahorrar parametros (un objeto
+    '      en lugar de los atributos) y facilitar la modificacion del sistema.
+
     Private id As Integer
     Dim nombre As String
 
     Public Sub New(ByVal id As Integer, ByVal nombre As String)
-        ' TODO: Valida ID > 0
+        ' TODO: Validar ID > 0
         Me.id = id
         Me.nombre = nombre
     End Sub
