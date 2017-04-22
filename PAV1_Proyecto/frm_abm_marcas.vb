@@ -81,6 +81,7 @@
 
     Private Sub btn_modificar_Click(sender As Object, e As EventArgs) Handles btn_modificar.Click
         load_marca(get_selected_MarcaVO())
+        txt_nombre.Focus()
         set_estado(estado_grabacion.modificar)
     End Sub
 
@@ -105,6 +106,17 @@
         Select Case e.KeyCode
             Case Keys.Enter
                 btn_actualizar.PerformClick()
+        End Select
+    End Sub
+
+    Private Sub grid_marcas_KeyDown(sender As Object, e As KeyEventArgs) Handles grid_marcas.KeyDown
+        ' DOC: Al presionar enter en el txt_nombre se ejecuta el click del btn_modificar.
+        '      Y al presionar supr se ejecuta el click del btn_eliminar.
+        Select Case e.KeyCode
+            Case Keys.Enter
+                btn_modificar.PerformClick()
+            Case Keys.Delete
+                btn_eliminar.PerformClick()
         End Select
     End Sub
 End Class
