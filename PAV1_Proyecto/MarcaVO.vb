@@ -12,7 +12,7 @@
         Else
             Me.id = 0
         End If
-        Me.nombre = nombre
+        Me.nombre = nombre 'TODO: Validar String de longitud < 50 (segun BD)
     End Sub
 
     Public Sub New(ByVal nombre As String)

@@ -3,17 +3,10 @@
     '      Como parametros de entrada/salida generalmente trabaja con MarcaVO.
 
     ' TODO: Modificar BD para que el campo Nombre sea UNIQUE
-    Public Shared Sub all(ByRef tabla As DataTable)
-        Dim marcas As ArrayList = New ArrayList
-        Dim sql_select = "SELECT idMarca as id, nombre FROM marcas"
-        tabla = DataBase.getInstance().consulta_sql(sql_select)
-    End Sub
-
-    Public Shared Sub all(ByRef marcas As ArrayList)
-        ' TODO OPTIONAL: Implementar el metodo si alguna vez hace falta.
-        ' DOC: Inserta en el array las MarcaVO en lugar de una tabla.
-
-    End Sub
+    Public Shared Function all() As DataTable
+        Dim sql_select = "SELECT idMarca, nombre FROM marcas"
+        Return DataBase.getInstance().consulta_sql(sql_select)
+    End Function
 
     Public Shared Sub insert(ByRef marca As MarcaVO)
         ' DOC: Inserta la marca en la BD y actualiza el objeto asignandole su ID.

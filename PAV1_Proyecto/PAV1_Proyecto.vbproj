@@ -85,6 +85,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase.vb" />
+    <Compile Include="FamiliaDAO.vb" />
+    <Compile Include="FamiliaVO.vb" />
+    <Compile Include="frm_abm_familias.Designer.vb">
+      <DependentUpon>frm_abm_familias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_abm_familias.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_abm_marcas.Designer.vb">
       <DependentUpon>frm_abm_marcas.vb</DependentUpon>
     </Compile>
@@ -117,6 +125,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frm_abm_familias.resx">
+      <DependentUpon>frm_abm_familias.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_abm_marcas.resx">
       <DependentUpon>frm_abm_marcas.vb</DependentUpon>
     </EmbeddedResource>
