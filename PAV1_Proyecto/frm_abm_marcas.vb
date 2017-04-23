@@ -1,30 +1,31 @@
 ﻿Public Class frm_abm_marcas
-    Enum estado_grabacion
-        insertar
-        modificar
-    End Enum
-    Dim estado = estado_grabacion.insertar
+
+    Dim tipo_g = MarcaDAO.tipo_grabacion.insertar
 
     Private Sub ABM_Marcas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' TODO OPTIONAL: ¿Haria falta hacer una busqueda de marcas en la grilla?
         recargar_grilla_marcas()
     End Sub
 
-    Private Sub set_estado(ByRef nuevo_estado As estado_grabacion)
-        estado = nuevo_estado
-        If nuevo_estado = estado_grabacion.insertar Then
-            btn_actualizar.Text = "Nuevo"
+    Private Sub set_tipo_g(ByRef nuevo_estado As MarcaDAO.tipo_grabacion)
+        tipo_g = nuevo_estado
+        If nuevo_estado = MarcaDAO.tipo_grabacion.insertar Then
+            btn_actualizar.Text = "Agregar"
         Else
             btn_actualizar.Text = "Actualizar"
         End If
     End Sub
 
     Private Sub recargar_grilla_marcas()
-        Dim index = grid_marcas.CurrentRow().Index
-        grid_marcas.Rows.Clear()
+        ' Guarda la posición de la celda seleccionada
+        Dim index As Integer
+        If grid_marcas.Rows.Count > 0 Then
+            index = grid_marcas.CurrentRow().Index
+            grid_marcas.Rows.Clear()
+        End If
 
+        ' Lee las marcas y carga la grilla
         Dim marcas = MarcaDAO.all()
-
         For i = 0 To marcas.Rows.Count() - 1
             grid_marcas.Rows.Add()
             grid_marcas.Rows(i).Cells(0).Value = marcas(i)(0)
@@ -32,16 +33,22 @@
         Next
 
         ' Posiciona la seleccion donde estaba.
-        If grid_marcas.Rows.Count <= index Then ' Si tenia la ultima celda y tengo menos valores selecciono el ultimo.
-            index = grid_marcas.Rows.Count - 1
+        If grid_marcas.Rows.Count > 0 Then
+            If grid_marcas.Rows.Count() <= index Then ' Si tenia la ultima celda y tengo menos valores selecciono el ultimo.
+                index = grid_marcas.Rows.Count - 1
+            End If
+            grid_marcas.CurrentCell = grid_marcas.Rows(index).Cells(0)
         End If
-        grid_marcas.CurrentCell = grid_marcas.Rows(index).Cells(0)
 
     End Sub
 
     Private Sub btn_actualizar_click(sender As Object, e As EventArgs) Handles btn_actualizar.Click
         If validate_MarcaVO() Then
-            MarcaDAO.save(get_written_MarcaVO())
+            If Not MarcaDAO.save(get_written_MarcaVO(), tipo_g) Then
+                MsgBox("La operación no se pudo realizar porque intentó ingresar una marca que " &
+                       "ya existe, o bien, intentó modificar una que no existe")
+                Exit Sub
+            End If
             clear_marca()
             recargar_grilla_marcas()
         End If
@@ -78,14 +85,14 @@
     Private Sub load_marca(ByRef marca As MarcaVO)
         txt_id.Text = marca.get_id()
         txt_nombre.Text = marca.get_nombre()
-        set_estado(estado_grabacion.modificar)
+        set_tipo_g(MarcaDAO.tipo_grabacion.modificar)
         txt_nombre.Focus()
     End Sub
 
     Private Sub clear_marca()
         txt_id.Text = ""
         txt_nombre.Text = ""
-        set_estado(estado_grabacion.insertar)
+        set_tipo_g(MarcaDAO.tipo_grabacion.insertar)
         txt_nombre.Focus()
     End Sub
 
@@ -121,5 +128,9 @@
 
     Private Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
         clear_marca()
+    End Sub
+
+    Private Sub btn_salir_Click(sender As Object, e As EventArgs) Handles btn_salir.Click
+        Hide()
     End Sub
 End Class

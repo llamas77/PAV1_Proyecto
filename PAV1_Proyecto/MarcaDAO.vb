@@ -2,7 +2,13 @@
     ' DOC: (MarcaDataAccessObject) Esta clase se encarga de las consultas SQL a la tabla de Marcas.
     '      Como parametros de entrada/salida generalmente trabaja con MarcaVO.
 
+    Enum tipo_grabacion
+        insertar
+        modificar
+    End Enum
+
     ' TODO: Modificar BD para que el campo Nombre sea UNIQUE
+    ' FRANCO: este TODO de arriba no esta hecho supuestamente???
     Public Shared Function all() As DataTable
         Dim sql_select = "SELECT idMarca, nombre FROM marcas"
         Return DataBase.getInstance().consulta_sql(sql_select)
@@ -21,7 +27,8 @@
     End Sub
 
     Public Shared Sub update(ByRef marca As MarcaVO)
-        ' TODO: Update a marca en la BD.
+        ' DOC: Actualiza la marca en la BD
+
         Dim sql_update As String
         sql_update = "UPDATE marcas"
         sql_update &= " SET "
@@ -30,14 +37,19 @@
         DataBase.getInstance().ejecuta_sql(sql_update)
     End Sub
 
-    Public Shared Sub save(ByRef marca As MarcaVO)
-        ' DOC: Si la marca existe actualiza, sino inserta.
-        If exists(marca) Then
+    Public Shared Function save(ByRef marca As MarcaVO, ByRef tipo As tipo_grabacion) As Boolean
+        ' DOC: inserta o actualiza según sea el caso, verificando antes si existe o no en la BD
+
+        If exists(marca, tipo) Then
+            If tipo = tipo_grabacion.insertar Then Return False
             MarcaDAO.update(marca)
         Else
+            If tipo = tipo_grabacion.modificar Then Return False
             MarcaDAO.insert(marca)
         End If
-    End Sub
+
+        Return True
+    End Function
 
     Public Shared Sub delete(ByRef marca As MarcaVO)
         Dim sql_delete = "DELETE FROM marcas" ' Si no existe en la BD el comando no falla.
@@ -47,13 +59,13 @@
 
     End Sub
 
-    Shared Function exists(ByRef marca As MarcaVO) As Boolean
-        Dim sql = "SELECT TOP 1 id FROM marcas WHERE nombre='" & marca.get_nombre & "'"
+    Shared Function exists(ByRef marca As MarcaVO, ByRef tipo As tipo_grabacion) As Boolean
+        Dim sql = "SELECT TOP 1 idMarca FROM marcas WHERE " &
+            IIf(tipo = tipo_grabacion.insertar, "nombre='" & marca.get_nombre() & "'",
+                                                "idMarca=" & marca.get_id())
+
         Dim response = DataBase.getInstance().consulta_sql(sql)
-        If response.Rows.Count = 1 Then
-            marca.set_id(response(0)(0)) ' Actualiza el ID por si esta cambiado.
-            Return True
-        End If
+        If response.Rows.Count = 1 Then Return True
         Return False
     End Function
 
