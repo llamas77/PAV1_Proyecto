@@ -26,11 +26,15 @@ Partial Class frm_abm_familias
         '
         'frm_abm_familias
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(282, 255)
+        Me.ClientSize = New System.Drawing.Size(285, 259)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.MaximizeBox = False
         Me.Name = "frm_abm_familias"
-        Me.Text = "frm_abm_familias"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "ABM Familias"
         Me.ResumeLayout(False)
 
     End Sub

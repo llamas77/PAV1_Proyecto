@@ -173,8 +173,11 @@ Partial Class frm_abm_marcas
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txt_nombre)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.MaximizeBox = False
         Me.Name = "frm_abm_marcas"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "ABM Marcas"
         CType(Me.grid_marcas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
