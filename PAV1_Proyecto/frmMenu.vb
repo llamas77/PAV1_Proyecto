@@ -1,6 +1,5 @@
 ﻿Public Class frmMenu
-    Private Sub frmMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' TODO: Prueba. Borrar.
+    Private Sub btn_marcas_Click(sender As Object, e As EventArgs) Handles btn_marcas.Click
         Dim frm As New frm_abm_marcas
         frm.Show()
         frm.Focus()

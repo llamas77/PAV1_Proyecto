@@ -33,6 +33,7 @@ Partial Class frm_abm_marcas
         Me.btn_modificar = New System.Windows.Forms.Button()
         Me.txt_id = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.btn_nuevo = New System.Windows.Forms.Button()
         CType(Me.grid_marcas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -66,7 +67,7 @@ Partial Class frm_abm_marcas
         Me.btn_eliminar.Location = New System.Drawing.Point(209, 262)
         Me.btn_eliminar.Name = "btn_eliminar"
         Me.btn_eliminar.Size = New System.Drawing.Size(78, 32)
-        Me.btn_eliminar.TabIndex = 4
+        Me.btn_eliminar.TabIndex = 6
         Me.btn_eliminar.Text = "Eliminar"
         Me.btn_eliminar.UseVisualStyleBackColor = True
         '
@@ -75,7 +76,7 @@ Partial Class frm_abm_marcas
         Me.btn_salir.Location = New System.Drawing.Point(304, 262)
         Me.btn_salir.Name = "btn_salir"
         Me.btn_salir.Size = New System.Drawing.Size(78, 32)
-        Me.btn_salir.TabIndex = 5
+        Me.btn_salir.TabIndex = 7
         Me.btn_salir.Text = "Salir"
         Me.btn_salir.UseVisualStyleBackColor = True
         '
@@ -83,14 +84,17 @@ Partial Class frm_abm_marcas
         '
         Me.grid_marcas.AllowUserToAddRows = False
         Me.grid_marcas.AllowUserToDeleteRows = False
+        Me.grid_marcas.AllowUserToResizeRows = False
         Me.grid_marcas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.grid_marcas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.nombre})
         Me.grid_marcas.Location = New System.Drawing.Point(15, 92)
+        Me.grid_marcas.MultiSelect = False
         Me.grid_marcas.Name = "grid_marcas"
         Me.grid_marcas.ReadOnly = True
         Me.grid_marcas.RowTemplate.Height = 24
+        Me.grid_marcas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.grid_marcas.Size = New System.Drawing.Size(366, 164)
-        Me.grid_marcas.TabIndex = 6
+        Me.grid_marcas.TabIndex = 3
         '
         'id
         '
@@ -109,10 +113,10 @@ Partial Class frm_abm_marcas
         '
         'btn_modificar
         '
-        Me.btn_modificar.Location = New System.Drawing.Point(15, 262)
+        Me.btn_modificar.Location = New System.Drawing.Point(110, 262)
         Me.btn_modificar.Name = "btn_modificar"
         Me.btn_modificar.Size = New System.Drawing.Size(78, 32)
-        Me.btn_modificar.TabIndex = 4
+        Me.btn_modificar.TabIndex = 5
         Me.btn_modificar.Text = "Modificar"
         Me.btn_modificar.UseVisualStyleBackColor = True
         '
@@ -123,6 +127,7 @@ Partial Class frm_abm_marcas
         Me.txt_id.Name = "txt_id"
         Me.txt_id.Size = New System.Drawing.Size(100, 22)
         Me.txt_id.TabIndex = 7
+        Me.txt_id.TabStop = False
         '
         'Label1
         '
@@ -133,11 +138,21 @@ Partial Class frm_abm_marcas
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "ID"
         '
+        'btn_nuevo
+        '
+        Me.btn_nuevo.Location = New System.Drawing.Point(15, 262)
+        Me.btn_nuevo.Name = "btn_nuevo"
+        Me.btn_nuevo.Size = New System.Drawing.Size(75, 32)
+        Me.btn_nuevo.TabIndex = 4
+        Me.btn_nuevo.Text = "Nuevo"
+        Me.btn_nuevo.UseVisualStyleBackColor = True
+        '
         'frm_abm_marcas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(394, 317)
+        Me.Controls.Add(Me.btn_nuevo)
         Me.Controls.Add(Me.txt_id)
         Me.Controls.Add(Me.grid_marcas)
         Me.Controls.Add(Me.btn_salir)
@@ -166,4 +181,5 @@ Partial Class frm_abm_marcas
     Friend WithEvents btn_modificar As Button
     Friend WithEvents txt_id As TextBox
     Friend WithEvents Label1 As Label
+    Friend WithEvents btn_nuevo As Button
 End Class

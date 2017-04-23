@@ -6,6 +6,7 @@
     Dim estado As estado_grabacion
 
     Private Sub ABM_Marcas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' TODO OPTIONAL: Haria falta hacer una busqueda?
         Me.estado = estado_grabacion.insertar
         recargar_grilla_marcas()
     End Sub
@@ -95,6 +96,12 @@
         txt_nombre.Text = nombre
     End Sub
 
+    Private Sub clear_marca()
+        txt_id.Text = ""
+        txt_nombre.Text = ""
+        set_estado(estado_grabacion.insertar)
+    End Sub
+
     Private Function get_selected_MarcaVO() As MarcaVO
         ' DOC: Retorna el MarcaVO seleccionado en la grilla.
         Dim marca = grid_marcas.CurrentRow()
@@ -118,5 +125,9 @@
             Case Keys.Delete
                 btn_eliminar.PerformClick()
         End Select
+    End Sub
+
+    Private Sub btn_nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
+        clear_marca()
     End Sub
 End Class
