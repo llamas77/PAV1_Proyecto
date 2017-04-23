@@ -17,8 +17,12 @@
         ' TODO: Implementar
     End Sub
 
-    Shared Sub delete(ByRef familias As FamiliaVO)
+    Shared Sub delete(ByRef familia As FamiliaVO)
         ' TODO: Implementar
     End Sub
+
+    Shared Function exists(ByRef familia As FamiliaVO) As Boolean
+        ' TODO: Implementar
+    End Function
 
 End Class

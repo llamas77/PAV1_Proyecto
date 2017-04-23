@@ -3,11 +3,10 @@
         insertar
         modificar
     End Enum
-    Dim estado As estado_grabacion
+    Dim estado = estado_grabacion.insertar
 
     Private Sub ABM_Marcas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' TODO OPTIONAL: Haria falta hacer una busqueda?
-        Me.estado = estado_grabacion.insertar ' DUDA: Lo dejo aca o lo pongo como default del atributo?
+        ' TODO OPTIONAL: ¿Haria falta hacer una busqueda de marcas en la grilla?
         recargar_grilla_marcas()
     End Sub
 
@@ -41,24 +40,26 @@
     End Sub
 
     Private Sub btn_actualizar_click(sender As Object, e As EventArgs) Handles btn_actualizar.Click
-        ' Validacion
+        If validate_MarcaVO() Then
+            MarcaDAO.save(get_written_MarcaVO())
+            clear_marca()
+            recargar_grilla_marcas()
+        End If
+    End Sub
+
+    Private Function validate_MarcaVO() As Boolean
         txt_nombre.Text = txt_nombre.Text.Trim
         If txt_nombre.Text = "" Then
-            MsgBox("No puede ingresar un nombre vacio.", MsgBoxStyle.Exclamation, "Aviso")
-            Exit Sub
+            MsgBox("No puede ingresar un nombre de marca vacio.", MsgBoxStyle.Exclamation, "Aviso")
+            Return False
         End If
 
-        Dim marca = get_written_MarcaVO()
-        ' TODO: Validar que no esta repetido en BD (el mismo nombre con otro ID)
-        MarcaDAO.save(marca)
-        clear_marca()
-        recargar_grilla_marcas()
-    End Sub
+        Return True
+    End Function
 
     Private Sub btn_eliminar_Click(sender As Object, e As EventArgs) Handles btn_eliminar.Click
         ' DOC: Valida y elimina la marca seleccionada.
         Dim marca = get_selected_MarcaVO()
-
         If True Then ' TODO: Validar que no haya ningun equipo relacionado a esta marca.
             ' Confirmacion
             If MessageBox.Show("Esta seguro de borrar la marca:" + marca.get_nombre(),
@@ -118,7 +119,7 @@
         End Select
     End Sub
 
-    Private Sub btn_nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
+    Private Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
         clear_marca()
     End Sub
 End Class

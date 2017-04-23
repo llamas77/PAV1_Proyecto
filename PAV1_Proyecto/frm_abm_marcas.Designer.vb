@@ -33,13 +33,14 @@ Partial Class frm_abm_marcas
         Me.btn_modificar = New System.Windows.Forms.Button()
         Me.txt_id = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.btn_nuevo = New System.Windows.Forms.Button()
+        Me.btn_cancelar = New System.Windows.Forms.Button()
         CType(Me.grid_marcas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txt_nombre
         '
         Me.txt_nombre.Location = New System.Drawing.Point(88, 46)
+        Me.txt_nombre.MaxLength = 50
         Me.txt_nombre.Name = "txt_nombre"
         Me.txt_nombre.Size = New System.Drawing.Size(199, 22)
         Me.txt_nombre.TabIndex = 1
@@ -64,7 +65,7 @@ Partial Class frm_abm_marcas
         '
         'btn_eliminar
         '
-        Me.btn_eliminar.Location = New System.Drawing.Point(209, 262)
+        Me.btn_eliminar.Location = New System.Drawing.Point(99, 262)
         Me.btn_eliminar.Name = "btn_eliminar"
         Me.btn_eliminar.Size = New System.Drawing.Size(78, 32)
         Me.btn_eliminar.TabIndex = 6
@@ -113,7 +114,7 @@ Partial Class frm_abm_marcas
         '
         'btn_modificar
         '
-        Me.btn_modificar.Location = New System.Drawing.Point(110, 262)
+        Me.btn_modificar.Location = New System.Drawing.Point(15, 262)
         Me.btn_modificar.Name = "btn_modificar"
         Me.btn_modificar.Size = New System.Drawing.Size(78, 32)
         Me.btn_modificar.TabIndex = 5
@@ -138,21 +139,21 @@ Partial Class frm_abm_marcas
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "ID"
         '
-        'btn_nuevo
+        'btn_cancelar
         '
-        Me.btn_nuevo.Location = New System.Drawing.Point(15, 262)
-        Me.btn_nuevo.Name = "btn_nuevo"
-        Me.btn_nuevo.Size = New System.Drawing.Size(75, 32)
-        Me.btn_nuevo.TabIndex = 4
-        Me.btn_nuevo.Text = "Nuevo"
-        Me.btn_nuevo.UseVisualStyleBackColor = True
+        Me.btn_cancelar.Location = New System.Drawing.Point(223, 262)
+        Me.btn_cancelar.Name = "btn_cancelar"
+        Me.btn_cancelar.Size = New System.Drawing.Size(75, 32)
+        Me.btn_cancelar.TabIndex = 4
+        Me.btn_cancelar.Text = "Cancelar"
+        Me.btn_cancelar.UseVisualStyleBackColor = True
         '
         'frm_abm_marcas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(394, 317)
-        Me.Controls.Add(Me.btn_nuevo)
+        Me.Controls.Add(Me.btn_cancelar)
         Me.Controls.Add(Me.txt_id)
         Me.Controls.Add(Me.grid_marcas)
         Me.Controls.Add(Me.btn_salir)
@@ -181,5 +182,5 @@ Partial Class frm_abm_marcas
     Friend WithEvents btn_modificar As Button
     Friend WithEvents txt_id As TextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents btn_nuevo As Button
+    Friend WithEvents btn_cancelar As Button
 End Class

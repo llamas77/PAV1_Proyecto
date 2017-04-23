@@ -32,7 +32,7 @@
 
     Public Shared Sub save(ByRef marca As MarcaVO)
         ' DOC: Si la marca existe actualiza, sino inserta.
-        If marca.is_in_bd() Then
+        If exists(marca) Then
             MarcaDAO.update(marca)
         Else
             MarcaDAO.insert(marca)
@@ -40,18 +40,21 @@
     End Sub
 
     Public Shared Sub delete(ByRef marca As MarcaVO)
-        ' TODO: Validar que tenga un ID (esta en la BD) y eliminar la marca.
-        If marca.is_in_bd() Then
-            Dim sql_delete = "DELETE FROM marcas"
-            sql_delete &= " WHERE idMarca=" & marca.get_id()
-            DataBase.getInstance().ejecuta_sql(sql_delete)
-            marca.set_id(0)
-        End If
+        Dim sql_delete = "DELETE FROM marcas" ' Si no existe en la BD el comando no falla.
+        sql_delete &= " WHERE idMarca=" & marca.get_id()
+        DataBase.getInstance().ejecuta_sql(sql_delete)
+        marca.set_id(0)
+
     End Sub
 
-
-
-
-
+    Shared Function exists(ByRef marca As MarcaVO) As Boolean
+        Dim sql = "SELECT TOP 1 id FROM marcas WHERE nombre='" & marca.get_nombre & "'"
+        Dim response = DataBase.getInstance().consulta_sql(sql)
+        If response.Rows.Count = 1 Then
+            marca.set_id(response(0)(0)) ' Actualiza el ID por si esta cambiado.
+            Return True
+        End If
+        Return False
+    End Function
 
 End Class

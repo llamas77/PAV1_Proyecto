@@ -16,8 +16,7 @@
     End Sub
 
     Public Sub New(ByVal nombre As String)
-        Me.id = 0
-        Me.nombre = nombre
+        Me.New(0, nombre)
     End Sub
 
     Public Sub set_id(ByVal new_id As Integer)
@@ -30,12 +29,6 @@
 
     Public Function get_id() As Integer
         Return Me.id
-    End Function
-
-    Public Function is_in_bd() As Boolean
-        ' Si el ID es 0 no esta en la BD.
-        Return IIf(Me.id = 0, False, True)
-
     End Function
 
     Public Sub set_nombre(ByVal new_nombre As String)

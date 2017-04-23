@@ -5,8 +5,5 @@
 
     ' TODO: Hacer getters, setters
 
-    Function is_in_bd()
-        ' TODO: Implementar
-    End Function
 
 End Class
