@@ -1,15 +1,19 @@
 ﻿Public Class frm_abm_marcas
 
-    Dim tipo_g = MarcaDAO.tipo_grabacion.insertar
+    Enum tipo_grabacion
+        insertar
+        modificar
+    End Enum
+    Dim tipo_g = tipo_grabacion.insertar
 
     Private Sub ABM_Marcas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' TODO OPTIONAL: ¿Haria falta hacer una busqueda de marcas en la grilla?
         recargar_grilla_marcas()
     End Sub
 
-    Private Sub set_tipo_g(ByRef nuevo_estado As MarcaDAO.tipo_grabacion)
+    Private Sub set_tipo_g(ByRef nuevo_estado As tipo_grabacion)
         tipo_g = nuevo_estado
-        If nuevo_estado = MarcaDAO.tipo_grabacion.insertar Then
+        If nuevo_estado = tipo_grabacion.insertar Then
             btn_actualizar.Text = "Agregar"
         Else
             btn_actualizar.Text = "Actualizar"
@@ -44,11 +48,25 @@
 
     Private Sub btn_actualizar_click(sender As Object, e As EventArgs) Handles btn_actualizar.Click
         If validate_MarcaVO() Then
-            If Not MarcaDAO.save(get_written_MarcaVO(), tipo_g) Then
-                MsgBox("La operación no se pudo realizar porque intentó ingresar una marca que " &
-                       "ya existe, o bien, intentó modificar una que no existe")
-                Exit Sub
-            End If
+            Dim marca = get_written_MarcaVO()
+
+            Select Case tipo_g
+                Case tipo_grabacion.insertar
+                    If Not MarcaDAO.is_name_in_use(marca) Then
+                        MarcaDAO.insert(marca)
+                    Else
+                        MsgBox("Ya existe una marca con el mismo nombre.", MsgBoxStyle.Exclamation, "Aviso")
+                        Exit Sub
+                    End If
+
+                Case tipo_grabacion.modificar
+                    If MarcaDAO.exists(marca) Then
+                        MarcaDAO.update(marca)
+                    Else
+                        MsgBox("La marca que intenta modificar no existe.", MsgBoxStyle.Exclamation, "Aviso")
+                    End If
+            End Select
+
             clear_marca()
             recargar_grilla_marcas()
         End If
@@ -83,16 +101,20 @@
     End Sub
 
     Private Sub load_marca(ByRef marca As MarcaVO)
+        ' DOC: Completa el formulario con la marca seleccionada y se prepara para modificarla
+
         txt_id.Text = marca.get_id()
         txt_nombre.Text = marca.get_nombre()
-        set_tipo_g(MarcaDAO.tipo_grabacion.modificar)
+        set_tipo_g(tipo_grabacion.modificar)
         txt_nombre.Focus()
     End Sub
 
     Private Sub clear_marca()
+        ' DOC: Vacía el formulario y lo prepara para ingresar una marca
+
         txt_id.Text = ""
         txt_nombre.Text = ""
-        set_tipo_g(MarcaDAO.tipo_grabacion.insertar)
+        set_tipo_g(tipo_grabacion.insertar)
         txt_nombre.Focus()
     End Sub
 
