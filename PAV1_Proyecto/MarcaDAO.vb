@@ -2,9 +2,6 @@
     ' DOC: (MarcaDataAccessObject) Esta clase se encarga de las consultas SQL a la tabla de Marcas.
     '      Como parametros de entrada/salida generalmente trabaja con MarcaVO.
 
-
-    ' TODO: Modificar BD para que el campo Nombre sea UNIQUE
-    ' FRANCO: este TODO de arriba no esta hecho supuestamente???
     Public Shared Function all() As DataTable
         Dim sql_select = "SELECT idMarca, nombre FROM marcas"
         Return DataBase.getInstance().consulta_sql(sql_select)
@@ -19,7 +16,10 @@
         sql_insertar &= "'" & marca.get_nombre() & "')"
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
         Dim tabla = DataBase.getInstance().consulta_sql(sql_insertar)
-        marca.set_id(tabla(0)(0)) 'FRANCO: esto es redundante creo, xq el objeto marca se pierde
+        'FRANCO: lo de abajo es redundante creo, xq el objeto marca se pierde.
+        'JUANI: Pero si el frm no lo perdiera deberia tenerlo con su correcto ID, 
+        '       calculo que cuando lleguemos a transacciones lo vamos a necesitar.
+        marca.set_id(tabla(0)(0))
     End Sub
 
     Public Shared Sub update(ByRef marca As MarcaVO)
@@ -45,10 +45,10 @@
     Shared Function exists(ByRef marca As MarcaVO) As Boolean
         ' DOC: determina si existe la marca en la BD, según PK
 
+        ' TODO: Validar que el ID es >= 1, sino no existe (no hace falta consulta en bd si no existe)
         Dim sql = "SELECT TOP 1 idMarca FROM marcas WHERE idMarca=" & marca.get_id()
         Dim response = DataBase.getInstance().consulta_sql(sql)
-        If response.Rows.Count = 1 Then Return True
-        Return False
+        Return response.Rows.Count = 1 ' TODO: Probar que sea valido en visual basic (sino usar IIF)
     End Function
 
     Public Shared Function is_name_in_use(ByRef marca As MarcaVO)
@@ -56,8 +56,7 @@
 
         Dim sql = "SELECT TOP 1 nombre FROM marcas WHERE nombre='" & marca.get_nombre() & "'"
         Dim response = DataBase.getInstance().consulta_sql(sql)
-        If response.Rows.Count = 1 Then Return True
-        Return False
+        Return response.Rows.Count = 1 ' TODO: Probar que sea valido en visual basic (sino usar IIF)
     End Function
 
 

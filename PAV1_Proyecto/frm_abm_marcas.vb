@@ -22,7 +22,7 @@
 
     Private Sub recargar_grilla_marcas()
         ' Guarda la posición de la celda seleccionada
-        Dim index As Integer
+        Dim index = 0
         If grid_marcas.Rows.Count > 0 Then
             index = grid_marcas.CurrentRow().Index
             grid_marcas.Rows.Clear()
@@ -47,23 +47,19 @@
     End Sub
 
     Private Sub btn_actualizar_click(sender As Object, e As EventArgs) Handles btn_actualizar.Click
-        If validate_MarcaVO() Then
-            Dim marca = get_written_MarcaVO()
+        Dim marca = get_written_MarcaVO()
+        If validate_MarcaVO(marca) Then
 
             Select Case tipo_g
                 Case tipo_grabacion.insertar
-                    If Not MarcaDAO.is_name_in_use(marca) Then
-                        MarcaDAO.insert(marca)
-                    Else
-                        MsgBox("Ya existe una marca con el mismo nombre.", MsgBoxStyle.Exclamation, "Aviso")
-                        Exit Sub
-                    End If
-
+                    MarcaDAO.insert(marca)
                 Case tipo_grabacion.modificar
                     If MarcaDAO.exists(marca) Then
                         MarcaDAO.update(marca)
                     Else
-                        MsgBox("La marca que intenta modificar no existe.", MsgBoxStyle.Exclamation, "Aviso")
+                        MsgBox("La marca " & marca.get_nombre & " no existe. Imposible modificar.", MsgBoxStyle.Exclamation, "Aviso")
+                        ' Duda - Juani: Si la marca no existe y el usuario la quiere guardar, no deberiamos
+                        '           redirijir internamente al insert sin informar al usuario? En este caso no hace falta el estadoGrabacion.
                     End If
             End Select
 
@@ -72,10 +68,13 @@
         End If
     End Sub
 
-    Private Function validate_MarcaVO() As Boolean
-        txt_nombre.Text = txt_nombre.Text.Trim
-        If txt_nombre.Text = "" Then
+    Private Function validate_MarcaVO(ByRef marca As MarcaVO) As Boolean
+        ' DUDA - Juani: El metodo deberia obtener los datos de los txtBox o que le pasen un MarcaVO y lo valide?
+        If marca.get_nombre() = "" Then
             MsgBox("No puede ingresar un nombre de marca vacio.", MsgBoxStyle.Exclamation, "Aviso")
+            Return False
+        ElseIf MarcaDAO.is_name_in_use(marca) Then
+            MsgBox("Ya existe una marca de nombre: " & marca.get_nombre, MsgBoxStyle.Exclamation, "Aviso")
             Return False
         End If
 
@@ -87,7 +86,7 @@
         Dim marca = get_selected_MarcaVO()
         If True Then ' TODO: Validar que no haya ningun equipo relacionado a esta marca.
             ' Confirmacion
-            If MessageBox.Show("Esta seguro de borrar la marca:" + marca.get_nombre(),
+            If MessageBox.Show("Esta seguro de borrar la marca: " + marca.get_nombre(),
                            "Importante", MessageBoxButtons.YesNo,
                            MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
                 MarcaDAO.delete(marca)
@@ -133,7 +132,8 @@
         ' DOC: Al presionar enter en el txt_nombre se ejecuta el click del btn_actualizar.
         Select Case e.KeyCode
             Case Keys.Enter
-                btn_actualizar.PerformClick()
+                btn_actualizar.PerformClick() ' Duda - Juani: Capaz sea mejor crear una funcion actualizar
+                '             que sea llamada desde este keyDown y desde el btn_actualizar.Click
         End Select
     End Sub
 
@@ -142,9 +142,9 @@
         '      Y al presionar supr se ejecuta el click del btn_eliminar.
         Select Case e.KeyCode
             Case Keys.Enter
-                btn_modificar.PerformClick()
+                btn_modificar.PerformClick() ' Duda - Juani: Tal vez sea mejor crear una funcion y que ambos la llamen
             Case Keys.Delete
-                btn_eliminar.PerformClick()
+                btn_eliminar.PerformClick() ' Idem arriba.
         End Select
     End Sub
 
@@ -153,6 +153,9 @@
     End Sub
 
     Private Sub btn_salir_Click(sender As Object, e As EventArgs) Handles btn_salir.Click
-        Hide()
+        clear_marca()
+        Hide() ' Duda - juani: Cuando haces Show se ejecuta el load()? Porque sino no va a recargar la grilla al abrirlo de nuevo.
+        ' De todas formas creo que si sale con el boton de arriba se va a cerrar... lo que habria que interceptar es el cierre
+        ' del form.
     End Sub
 End Class

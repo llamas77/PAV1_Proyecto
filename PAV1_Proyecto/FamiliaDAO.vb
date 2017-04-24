@@ -23,6 +23,7 @@
 
     Shared Function exists(ByRef familia As FamiliaVO) As Boolean
         ' TODO: Implementar
+        Return True 'Juani: Lo pongo para sacar la maldita advertencia por ahora.
     End Function
 
 End Class

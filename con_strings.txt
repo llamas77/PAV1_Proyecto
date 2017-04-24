@@ -1,3 +1,7 @@
 Dejo mi conection string 
 
-Provider=SQLNCLI11;Data Source=JUANI-PC\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=sistema_stock
+"Provider=SQLNCLI11;Data Source=JUANI-PC\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=sistema_stock"
+
+Franco:
+
+"Provider=SQLNCLI11;Data Source=franco-pc;Integrated Security=SSPI;Initial Catalog=sistema_stock"

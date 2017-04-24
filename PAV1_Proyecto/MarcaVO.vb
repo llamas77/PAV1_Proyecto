@@ -12,7 +12,7 @@
         Else
             Me.id = 0
         End If
-        Me.nombre = nombre 'TODO: Validar String de longitud < 50 (segun BD)
+        Me.nombre = nombre.Trim 'TODO: Validar String de longitud < 50 (segun BD)
     End Sub
 
     Public Sub New(ByVal nombre As String)
@@ -24,7 +24,6 @@
         If (new_id > 0 And Me.id = 0) Or (new_id = 0 And Me.id > 0) Then
             Me.id = new_id
         End If
-
     End Sub
 
     Public Function get_id() As Integer
@@ -32,7 +31,7 @@
     End Function
 
     Public Sub set_nombre(ByVal new_nombre As String)
-        Me.nombre = new_nombre
+        Me.nombre = new_nombre.Trim
     End Sub
 
     Public Function get_nombre() As String
