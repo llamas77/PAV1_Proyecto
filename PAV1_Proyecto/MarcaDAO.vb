@@ -51,7 +51,7 @@
         Return response.Rows.Count = 1 ' TODO: Probar que sea valido en visual basic (sino usar IIF)
     End Function
 
-    Public Shared Function is_name_in_use(ByRef marca As MarcaVO)
+    Public Shared Function is_name_in_use(ByRef marca As MarcaVO) As Boolean
         ' DOC: determina si existe el nombre de la marca en la BD
 
         Dim sql = "SELECT TOP 1 nombre FROM marcas WHERE nombre='" & marca.get_nombre() & "'"
