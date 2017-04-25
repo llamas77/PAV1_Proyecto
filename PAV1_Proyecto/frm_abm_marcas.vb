@@ -125,7 +125,7 @@
 
     Private Function get_written_MarcaVO() As MarcaVO
         ' DOC: Retorna la marca que esta escrita en los txtbox.
-        Return New MarcaVO(IIf(txt_id.Text = "", 0, txt_id.Text), txt_nombre.Text.Trim)
+        Return New MarcaVO(IIf(txt_id.Text = "", 0, txt_id.Text), txt_nombre.Text)
     End Function
 
     Private Sub txt_nombre_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_nombre.KeyDown

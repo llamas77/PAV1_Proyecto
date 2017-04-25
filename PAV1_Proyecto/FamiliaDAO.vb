@@ -1,8 +1,9 @@
 ﻿Public Class FamiliaDAO
 
-    Shared Sub all(ByRef tabla As DataTable)
+    Shared Function all() As DataTable
         ' TODO: Implementar
-    End Sub
+
+    End Function
 
     Shared Sub insert(ByRef familia As FamiliaVO)
         ' TODO: Implementar
@@ -23,7 +24,10 @@
 
     Shared Function exists(ByRef familia As FamiliaVO) As Boolean
         ' TODO: Implementar
-        Return True 'Juani: Lo pongo para sacar la maldita advertencia por ahora.
+    End Function
+
+    Shared Function is_name_in_use(ByRef familia As FamiliaVO)
+        ' TODO: Implementar
     End Function
 
 End Class
