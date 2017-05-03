@@ -143,6 +143,7 @@
         Select Case e.KeyCode
             Case Keys.Enter
                 btn_modificar.PerformClick() ' Duda - Juani: Tal vez sea mejor crear una funcion y que ambos la llamen
+                                               'FRANCO: lo mismo pensé.. sino hay una dependencia... si borramos el boton esto no anda
             Case Keys.Delete
                 btn_eliminar.PerformClick() ' Idem arriba.
         End Select
@@ -153,9 +154,6 @@
     End Sub
 
     Private Sub btn_salir_Click(sender As Object, e As EventArgs) Handles btn_salir.Click
-        clear_marca()
-        Hide() ' Duda - juani: Cuando haces Show se ejecuta el load()? Porque sino no va a recargar la grilla al abrirlo de nuevo.
-        ' De todas formas creo que si sale con el boton de arriba se va a cerrar... lo que habria que interceptar es el cierre
-        ' del form.
+        Close()
     End Sub
 End Class

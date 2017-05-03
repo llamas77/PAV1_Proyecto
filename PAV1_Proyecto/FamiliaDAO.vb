@@ -14,9 +14,6 @@
         sql_insertar &= "'" & familia.get_nombre() & "')"
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
         Dim tabla = DataBase.getInstance().consulta_sql(sql_insertar)
-        'FRANCO: lo de abajo es redundante creo, xq el objeto marca se pierde.
-        'JUANI: Pero si el frm no lo perdiera deberia tenerlo con su correcto ID, 
-        '       calculo que cuando lleguemos a transacciones lo vamos a necesitar.
         familia.set_id(tabla(0)(0))
     End Sub
 
@@ -46,7 +43,7 @@
         ' TODO: Validar que el ID es >= 1, sino no existe (no hace falta consulta en bd si no existe)
         Dim sql = "SELECT TOP 1 idFamilia FROM familias WHERE idFamilia=" & familia.get_id()
         Dim response = DataBase.getInstance().consulta_sql(sql)
-        Return response.Rows.Count = 1 ' TODO: Probar que sea valido en visual basic (sino usar IIF)
+        Return response.Rows.Count = 1
     End Function
 
     Public Shared Function is_name_in_use(ByRef familia As FamiliaVO) As Boolean
@@ -54,7 +51,7 @@
 
         Dim sql = "SELECT TOP 1 nombre FROM familias WHERE nombre='" & familia.get_nombre() & "'"
         Dim response = DataBase.getInstance().consulta_sql(sql)
-        Return response.Rows.Count = 1 ' TODO: Probar que sea valido en visual basic (sino usar IIF)
+        Return response.Rows.Count = 1
     End Function
 
 End Class

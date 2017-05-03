@@ -48,7 +48,7 @@
         ' TODO: Validar que el ID es >= 1, sino no existe (no hace falta consulta en bd si no existe)
         Dim sql = "SELECT TOP 1 idMarca FROM marcas WHERE idMarca=" & marca.get_id()
         Dim response = DataBase.getInstance().consulta_sql(sql)
-        Return response.Rows.Count = 1 ' TODO: Probar que sea valido en visual basic (sino usar IIF)
+        Return response.Rows.Count = 1
     End Function
 
     Public Shared Function is_name_in_use(ByRef marca As MarcaVO) As Boolean
@@ -56,7 +56,7 @@
 
         Dim sql = "SELECT TOP 1 nombre FROM marcas WHERE nombre='" & marca.get_nombre() & "'"
         Dim response = DataBase.getInstance().consulta_sql(sql)
-        Return response.Rows.Count = 1 ' TODO: Probar que sea valido en visual basic (sino usar IIF)
+        Return response.Rows.Count = 1
     End Function
 
 
