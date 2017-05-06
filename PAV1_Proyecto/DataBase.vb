@@ -15,37 +15,47 @@
         Return IIf(IsNothing(instance), New DataBase(), instance)
     End Function
 
+    Private Function conectar() As OleDb.OleDbConnection
+        ' Siempre que se llame a esta funcion es responsabilidad de quien llama cerrar la conexion.
+        Dim conexion As New OleDb.OleDbConnection
+        conexion.ConnectionString = cadena_conexion
+        Try
+            conexion.Open()
+        Catch ex As Exception
+            MsgBox("No se puede establecer una conexion con la base de datos", MsgBoxStyle.Critical, "Error")
+        End Try
+        Return conexion
+    End Function
+
     Public Function consulta_sql(ByVal sql As String) As DataTable
         ' DOC: Ejecuta una consulta y retorna el resultado.
-        Dim conexion As New OleDb.OleDbConnection
         Dim cmd As New OleDb.OleDbCommand
         Dim tabla As New DataTable
 
-        ' TODO: Poner un Try Catch
-        conexion.ConnectionString = cadena_conexion
-        conexion.Open()
-        cmd.Connection = conexion
         cmd.CommandType = CommandType.Text
         cmd.CommandText = sql
+        Dim conexion = conectar()
+        cmd.Connection = conexion
+        ' TODO: Poner un Try Catch
         tabla.Load(cmd.ExecuteReader())
+
         conexion.Close()
         Return tabla
     End Function
 
     Public Sub ejecuta_sql(ByVal sql As String)
         ' DOC: Ejecuta una consulta que no trae resultados o los ignora.
-        Dim conexion As New OleDb.OleDbConnection
         Dim cmd As New OleDb.OleDbCommand
+        Dim tabla As New DataTable
 
-        ' TODO: Poner un Try Catch
-        conexion.ConnectionString = cadena_conexion
-        conexion.Open()
-        cmd.Connection = conexion
         cmd.CommandType = CommandType.Text
         cmd.CommandText = sql
+        Dim conexion = conectar()
+        cmd.Connection = conexion
+        ' TODO: Poner un Try Catch
         cmd.ExecuteNonQuery()
+
         conexion.Close()
     End Sub
-
 
 End Class
