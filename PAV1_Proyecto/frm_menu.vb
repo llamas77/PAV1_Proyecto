@@ -9,8 +9,10 @@
         frm.Show()
     End Sub
 
-    Private Sub btn_generico_Click(sender As Object, e As EventArgs) Handles btn_generico.Click
+    Private Sub btn_generico_Click(sender As Object, e As EventArgs) Handles btn_tipos_cliente.Click
+        ' Muestra de funcionamiento del ABM Generico.
         Dim frm As New frm_abm_generico(New TipoClienteControl, New TipoClienteGrilla, New TipoClienteDAO)
+        frm.Text = "ABM Tipos de Clientes"
         frm.Show()
     End Sub
 End Class

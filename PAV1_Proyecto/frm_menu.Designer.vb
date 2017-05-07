@@ -24,7 +24,7 @@ Partial Class frm_menu
     Private Sub InitializeComponent()
         Me.btn_marcas = New System.Windows.Forms.Button()
         Me.btn_familias = New System.Windows.Forms.Button()
-        Me.btn_generico = New System.Windows.Forms.Button()
+        Me.btn_tipos_cliente = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btn_marcas
@@ -47,26 +47,26 @@ Partial Class frm_menu
         Me.btn_familias.Text = "ABM Familias"
         Me.btn_familias.UseVisualStyleBackColor = True
         '
-        'btn_generico
+        'btn_tipos_cliente
         '
-        Me.btn_generico.Location = New System.Drawing.Point(310, 25)
-        Me.btn_generico.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btn_generico.Name = "btn_generico"
-        Me.btn_generico.Size = New System.Drawing.Size(135, 82)
-        Me.btn_generico.TabIndex = 0
-        Me.btn_generico.Text = "ABM Generico"
-        Me.btn_generico.UseVisualStyleBackColor = True
+        Me.btn_tipos_cliente.Location = New System.Drawing.Point(310, 25)
+        Me.btn_tipos_cliente.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btn_tipos_cliente.Name = "btn_tipos_cliente"
+        Me.btn_tipos_cliente.Size = New System.Drawing.Size(135, 82)
+        Me.btn_tipos_cliente.TabIndex = 0
+        Me.btn_tipos_cliente.Text = "Tipos de Clientes"
+        Me.btn_tipos_cliente.UseVisualStyleBackColor = True
         '
         'frm_menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(484, 143)
-        Me.Controls.Add(Me.btn_generico)
+        Me.Controls.Add(Me.btn_tipos_cliente)
         Me.Controls.Add(Me.btn_familias)
         Me.Controls.Add(Me.btn_marcas)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.Name = "frm_menu"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -77,5 +77,5 @@ Partial Class frm_menu
 
     Friend WithEvents btn_marcas As Button
     Friend WithEvents btn_familias As Button
-    Friend WithEvents btn_generico As Button
+    Friend WithEvents btn_tipos_cliente As Button
 End Class
