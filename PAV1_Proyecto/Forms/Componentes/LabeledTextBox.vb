@@ -8,7 +8,8 @@
         End Set
     End Property
 
-    Public Property Text As String
+
+    Public Overrides Property Text As String
         Get
             Return txt_caja.Text
         End Get

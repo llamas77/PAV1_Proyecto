@@ -1,12 +1,15 @@
 ﻿Public Class TipoClienteGrilla
+    Inherits UserControl
+    Implements ObjetoGrilla
 
-    Public Sub recargar()
+    Public Sub recargar(valores As DataTable) Implements ObjetoGrilla.recargar
         Dim index = vaciar()
-        cargar(TipoClienteDAO.all())
+        ' TODO: Validar que el DataTable tiene un formato aceptable (minimo de columnas)
+        cargar(valores)
         set_index(index)
     End Sub
 
-    Public Function get_selected() As TipoClienteVO
+    Public Function get_selected() As ObjetoVO Implements ObjetoGrilla.get_selected
         ' DOC: Retorna el ObjetoVO seleccionado en la grilla.
         Dim selectedRow = grilla_datos.CurrentRow()
         If IsNothing(selectedRow) Then

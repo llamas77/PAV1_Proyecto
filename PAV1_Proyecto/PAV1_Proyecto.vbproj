@@ -106,6 +106,12 @@
     <Compile Include="Forms\Componentes\TipoClienteGrilla.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Forms\frm_abm_generico.Designer.vb">
+      <DependentUpon>frm_abm_generico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_abm_generico.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frm_abm_tipos_clientes.Designer.vb">
       <DependentUpon>frm_abm_tipos_clientes.vb</DependentUpon>
     </Compile>
@@ -131,6 +137,10 @@
       <DependentUpon>frm_menu.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Interfaces\ObjetoCtrl.vb" />
+    <Compile Include="Interfaces\ObjetoDAO.vb" />
+    <Compile Include="Interfaces\ObjetoGrilla.vb" />
+    <Compile Include="Interfaces\ObjetoVO.vb" />
     <Compile Include="MarcaDAO.vb" />
     <Compile Include="MarcaVO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -160,6 +170,9 @@
     <EmbeddedResource Include="Forms\Componentes\TipoClienteGrilla.resx">
       <DependentUpon>TipoClienteGrilla.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_abm_generico.resx">
+      <DependentUpon>frm_abm_generico.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_abm_tipos_clientes.resx">
       <DependentUpon>frm_abm_tipos_clientes.vb</DependentUpon>
     </EmbeddedResource>
@@ -180,7 +193,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

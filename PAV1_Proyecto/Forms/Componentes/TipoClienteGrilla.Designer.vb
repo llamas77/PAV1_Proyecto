@@ -38,6 +38,7 @@ Partial Class TipoClienteGrilla
         Me.grilla_datos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.nombre, Me.descripcion})
         Me.grilla_datos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grilla_datos.Location = New System.Drawing.Point(0, 0)
+        Me.grilla_datos.Margin = New System.Windows.Forms.Padding(15, 5, 15, 15)
         Me.grilla_datos.MultiSelect = False
         Me.grilla_datos.Name = "grilla_datos"
         Me.grilla_datos.ReadOnly = True
