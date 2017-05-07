@@ -19,6 +19,7 @@
         control.Location = New Point(Me.Padding.Left, Me.Padding.Top) ' Esquina superior izquierda.
         control.TabIndex = 1
         Me.Controls.Add(control)
+        control.Focus() ' Para que empiece con el foco en el control.
         btn_actualizar.Location = New Point(control.Location.X + control.Size.Width + 15,
                                             control.Location.Y + control.Size.Height - btn_actualizar.Size.Height - 5)
 
@@ -27,6 +28,7 @@
         control.Location = New Point(Me.Padding.Left, btn_actualizar.Location.Y + btn_actualizar.Size.Height + 15)
         control.TabIndex = 3
         Me.Controls.Add(control)
+
         ' Posiciona los botones.
         Dim point = New Point(15, control.Location.Y + control.Size.Height + 15)
         btn_modificar.Location = point

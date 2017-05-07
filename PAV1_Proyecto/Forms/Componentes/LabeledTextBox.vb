@@ -50,9 +50,9 @@
                 Case Mascara.telefono
                     txt_caja.Mask = "9000-40000009"
                 Case Mascara.celular
-                    txt_caja.Mask = "9000-150-0000009"
+                    txt_caja.Mask = "9000-150-000000"
                 Case Mascara.porcentaje
-                    txt_caja.Mask = "099%"
+                    txt_caja.Mask = "09%"
             End Select
         End Set
     End Property

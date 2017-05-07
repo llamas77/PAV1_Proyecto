@@ -1,4 +1,6 @@
-﻿Public Class TipoClienteVO
+﻿Imports PAV1_Proyecto
+
+Public Class TipoClienteVO
     Implements ObjetoVO
 
     Dim id As Integer
@@ -46,4 +48,11 @@
         Return nombre
     End Function
 
+    'Public Function estructura_grilla(visibles As Boolean) As List(Of String) Implements ObjetoVOGrillable.estructura_grilla
+    '    If visibles Then ' Lista de columnas visibles
+    '        Return New List(Of String) From {"id", "nombre", "descripcion"}
+    '    Else ' Lista de columnas ocultas
+    '        Return New List(Of String) From {}
+    '    End If
+    'End Function
 End Class

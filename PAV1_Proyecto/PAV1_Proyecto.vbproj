@@ -89,6 +89,9 @@
     <Compile Include="DataBase.vb" />
     <Compile Include="FamiliaDAO.vb" />
     <Compile Include="FamiliaVO.vb" />
+    <Compile Include="Forms\Componentes\GrillaGenerica.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\Componentes\LabeledTextBox.Designer.vb">
       <DependentUpon>LabeledTextBox.vb</DependentUpon>
     </Compile>
@@ -154,6 +157,7 @@
     <Compile Include="Interfaces\ObjetoDAO.vb" />
     <Compile Include="Interfaces\ObjetoGrilla.vb" />
     <Compile Include="Interfaces\ObjetoVO.vb" />
+    <Compile Include="Interfaces\ObjetoVOGrillable.vb" />
     <Compile Include="MarcaDAO.vb" />
     <Compile Include="MarcaVO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

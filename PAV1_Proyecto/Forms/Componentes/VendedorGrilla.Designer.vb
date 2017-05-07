@@ -38,6 +38,7 @@ Partial Class VendedorGrilla
         Me.grilla_datos.AllowUserToDeleteRows = False
         Me.grilla_datos.AllowUserToResizeRows = False
         Me.grilla_datos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.grilla_datos.BackgroundColor = System.Drawing.Color.White
         Me.grilla_datos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.grilla_datos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.nombre, Me.apellido, Me.comision, Me.telefono, Me.direccion})
         Me.grilla_datos.Dock = System.Windows.Forms.DockStyle.Fill

@@ -56,6 +56,9 @@ Public Class VendedorVO
         Me.New(0, "", "", "", "", 0.0)
     End Sub
 
+    '
+    ' Interfaz ObjetoVO
+    '
     Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
         Return _apellido & ", " & _nombre
     End Function

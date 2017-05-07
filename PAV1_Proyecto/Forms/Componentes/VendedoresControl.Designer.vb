@@ -37,7 +37,7 @@ Partial Class VendedoresControl
         Me.txt_comision.Location = New System.Drawing.Point(3, 119)
         Me.txt_comision.Name = "txt_comision"
         Me.txt_comision.Size = New System.Drawing.Size(149, 23)
-        Me.txt_comision.TabIndex = 11
+        Me.txt_comision.TabIndex = 4
         '
         'txt_direccion
         '
@@ -47,7 +47,7 @@ Partial Class VendedoresControl
         Me.txt_direccion.Location = New System.Drawing.Point(3, 90)
         Me.txt_direccion.Name = "txt_direccion"
         Me.txt_direccion.Size = New System.Drawing.Size(265, 23)
-        Me.txt_direccion.TabIndex = 12
+        Me.txt_direccion.TabIndex = 3
         '
         'txt_telefono
         '
@@ -57,7 +57,7 @@ Partial Class VendedoresControl
         Me.txt_telefono.Location = New System.Drawing.Point(3, 61)
         Me.txt_telefono.Name = "txt_telefono"
         Me.txt_telefono.Size = New System.Drawing.Size(186, 23)
-        Me.txt_telefono.TabIndex = 13
+        Me.txt_telefono.TabIndex = 2
         '
         'txt_apellido
         '
@@ -67,7 +67,7 @@ Partial Class VendedoresControl
         Me.txt_apellido.Location = New System.Drawing.Point(3, 32)
         Me.txt_apellido.Name = "txt_apellido"
         Me.txt_apellido.Size = New System.Drawing.Size(265, 23)
-        Me.txt_apellido.TabIndex = 14
+        Me.txt_apellido.TabIndex = 1
         '
         'txt_nombre
         '
@@ -77,7 +77,7 @@ Partial Class VendedoresControl
         Me.txt_nombre.Location = New System.Drawing.Point(3, 3)
         Me.txt_nombre.Name = "txt_nombre"
         Me.txt_nombre.Size = New System.Drawing.Size(265, 23)
-        Me.txt_nombre.TabIndex = 15
+        Me.txt_nombre.TabIndex = 0
         '
         'VendedoresControl
         '
