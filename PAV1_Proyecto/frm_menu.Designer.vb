@@ -25,6 +25,7 @@ Partial Class frm_menu
         Me.btn_marcas = New System.Windows.Forms.Button()
         Me.btn_familias = New System.Windows.Forms.Button()
         Me.btn_tipos_cliente = New System.Windows.Forms.Button()
+        Me.btn_vendedores = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btn_marcas
@@ -57,11 +58,22 @@ Partial Class frm_menu
         Me.btn_tipos_cliente.Text = "Tipos de Clientes"
         Me.btn_tipos_cliente.UseVisualStyleBackColor = True
         '
+        'btn_vendedores
+        '
+        Me.btn_vendedores.Location = New System.Drawing.Point(310, 111)
+        Me.btn_vendedores.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btn_vendedores.Name = "btn_vendedores"
+        Me.btn_vendedores.Size = New System.Drawing.Size(135, 82)
+        Me.btn_vendedores.TabIndex = 1
+        Me.btn_vendedores.Text = "Vendedores"
+        Me.btn_vendedores.UseVisualStyleBackColor = True
+        '
         'frm_menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(484, 143)
+        Me.ClientSize = New System.Drawing.Size(484, 223)
+        Me.Controls.Add(Me.btn_vendedores)
         Me.Controls.Add(Me.btn_tipos_cliente)
         Me.Controls.Add(Me.btn_familias)
         Me.Controls.Add(Me.btn_marcas)
@@ -78,4 +90,5 @@ Partial Class frm_menu
     Friend WithEvents btn_marcas As Button
     Friend WithEvents btn_familias As Button
     Friend WithEvents btn_tipos_cliente As Button
+    Friend WithEvents btn_vendedores As Button
 End Class

@@ -1,11 +1,12 @@
-﻿Public Class TipoClienteGrilla
-    Inherits UserControl
+﻿Imports PAV1_Proyecto
+
+Public Class VendedorGrilla
     Implements ObjetoGrilla
 
-    Public Sub recargar(valores As DataTable) Implements ObjetoGrilla.recargar
+    Public Sub recargar(value As DataTable) Implements ObjetoGrilla.recargar
         Dim index = vaciar()
         ' TODO: Validar que el DataTable tiene un formato aceptable (minimo de columnas)
-        cargar(valores)
+        cargar(value)
         set_index(index)
     End Sub
 
@@ -15,7 +16,9 @@
         If IsNothing(sRow) Then
             Return Nothing
         Else
-            Return New TipoClienteVO(sRow.Cells(0).Value(), sRow.Cells(1).Value(), sRow.Cells(2).Value())
+            Return New VendedorVO(sRow.Cells("id").Value(), sRow.Cells("nombre").Value(), sRow.Cells("apellido").Value(),
+                                  sRow.Cells("telefono").Value(), sRow.Cells("direccion").Value(),
+                                  sRow.Cells("comision").Value())
         End If
     End Function
 
@@ -39,11 +42,12 @@
     End Sub
 
     Private Sub cargar(tipos_clientes As DataTable)
-        For i = 0 To tipos_clientes.Rows.Count() - 1
+        For i = 0 To tipos_clientes.Rows.Count() - 1 ' Recorre filas
             grilla_datos.Rows.Add()
-            grilla_datos.Rows(i).Cells(0).Value = tipos_clientes(i)(0)
-            grilla_datos.Rows(i).Cells(1).Value = tipos_clientes(i)(1)
-            grilla_datos.Rows(i).Cells(2).Value = tipos_clientes(i)(2)
+            For Each column_name In {"id", "nombre", "apellido", "telefono", "direccion", "comision"}
+                grilla_datos.Rows(i).Cells(column_name).Value = tipos_clientes(i)(column_name)
+            Next
         Next
     End Sub
+
 End Class

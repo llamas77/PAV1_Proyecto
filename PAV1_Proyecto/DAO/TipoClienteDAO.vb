@@ -42,7 +42,6 @@
         Dim tipo_cliente = cast(value)
         ' DOC: determina si existe la marca en la BD, según PK
 
-        ' TODO: Validar que el ID es >= 1, sino no existe (no hace falta consulta en bd si no existe)
         If tipo_cliente._id > 0 Then
             Dim sql = "SELECT TOP 1 idTipo FROM tipos_cliente WHERE idTipo=" & tipo_cliente._id
             Dim response = DataBase.getInstance().consulta_sql(sql)

@@ -15,4 +15,10 @@
         frm.Text = "ABM Tipos de Clientes"
         frm.Show()
     End Sub
+
+    Private Sub btn_vendedores_Click(sender As Object, e As EventArgs) Handles btn_vendedores.Click
+        Dim frm As New frm_abm_generico(New VendedoresControl, New VendedorGrilla, New VendedorDAO)
+        frm.Text = "ABM Vendedores"
+        frm.Show()
+    End Sub
 End Class

@@ -23,7 +23,7 @@ Partial Class LabeledTextBox
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.lbl_texto = New System.Windows.Forms.Label()
-        Me.txt_caja = New System.Windows.Forms.TextBox()
+        Me.txt_caja = New System.Windows.Forms.MaskedTextBox()
         Me.SuspendLayout()
         '
         'lbl_texto
@@ -31,7 +31,7 @@ Partial Class LabeledTextBox
         Me.lbl_texto.Dock = System.Windows.Forms.DockStyle.Left
         Me.lbl_texto.Location = New System.Drawing.Point(0, 0)
         Me.lbl_texto.Name = "lbl_texto"
-        Me.lbl_texto.Size = New System.Drawing.Size(83, 23)
+        Me.lbl_texto.Size = New System.Drawing.Size(83, 28)
         Me.lbl_texto.TabIndex = 0
         Me.lbl_texto.Text = "DefaultText"
         Me.lbl_texto.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -40,9 +40,9 @@ Partial Class LabeledTextBox
         '
         Me.txt_caja.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txt_caja.Location = New System.Drawing.Point(89, 0)
+        Me.txt_caja.Location = New System.Drawing.Point(88, 3)
         Me.txt_caja.Name = "txt_caja"
-        Me.txt_caja.Size = New System.Drawing.Size(176, 22)
+        Me.txt_caja.Size = New System.Drawing.Size(137, 22)
         Me.txt_caja.TabIndex = 0
         '
         'LabeledTextBox
@@ -52,12 +52,12 @@ Partial Class LabeledTextBox
         Me.Controls.Add(Me.txt_caja)
         Me.Controls.Add(Me.lbl_texto)
         Me.Name = "LabeledTextBox"
-        Me.Size = New System.Drawing.Size(265, 23)
+        Me.Size = New System.Drawing.Size(226, 28)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents lbl_texto As Label
-    Friend WithEvents txt_caja As TextBox
+    Friend WithEvents txt_caja As MaskedTextBox
 End Class

@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\TipoClienteDAO.vb" />
+    <Compile Include="DAO\VendedorDAO.vb" />
     <Compile Include="DataBase.vb" />
     <Compile Include="FamiliaDAO.vb" />
     <Compile Include="FamiliaVO.vb" />
@@ -104,6 +105,18 @@
       <DependentUpon>TipoClienteGrilla.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Componentes\TipoClienteGrilla.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Componentes\VendedoresControl.Designer.vb">
+      <DependentUpon>VendedoresControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Componentes\VendedoresControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Componentes\VendedorGrilla.Designer.vb">
+      <DependentUpon>VendedorGrilla.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Componentes\VendedorGrilla.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\frm_abm_generico.Designer.vb">
@@ -159,6 +172,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="VO\TipoClienteVO.vb" />
+    <Compile Include="VO\VendedorVO.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\Componentes\LabeledTextBox.resx">
@@ -169,6 +183,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\TipoClienteGrilla.resx">
       <DependentUpon>TipoClienteGrilla.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Componentes\VendedoresControl.resx">
+      <DependentUpon>VendedoresControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Componentes\VendedorGrilla.resx">
+      <DependentUpon>VendedorGrilla.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_abm_generico.resx">
       <DependentUpon>frm_abm_generico.vb</DependentUpon>
