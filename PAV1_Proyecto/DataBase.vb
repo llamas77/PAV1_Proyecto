@@ -4,7 +4,7 @@
 
     ' TODO: Crear un usuario en el SQL Server y poner el string de conexion.
     Private Shared instance As DataBase
-    Private cadena_conexion As String = "Provider=SQLNCLI11;Data Source=FRANCO-PC;Integrated Security=SSPI;Initial Catalog=sistema_stock"
+    Private cadena_conexion As String = "Provider=SQLNCLI11;Data Source=JUANI-PC\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=sistema_stock"
 
     Private Sub New() ' Constructor Privado. Patron Singleton.
     End Sub

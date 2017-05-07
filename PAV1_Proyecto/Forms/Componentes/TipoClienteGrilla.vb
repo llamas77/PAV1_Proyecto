@@ -15,7 +15,7 @@
         If IsNothing(selectedRow) Then
             Return Nothing
         Else
-            Return New TipoClienteVO(selectedRow.Cells(0).Value(), selectedRow.Cells(1).Value(), selectedRow.Cells(1).Value())
+            Return New TipoClienteVO(selectedRow.Cells(0).Value(), selectedRow.Cells(1).Value(), selectedRow.Cells(2).Value())
         End If
     End Function
 

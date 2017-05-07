@@ -43,7 +43,7 @@ Partial Class LabeledTextBox
         Me.txt_caja.Location = New System.Drawing.Point(89, 0)
         Me.txt_caja.Name = "txt_caja"
         Me.txt_caja.Size = New System.Drawing.Size(176, 22)
-        Me.txt_caja.TabIndex = 1
+        Me.txt_caja.TabIndex = 0
         '
         'LabeledTextBox
         '

@@ -42,6 +42,8 @@ Partial Class TipoClienteGrilla
         Me.grilla_datos.MultiSelect = False
         Me.grilla_datos.Name = "grilla_datos"
         Me.grilla_datos.ReadOnly = True
+        Me.grilla_datos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        Me.grilla_datos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
         Me.grilla_datos.RowTemplate.Height = 24
         Me.grilla_datos.Size = New System.Drawing.Size(424, 203)
         Me.grilla_datos.TabIndex = 0
@@ -65,11 +67,10 @@ Partial Class TipoClienteGrilla
         '
         'descripcion
         '
-        Me.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.descripcion.HeaderText = "Descripcion"
         Me.descripcion.Name = "descripcion"
         Me.descripcion.ReadOnly = True
-        Me.descripcion.Width = 111
         '
         'TipoClienteGrilla
         '

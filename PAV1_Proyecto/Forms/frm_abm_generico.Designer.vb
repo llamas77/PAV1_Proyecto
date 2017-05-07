@@ -34,7 +34,7 @@ Partial Class frm_abm_generico
         Me.btn_actualizar.Location = New System.Drawing.Point(247, 11)
         Me.btn_actualizar.Name = "btn_actualizar"
         Me.btn_actualizar.Size = New System.Drawing.Size(83, 25)
-        Me.btn_actualizar.TabIndex = 0
+        Me.btn_actualizar.TabIndex = 1
         Me.btn_actualizar.Text = "Actualizar"
         Me.btn_actualizar.UseVisualStyleBackColor = True
         '
@@ -43,7 +43,7 @@ Partial Class frm_abm_generico
         Me.btn_modificar.Location = New System.Drawing.Point(12, 84)
         Me.btn_modificar.Name = "btn_modificar"
         Me.btn_modificar.Size = New System.Drawing.Size(75, 25)
-        Me.btn_modificar.TabIndex = 0
+        Me.btn_modificar.TabIndex = 3
         Me.btn_modificar.Text = "Modificar"
         Me.btn_modificar.UseVisualStyleBackColor = True
         '
@@ -52,7 +52,7 @@ Partial Class frm_abm_generico
         Me.btn_eliminar.Location = New System.Drawing.Point(93, 84)
         Me.btn_eliminar.Name = "btn_eliminar"
         Me.btn_eliminar.Size = New System.Drawing.Size(75, 25)
-        Me.btn_eliminar.TabIndex = 0
+        Me.btn_eliminar.TabIndex = 4
         Me.btn_eliminar.Text = "Eliminar"
         Me.btn_eliminar.UseVisualStyleBackColor = True
         '
@@ -61,7 +61,7 @@ Partial Class frm_abm_generico
         Me.btn_cancelar.Location = New System.Drawing.Point(174, 84)
         Me.btn_cancelar.Name = "btn_cancelar"
         Me.btn_cancelar.Size = New System.Drawing.Size(75, 25)
-        Me.btn_cancelar.TabIndex = 0
+        Me.btn_cancelar.TabIndex = 5
         Me.btn_cancelar.Text = "Cancelar"
         Me.btn_cancelar.UseVisualStyleBackColor = True
         '
@@ -70,7 +70,7 @@ Partial Class frm_abm_generico
         Me.btn_salir.Location = New System.Drawing.Point(255, 84)
         Me.btn_salir.Name = "btn_salir"
         Me.btn_salir.Size = New System.Drawing.Size(75, 25)
-        Me.btn_salir.TabIndex = 0
+        Me.btn_salir.TabIndex = 6
         Me.btn_salir.Text = "Salir"
         Me.btn_salir.UseVisualStyleBackColor = True
         '
@@ -79,6 +79,7 @@ Partial Class frm_abm_generico
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(345, 128)
         Me.Controls.Add(Me.btn_salir)
         Me.Controls.Add(Me.btn_cancelar)
@@ -89,6 +90,7 @@ Partial Class frm_abm_generico
         Me.MinimizeBox = False
         Me.Name = "frm_abm_generico"
         Me.Padding = New System.Windows.Forms.Padding(10)
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frm_abm_generico"
         Me.ResumeLayout(False)

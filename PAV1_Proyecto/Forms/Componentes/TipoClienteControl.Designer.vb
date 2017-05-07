@@ -32,7 +32,7 @@ Partial Class TipoClienteControl
         Me.txt_descripcion.Location = New System.Drawing.Point(3, 32)
         Me.txt_descripcion.Name = "txt_descripcion"
         Me.txt_descripcion.Size = New System.Drawing.Size(283, 23)
-        Me.txt_descripcion.TabIndex = 8
+        Me.txt_descripcion.TabIndex = 1
         '
         'txt_nombre
         '
@@ -40,7 +40,7 @@ Partial Class TipoClienteControl
         Me.txt_nombre.Location = New System.Drawing.Point(3, 3)
         Me.txt_nombre.Name = "txt_nombre"
         Me.txt_nombre.Size = New System.Drawing.Size(283, 23)
-        Me.txt_nombre.TabIndex = 9
+        Me.txt_nombre.TabIndex = 0
         '
         'TipoClienteControl
         '

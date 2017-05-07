@@ -1,4 +1,6 @@
 ﻿Public Class TipoClienteVO
+    Implements ObjetoVO
+
     Dim id As Integer
     Dim nombre As String
     Dim descripcion As String
@@ -39,5 +41,9 @@
             descripcion = value
         End Set
     End Property
+
+    Public Function toString() As String Implements ObjetoVO.toString
+        Return nombre
+    End Function
 
 End Class

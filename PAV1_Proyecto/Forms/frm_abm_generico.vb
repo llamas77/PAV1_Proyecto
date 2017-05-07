@@ -17,6 +17,7 @@
         ' Ubicar seteo de atributos. (control de objeto) y boton actualizar.
         control = ctrl_objeto
         control.Location = New Point(Me.Padding.Left, Me.Padding.Top) ' Esquina superior izquierda.
+        control.TabIndex = 1
         Me.Controls.Add(control)
         btn_actualizar.Location = New Point(control.Location.X + control.Size.Width + 15,
                                             control.Location.Y + control.Size.Height - btn_actualizar.Size.Height - 5)
@@ -24,6 +25,7 @@
         ' Ubicar grilla del objeto.
         control = grilla_objeto
         control.Location = New Point(Me.Padding.Left, btn_actualizar.Location.Y + btn_actualizar.Size.Height + 15)
+        control.TabIndex = 3
         Me.Controls.Add(control)
         ' Posiciona los botones.
         Dim point = New Point(15, control.Location.Y + control.Size.Height + 15)
@@ -49,6 +51,7 @@
             Else
                 DAO_objeto.insert(objeto)
             End If
+            ctrl_objeto.reset()
             grilla_objeto.recargar(DAO_objeto.all())
         End If
     End Sub
@@ -80,5 +83,9 @@
 
     Private Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
         ctrl_objeto.reset()
+    End Sub
+
+    Private Sub btn_salir_Click(sender As Object, e As EventArgs) Handles btn_salir.Click
+        Me.Close()
     End Sub
 End Class
