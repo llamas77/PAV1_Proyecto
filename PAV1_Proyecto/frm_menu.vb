@@ -25,4 +25,9 @@
         frm.Text = "ABM Vendedores"
         frm.Show()
     End Sub
+
+    Private Sub btn_grupos_Click(sender As Object, e As EventArgs) Handles btn_grupos.Click
+        Dim frm As New frm_abm_grupos
+        frm.Show()
+    End Sub
 End Class

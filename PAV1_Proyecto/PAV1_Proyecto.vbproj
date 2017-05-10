@@ -140,6 +140,12 @@
     <Compile Include="frm_abm_familias.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frm_abm_grupos.designer.vb">
+      <DependentUpon>frm_abm_grupos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_abm_grupos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_abm_marcas.Designer.vb">
       <DependentUpon>frm_abm_marcas.vb</DependentUpon>
     </Compile>
@@ -153,6 +159,8 @@
       <DependentUpon>frm_menu.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GrupoDAO.vb" />
+    <Compile Include="GrupoVO.vb" />
     <Compile Include="Interfaces\ObjetoCtrl.vb" />
     <Compile Include="Interfaces\ObjetoDAO.vb" />
     <Compile Include="Interfaces\ObjetoGrilla.vb" />
@@ -202,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_abm_familias.resx">
       <DependentUpon>frm_abm_familias.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_abm_grupos.resx">
+      <DependentUpon>frm_abm_grupos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_abm_marcas.resx">
       <DependentUpon>frm_abm_marcas.vb</DependentUpon>
