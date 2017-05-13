@@ -1,12 +1,29 @@
 ﻿Public Class LabeledTextBox
-    Dim not_null As Boolean = True
-    Dim mask_type As Mascara = Mascara.texto
-    Enum Mascara
+    Inherits UserControl
+
+    Enum MaskType
         texto
         telefono
         celular
         porcentaje
     End Enum
+
+    Dim not_null As Boolean = True
+    Dim mask_type As MaskType
+
+    Public Sub New()
+        Me.New("", MaskType.texto)
+    End Sub
+
+    Public Sub New(label As String, mascara As Object)
+        ' Esta llamada es exigida por el diseñador.
+        InitializeComponent()
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+
+        ' TODO: validar que mascara sea MaskType
+        Me._label_text = label
+        Me._Mask = mascara
+    End Sub
 
     Public Property _label_text As String
         Get
@@ -19,7 +36,7 @@
 
     Public Overrides Property Text As String
         Get
-            If mask_type = Mascara.porcentaje Then
+            If mask_type = MaskType.porcentaje Then
                 Return txt_caja.Text.Trim.Replace("_", "")
             Else
                 Return txt_caja.Text.Trim
@@ -38,20 +55,20 @@
         End If
     End Function
 
-    Public Property _Mask As Mascara
+    Public Property _Mask 'As MaskType ' Mismo error que en campo. TODO: Validar que sea de ese tipo.
         Get
             Return mask_type
         End Get
-        Set(value As Mascara)
+        Set(value) 'As MaskType. TODO: Validar que sea ese tipo.
             mask_type = value
             Select Case mask_type
-                Case Mascara.texto
+                Case MaskType.texto
                     txt_caja.Mask = ""
-                Case Mascara.telefono
+                Case MaskType.telefono
                     txt_caja.Mask = "9000-40000009"
-                Case Mascara.celular
+                Case MaskType.celular
                     txt_caja.Mask = "9000-150-000000"
-                Case Mascara.porcentaje
+                Case MaskType.porcentaje
                     txt_caja.Mask = "09%"
             End Select
         End Set

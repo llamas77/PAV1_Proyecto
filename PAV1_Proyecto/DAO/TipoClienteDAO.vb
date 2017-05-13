@@ -1,4 +1,6 @@
-﻿Public Class TipoClienteDAO
+﻿Imports PAV1_Proyecto
+
+Public Class TipoClienteDAO
     Implements ObjetoDAO
 
     Public Function all() As DataTable Implements ObjetoDAO.all
@@ -59,4 +61,11 @@
         End If
     End Function
 
+    Public Function get_IU_control() As ControlGenerico Implements ObjetoDAO.get_IU_control
+        Throw New NotImplementedException()
+    End Function
+
+    Public Function get_IU_grilla() As GrillaGenerica Implements ObjetoDAO.get_IU_grilla
+        Throw New NotImplementedException()
+    End Function
 End Class

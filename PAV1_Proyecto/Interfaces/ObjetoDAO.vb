@@ -9,4 +9,9 @@
     Sub delete(value As ObjetoVO)
 
     Function exists(value As ObjetoVO) As Boolean
+
+    Function get_IU_control() As ControlGenerico
+
+    Function get_IU_grilla() As GrillaGenerica
+
 End Interface

@@ -6,7 +6,6 @@
     Public Sub New(ctrl_objeto As ObjetoCtrl, grilla_objeto As ObjetoGrilla, objetoDAO As ObjetoDAO)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         ' TODO: Refactor a esta funcion. Reacomodar.
         Me.ctrl_objeto = ctrl_objeto
@@ -38,6 +37,10 @@
         btn_cancelar.Location = point
         point.X += btn_cancelar.Size.Width + 20
         btn_salir.Location = point
+    End Sub
+
+    Public Sub New(objetoDAO As ObjetoDAO)
+        Me.New(objetoDAO.get_IU_control, objetoDAO.get_IU_grilla, objetoDAO)
     End Sub
 
     Private Sub frm_abm_generico_Load(sender As Object, e As EventArgs) Handles MyBase.Load

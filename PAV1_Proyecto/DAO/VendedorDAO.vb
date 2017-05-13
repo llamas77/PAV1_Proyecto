@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class VendedorDAO
-    Implements ObjetoDAO, ObjetoGrillable
+    Implements ObjetoDAO, ObjetoGrillable, ObjectFactory
 
     Public Function all() As DataTable Implements ObjetoDAO.all
         Dim sql_select = "SELECT idVendedor as id, nombre, apellido, direccion, telefono, comision FROM vendedores"
@@ -86,4 +86,38 @@ Public Class VendedorDAO
                               row("direccion").Value(),
                               row("comision").Value())
     End Function
+
+    Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
+        Dim comision As Double
+        If valores.ContainsKey("comision") Then
+            comision = valores("comision")
+        Else
+            valores("porcentaje") = valores("porcentaje").Replace("%", "")
+            valores("porcentaje") = valores("porcentaje").Replace("_", "")
+            comision = valores("porcentaje") / 100
+        End If
+
+        Return New VendedorVO(valores("id"),
+                              valores("nombre"),
+                              valores("apellido"),
+                              valores("telefono"),
+                              valores("direccion"),
+                              comision)
+    End Function
+
+    Public Function get_IU_control() As ControlGenerico Implements ObjetoDAO.get_IU_control
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo("id", "id", False))
+        campos.Add(New Campo("nombre", "Nombre", True))
+        campos.Add(New Campo("apellido", "Apellido", True))
+        campos.Add(New Campo("telefono", "Teléfono", True, LabeledTextBox.MaskType.telefono))
+        campos.Add(New Campo("direccion", "Dirección", True))
+        campos.Add(New Campo("porcentaje", "Comisión", True, LabeledTextBox.MaskType.porcentaje))
+        Return New ControlGenerico(campos, Me)
+    End Function
+
+    Public Function get_IU_grilla() As GrillaGenerica Implements ObjetoDAO.get_IU_grilla
+        Return New GrillaGenerica(Me)
+    End Function
+
 End Class

@@ -17,11 +17,8 @@
     End Sub
 
     Private Sub btn_vendedores_Click(sender As Object, e As EventArgs) Handles btn_vendedores.Click
-        ' Muestra de funcionamiento de la grilla generica
-        Dim grilla_vendedores As New GrillaGenerica(New VendedorDAO())
-
         ' Muestra de funcionamiento del ABM Generico.
-        Dim frm As New frm_abm_generico(New VendedoresControl, grilla_vendedores, New VendedorDAO)
+        Dim frm As New frm_abm_generico(New VendedorDAO)
         frm.Text = "ABM Vendedores"
         frm.Show()
     End Sub

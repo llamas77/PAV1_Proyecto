@@ -89,8 +89,21 @@
     <Compile Include="DataBase.vb" />
     <Compile Include="FamiliaDAO.vb" />
     <Compile Include="FamiliaVO.vb" />
+    <Compile Include="Forms\Componentes\Campo.vb" />
+    <Compile Include="Forms\Componentes\ControlGenerico.Designer.vb">
+      <DependentUpon>ControlGenerico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Componentes\ControlGenerico.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\Componentes\GrillaGenerica.vb">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Componentes\LabeledComboBox.Designer.vb">
+      <DependentUpon>LabeledComboBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Componentes\LabeledComboBox.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\Componentes\LabeledTextBox.Designer.vb">
       <DependentUpon>LabeledTextBox.vb</DependentUpon>
@@ -161,6 +174,7 @@
     </Compile>
     <Compile Include="GrupoDAO.vb" />
     <Compile Include="GrupoVO.vb" />
+    <Compile Include="Interfaces\ObjectFactory.vb" />
     <Compile Include="Interfaces\ObjetoCtrl.vb" />
     <Compile Include="Interfaces\ObjetoDAO.vb" />
     <Compile Include="Interfaces\ObjetoGrilla.vb" />
@@ -187,6 +201,12 @@
     <Compile Include="VO\VendedorVO.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\Componentes\ControlGenerico.resx">
+      <DependentUpon>ControlGenerico.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Componentes\LabeledComboBox.resx">
+      <DependentUpon>LabeledComboBox.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\LabeledTextBox.resx">
       <DependentUpon>LabeledTextBox.vb</DependentUpon>
     </EmbeddedResource>
