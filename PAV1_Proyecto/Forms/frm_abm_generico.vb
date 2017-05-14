@@ -60,13 +60,14 @@
             End If
             ctrl_objeto.reset()
             grilla_objeto.recargar(DAO_objeto.all())
+        Else
+            MsgBox("Alguno/s de los valores ingresados no es/sin válido/s.", MsgBoxStyle.Exclamation, "Aviso")
         End If
     End Sub
 
     Private Sub btn_modificar_Click(sender As Object, e As EventArgs) Handles btn_modificar.Click
-        Dim objeto = grilla_objeto.get_selected()
+        Dim objeto As ObjetoVO = grilla_objeto.get_selected()
         If IsNothing(objeto) Then
-            ' Error: No hay nada seleccionado en la grilla.
             MsgBox("No hay nada seleccionado en la tabla.", MsgBoxStyle.MsgBoxHelp, "Aviso")
         Else
             ctrl_objeto._objeto = objeto
@@ -77,7 +78,7 @@
         Dim objeto = grilla_objeto.get_selected()
         If IsNothing(objeto) Then
             ' Error: No hay nada seleccionado en la grilla.
-            ' TODO: Informar al usuario.
+            MsgBox("No hay nada seleccionado en la tabla.", MsgBoxStyle.MsgBoxHelp, "Aviso")
         Else
             If MessageBox.Show("Esta seguro de borrar: " + objeto.toString(),
                                "Importante", MessageBoxButtons.YesNo,
