@@ -41,7 +41,9 @@
     End Sub
 
     Private Sub frm_abm_generico_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         grilla_objeto.recargar(DAO_objeto.all())
+
     End Sub
 
     Private Sub btn_actualizar_Click(sender As Object, e As EventArgs) Handles btn_actualizar.Click

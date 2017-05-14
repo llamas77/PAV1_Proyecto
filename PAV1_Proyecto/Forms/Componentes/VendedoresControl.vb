@@ -44,4 +44,5 @@ Public Class VendedoresControl
     Public Function is_valid() As Boolean Implements ObjetoCtrl.is_valid
         Return True ' TODO: Validar. Campos opcionales y obligatorios.
     End Function
+
 End Class

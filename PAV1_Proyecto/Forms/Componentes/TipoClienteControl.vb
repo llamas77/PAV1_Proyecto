@@ -47,4 +47,5 @@
     Public Sub reset() Implements ObjetoCtrl.reset
         Me._TipoClienteVO = New TipoClienteVO()
     End Sub
+
 End Class
