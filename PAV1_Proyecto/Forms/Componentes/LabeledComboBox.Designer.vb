@@ -31,7 +31,7 @@ Partial Class LabeledComboBox
         Me.lbl_label.Dock = System.Windows.Forms.DockStyle.Left
         Me.lbl_label.Location = New System.Drawing.Point(0, 0)
         Me.lbl_label.Name = "lbl_label"
-        Me.lbl_label.Size = New System.Drawing.Size(83, 28)
+        Me.lbl_label.Size = New System.Drawing.Size(120, 28)
         Me.lbl_label.TabIndex = 0
         Me.lbl_label.Text = "DefaultText"
         Me.lbl_label.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -39,7 +39,7 @@ Partial Class LabeledComboBox
         'cmb_combo
         '
         Me.cmb_combo.FormattingEnabled = True
-        Me.cmb_combo.Location = New System.Drawing.Point(88, 3)
+        Me.cmb_combo.Location = New System.Drawing.Point(125, 3)
         Me.cmb_combo.MaximumSize = New System.Drawing.Size(165, 0)
         Me.cmb_combo.MinimumSize = New System.Drawing.Size(4, 0)
         Me.cmb_combo.Name = "cmb_combo"
@@ -53,7 +53,7 @@ Partial Class LabeledComboBox
         Me.Controls.Add(Me.cmb_combo)
         Me.Controls.Add(Me.lbl_label)
         Me.Name = "LabeledComboBox"
-        Me.Size = New System.Drawing.Size(255, 28)
+        Me.Size = New System.Drawing.Size(292, 28)
         Me.ResumeLayout(False)
 
     End Sub

@@ -35,7 +35,7 @@ Partial Class frm_abm_generico
         Me.btn_actualizar.Name = "btn_actualizar"
         Me.btn_actualizar.Size = New System.Drawing.Size(83, 25)
         Me.btn_actualizar.TabIndex = 2
-        Me.btn_actualizar.Text = "Actualizar"
+        Me.btn_actualizar.Text = "Agregar"
         Me.btn_actualizar.UseVisualStyleBackColor = True
         '
         'btn_modificar

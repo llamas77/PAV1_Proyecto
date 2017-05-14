@@ -59,9 +59,10 @@
                 DAO_objeto.insert(objeto)
             End If
             ctrl_objeto.reset()
+            btn_actualizar.Text = "Agregar"
             grilla_objeto.recargar(DAO_objeto.all())
         Else
-            MsgBox("Alguno/s de los valores ingresados no es/sin válido/s.", MsgBoxStyle.Exclamation, "Aviso")
+            MsgBox("Alguno/s de los valores ingresados no es/son válido/s.", MsgBoxStyle.Exclamation, "Aviso")
         End If
     End Sub
 
@@ -71,6 +72,7 @@
             MsgBox("No hay nada seleccionado en la tabla.", MsgBoxStyle.MsgBoxHelp, "Aviso")
         Else
             ctrl_objeto._objeto = objeto
+            btn_actualizar.Text = "Actualizar"
         End If
     End Sub
 
@@ -91,6 +93,7 @@
 
     Private Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
         ctrl_objeto.reset()
+        btn_actualizar.Text = "Agregar"
     End Sub
 
     Private Sub btn_salir_Click(sender As Object, e As EventArgs) Handles btn_salir.Click

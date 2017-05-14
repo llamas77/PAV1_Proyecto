@@ -50,5 +50,4 @@ Public Class LabeledComboBox
     Private Sub cmb_combo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_combo.SelectedIndexChanged
         _combo.BackColor = System.Drawing.SystemColors.Window
     End Sub
-
 End Class

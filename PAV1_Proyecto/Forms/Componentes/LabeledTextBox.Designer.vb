@@ -31,15 +31,14 @@ Partial Class LabeledTextBox
         Me.lbl_texto.Dock = System.Windows.Forms.DockStyle.Left
         Me.lbl_texto.Location = New System.Drawing.Point(0, 0)
         Me.lbl_texto.Name = "lbl_texto"
-        Me.lbl_texto.Size = New System.Drawing.Size(83, 28)
+        Me.lbl_texto.Size = New System.Drawing.Size(120, 28)
         Me.lbl_texto.TabIndex = 0
         Me.lbl_texto.Text = "DefaultText"
         Me.lbl_texto.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'txt_caja
         '
-        Me.txt_caja.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txt_caja.Location = New System.Drawing.Point(88, 3)
+        Me.txt_caja.Location = New System.Drawing.Point(125, 3)
         Me.txt_caja.MaximumSize = New System.Drawing.Size(165, 22)
         Me.txt_caja.MinimumSize = New System.Drawing.Size(4, 22)
         Me.txt_caja.Name = "txt_caja"
@@ -53,7 +52,7 @@ Partial Class LabeledTextBox
         Me.Controls.Add(Me.txt_caja)
         Me.Controls.Add(Me.lbl_texto)
         Me.Name = "LabeledTextBox"
-        Me.Size = New System.Drawing.Size(255, 28)
+        Me.Size = New System.Drawing.Size(302, 28)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
