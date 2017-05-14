@@ -129,6 +129,15 @@ Public Class LabeledTextBox
             End If
         End If
 
+        ' Marcar en Rojo
+        If Not valido Then
+            txt_caja.BackColor = System.Drawing.Color.Gold
+        End If
         Return valido
     End Function
+
+    Private Sub txt_caja_TextChanged(sender As Object, e As EventArgs) Handles txt_caja.TextChanged
+        ' Reestablece el color de fondo por si estaba en error.
+        txt_caja.BackColor = System.Drawing.SystemColors.Window
+    End Sub
 End Class

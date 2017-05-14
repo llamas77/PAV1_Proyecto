@@ -19,7 +19,7 @@ Public Class GrillaGenerica
         Me.ReadOnly = True
         SelectionMode = DataGridViewSelectionMode.FullRowSelect
         RowHeadersVisible = False
-        'BackgroundColor = System.Drawing.Color.White
+        BackgroundColor = System.Drawing.Color.White
         ' - - - Fin - - - 
 
         Me.fabrica = fabrica

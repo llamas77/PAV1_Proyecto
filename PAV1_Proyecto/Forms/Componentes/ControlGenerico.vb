@@ -73,7 +73,14 @@ Public Class ControlGenerico
     End Sub
 
     Public Function is_valid() As Boolean Implements ObjetoCtrl.is_valid
-        Return True ' TODO: Implementar. Hay que validar que todos los campos requeridos tengan algun valor.
+        Dim valido = True
+        For Each control In Me.Controls
+            If TypeOf control Is Validable Then
+                Dim validable As Validable = control
+                valido = IIf(validable.is_valid(), valido, False) ' Si es valido dejo el flag como esta, sino lo bajo.
+            End If
+        Next
+        Return valido
     End Function
 
     Public Sub set_structure(estructura As List(Of Campo))

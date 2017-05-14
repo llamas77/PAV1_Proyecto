@@ -31,7 +31,6 @@ Public Class LabeledComboBox
     Public Property _max_lenght As Integer Implements Validable._max_lenght
     Public Property _numeric As Boolean Implements Validable._numeric
 
-
     Public Function is_valid() As Boolean Implements Validable.is_valid
         Dim valido As Boolean = True
         If Not _null And cmb_combo.SelectedIndex = -1 Then
@@ -41,7 +40,15 @@ Public Class LabeledComboBox
             valido = False
         End If
 
+        If Not valido Then
+            _combo.BackColor = System.Drawing.Color.Gold
+        End If
+
         Return valido
     End Function
+
+    Private Sub cmb_combo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_combo.SelectedIndexChanged
+        _combo.BackColor = System.Drawing.SystemColors.Window
+    End Sub
 
 End Class

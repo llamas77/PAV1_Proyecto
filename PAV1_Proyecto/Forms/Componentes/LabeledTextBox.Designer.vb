@@ -38,9 +38,10 @@ Partial Class LabeledTextBox
         '
         'txt_caja
         '
+        Me.txt_caja.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txt_caja.Location = New System.Drawing.Point(88, 3)
         Me.txt_caja.MaximumSize = New System.Drawing.Size(165, 22)
-        Me.txt_caja.MinimumSize = New System.Drawing.Size(0, 22)
+        Me.txt_caja.MinimumSize = New System.Drawing.Size(4, 22)
         Me.txt_caja.Name = "txt_caja"
         Me.txt_caja.Size = New System.Drawing.Size(165, 22)
         Me.txt_caja.TabIndex = 0
