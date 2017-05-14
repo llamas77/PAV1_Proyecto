@@ -25,8 +25,13 @@ Public Class GananciaVO
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
         Dim diccionario As New Dictionary(Of String, Object)
         diccionario.Add("grupo", _grupo)
+        diccionario.Add("id_grupo", _grupo._id)
+        diccionario.Add("nombre_grupo", _grupo._nombre)
         diccionario.Add("tipo_cliente", _tipo_cliente)
+        diccionario.Add("id_tipo_cliente", _tipo_cliente._id)
+        diccionario.Add("nombre_tipo_cliente", _tipo_cliente._nombre)
         diccionario.Add("ganancia", _ganancia)
+        diccionario.Add("porcentaje_ganancia", _porcentaje_ganancia)
         Return diccionario
     End Function
 

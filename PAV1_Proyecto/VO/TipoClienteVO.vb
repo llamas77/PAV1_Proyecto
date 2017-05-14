@@ -17,6 +17,10 @@ Public Class TipoClienteVO
         Me.New(0, "", "")
     End Sub
 
+    Public Sub New(id As Integer)
+        Me.New(id, "", "")
+    End Sub
+
     Public Property _id
         Get
             Return id

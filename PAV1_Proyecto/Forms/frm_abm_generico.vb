@@ -65,7 +65,7 @@
         Dim objeto = grilla_objeto.get_selected()
         If IsNothing(objeto) Then
             ' Error: No hay nada seleccionado en la grilla.
-            ' TODO: Informar al usuario.
+            MsgBox("No hay nada seleccionado en la tabla.", MsgBoxStyle.MsgBoxHelp, "Aviso")
         Else
             ctrl_objeto._objeto = objeto
         End If

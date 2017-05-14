@@ -5,6 +5,7 @@ Public Class ControlGenerico
     Implements ObjetoCtrl
 
     Dim fabrica As ObjectFactory
+    Dim fabrica_combo As New Dictionary(Of String, ComboDataSource)
     Dim next_point As New Point(0, 0)
     Dim campos_invisibles As New Dictionary(Of String, Object)
 
@@ -49,6 +50,8 @@ Public Class ControlGenerico
                 diccionario.Add(control.Name, control.Text)
             ElseIf TypeOf control Is LabeledComboBox Then
                 Dim lcombo As LabeledComboBox = control
+                ' Trae el objeto que tiene seleccionado el combo.
+                'Dim objeto = (fabrica_combo(lcombo.Name)).get_object_from_combo(, lcombo._combo.Text)
                 diccionario.Add(control.Name, lcombo._combo.SelectedValue)
             End If
         Next
@@ -86,6 +89,7 @@ Public Class ControlGenerico
                         control = lctrl
                     Case Campo.BoxType.comboBox
                         control = New LabeledComboBox(campo._name)
+                        fabrica_combo.Add(campo._id, campo._combo_data_source)
                         load_combo(control, campo._combo_data_source)
                     Case Else
                         Return

@@ -6,5 +6,6 @@
     '
     Function comboSource() As DataTable
 
+    'Function get_object_from_combo(value As Object, display As String) As ObjetoVO
 
 End Interface
