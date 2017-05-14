@@ -27,11 +27,14 @@ Partial Class frm_menu
         Me.btn_tipos_cliente = New System.Windows.Forms.Button()
         Me.btn_vendedores = New System.Windows.Forms.Button()
         Me.btn_grupos = New System.Windows.Forms.Button()
+        Me.btn_grupos = New System.Windows.Forms.Button()
         Me.btn_Clientes = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btn_marcas
         '
+        Me.btn_marcas.Location = New System.Drawing.Point(26, 20)
+        Me.btn_marcas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btn_marcas.Location = New System.Drawing.Point(26, 20)
         Me.btn_marcas.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_marcas.Name = "btn_marcas"
@@ -43,6 +46,8 @@ Partial Class frm_menu
         'btn_familias
         '
         Me.btn_familias.Location = New System.Drawing.Point(127, 20)
+        Me.btn_familias.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btn_familias.Location = New System.Drawing.Point(127, 20)
         Me.btn_familias.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_familias.Name = "btn_familias"
         Me.btn_familias.Size = New System.Drawing.Size(101, 67)
@@ -52,6 +57,8 @@ Partial Class frm_menu
         '
         'btn_tipos_cliente
         '
+        Me.btn_tipos_cliente.Location = New System.Drawing.Point(232, 20)
+        Me.btn_tipos_cliente.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btn_tipos_cliente.Location = New System.Drawing.Point(232, 20)
         Me.btn_tipos_cliente.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_tipos_cliente.Name = "btn_tipos_cliente"
@@ -63,12 +70,24 @@ Partial Class frm_menu
         'btn_vendedores
         '
         Me.btn_vendedores.Location = New System.Drawing.Point(232, 90)
+        Me.btn_vendedores.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btn_vendedores.Location = New System.Drawing.Point(232, 90)
         Me.btn_vendedores.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_vendedores.Name = "btn_vendedores"
         Me.btn_vendedores.Size = New System.Drawing.Size(101, 67)
         Me.btn_vendedores.TabIndex = 1
         Me.btn_vendedores.Text = "Vendedores"
         Me.btn_vendedores.UseVisualStyleBackColor = True
+        '
+        'btn_grupos
+        '
+        Me.btn_grupos.Location = New System.Drawing.Point(26, 91)
+        Me.btn_grupos.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_grupos.Name = "btn_grupos"
+        Me.btn_grupos.Size = New System.Drawing.Size(96, 67)
+        Me.btn_grupos.TabIndex = 0
+        Me.btn_grupos.Text = "ABM Grupos"
+        Me.btn_grupos.UseVisualStyleBackColor = True
         '
         'btn_grupos
         '
@@ -95,6 +114,7 @@ Partial Class frm_menu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(363, 181)
+        Me.ClientSize = New System.Drawing.Size(363, 181)
         Me.Controls.Add(Me.btn_Clientes)
         Me.Controls.Add(Me.btn_vendedores)
         Me.Controls.Add(Me.btn_tipos_cliente)
@@ -114,6 +134,7 @@ Partial Class frm_menu
     Friend WithEvents btn_familias As Button
     Friend WithEvents btn_tipos_cliente As Button
     Friend WithEvents btn_vendedores As Button
+    Friend WithEvents btn_grupos As Button
     Friend WithEvents btn_grupos As Button
     Friend WithEvents btn_Clientes As Button
 End Class
