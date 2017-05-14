@@ -108,11 +108,11 @@ Public Class VendedorDAO
     Public Function get_IU_control() As ControlGenerico Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
         campos.Add(New Campo("id", "id", False))
-        campos.Add(New Campo("nombre", "Nombre", True))
-        campos.Add(New Campo("apellido", "Apellido", True))
-        campos.Add(New Campo("telefono", "Teléfono", True, LabeledTextBox.MaskType.telefono))
-        campos.Add(New Campo("direccion", "Dirección", True))
-        campos.Add(New Campo("porcentaje", "Comisión", True, LabeledTextBox.MaskType.porcentaje))
+        campos.Add(New Campo("nombre", "Nombre", True, maxLenght:=50))
+        campos.Add(New Campo("apellido", "Apellido", True, 50))
+        campos.Add(New Campo("telefono", "Teléfono", True, maskType:=LabeledTextBox.MaskType.telefono))
+        campos.Add(New Campo("direccion", "Dirección", True, 50))
+        campos.Add(New Campo("porcentaje", "Comisión", True, maskType:=LabeledTextBox.MaskType.porcentaje))
         Return New ControlGenerico(campos, Me)
     End Function
 

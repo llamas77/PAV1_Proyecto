@@ -60,7 +60,11 @@ Public Class ControlGenerico
                 Dim control As Control
                 Select Case campo._boxType
                     Case Campo.BoxType.maskedTextBox
-                        control = New LabeledTextBox(campo._name, campo._maskType)
+                        Dim lctrl = New LabeledTextBox(campo._name, campo._maskType)
+                        If campo._maxLenght > 0 Then
+                            lctrl._max_length = campo._maxLenght
+                        End If
+                        control = lctrl
                     Case Campo.BoxType.comboBox
                         control = New LabeledComboBox(campo._name)
                     Case Else

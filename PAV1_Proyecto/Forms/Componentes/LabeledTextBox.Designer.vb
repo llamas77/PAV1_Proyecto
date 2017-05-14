@@ -38,11 +38,11 @@ Partial Class LabeledTextBox
         '
         'txt_caja
         '
-        Me.txt_caja.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txt_caja.Location = New System.Drawing.Point(88, 3)
+        Me.txt_caja.MaximumSize = New System.Drawing.Size(165, 22)
+        Me.txt_caja.MinimumSize = New System.Drawing.Size(0, 22)
         Me.txt_caja.Name = "txt_caja"
-        Me.txt_caja.Size = New System.Drawing.Size(137, 22)
+        Me.txt_caja.Size = New System.Drawing.Size(165, 22)
         Me.txt_caja.TabIndex = 0
         '
         'LabeledTextBox
@@ -52,7 +52,7 @@ Partial Class LabeledTextBox
         Me.Controls.Add(Me.txt_caja)
         Me.Controls.Add(Me.lbl_texto)
         Me.Name = "LabeledTextBox"
-        Me.Size = New System.Drawing.Size(226, 28)
+        Me.Size = New System.Drawing.Size(255, 28)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
