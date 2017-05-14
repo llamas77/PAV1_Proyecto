@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class VendedorGrilla
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class ClienteGrilla
     Inherits System.Windows.Forms.UserControl
 
     'UserControl reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,15 +20,16 @@ Partial Class VendedorGrilla
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.grilla_datos = New System.Windows.Forms.DataGridView()
-        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.apellido = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.comision = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.telefono = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.direccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.idTipoCliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nombreIdTipoCliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.grilla_datos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -40,7 +41,7 @@ Partial Class VendedorGrilla
         Me.grilla_datos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.grilla_datos.BackgroundColor = System.Drawing.Color.White
         Me.grilla_datos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.grilla_datos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.nombre, Me.apellido, Me.comision, Me.telefono, Me.direccion})
+        Me.grilla_datos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.nro, Me.nombre, Me.apellido, Me.telefono, Me.direccion, Me.idTipoCliente, Me.nombreIdTipoCliente})
         Me.grilla_datos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grilla_datos.Location = New System.Drawing.Point(0, 0)
         Me.grilla_datos.Margin = New System.Windows.Forms.Padding(2)
@@ -49,16 +50,16 @@ Partial Class VendedorGrilla
         Me.grilla_datos.ReadOnly = True
         Me.grilla_datos.RowTemplate.Height = 24
         Me.grilla_datos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.grilla_datos.Size = New System.Drawing.Size(380, 236)
-        Me.grilla_datos.TabIndex = 0
+        Me.grilla_datos.Size = New System.Drawing.Size(232, 227)
+        Me.grilla_datos.TabIndex = 1
         '
-        'id
+        'nro
         '
-        Me.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.id.HeaderText = "ID"
-        Me.id.Name = "id"
-        Me.id.ReadOnly = True
-        Me.id.Width = 43
+        Me.nro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.nro.HeaderText = "nro"
+        Me.nro.Name = "nro"
+        Me.nro.ReadOnly = True
+        Me.nro.Width = 47
         '
         'nombre
         '
@@ -76,13 +77,6 @@ Partial Class VendedorGrilla
         Me.apellido.ReadOnly = True
         Me.apellido.Width = 69
         '
-        'comision
-        '
-        Me.comision.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.comision.HeaderText = "Comision"
-        Me.comision.Name = "comision"
-        Me.comision.ReadOnly = True
-        '
         'telefono
         '
         Me.telefono.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
@@ -90,6 +84,7 @@ Partial Class VendedorGrilla
         Me.telefono.Name = "telefono"
         Me.telefono.ReadOnly = True
         Me.telefono.Visible = False
+        Me.telefono.Width = 74
         '
         'direccion
         '
@@ -99,24 +94,42 @@ Partial Class VendedorGrilla
         Me.direccion.ReadOnly = True
         Me.direccion.Visible = False
         '
-        'VendedorGrilla
+        'idTipoCliente
+        '
+        Me.idTipoCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.idTipoCliente.HeaderText = "idTipoCliente"
+        Me.idTipoCliente.Name = "idTipoCliente"
+        Me.idTipoCliente.ReadOnly = True
+        Me.idTipoCliente.Visible = False
+        Me.idTipoCliente.Width = 93
+        '
+        'nombreIdTipoCliente
+        '
+        Me.nombreIdTipoCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.nombreIdTipoCliente.HeaderText = "nombreIdTipoCliente"
+        Me.nombreIdTipoCliente.Name = "nombreIdTipoCliente"
+        Me.nombreIdTipoCliente.ReadOnly = True
+        Me.nombreIdTipoCliente.Visible = False
+        Me.nombreIdTipoCliente.Width = 129
+        '
+        'ClienteGrilla
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.grilla_datos)
-        Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.Name = "VendedorGrilla"
-        Me.Size = New System.Drawing.Size(380, 236)
+        Me.Name = "ClienteGrilla"
+        Me.Size = New System.Drawing.Size(232, 227)
         CType(Me.grilla_datos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents grilla_datos As DataGridView
-    Friend WithEvents id As DataGridViewTextBoxColumn
+    Friend WithEvents nro As DataGridViewTextBoxColumn
     Friend WithEvents nombre As DataGridViewTextBoxColumn
     Friend WithEvents apellido As DataGridViewTextBoxColumn
-    Friend WithEvents comision As DataGridViewTextBoxColumn
     Friend WithEvents telefono As DataGridViewTextBoxColumn
     Friend WithEvents direccion As DataGridViewTextBoxColumn
+    Friend WithEvents idTipoCliente As DataGridViewTextBoxColumn
+    Friend WithEvents nombreIdTipoCliente As DataGridViewTextBoxColumn
 End Class

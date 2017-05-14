@@ -85,11 +85,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\GananciaDAO.vb" />
+    <Compile Include="DAO\ClienteDAO.vb" />
     <Compile Include="DAO\TipoClienteDAO.vb" />
     <Compile Include="DAO\VendedorDAO.vb" />
     <Compile Include="DataBase.vb" />
     <Compile Include="FamiliaDAO.vb" />
     <Compile Include="FamiliaVO.vb" />
+    <Compile Include="Forms\Componentes\ClienteControl.Designer.vb">
+      <DependentUpon>ClienteControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Componentes\ClienteControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Componentes\ClienteGrilla.Designer.vb">
+      <DependentUpon>ClienteGrilla.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Componentes\ClienteGrilla.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\Componentes\Campo.vb" />
     <Compile Include="Forms\Componentes\ControlGenerico.Designer.vb">
       <DependentUpon>ControlGenerico.vb</DependentUpon>
@@ -199,6 +212,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="VO\GananciaVO.vb" />
+    <Compile Include="VO\ClienteVO.vb" />
     <Compile Include="VO\TipoClienteVO.vb" />
     <Compile Include="VO\VendedorVO.vb" />
   </ItemGroup>
@@ -208,6 +222,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\LabeledComboBox.resx">
       <DependentUpon>LabeledComboBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Componentes\ClienteControl.resx">
+      <DependentUpon>ClienteControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Componentes\ClienteGrilla.resx">
+      <DependentUpon>ClienteGrilla.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\LabeledTextBox.resx">
       <DependentUpon>LabeledTextBox.vb</DependentUpon>

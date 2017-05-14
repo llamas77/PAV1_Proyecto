@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class VendedoresControl
+Partial Class ClienteControl
     Inherits System.Windows.Forms.UserControl
 
     'UserControl reemplaza a Dispose para limpiar la lista de componentes.
@@ -26,7 +26,8 @@ Partial Class VendedoresControl
         Me.txt_telefono = New PAV1_Proyecto.LabeledTextBox()
         Me.txt_apellido = New PAV1_Proyecto.LabeledTextBox()
         Me.txt_nombre = New PAV1_Proyecto.LabeledTextBox()
-        Me.txt_comision = New PAV1_Proyecto.LabeledTextBox()
+        Me.txt_TipoCliente = New System.Windows.Forms.Label()
+        Me.cmb_idTipoCliente = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'txt_direccion
@@ -38,7 +39,7 @@ Partial Class VendedoresControl
         Me.txt_direccion.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txt_direccion.Name = "txt_direccion"
         Me.txt_direccion.Size = New System.Drawing.Size(199, 19)
-        Me.txt_direccion.TabIndex = 3
+        Me.txt_direccion.TabIndex = 7
         '
         'txt_telefono
         '
@@ -49,7 +50,7 @@ Partial Class VendedoresControl
         Me.txt_telefono.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txt_telefono.Name = "txt_telefono"
         Me.txt_telefono.Size = New System.Drawing.Size(140, 19)
-        Me.txt_telefono.TabIndex = 2
+        Me.txt_telefono.TabIndex = 6
         '
         'txt_apellido
         '
@@ -60,7 +61,7 @@ Partial Class VendedoresControl
         Me.txt_apellido.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txt_apellido.Name = "txt_apellido"
         Me.txt_apellido.Size = New System.Drawing.Size(199, 19)
-        Me.txt_apellido.TabIndex = 1
+        Me.txt_apellido.TabIndex = 5
         '
         'txt_nombre
         '
@@ -71,37 +72,46 @@ Partial Class VendedoresControl
         Me.txt_nombre.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txt_nombre.Name = "txt_nombre"
         Me.txt_nombre.Size = New System.Drawing.Size(199, 19)
-        Me.txt_nombre.TabIndex = 0
+        Me.txt_nombre.TabIndex = 4
         '
-        'txt_comision
+        'txt_TipoCliente
         '
-        Me.txt_comision._label_text = "Comision"
-        Me.txt_comision._Mask = PAV1_Proyecto.LabeledTextBox.Mascara.porcentaje
-        Me.txt_comision._Not_Null = True
-        Me.txt_comision.Location = New System.Drawing.Point(2, 97)
-        Me.txt_comision.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.txt_comision.Name = "txt_comision"
-        Me.txt_comision.Size = New System.Drawing.Size(112, 19)
-        Me.txt_comision.TabIndex = 4
+        Me.txt_TipoCliente.AutoSize = True
+        Me.txt_TipoCliente.Location = New System.Drawing.Point(3, 104)
+        Me.txt_TipoCliente.Name = "txt_TipoCliente"
+        Me.txt_TipoCliente.Size = New System.Drawing.Size(63, 13)
+        Me.txt_TipoCliente.TabIndex = 9
+        Me.txt_TipoCliente.Text = "Tipo Cliente"
         '
-        'VendedoresControl
+        'cmb_idTipoCliente
+        '
+        Me.cmb_idTipoCliente.FormattingEnabled = True
+        Me.cmb_idTipoCliente.Location = New System.Drawing.Point(70, 101)
+        Me.cmb_idTipoCliente.Name = "cmb_idTipoCliente"
+        Me.cmb_idTipoCliente.Size = New System.Drawing.Size(131, 21)
+        Me.cmb_idTipoCliente.TabIndex = 8
+        '
+        'ClienteControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.txt_comision)
+        Me.Controls.Add(Me.txt_TipoCliente)
+        Me.Controls.Add(Me.cmb_idTipoCliente)
         Me.Controls.Add(Me.txt_direccion)
         Me.Controls.Add(Me.txt_telefono)
         Me.Controls.Add(Me.txt_apellido)
         Me.Controls.Add(Me.txt_nombre)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.Name = "VendedoresControl"
-        Me.Size = New System.Drawing.Size(206, 121)
+        Me.Name = "ClienteControl"
+        Me.Size = New System.Drawing.Size(210, 129)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
+
     Friend WithEvents txt_direccion As LabeledTextBox
     Friend WithEvents txt_telefono As LabeledTextBox
     Friend WithEvents txt_apellido As LabeledTextBox
     Friend WithEvents txt_nombre As LabeledTextBox
-    Friend WithEvents txt_comision As LabeledTextBox
+    Friend WithEvents txt_TipoCliente As Label
+    Friend WithEvents cmb_idTipoCliente As ComboBox
 End Class
