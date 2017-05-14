@@ -4,7 +4,7 @@
 
     Public Shared Function all() As DataTable
         Dim sql_select = ""
-        sql_select &= "SELECT idGrupo, grupos.nombre, familias.nombre, familias.idFamilia FROM GRUPOS "
+        sql_select &= "SELECT idGrupo, grupos.nombre, familias.nombre as nombreFamilia, familias.idFamilia FROM GRUPOS "
         sql_select &= "INNER JOIN FAMILIAS ON grupos.idFamilia=familias.idFamilia"
         Return DataBase.getInstance().consulta_sql(sql_select)
     End Function

@@ -16,7 +16,12 @@ Public Class GananciaDAO
     End Sub
 
     Public Function all() As DataTable Implements ObjetoDAO.all
-        Throw New NotImplementedException()
+        Dim sql_select = ""
+        sql_select &= "SELECT ganancias.idGrupo as id_grupo, ganancias.idTipo as id_tipo_cliente, ganancias.ganancia, "
+        sql_select &= "tipos_cliente.nombre as nombre_tipo_cliente, grupos.nombre as nombre_grupo FROM ganancias "
+        sql_select &= "INNER JOIN tipos_cliente ON ganancias.idTipo=tipos_cliente.idTipo"
+        sql_select &= "INNER JOIN grupos ON ganancias.idGrupo=grupos.idGrupo"
+        Return DataBase.getInstance().consulta_sql(sql_select)
     End Function
 
     Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
@@ -24,11 +29,24 @@ Public Class GananciaDAO
     End Function
 
     Public Function get_IU_control() As ControlGenerico Implements ObjetoDAO.get_IU_control
-        Throw New NotImplementedException()
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo("grupo", "Grupo", boxType:=Campo.BoxType.comboBox))
+        campos.Add(New Campo("tipo_cliente", "Tipo de Cliente", boxType:=Campo.BoxType.comboBox))
+        campos.Add(New Campo("porcentaje_ganancia", "Ganancia", maskType:=LabeledTextBox.MaskType.porcentaje))
+        Dim control As New ControlGenerico(campos, Me)
+        control.load_combo("tipo_cliente", (New TipoClienteDAO).all(), "id", "nombre")
+        control.load_combo("grupo", GrupoDAO.all(), "idGrupo", "nombre")
+        Return control
     End Function
 
     Public Function get_IU_grilla() As GrillaGenerica Implements ObjetoDAO.get_IU_grilla
-        Throw New NotImplementedException()
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo("id_grupo", "", visible:=False))
+        campos.Add(New Campo("nombre_grupo", "Grupo"))
+        campos.Add(New Campo("id_tipo_cliente", "", visible:=False))
+        campos.Add(New Campo("nombre_tipo_cliente", "Tipo de Cliente"))
+        campos.Add(New Campo("ganancia", "Proporcion de Ganancia"))
+        Return New GrillaGenerica(campos, Me)
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance

@@ -6,6 +6,15 @@ Public Class GananciaVO
     Public Property _grupo As GrupoVO
     Public Property _tipo_cliente As TipoClienteVO
     Public Property _ganancia As Double
+    Public Property _porcentaje_ganancia As String
+        Get
+            Return _ganancia * 100 & "%"
+        End Get
+        Set(value As String)
+            value = value.Replace("%", "")
+            _ganancia = value / 100
+        End Set
+    End Property
 
     Public Sub New(grupo As GrupoVO, tipo_cliente As TipoClienteVO, ganancia As Double)
         _grupo = grupo

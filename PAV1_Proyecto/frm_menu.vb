@@ -27,4 +27,10 @@
         Dim frm As New frm_abm_grupos
         frm.Show()
     End Sub
+
+    Private Sub btn_ganancias_Click(sender As Object, e As EventArgs) Handles btn_ganancias.Click
+        Dim frm As New frm_abm_generico(New GananciaDAO)
+        frm.Text = "ABM Ganancias"
+        frm.Show()
+    End Sub
 End Class
