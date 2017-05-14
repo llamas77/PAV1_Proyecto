@@ -89,8 +89,8 @@
     <Compile Include="DAO\TipoClienteDAO.vb" />
     <Compile Include="DAO\VendedorDAO.vb" />
     <Compile Include="DataBase.vb" />
-    <Compile Include="FamiliaDAO.vb" />
-    <Compile Include="FamiliaVO.vb" />
+    <Compile Include="DAO\FamiliaDAO.vb" />
+    <Compile Include="VO\FamiliaVO.vb" />
     <Compile Include="Forms\Componentes\ClienteControl.Designer.vb">
       <DependentUpon>ClienteControl.vb</DependentUpon>
     </Compile>
@@ -161,33 +161,33 @@
     <Compile Include="Forms\frm_abm_tipos_clientes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_abm_familias.Designer.vb">
+    <Compile Include="Forms\frm_abm_familias.Designer.vb">
       <DependentUpon>frm_abm_familias.vb</DependentUpon>
     </Compile>
-    <Compile Include="frm_abm_familias.vb">
+    <Compile Include="Forms\frm_abm_familias.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_abm_grupos.designer.vb">
+    <Compile Include="Forms\frm_abm_grupos.designer.vb">
       <DependentUpon>frm_abm_grupos.vb</DependentUpon>
     </Compile>
-    <Compile Include="frm_abm_grupos.vb">
+    <Compile Include="Forms\frm_abm_grupos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_abm_marcas.Designer.vb">
+    <Compile Include="Forms\frm_abm_marcas.Designer.vb">
       <DependentUpon>frm_abm_marcas.vb</DependentUpon>
     </Compile>
-    <Compile Include="frm_abm_marcas.vb">
+    <Compile Include="Forms\frm_abm_marcas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_menu.vb">
+    <Compile Include="Forms\frm_menu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_menu.Designer.vb">
+    <Compile Include="Forms\frm_menu.Designer.vb">
       <DependentUpon>frm_menu.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GrupoDAO.vb" />
-    <Compile Include="GrupoVO.vb" />
+    <Compile Include="DAO\GrupoDAO.vb" />
+    <Compile Include="VO\GrupoVO.vb" />
     <Compile Include="Interfaces\ComboDataSource.vb" />
     <Compile Include="Interfaces\ObjectFactory.vb" />
     <Compile Include="Interfaces\ObjetoCtrl.vb" />
@@ -195,8 +195,8 @@
     <Compile Include="Interfaces\ObjetoGrilla.vb" />
     <Compile Include="Interfaces\ObjetoVO.vb" />
     <Compile Include="Interfaces\Validable.vb" />
-    <Compile Include="MarcaDAO.vb" />
-    <Compile Include="MarcaVO.vb" />
+    <Compile Include="DAO\MarcaDAO.vb" />
+    <Compile Include="VO\MarcaVO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -251,16 +251,16 @@
     <EmbeddedResource Include="Forms\frm_abm_tipos_clientes.resx">
       <DependentUpon>frm_abm_tipos_clientes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_abm_familias.resx">
+    <EmbeddedResource Include="Forms\frm_abm_familias.resx">
       <DependentUpon>frm_abm_familias.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_abm_grupos.resx">
+    <EmbeddedResource Include="Forms\frm_abm_grupos.resx">
       <DependentUpon>frm_abm_grupos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_abm_marcas.resx">
+    <EmbeddedResource Include="Forms\frm_abm_marcas.resx">
       <DependentUpon>frm_abm_marcas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_menu.resx">
+    <EmbeddedResource Include="Forms\frm_menu.resx">
       <DependentUpon>frm_menu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
