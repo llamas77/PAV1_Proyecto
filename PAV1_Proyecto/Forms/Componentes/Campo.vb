@@ -13,7 +13,8 @@
     Public Property _boxType As BoxType
     Public Property _maxLenght As Integer
 
-    Public Sub New(id As String, name As String, visible As Boolean,
+    Public Sub New(id As String, name As String,
+                   Optional visible As Boolean = True,
                    Optional maxLenght As Integer = 0,
                    Optional maskType As LabeledTextBox.MaskType = LabeledTextBox.MaskType.texto,
                    Optional boxType As BoxType = BoxType.maskedTextBox)

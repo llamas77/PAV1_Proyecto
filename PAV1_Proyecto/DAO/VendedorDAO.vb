@@ -107,23 +107,23 @@ Public Class VendedorDAO
 
     Public Function get_IU_control() As ControlGenerico Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("id", "id", False))
-        campos.Add(New Campo("nombre", "Nombre", True, maxLenght:=50))
-        campos.Add(New Campo("apellido", "Apellido", True, 50))
-        campos.Add(New Campo("telefono", "Teléfono", True, maskType:=LabeledTextBox.MaskType.telefono))
-        campos.Add(New Campo("direccion", "Dirección", True, 50))
-        campos.Add(New Campo("porcentaje", "Comisión", True, maskType:=LabeledTextBox.MaskType.porcentaje))
+        campos.Add(New Campo("id", "id", visible:=False))
+        campos.Add(New Campo("nombre", "Nombre", maxLenght:=50))
+        campos.Add(New Campo("apellido", "Apellido", maxLenght:=50))
+        campos.Add(New Campo("telefono", "Teléfono", maskType:=LabeledTextBox.MaskType.telefono))
+        campos.Add(New Campo("direccion", "Dirección", maxLenght:=50))
+        campos.Add(New Campo("porcentaje", "Comisión", maskType:=LabeledTextBox.MaskType.porcentaje))
         Return New ControlGenerico(campos, Me)
     End Function
 
     Public Function get_IU_grilla() As GrillaGenerica Implements ObjetoDAO.get_IU_grilla
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("id", "id", False))
-        campos.Add(New Campo("nombre", "Nombre", True))
-        campos.Add(New Campo("apellido", "Apellido", True))
-        campos.Add(New Campo("telefono", "Teléfono", True))
-        campos.Add(New Campo("direccion", "Dirección", True))
-        campos.Add(New Campo("porcentaje", "Comisión", True))
+        campos.Add(New Campo("id", "id", visible:=False))
+        campos.Add(New Campo("nombre", "Nombre"))
+        campos.Add(New Campo("apellido", "Apellido"))
+        campos.Add(New Campo("telefono", "Teléfono"))
+        campos.Add(New Campo("direccion", "Dirección", visible:=False))
+        campos.Add(New Campo("comision", "Comisión"))
         Return New GrillaGenerica(campos, Me)
     End Function
 
