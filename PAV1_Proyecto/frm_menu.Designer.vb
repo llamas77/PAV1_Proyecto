@@ -157,6 +157,5 @@ Partial Class frm_menu
     Friend WithEvents btn_vendedores As Button
     Friend WithEvents btn_grupos As Button
     Friend WithEvents btn_ganancias As Button
-    Friend WithEvents btn_grupos As Button
     Friend WithEvents btn_Clientes As Button
 End Class

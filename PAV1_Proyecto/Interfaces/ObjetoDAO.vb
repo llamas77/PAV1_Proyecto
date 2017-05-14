@@ -10,8 +10,8 @@
 
     Function exists(value As ObjetoVO) As Boolean
 
-    Function get_IU_control() As ControlGenerico
+    Function get_IU_control() As ObjetoCtrl
 
-    Function get_IU_grilla() As GrillaGenerica
+    Function get_IU_grilla() As ObjetoGrilla
 
 End Interface

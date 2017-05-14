@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class ClienteDAO
-    Implements ObjetoDAO, ObjetoGrillable
+    Implements ObjetoDAO, ObjectFactory
 
     Public Function all() As DataTable Implements ObjetoDAO.all
         Dim sql_select = "SELECT nroCliente, clientes.nombre, apellido, direccion, telefono, idTipoCliente , tipos_Cliente.nombre as nombreIdTipoCliente "
@@ -69,18 +69,7 @@ Public Class ClienteDAO
         End If
     End Function
 
-    Public Function estructura_grilla(visibles As Boolean) As List(Of String) Implements ObjetoGrillable.estructura_grilla
-        ' Nota: Lo ideal seria una lista del tipo (nombre, visible) pero no logro crear arrays con 2 clases de objetos.
-        '       En este caso no haria falta el parametro visibles.
-
-        If visibles Then ' Lista de columnas visibles
-            Return New List(Of String) From {"nroCliente", "nombre", "apellido"}
-        Else ' Lista de columnas ocultas
-            Return New List(Of String) From {"telefono", "direccion", "idTipoCliente", "nombreIdTipoCliente"}
-        End If
-    End Function
-
-    Public Function new_instance(row As DataGridViewCellCollection) As ObjetoVO Implements ObjetoGrillable.new_instance
+    Public Function new_instance(row As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
         Return New ClienteVO(row("nroCliente").Value(),
                               row("nombre").Value(),
                               row("apellido").Value(),
@@ -88,6 +77,23 @@ Public Class ClienteDAO
                               row("direccion").Value(),
                               row("idTipoCliente").Value(),
                               row("nombreIdTipoCliente").Value())
-
     End Function
+
+    Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
+        Return New ClienteControl()
+    End Function
+
+    Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo("nroCliente", "Nro Cliente"))
+        campos.Add(New Campo("nombre", "Nombre"))
+        campos.Add(New Campo("apellido", "Apellido"))
+        campos.Add(New Campo("telefono", "", visible:=False))
+        campos.Add(New Campo("direccion", "", visible:=False))
+        campos.Add(New Campo("idTipoCliente", "", visible:=False))
+        campos.Add(New Campo("nombreIdTipoCliente", "", visible:=False))
+        Return New GrillaGenerica(campos, Me)
+    End Function
+
+
 End Class

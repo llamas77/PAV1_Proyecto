@@ -85,7 +85,7 @@ Public Class VendedorDAO
                               comision)
     End Function
 
-    Public Function get_IU_control() As ControlGenerico Implements ObjetoDAO.get_IU_control
+    Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
         campos.Add(New Campo("id", "id", visible:=False))
         campos.Add(New Campo("nombre", "Nombre", maxLenght:=50))
@@ -96,7 +96,7 @@ Public Class VendedorDAO
         Return New ControlGenerico(campos, Me)
     End Function
 
-    Public Function get_IU_grilla() As GrillaGenerica Implements ObjetoDAO.get_IU_grilla
+    Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Dim campos As New List(Of Campo)
         campos.Add(New Campo("id", "id", visible:=False))
         campos.Add(New Campo("nombre", "Nombre"))

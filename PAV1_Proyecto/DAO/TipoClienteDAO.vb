@@ -61,11 +61,11 @@ Public Class TipoClienteDAO
         End If
     End Function
 
-    Public Function get_IU_control() As ControlGenerico Implements ObjetoDAO.get_IU_control
+    Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Throw New NotImplementedException()
     End Function
 
-    Public Function get_IU_grilla() As GrillaGenerica Implements ObjetoDAO.get_IU_grilla
+    Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Throw New NotImplementedException()
     End Function
 

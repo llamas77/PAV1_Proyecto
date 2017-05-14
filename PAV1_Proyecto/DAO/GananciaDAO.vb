@@ -69,7 +69,7 @@ Public Class GananciaDAO
         End If
     End Function
 
-    Public Function get_IU_control() As ControlGenerico Implements ObjetoDAO.get_IU_control
+    Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
         campos.Add(New Campo("id_grupo", "Grupo", boxType:=Campo.BoxType.comboBox, combo_data_source:=New GrupoDAO))
         campos.Add(New Campo("id_tipo_cliente", "Tipo de Cliente", boxType:=Campo.BoxType.comboBox, combo_data_source:=New TipoClienteDAO))
@@ -77,7 +77,7 @@ Public Class GananciaDAO
         Return New ControlGenerico(campos, Me)
     End Function
 
-    Public Function get_IU_grilla() As GrillaGenerica Implements ObjetoDAO.get_IU_grilla
+    Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Dim campos As New List(Of Campo)
         campos.Add(New Campo("id_grupo", "", visible:=False))
         campos.Add(New Campo("nombre_grupo", "Grupo"))

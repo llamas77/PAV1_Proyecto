@@ -38,4 +38,8 @@ Public Class ClienteVO
     Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
         Return _apellido & ", " & _nombre
     End Function
+
+    Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
+        Throw New NotImplementedException()
+    End Function
 End Class

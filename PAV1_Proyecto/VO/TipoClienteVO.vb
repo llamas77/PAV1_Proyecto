@@ -48,7 +48,7 @@ Public Class TipoClienteVO
         End Set
     End Property
 
-    Public Function toString() As String Implements ObjetoVO.toString
+    Public Overrides Function toString() As String Implements ObjetoVO.toString
         Return nombre
     End Function
 

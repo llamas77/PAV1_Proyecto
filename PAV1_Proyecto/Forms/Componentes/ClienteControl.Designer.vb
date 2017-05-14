@@ -33,7 +33,7 @@ Partial Class ClienteControl
         'txt_direccion
         '
         Me.txt_direccion._label_text = "Dirección"
-        Me.txt_direccion._Mask = PAV1_Proyecto.LabeledTextBox.Mascara.texto
+        Me.txt_direccion._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
         Me.txt_direccion._Not_Null = True
         Me.txt_direccion.Location = New System.Drawing.Point(2, 73)
         Me.txt_direccion.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
@@ -44,7 +44,7 @@ Partial Class ClienteControl
         'txt_telefono
         '
         Me.txt_telefono._label_text = "Teléfono"
-        Me.txt_telefono._Mask = PAV1_Proyecto.LabeledTextBox.Mascara.telefono
+        Me.txt_telefono._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.telefono
         Me.txt_telefono._Not_Null = True
         Me.txt_telefono.Location = New System.Drawing.Point(2, 50)
         Me.txt_telefono.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
@@ -55,7 +55,7 @@ Partial Class ClienteControl
         'txt_apellido
         '
         Me.txt_apellido._label_text = "Apellido"
-        Me.txt_apellido._Mask = PAV1_Proyecto.LabeledTextBox.Mascara.texto
+        Me.txt_apellido._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
         Me.txt_apellido._Not_Null = True
         Me.txt_apellido.Location = New System.Drawing.Point(2, 26)
         Me.txt_apellido.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
@@ -66,7 +66,7 @@ Partial Class ClienteControl
         'txt_nombre
         '
         Me.txt_nombre._label_text = "Nombre"
-        Me.txt_nombre._Mask = PAV1_Proyecto.LabeledTextBox.Mascara.texto
+        Me.txt_nombre._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
         Me.txt_nombre._Not_Null = True
         Me.txt_nombre.Location = New System.Drawing.Point(2, 2)
         Me.txt_nombre.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)

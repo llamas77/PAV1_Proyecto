@@ -28,18 +28,9 @@
         frm.Show()
     End Sub
 
-    Private Sub btn_grupos_Click(sender As Object, e As EventArgs) Handles btn_grupos.Click
-        Dim frm As New frm_abm_grupos
-        frm.Show()
-    End Sub
-
     Private Sub btn_Clientes_Click(sender As Object, e As EventArgs) Handles btn_Clientes.Click
-        ' Muestra de funcionamiento de la grilla generica
-        Dim grilla_Clientes As New GrillaGenerica(New ClienteDAO())
-
         ' Muestra de funcionamiento del ABM Generico.
-
-        Dim frm As New frm_abm_generico(New ClienteControl, grilla_Clientes, New ClienteDAO)
+        Dim frm As New frm_abm_generico(New ClienteDAO)
         frm.Text = "ABM Clientes"
         frm.Show()
     End Sub
