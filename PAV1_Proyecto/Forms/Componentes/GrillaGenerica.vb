@@ -4,10 +4,11 @@ Public Class GrillaGenerica
     Inherits DataGridView
     Implements ObjetoGrilla
 
-    Dim objeto As ObjetoGrillable
+    Dim fabrica As ObjectFactory
     Dim column_names As New List(Of String)
 
-    Public Sub New()
+    Public Sub New(columnas As List(Of Campo), fabrica As ObjectFactory)
+        ' - - - Configuracion por defecto - - -
         AllowUserToAddRows = False
         AllowUserToDeleteRows = False
         AllowUserToResizeRows = False
@@ -16,29 +17,15 @@ Public Class GrillaGenerica
         AutoSize = True
         Me.ReadOnly = True
         SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        BackgroundColor = System.Drawing.Color.White
         RowHeadersVisible = False
+        'BackgroundColor = System.Drawing.Color.White
+        ' - - - Fin - - - 
 
-
+        Me.fabrica = fabrica
+        For Each campo In columnas
+            add_column(campo)
+        Next
     End Sub
-
-    Public Sub New(objeto As ObjetoGrillable)
-        Me.New()
-        _objeto = objeto
-    End Sub
-
-    Public WriteOnly Property _objeto As ObjetoGrillable
-        Set(value As ObjetoGrillable)
-            objeto = value
-            ' Carga la estructura
-            delete_columns()
-            For Each mostrar In {True, False} ' Trae las visibles y despues las ocultas.
-                For Each nombre_col In value.estructura_grilla(mostrar)
-                    add_column(nombre_col, mostrar)
-                Next
-            Next
-        End Set
-    End Property
 
     Public Sub recargar(valores As DataTable) Implements ObjetoGrilla.recargar
         Dim index = vaciar()
@@ -52,13 +39,13 @@ Public Class GrillaGenerica
         Me.Columns.Clear()
     End Sub
 
-    Private Sub add_column(nombre As String, mostrar As Boolean)
-        column_names.Add(nombre)
+    Private Sub add_column(campo As Campo)
+        column_names.Add(campo._id)
         Dim col As New DataGridViewTextBoxColumn
-        col.Name = nombre
-        col.DataPropertyName = nombre
-        col.HeaderText = nombre.ToUpper
-        col.Visible = mostrar
+        col.Name = campo._id
+        col.DataPropertyName = campo._id
+        col.HeaderText = campo._name
+        col.Visible = campo._visible
         col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         Me.Columns.Add(col)
     End Sub
@@ -68,8 +55,17 @@ Public Class GrillaGenerica
         If IsNothing(sRow) Then
             Return Nothing
         Else
-            Return objeto.new_instance(sRow.Cells())
+            Return fabrica.new_instance(toDictionary(sRow))
         End If
+    End Function
+
+    Private Function toDictionary(row As DataGridViewRow) As Dictionary(Of String, Object)
+        Dim diccionario As New Dictionary(Of String, Object)
+        Dim cells = row.Cells()
+        For Each nombre In Me.column_names
+            diccionario.Add(nombre, cells(nombre).Value())
+        Next
+        Return diccionario
     End Function
 
     Private Function vaciar() As Integer

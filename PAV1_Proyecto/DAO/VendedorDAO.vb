@@ -117,7 +117,14 @@ Public Class VendedorDAO
     End Function
 
     Public Function get_IU_grilla() As GrillaGenerica Implements ObjetoDAO.get_IU_grilla
-        Return New GrillaGenerica(Me)
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo("id", "id", False))
+        campos.Add(New Campo("nombre", "Nombre", True))
+        campos.Add(New Campo("apellido", "Apellido", True))
+        campos.Add(New Campo("telefono", "Teléfono", True))
+        campos.Add(New Campo("direccion", "Dirección", True))
+        campos.Add(New Campo("porcentaje", "Comisión", True))
+        Return New GrillaGenerica(campos, Me)
     End Function
 
 End Class
