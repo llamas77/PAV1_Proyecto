@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class TipoClienteDAO
-    Implements ObjetoDAO
+    Implements ObjetoDAO, ComboDataSource
 
     Public Function all() As DataTable Implements ObjetoDAO.all
         Dim sql_select = "SELECT idTipo as id, nombre, descripcion FROM tipos_cliente"
@@ -67,5 +67,10 @@ Public Class TipoClienteDAO
 
     Public Function get_IU_grilla() As GrillaGenerica Implements ObjetoDAO.get_IU_grilla
         Throw New NotImplementedException()
+    End Function
+
+    Public Function comboSource() As DataTable Implements ComboDataSource.comboSource
+        Dim sql_select = "SELECT idTipo, nombre FROM tipos_cliente"
+        Return DataBase.getInstance().consulta_sql(sql_select)
     End Function
 End Class

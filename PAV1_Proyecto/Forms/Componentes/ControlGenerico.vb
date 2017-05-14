@@ -86,6 +86,7 @@ Public Class ControlGenerico
                         control = lctrl
                     Case Campo.BoxType.comboBox
                         control = New LabeledComboBox(campo._name)
+                        load_combo(control, campo._combo_data_source)
                     Case Else
                         Return
                 End Select
@@ -109,14 +110,12 @@ Public Class ControlGenerico
         next_point = New Point(0, 0)
     End Sub
 
-    Public Sub load_combo(idCombo As String, datos As DataTable, value As String, display As String)
-        Dim combos = Me.Controls.Find(idCombo, False)
-        ' TODO: Validar que haya un solo (ni mas ni menos) combo y sea de tipo LabeledComboBox.
-        Dim labeledCombo As LabeledComboBox = combos(0)
+    Private Sub load_combo(labeledCombo As LabeledComboBox, dataSource As ComboDataSource)
         Dim combo As ComboBox = labeledCombo._combo
-        combo.DataSource = datos
-        combo.ValueMember = value
-        combo.DisplayMember = display
+        Dim tabla = dataSource.comboSource()
+        combo.DataSource = tabla
+        combo.ValueMember = tabla.Columns(0).ColumnName
+        combo.DisplayMember = tabla.Columns(1).ColumnName
         combo.SelectedIndex = -1 ' Para evitar que seleccione el primer elemento por defecto
     End Sub
 End Class

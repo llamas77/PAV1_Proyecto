@@ -175,6 +175,7 @@
     </Compile>
     <Compile Include="GrupoDAO.vb" />
     <Compile Include="GrupoVO.vb" />
+    <Compile Include="Interfaces\ComboDataSource.vb" />
     <Compile Include="Interfaces\ObjectFactory.vb" />
     <Compile Include="Interfaces\ObjetoCtrl.vb" />
     <Compile Include="Interfaces\ObjetoDAO.vb" />

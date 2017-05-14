@@ -30,13 +30,10 @@ Public Class GananciaDAO
 
     Public Function get_IU_control() As ControlGenerico Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("grupo", "Grupo", boxType:=Campo.BoxType.comboBox))
-        campos.Add(New Campo("tipo_cliente", "Tipo de Cliente", boxType:=Campo.BoxType.comboBox))
+        campos.Add(New Campo("grupo", "Grupo", boxType:=Campo.BoxType.comboBox, combo_data_source:=New GrupoDAO))
+        campos.Add(New Campo("tipo_cliente", "Tipo de Cliente", boxType:=Campo.BoxType.comboBox, combo_data_source:=New TipoClienteDAO))
         campos.Add(New Campo("porcentaje_ganancia", "Ganancia", maskType:=LabeledTextBox.MaskType.porcentaje))
-        Dim control As New ControlGenerico(campos, Me)
-        control.load_combo("tipo_cliente", (New TipoClienteDAO).all(), "id", "nombre")
-        control.load_combo("grupo", GrupoDAO.all(), "idGrupo", "nombre")
-        Return control
+        Return New ControlGenerico(campos, Me)
     End Function
 
     Public Function get_IU_grilla() As GrillaGenerica Implements ObjetoDAO.get_IU_grilla

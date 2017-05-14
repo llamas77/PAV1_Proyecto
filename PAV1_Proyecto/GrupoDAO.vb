@@ -1,4 +1,8 @@
-﻿Public Class GrupoDAO
+﻿Imports PAV1_Proyecto
+
+Public Class GrupoDAO
+    Implements ComboDataSource
+
     ' DOC: (MarcaDataAccessObject) Esta clase se encarga de las consultas SQL a la tabla de Grupos.
     '      Como parametros de entrada/salida generalmente trabaja con GrupoVO.
 
@@ -56,5 +60,10 @@
         Dim sql = "SELECT TOP 1 nombre FROM grupos WHERE nombre='" & grupo._nombre & "'"
         Dim response = DataBase.getInstance().consulta_sql(sql)
         Return response.Rows.Count = 1
+    End Function
+
+    Public Function comboSource() As DataTable Implements ComboDataSource.comboSource
+        Dim sql_select = "SELECT idGrupo, nombre FROM GRUPOS "
+        Return DataBase.getInstance().consulta_sql(sql_select)
     End Function
 End Class
