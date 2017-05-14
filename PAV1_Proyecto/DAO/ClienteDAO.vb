@@ -69,14 +69,14 @@ Public Class ClienteDAO
         End If
     End Function
 
-    Public Function new_instance(row As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
-        Return New ClienteVO(row("nroCliente").Value(),
-                              row("nombre").Value(),
-                              row("apellido").Value(),
-                              row("telefono").Value(),
-                              row("direccion").Value(),
-                              row("idTipoCliente").Value(),
-                              row("nombreIdTipoCliente").Value())
+    Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
+        Return New ClienteVO(valores("nroCliente"),
+                              valores("nombre"),
+                              valores("apellido"),
+                              valores("telefono"),
+                              valores("direccion"),
+                              valores("idTipoCliente"),
+                              valores("nombreIdTipoCliente"))
     End Function
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
