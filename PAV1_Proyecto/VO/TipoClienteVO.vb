@@ -48,6 +48,10 @@ Public Class TipoClienteVO
         Return nombre
     End Function
 
+    Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
+        Throw New NotImplementedException()
+    End Function
+
     'Public Function estructura_grilla(visibles As Boolean) As List(Of String) Implements ObjetoVOGrillable.estructura_grilla
     '    If visibles Then ' Lista de columnas visibles
     '        Return New List(Of String) From {"id", "nombre", "descripcion"}

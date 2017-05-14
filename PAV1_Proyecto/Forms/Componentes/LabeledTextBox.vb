@@ -36,11 +36,7 @@
 
     Public Overrides Property Text As String
         Get
-            If mask_type = MaskType.porcentaje Then
-                Return txt_caja.Text.Trim.Replace("_", "")
-            Else
-                Return txt_caja.Text.Trim
-            End If
+            Return txt_caja.Text.Trim
         End Get
         Set(ByVal value As String)
             txt_caja.Text = value

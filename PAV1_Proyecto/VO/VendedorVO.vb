@@ -30,11 +30,10 @@ Public Class VendedorVO
 
     Public Property _porcentaje As String ' String de la mascara 990%
         Get
-            Return _comision & "%"
+            Return _comision * 100 & "%"
         End Get
         Set(value As String)
             value = value.Replace("%", "")
-            value = value.Replace("_", "")
             _comision = value / 100
         End Set
     End Property
@@ -61,5 +60,17 @@ Public Class VendedorVO
     '
     Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
         Return _apellido & ", " & _nombre
+    End Function
+
+    Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
+        Dim diccionario As New Dictionary(Of String, Object)
+        diccionario.Add("id", _id)
+        diccionario.Add("nombre", _nombre)
+        diccionario.Add("apellido", _apellido)
+        diccionario.Add("telefono", _telefono)
+        diccionario.Add("direccion", _direccion)
+        diccionario.Add("comision", _comision)
+        diccionario.Add("porcentaje", _porcentaje)
+        Return diccionario
     End Function
 End Class

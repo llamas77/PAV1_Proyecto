@@ -22,9 +22,25 @@ Public Class ControlGenerico
         End Get
         Set(value As ObjetoVO)
             ' TODO: Añadir function a ObjetoVO para que se muestre en forma de diccionario.
-            Throw New NotImplementedException()
+            Dim objeto = value.toDictionary()
+            For Each key In objeto.Keys
+                set_control(key, objeto(key))
+            Next
         End Set
     End Property
+
+    Private Sub set_control(id As String, value As Object)
+        If campos_invisibles.ContainsKey(id) Then
+            campos_invisibles(id) = value
+        ElseIf Me.Controls.ContainsKey(id) Then
+            If TypeOf Me.Controls(id) Is LabeledTextBox Then
+                Me.Controls(id).Text = value
+            ElseIf TypeOf Me.Controls(id) Is LabeledComboBox Then
+                Dim lcmb As LabeledComboBox = Me.Controls(id)
+                lcmb._combo.SelectedValue = value
+            End If
+        End If
+    End Sub
 
     Private Function read_controls() As Dictionary(Of String, Object)
         Dim diccionario As New Dictionary(Of String, Object)
@@ -36,7 +52,10 @@ Public Class ControlGenerico
                 diccionario.Add(control.Name, lcombo._combo.SelectedValue)
             End If
         Next
-        Return diccionario.Union(campos_invisibles)
+        For Each key In campos_invisibles.Keys
+            diccionario.Add(key, campos_invisibles(key))
+        Next
+        Return diccionario
     End Function
 
     Public Sub reset() Implements ObjetoCtrl.reset
@@ -51,7 +70,7 @@ Public Class ControlGenerico
     End Sub
 
     Public Function is_valid() As Boolean Implements ObjetoCtrl.is_valid
-        Throw New NotImplementedException()
+        Return True ' TODO: Implementar. Hay que validar que todos los campos requeridos tengan algun valor.
     End Function
 
     Public Sub set_structure(estructura As List(Of Campo))
