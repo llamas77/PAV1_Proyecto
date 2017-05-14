@@ -20,20 +20,20 @@ Public Class ClienteControl
 
     Public Property _cliente As ClienteVO
         Get
-            cliente._nombre = txt_nombre.Text.Trim
-            cliente._apellido = txt_apellido.Text.Trim
-            cliente._direccion = txt_direccion.Text.Trim
-            cliente._telefono = txt_telefono.Text.Trim
+            cliente._nombre = txt_nombre._text.Trim
+            cliente._apellido = txt_apellido._text.Trim
+            cliente._direccion = txt_direccion._text.Trim
+            cliente._telefono = txt_telefono._text.Trim
             cliente._idTipoCliente = cmb_idTipoCliente.SelectedValue
             cliente._nombreIdTipoCliente = cmb_idTipoCliente.SelectedText
             Return cliente
         End Get
         Set(value As ClienteVO)
             cliente = value
-            txt_nombre.Text = cliente._nombre
-            txt_apellido.Text = cliente._apellido
-            txt_direccion.Text = cliente._direccion
-            txt_telefono.Text = cliente._telefono
+            txt_nombre._text = cliente._nombre
+            txt_apellido._text = cliente._apellido
+            txt_direccion._text = cliente._direccion
+            txt_telefono._text = cliente._telefono
             cmb_idTipoCliente.Text = cliente._idTipoCliente
             cmb_idTipoCliente.Text = cliente._nombreIdTipoCliente
         End Set

@@ -20,20 +20,20 @@ Public Class VendedoresControl
 
     Public Property _vendedor As VendedorVO
         Get
-            vendedor._nombre = txt_nombre.Text.Trim
-            vendedor._apellido = txt_apellido.Text.Trim
-            vendedor._direccion = txt_direccion.Text.Trim
-            vendedor._telefono = txt_telefono.Text.Trim
-            vendedor._porcentaje = txt_comision.Text.Trim
+            vendedor._nombre = txt_nombre._text.Trim
+            vendedor._apellido = txt_apellido._text.Trim
+            vendedor._direccion = txt_direccion._text.Trim
+            vendedor._telefono = txt_telefono._text.Trim
+            vendedor._porcentaje = txt_comision._text.Trim
             Return vendedor
         End Get
         Set(value As VendedorVO)
             vendedor = value
-            txt_nombre.Text = vendedor._nombre
-            txt_apellido.Text = vendedor._apellido
-            txt_direccion.Text = vendedor._direccion
-            txt_telefono.Text = vendedor._telefono
-            txt_comision.Text = vendedor._porcentaje
+            txt_nombre._text = vendedor._nombre
+            txt_apellido._text = vendedor._apellido
+            txt_direccion._text = vendedor._direccion
+            txt_telefono._text = vendedor._telefono
+            txt_comision._text = vendedor._porcentaje
         End Set
     End Property
 

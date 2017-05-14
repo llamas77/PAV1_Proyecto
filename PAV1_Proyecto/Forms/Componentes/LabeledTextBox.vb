@@ -1,5 +1,8 @@
-﻿Public Class LabeledTextBox
+﻿Imports PAV1_Proyecto
+
+Public Class LabeledTextBox
     Inherits UserControl
+    Implements Validable
 
     Enum MaskType
         texto
@@ -8,7 +11,6 @@
         porcentaje
     End Enum
 
-    Dim not_null As Boolean = True
     Dim mask_type As MaskType
 
     Public Sub New()
@@ -21,11 +23,11 @@
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
         ' TODO: validar que mascara sea MaskType
-        Me._label_text = label
+        Me._label = label
         Me._Mask = mascara
     End Sub
 
-    Public Property _label_text As String
+    Public Property _label As String
         Get
             Return lbl_texto.Text
         End Get
@@ -34,25 +36,12 @@
         End Set
     End Property
 
-    Public Overrides Property Text As String
+    Public Property _text As String
         Get
             Return txt_caja.Text.Trim
         End Get
         Set(ByVal value As String)
             txt_caja.Text = value
-        End Set
-    End Property
-
-    Public Property _max_length As Integer
-        Get
-            Return txt_caja.Mask.Length
-        End Get
-        Set(value As Integer)
-            If _Mask = MaskType.texto Then
-                txt_caja.PromptChar = " "
-                txt_caja.Mask = "".PadLeft(value, "a") ' Crea un string de "aaa", tantas como indique value.
-                resize_textBox()
-            End If
         End Set
     End Property
 
@@ -77,22 +66,38 @@
         End Set
     End Property
 
-    Public Property _Not_Null As Boolean
+    '
+    ' Interfaz Validable
+    '
+    Public Property _null As Boolean Implements Validable._null
+
+    Public Property _min_lenght As Integer Implements Validable._min_lenght
         Get
-            Return not_null
+            Throw New NotImplementedException()
         End Get
-        Set(value As Boolean)
-            not_null = value
+        Set(value As Integer)
+            valid_lenght(value, _max_length)
         End Set
     End Property
 
-    Public Function valido() As Boolean
-        If not_null Then
-            Return Not txt_caja.MaskCompleted
-        Else
-            Return True
+    Public Property _max_length As Integer Implements Validable._max_lenght
+        Get
+            Return txt_caja.Mask.Length
+        End Get
+        Set(value As Integer)
+            valid_lenght(_min_lenght, value)
+        End Set
+    End Property
+
+    Public Property _numeric As Boolean Implements Validable._numeric
+
+    Private Sub valid_lenght(min As Integer, max As Integer)
+        If _Mask = MaskType.texto Then
+            txt_caja.PromptChar = " "
+            txt_caja.Mask = "".PadLeft(min, "A").PadLeft(max - min, "a")
+            resize_textBox()
         End If
-    End Function
+    End Sub
 
     Private Sub resize_textBox()
         If txt_caja.Mask.Length > 0 Then
@@ -106,4 +111,24 @@
             'Me.Size = New Size(lbl_texto.Size.Width + txt_caja.Size.Width, Me.Size.Height)
         End If
     End Sub
+
+    Public Function is_valid() As Boolean Implements Validable.is_valid
+        Dim valido = True
+
+        If Not _null Then
+            If Not txt_caja.MaskCompleted Then
+                ' La longitud máxima y minima se cargan en la máscara, si esta está completa es valido.
+                valido = False
+            End If
+            If _numeric And Not IsNumeric(Me._text) Then
+                valido = False
+            End If
+        Else
+            If _numeric And _text <> "" And Not IsNumeric(_text) Then
+                valido = False
+            End If
+        End If
+
+        Return valido
+    End Function
 End Class

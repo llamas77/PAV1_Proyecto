@@ -31,7 +31,7 @@ Partial Class VendedoresControl
         '
         'txt_direccion
         '
-        Me.txt_direccion._label_text = "Dirección"
+        Me.txt_direccion._label = "Dirección"
         Me.txt_direccion._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
         Me.txt_direccion._Not_Null = True
         Me.txt_direccion.Location = New System.Drawing.Point(2, 73)
@@ -42,7 +42,7 @@ Partial Class VendedoresControl
         '
         'txt_telefono
         '
-        Me.txt_telefono._label_text = "Teléfono"
+        Me.txt_telefono._label = "Teléfono"
         Me.txt_telefono._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.telefono
         Me.txt_telefono._Not_Null = True
         Me.txt_telefono.Location = New System.Drawing.Point(2, 50)
@@ -53,7 +53,7 @@ Partial Class VendedoresControl
         '
         'txt_apellido
         '
-        Me.txt_apellido._label_text = "Apellido"
+        Me.txt_apellido._label = "Apellido"
         Me.txt_apellido._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
         Me.txt_apellido._Not_Null = True
         Me.txt_apellido.Location = New System.Drawing.Point(2, 26)
@@ -64,7 +64,7 @@ Partial Class VendedoresControl
         '
         'txt_nombre
         '
-        Me.txt_nombre._label_text = "Nombre"
+        Me.txt_nombre._label = "Nombre"
         Me.txt_nombre._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
         Me.txt_nombre._Not_Null = True
         Me.txt_nombre.Location = New System.Drawing.Point(2, 2)
@@ -75,7 +75,7 @@ Partial Class VendedoresControl
         '
         'txt_comision
         '
-        Me.txt_comision._label_text = "Comision"
+        Me.txt_comision._label = "Comision"
         Me.txt_comision._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.porcentaje
         Me.txt_comision._Not_Null = True
         Me.txt_comision.Location = New System.Drawing.Point(2, 97)

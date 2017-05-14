@@ -88,6 +88,7 @@ Public Class GananciaDAO
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
+        ' Debe poder crear un ObjetoVO recibiendo datos con la estructura de una grilla o un control.
 
         Dim ganancia As Double
         If valores.ContainsKey("ganancia") Then

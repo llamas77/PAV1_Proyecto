@@ -194,6 +194,7 @@
     <Compile Include="Interfaces\ObjetoDAO.vb" />
     <Compile Include="Interfaces\ObjetoGrilla.vb" />
     <Compile Include="Interfaces\ObjetoVO.vb" />
+    <Compile Include="Interfaces\Validable.vb" />
     <Compile Include="MarcaDAO.vb" />
     <Compile Include="MarcaVO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
