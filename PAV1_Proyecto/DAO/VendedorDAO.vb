@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class VendedorDAO
-    Implements ObjetoDAO, ObjetoGrillable, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory
 
     Public Function all() As DataTable Implements ObjetoDAO.all
         Dim sql_select = "SELECT idVendedor as id, nombre, apellido, direccion, telefono, comision FROM vendedores"
@@ -65,26 +65,6 @@ Public Class VendedorDAO
         Else
             Throw New System.Exception("Error: VendedorDAO solo admite objetos VendedorVO")
         End If
-    End Function
-
-    Public Function estructura_grilla(visibles As Boolean) As List(Of String) Implements ObjetoGrillable.estructura_grilla
-        ' Nota: Lo ideal seria una lista del tipo (nombre, visible) pero no logro crear arrays con 2 clases de objetos.
-        '       En este caso no haria falta el parametro visibles.
-
-        If visibles Then ' Lista de columnas visibles
-            Return New List(Of String) From {"id", "nombre", "apellido", "comision", "telefono"}
-        Else ' Lista de columnas ocultas
-            Return New List(Of String) From {"telefono", "direccion"}
-        End If
-    End Function
-
-    Public Function new_instance(row As DataGridViewCellCollection) As ObjetoVO Implements ObjetoGrillable.new_instance
-        Return New VendedorVO(row("id").Value(),
-                              row("nombre").Value(),
-                              row("apellido").Value(),
-                              row("telefono").Value(),
-                              row("direccion").Value(),
-                              row("comision").Value())
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
