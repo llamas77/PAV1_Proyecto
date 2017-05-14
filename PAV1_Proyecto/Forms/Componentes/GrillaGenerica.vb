@@ -6,6 +6,7 @@ Public Class GrillaGenerica
 
     Dim fabrica As ObjectFactory
     Dim column_names As New List(Of String)
+    Dim visible_col_name As String
 
     Public Sub New(columnas As List(Of Campo), fabrica As ObjectFactory)
         ' - - - Configuracion por defecto - - -
@@ -22,7 +23,13 @@ Public Class GrillaGenerica
         ' - - - Fin - - - 
 
         Me.fabrica = fabrica
+
         For Each campo In columnas
+            If campo._visible Then
+                ' Guardo una columna visible para poder seleccionar la fila
+                ' porque si se trata de seleccionar una celda invisible ocurre una excepcion.
+                visible_col_name = campo._id
+            End If
             add_column(campo)
         Next
     End Sub
@@ -83,7 +90,7 @@ Public Class GrillaGenerica
             If Me.Rows.Count() <= index Then ' Si el indice esta fuera de rango, pongo al ultimo.
                 index = Me.Rows.Count - 1
             End If
-            Me.CurrentCell = Me.Rows(index).Cells(0)
+            Me.CurrentCell = Me.Rows(index).Cells(visible_col_name)
         End If
     End Sub
 
