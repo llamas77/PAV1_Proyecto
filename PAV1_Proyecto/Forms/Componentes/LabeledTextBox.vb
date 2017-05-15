@@ -69,7 +69,7 @@ Public Class LabeledTextBox
     '
     ' Interfaz Validable
     '
-    Public Property _null As Boolean Implements Validable._null
+    Public Property _required As Boolean Implements Validable._required
 
     Public Property _min_lenght As Integer Implements Validable._min_lenght
         Get
@@ -115,8 +115,8 @@ Public Class LabeledTextBox
     Public Function is_valid() As Boolean Implements Validable.is_valid
         Dim valido = True
 
-        If Not _null Then
-            If Not txt_caja.MaskCompleted Then
+        If _required Then
+            If Not txt_caja.MaskCompleted Or txt_caja.Text = "" Then
                 ' La longitud máxima y minima se cargan en la máscara, si esta está completa es valido.
                 valido = False
             End If

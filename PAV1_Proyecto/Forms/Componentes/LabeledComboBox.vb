@@ -26,14 +26,14 @@ Public Class LabeledComboBox
         End Set
     End Property
 
-    Public Property _null As Boolean Implements Validable._null
+    Public Property _required As Boolean Implements Validable._required
     Public Property _min_lenght As Integer Implements Validable._min_lenght
     Public Property _max_lenght As Integer Implements Validable._max_lenght
     Public Property _numeric As Boolean Implements Validable._numeric
 
     Public Function is_valid() As Boolean Implements Validable.is_valid
         Dim valido As Boolean = True
-        If Not _null And cmb_combo.SelectedIndex = -1 Then
+        If Not _required And cmb_combo.SelectedIndex = -1 Then
             valido = False
         End If
         If _numeric And Not IsNumeric(cmb_combo.SelectedValue) Then

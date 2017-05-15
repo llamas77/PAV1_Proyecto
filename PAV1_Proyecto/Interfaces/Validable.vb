@@ -5,7 +5,7 @@
     '
 
     ' Cosas validables.
-    Property _null As Boolean
+    Property _required As Boolean
     Property _min_lenght As Integer
     Property _max_lenght As Integer
     Property _numeric As Boolean

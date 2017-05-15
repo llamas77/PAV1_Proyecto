@@ -36,7 +36,7 @@ Partial Class ClienteControl
         Me.txt_direccion._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
         Me.txt_direccion._max_length = 0
         Me.txt_direccion._min_lenght = 0
-        Me.txt_direccion._null = False
+        Me.txt_direccion._required = False
         Me.txt_direccion._numeric = False
         Me.txt_direccion._text = ""
         Me.txt_direccion.Location = New System.Drawing.Point(3, 90)
@@ -51,7 +51,7 @@ Partial Class ClienteControl
         Me.txt_telefono._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.telefono
         Me.txt_telefono._max_length = 13
         Me.txt_telefono._min_lenght = 0
-        Me.txt_telefono._null = False
+        Me.txt_telefono._required = False
         Me.txt_telefono._numeric = False
         Me.txt_telefono._text = "-4"
         Me.txt_telefono.Location = New System.Drawing.Point(3, 62)
@@ -66,7 +66,7 @@ Partial Class ClienteControl
         Me.txt_apellido._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
         Me.txt_apellido._max_length = 0
         Me.txt_apellido._min_lenght = 0
-        Me.txt_apellido._null = False
+        Me.txt_apellido._required = False
         Me.txt_apellido._numeric = False
         Me.txt_apellido._text = ""
         Me.txt_apellido.Location = New System.Drawing.Point(3, 32)
@@ -81,7 +81,7 @@ Partial Class ClienteControl
         Me.txt_nombre._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
         Me.txt_nombre._max_length = 0
         Me.txt_nombre._min_lenght = 0
-        Me.txt_nombre._null = False
+        Me.txt_nombre._required = False
         Me.txt_nombre._numeric = False
         Me.txt_nombre._text = ""
         Me.txt_nombre.Location = New System.Drawing.Point(3, 2)

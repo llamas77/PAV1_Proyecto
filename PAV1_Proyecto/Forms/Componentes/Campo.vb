@@ -21,7 +21,7 @@ Public Class Campo
     Public Property _combo_data_source As ComboDataSource ' Solo para ser usado con BoxType.comboBox
 
     ' Propiedades de interfaz Validable
-    Public Property _null As Boolean Implements Validable._null
+    Public Property _required As Boolean Implements Validable._required
     Public Property _min_lenght As Integer Implements Validable._min_lenght
     Public Property _max_lenght As Integer Implements Validable._max_lenght
     Public Property _numeric As Boolean Implements Validable._numeric
@@ -31,7 +31,7 @@ Public Class Campo
                    Optional maskType As LabeledTextBox.MaskType = LabeledTextBox.MaskType.texto,
                    Optional boxType As BoxType = BoxType.maskedTextBox,
                    Optional combo_data_source As ComboDataSource = Nothing,
-                   Optional null As Boolean = False,
+                   Optional required As Boolean = False,
                    Optional min_lenght As Integer = 0,
                    Optional maxLenght As Integer = 0,
                    Optional numeric As Boolean = False)
@@ -41,7 +41,7 @@ Public Class Campo
         _maskType = maskType
         _boxType = boxType
         _combo_data_source = combo_data_source
-        _null = null
+        _required = required
         _min_lenght = min_lenght
         _max_lenght = maxLenght
         _numeric = numeric

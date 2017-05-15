@@ -88,11 +88,11 @@ Public Class VendedorDAO
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
         campos.Add(New Campo("id", "id", visible:=False))
-        campos.Add(New Campo("nombre", "Nombre", maxLenght:=50))
+        campos.Add(New Campo("nombre", "Nombre", maxLenght:=50, required:=True))
         campos.Add(New Campo("apellido", "Apellido", maxLenght:=50))
         campos.Add(New Campo("telefono", "Teléfono", maskType:=LabeledTextBox.MaskType.telefono))
         campos.Add(New Campo("direccion", "Dirección", maxLenght:=50))
-        campos.Add(New Campo("porcentaje", "Comisión", maskType:=LabeledTextBox.MaskType.porcentaje))
+        campos.Add(New Campo("porcentaje", "Comisión", maskType:=LabeledTextBox.MaskType.porcentaje, required:=True))
         Return New ControlGenerico(campos, Me)
     End Function
 

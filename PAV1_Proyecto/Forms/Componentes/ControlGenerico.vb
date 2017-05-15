@@ -87,6 +87,8 @@ Public Class ControlGenerico
                 Select Case campo._boxType
                     Case Campo.BoxType.maskedTextBox
                         Dim lctrl = New LabeledTextBox(campo._name, campo._maskType)
+                        lctrl._required = campo._required
+                        lctrl._numeric = campo._numeric
                         If campo._max_lenght > 0 Then
                             lctrl._max_length = campo._max_lenght
                         End If
