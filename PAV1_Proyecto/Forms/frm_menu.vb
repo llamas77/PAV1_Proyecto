@@ -40,4 +40,10 @@
         frm.Text = "ABM Ganancias"
         frm.Show()
     End Sub
+
+    Private Sub btn_ganancias2_Click(sender As Object, e As EventArgs) Handles btn_ganancias2.Click
+        Dim frm As New frm_abm_generico_busqueda(New GananciaDAO)
+        frm.Text = "ABM Ganancias"
+        frm.Show()
+    End Sub
 End Class

@@ -25,6 +25,10 @@ Partial Class frm_abm_grupos
         Me.btn_cancelar = New System.Windows.Forms.Button()
         Me.txt_id = New System.Windows.Forms.TextBox()
         Me.grid_grupos = New System.Windows.Forms.DataGridView()
+        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.familia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.id_familia = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btn_salir = New System.Windows.Forms.Button()
         Me.btn_modificar = New System.Windows.Forms.Button()
         Me.btn_eliminar = New System.Windows.Forms.Button()
@@ -34,19 +38,15 @@ Partial Class frm_abm_grupos
         Me.txt_nombre = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.cmb_familia = New System.Windows.Forms.ComboBox()
-        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.familia = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.id_familia = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.grid_grupos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btn_cancelar
         '
-        Me.btn_cancelar.Location = New System.Drawing.Point(161, 234)
-        Me.btn_cancelar.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_cancelar.Location = New System.Drawing.Point(215, 288)
+        Me.btn_cancelar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btn_cancelar.Name = "btn_cancelar"
-        Me.btn_cancelar.Size = New System.Drawing.Size(64, 26)
+        Me.btn_cancelar.Size = New System.Drawing.Size(85, 32)
         Me.btn_cancelar.TabIndex = 13
         Me.btn_cancelar.Text = "Cancelar"
         Me.btn_cancelar.UseVisualStyleBackColor = True
@@ -54,10 +54,10 @@ Partial Class frm_abm_grupos
         'txt_id
         '
         Me.txt_id.Enabled = False
-        Me.txt_id.Location = New System.Drawing.Point(67, 13)
-        Me.txt_id.Margin = New System.Windows.Forms.Padding(2)
+        Me.txt_id.Location = New System.Drawing.Point(89, 16)
+        Me.txt_id.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txt_id.Name = "txt_id"
-        Me.txt_id.Size = New System.Drawing.Size(76, 20)
+        Me.txt_id.Size = New System.Drawing.Size(100, 22)
         Me.txt_id.TabIndex = 16
         Me.txt_id.TabStop = False
         '
@@ -68,102 +68,15 @@ Partial Class frm_abm_grupos
         Me.grid_grupos.AllowUserToResizeRows = False
         Me.grid_grupos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.grid_grupos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.nombre, Me.familia, Me.id_familia})
-        Me.grid_grupos.Location = New System.Drawing.Point(12, 96)
-        Me.grid_grupos.Margin = New System.Windows.Forms.Padding(2)
+        Me.grid_grupos.Location = New System.Drawing.Point(16, 118)
+        Me.grid_grupos.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.grid_grupos.MultiSelect = False
         Me.grid_grupos.Name = "grid_grupos"
         Me.grid_grupos.ReadOnly = True
         Me.grid_grupos.RowTemplate.Height = 24
         Me.grid_grupos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.grid_grupos.Size = New System.Drawing.Size(274, 133)
+        Me.grid_grupos.Size = New System.Drawing.Size(365, 164)
         Me.grid_grupos.TabIndex = 12
-        '
-        'btn_salir
-        '
-        Me.btn_salir.Location = New System.Drawing.Point(229, 234)
-        Me.btn_salir.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_salir.Name = "btn_salir"
-        Me.btn_salir.Size = New System.Drawing.Size(58, 26)
-        Me.btn_salir.TabIndex = 17
-        Me.btn_salir.Text = "Salir"
-        Me.btn_salir.UseVisualStyleBackColor = True
-        '
-        'btn_modificar
-        '
-        Me.btn_modificar.Location = New System.Drawing.Point(12, 234)
-        Me.btn_modificar.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_modificar.Name = "btn_modificar"
-        Me.btn_modificar.Size = New System.Drawing.Size(58, 26)
-        Me.btn_modificar.TabIndex = 14
-        Me.btn_modificar.Text = "Modificar"
-        Me.btn_modificar.UseVisualStyleBackColor = True
-        '
-        'btn_eliminar
-        '
-        Me.btn_eliminar.Location = New System.Drawing.Point(75, 234)
-        Me.btn_eliminar.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_eliminar.Name = "btn_eliminar"
-        Me.btn_eliminar.Size = New System.Drawing.Size(58, 26)
-        Me.btn_eliminar.TabIndex = 15
-        Me.btn_eliminar.Text = "Eliminar"
-        Me.btn_eliminar.UseVisualStyleBackColor = True
-        '
-        'btn_actualizar
-        '
-        Me.btn_actualizar.Location = New System.Drawing.Point(229, 33)
-        Me.btn_actualizar.Margin = New System.Windows.Forms.Padding(2)
-        Me.btn_actualizar.Name = "btn_actualizar"
-        Me.btn_actualizar.Size = New System.Drawing.Size(58, 26)
-        Me.btn_actualizar.TabIndex = 9
-        Me.btn_actualizar.Text = "Agregar"
-        Me.btn_actualizar.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(10, 17)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(18, 13)
-        Me.Label1.TabIndex = 10
-        Me.Label1.Text = "ID"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(10, 40)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(44, 13)
-        Me.Label2.TabIndex = 11
-        Me.Label2.Text = "Nombre"
-        '
-        'txt_nombre
-        '
-        Me.txt_nombre.Location = New System.Drawing.Point(67, 37)
-        Me.txt_nombre.Margin = New System.Windows.Forms.Padding(2)
-        Me.txt_nombre.MaxLength = 50
-        Me.txt_nombre.Name = "txt_nombre"
-        Me.txt_nombre.Size = New System.Drawing.Size(150, 20)
-        Me.txt_nombre.TabIndex = 8
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(10, 65)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(39, 13)
-        Me.Label3.TabIndex = 11
-        Me.Label3.Text = "Familia"
-        '
-        'cmb_familia
-        '
-        Me.cmb_familia.FormattingEnabled = True
-        Me.cmb_familia.Location = New System.Drawing.Point(67, 62)
-        Me.cmb_familia.Name = "cmb_familia"
-        Me.cmb_familia.Size = New System.Drawing.Size(150, 21)
-        Me.cmb_familia.TabIndex = 18
         '
         'id
         '
@@ -171,7 +84,7 @@ Partial Class frm_abm_grupos
         Me.id.HeaderText = "ID"
         Me.id.Name = "id"
         Me.id.ReadOnly = True
-        Me.id.Width = 43
+        Me.id.Width = 50
         '
         'nombre
         '
@@ -193,11 +106,96 @@ Partial Class frm_abm_grupos
         Me.id_familia.ReadOnly = True
         Me.id_familia.Visible = False
         '
+        'btn_salir
+        '
+        Me.btn_salir.Location = New System.Drawing.Point(305, 288)
+        Me.btn_salir.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btn_salir.Name = "btn_salir"
+        Me.btn_salir.Size = New System.Drawing.Size(77, 32)
+        Me.btn_salir.TabIndex = 17
+        Me.btn_salir.Text = "Salir"
+        Me.btn_salir.UseVisualStyleBackColor = True
+        '
+        'btn_modificar
+        '
+        Me.btn_modificar.Location = New System.Drawing.Point(16, 288)
+        Me.btn_modificar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btn_modificar.Name = "btn_modificar"
+        Me.btn_modificar.Size = New System.Drawing.Size(77, 32)
+        Me.btn_modificar.TabIndex = 14
+        Me.btn_modificar.Text = "Modificar"
+        Me.btn_modificar.UseVisualStyleBackColor = True
+        '
+        'btn_eliminar
+        '
+        Me.btn_eliminar.Location = New System.Drawing.Point(100, 288)
+        Me.btn_eliminar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btn_eliminar.Name = "btn_eliminar"
+        Me.btn_eliminar.Size = New System.Drawing.Size(77, 32)
+        Me.btn_eliminar.TabIndex = 15
+        Me.btn_eliminar.Text = "Eliminar"
+        Me.btn_eliminar.UseVisualStyleBackColor = True
+        '
+        'btn_actualizar
+        '
+        Me.btn_actualizar.Location = New System.Drawing.Point(305, 41)
+        Me.btn_actualizar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btn_actualizar.Name = "btn_actualizar"
+        Me.btn_actualizar.Size = New System.Drawing.Size(77, 32)
+        Me.btn_actualizar.TabIndex = 9
+        Me.btn_actualizar.Text = "Agregar"
+        Me.btn_actualizar.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(13, 21)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(21, 17)
+        Me.Label1.TabIndex = 10
+        Me.Label1.Text = "ID"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(13, 49)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(58, 17)
+        Me.Label2.TabIndex = 11
+        Me.Label2.Text = "Nombre"
+        '
+        'txt_nombre
+        '
+        Me.txt_nombre.Location = New System.Drawing.Point(89, 46)
+        Me.txt_nombre.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txt_nombre.MaxLength = 50
+        Me.txt_nombre.Name = "txt_nombre"
+        Me.txt_nombre.Size = New System.Drawing.Size(199, 22)
+        Me.txt_nombre.TabIndex = 8
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(13, 80)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(52, 17)
+        Me.Label3.TabIndex = 11
+        Me.Label3.Text = "Familia"
+        '
+        'cmb_familia
+        '
+        Me.cmb_familia.FormattingEnabled = True
+        Me.cmb_familia.Location = New System.Drawing.Point(89, 76)
+        Me.cmb_familia.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmb_familia.Name = "cmb_familia"
+        Me.cmb_familia.Size = New System.Drawing.Size(199, 24)
+        Me.cmb_familia.TabIndex = 18
+        '
         'frm_abm_grupos
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(320, 295)
+        Me.ClientSize = New System.Drawing.Size(427, 363)
         Me.Controls.Add(Me.cmb_familia)
         Me.Controls.Add(Me.btn_cancelar)
         Me.Controls.Add(Me.txt_id)
@@ -210,7 +208,9 @@ Partial Class frm_abm_grupos
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txt_nombre)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frm_abm_grupos"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "ABM Grupos"
         CType(Me.grid_grupos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

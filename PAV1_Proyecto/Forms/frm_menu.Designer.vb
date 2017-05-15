@@ -29,6 +29,7 @@ Partial Class frm_menu
         Me.btn_grupos = New System.Windows.Forms.Button()
         Me.btn_ganancias = New System.Windows.Forms.Button()
         Me.btn_Clientes = New System.Windows.Forms.Button()
+        Me.btn_ganancias2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btn_marcas
@@ -100,11 +101,21 @@ Partial Class frm_menu
         Me.btn_Clientes.Text = "Clientes"
         Me.btn_Clientes.UseVisualStyleBackColor = True
         '
+        'btn_ganancias2
+        '
+        Me.btn_ganancias2.Location = New System.Drawing.Point(168, 199)
+        Me.btn_ganancias2.Name = "btn_ganancias2"
+        Me.btn_ganancias2.Size = New System.Drawing.Size(128, 77)
+        Me.btn_ganancias2.TabIndex = 2
+        Me.btn_ganancias2.Text = "Ganancias Diseño 2"
+        Me.btn_ganancias2.UseVisualStyleBackColor = True
+        '
         'frm_menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(474, 299)
+        Me.Controls.Add(Me.btn_ganancias2)
         Me.Controls.Add(Me.btn_ganancias)
         Me.Controls.Add(Me.btn_Clientes)
         Me.Controls.Add(Me.btn_vendedores)
@@ -129,4 +140,5 @@ Partial Class frm_menu
     Friend WithEvents btn_grupos As Button
     Friend WithEvents btn_ganancias As Button
     Friend WithEvents btn_Clientes As Button
+    Friend WithEvents btn_ganancias2 As Button
 End Class

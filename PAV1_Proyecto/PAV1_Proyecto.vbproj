@@ -90,6 +90,18 @@
     <Compile Include="DAO\VendedorDAO.vb" />
     <Compile Include="DataBase.vb" />
     <Compile Include="DAO\FamiliaDAO.vb" />
+    <Compile Include="Forms\frm_abm_generico_busqueda.Designer.vb">
+      <DependentUpon>frm_abm_generico_busqueda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_abm_generico_busqueda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_control_generico.Designer.vb">
+      <DependentUpon>frm_control_generico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_control_generico.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="VO\FamiliaVO.vb" />
     <Compile Include="Forms\Componentes\ClienteControl.Designer.vb">
       <DependentUpon>ClienteControl.vb</DependentUpon>
@@ -248,6 +260,9 @@
     <EmbeddedResource Include="Forms\frm_abm_generico.resx">
       <DependentUpon>frm_abm_generico.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_abm_generico_busqueda.resx">
+      <DependentUpon>frm_abm_generico_busqueda.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_abm_tipos_clientes.resx">
       <DependentUpon>frm_abm_tipos_clientes.vb</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_abm_marcas.resx">
       <DependentUpon>frm_abm_marcas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_control_generico.resx">
+      <DependentUpon>frm_control_generico.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_menu.resx">
       <DependentUpon>frm_menu.vb</DependentUpon>

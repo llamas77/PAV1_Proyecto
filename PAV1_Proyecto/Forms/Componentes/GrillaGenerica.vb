@@ -50,7 +50,7 @@ Public Class GrillaGenerica
                 width += Columns(columna).Width
             End If
         Next
-        Me.Width = width
+        Me.Width = width + 3
         If width < MinimumSize.Width Then
             Columns(visible_col_name).Width = Columns(visible_col_name).Width + MinimumSize.Width - width - 3
         End If
