@@ -13,13 +13,17 @@ Public Class GrillaGenerica
         AllowUserToAddRows = False
         AllowUserToDeleteRows = False
         AllowUserToResizeRows = False
-        'AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        AllowUserToResizeColumns = False
+        ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        'ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         MultiSelect = False
-        AutoSize = True
+        AutoSize = False
+        AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
         Me.ReadOnly = True
         SelectionMode = DataGridViewSelectionMode.FullRowSelect
         RowHeadersVisible = False
         BackgroundColor = System.Drawing.Color.White
+        StandardTab = True ' Indica si la tecla TABULADOR mueve el foco al siguiente elemento.
         ' - - - Fin - - - 
 
         Me.fabrica = fabrica
@@ -32,6 +36,24 @@ Public Class GrillaGenerica
             End If
             add_column(campo)
         Next
+        execute_resize()
+    End Sub
+
+    Private Sub execute_resize()
+        '
+        ' AutoSize Manual para corregir el bug del espacio en blanco a la derecha.
+        '
+        Dim width As Integer = 0
+        For Each columna In Me.column_names
+            If Columns(columna).Visible Then
+                Columns(columna).Width = Columns(columna).GetPreferredWidth(DataGridViewAutoSizeColumnMode.AllCells, True)
+                width += Columns(columna).Width
+            End If
+        Next
+        Me.Width = width
+        If width < MinimumSize.Width Then
+            Columns(visible_col_name).Width = Columns(visible_col_name).Width + MinimumSize.Width - width - 3
+        End If
     End Sub
 
     Public Sub recargar(valores As DataTable) Implements ObjetoGrilla.recargar
@@ -53,7 +75,6 @@ Public Class GrillaGenerica
         col.DataPropertyName = campo._id
         col.HeaderText = campo._name
         col.Visible = campo._visible
-        col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         Me.Columns.Add(col)
     End Sub
 
@@ -104,4 +125,10 @@ Public Class GrillaGenerica
         Next
     End Sub
 
+    Private Sub GrillaGenerica_LocationChanged(sender As Object, e As EventArgs) Handles Me.LocationChanged
+        '
+        ' Uso este evento porque no hay un evento MinimumSizeChanged.
+        '
+        execute_resize()
+    End Sub
 End Class

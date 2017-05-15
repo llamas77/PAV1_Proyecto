@@ -24,6 +24,7 @@
 
         ' Ubicar grilla del objeto.
         control = grilla_objeto
+        control.MinimumSize = New Size(btn_actualizar.Location.X + btn_actualizar.Size.Width + 15, 150)
         control.Location = New Point(Me.Padding.Left, btn_actualizar.Location.Y + btn_actualizar.Size.Height + 15)
         control.TabIndex = 3
         Me.Controls.Add(control)

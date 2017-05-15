@@ -73,7 +73,7 @@ Public Class LabeledTextBox
 
     Public Property _min_lenght As Integer Implements Validable._min_lenght
         Get
-            Throw New NotImplementedException()
+            Return 0
         End Get
         Set(value As Integer)
             valid_lenght(value, _max_length)
