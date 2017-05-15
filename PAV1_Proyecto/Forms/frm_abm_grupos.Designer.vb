@@ -47,7 +47,7 @@ Partial Class frm_abm_grupos
         Me.btn_cancelar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btn_cancelar.Name = "btn_cancelar"
         Me.btn_cancelar.Size = New System.Drawing.Size(85, 32)
-        Me.btn_cancelar.TabIndex = 13
+        Me.btn_cancelar.TabIndex = 7
         Me.btn_cancelar.Text = "Cancelar"
         Me.btn_cancelar.UseVisualStyleBackColor = True
         '
@@ -58,7 +58,7 @@ Partial Class frm_abm_grupos
         Me.txt_id.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txt_id.Name = "txt_id"
         Me.txt_id.Size = New System.Drawing.Size(100, 22)
-        Me.txt_id.TabIndex = 16
+        Me.txt_id.TabIndex = 0
         Me.txt_id.TabStop = False
         '
         'grid_grupos
@@ -76,7 +76,7 @@ Partial Class frm_abm_grupos
         Me.grid_grupos.RowTemplate.Height = 24
         Me.grid_grupos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.grid_grupos.Size = New System.Drawing.Size(365, 164)
-        Me.grid_grupos.TabIndex = 12
+        Me.grid_grupos.TabIndex = 4
         '
         'id
         '
@@ -112,7 +112,7 @@ Partial Class frm_abm_grupos
         Me.btn_salir.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btn_salir.Name = "btn_salir"
         Me.btn_salir.Size = New System.Drawing.Size(77, 32)
-        Me.btn_salir.TabIndex = 17
+        Me.btn_salir.TabIndex = 8
         Me.btn_salir.Text = "Salir"
         Me.btn_salir.UseVisualStyleBackColor = True
         '
@@ -122,7 +122,7 @@ Partial Class frm_abm_grupos
         Me.btn_modificar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btn_modificar.Name = "btn_modificar"
         Me.btn_modificar.Size = New System.Drawing.Size(77, 32)
-        Me.btn_modificar.TabIndex = 14
+        Me.btn_modificar.TabIndex = 5
         Me.btn_modificar.Text = "Modificar"
         Me.btn_modificar.UseVisualStyleBackColor = True
         '
@@ -132,7 +132,7 @@ Partial Class frm_abm_grupos
         Me.btn_eliminar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btn_eliminar.Name = "btn_eliminar"
         Me.btn_eliminar.Size = New System.Drawing.Size(77, 32)
-        Me.btn_eliminar.TabIndex = 15
+        Me.btn_eliminar.TabIndex = 6
         Me.btn_eliminar.Text = "Eliminar"
         Me.btn_eliminar.UseVisualStyleBackColor = True
         '
@@ -142,7 +142,7 @@ Partial Class frm_abm_grupos
         Me.btn_actualizar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btn_actualizar.Name = "btn_actualizar"
         Me.btn_actualizar.Size = New System.Drawing.Size(77, 32)
-        Me.btn_actualizar.TabIndex = 9
+        Me.btn_actualizar.TabIndex = 3
         Me.btn_actualizar.Text = "Agregar"
         Me.btn_actualizar.UseVisualStyleBackColor = True
         '
@@ -171,7 +171,7 @@ Partial Class frm_abm_grupos
         Me.txt_nombre.MaxLength = 50
         Me.txt_nombre.Name = "txt_nombre"
         Me.txt_nombre.Size = New System.Drawing.Size(199, 22)
-        Me.txt_nombre.TabIndex = 8
+        Me.txt_nombre.TabIndex = 1
         '
         'Label3
         '
@@ -186,10 +186,10 @@ Partial Class frm_abm_grupos
         '
         Me.cmb_familia.FormattingEnabled = True
         Me.cmb_familia.Location = New System.Drawing.Point(89, 76)
-        Me.cmb_familia.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmb_familia.Margin = New System.Windows.Forms.Padding(4)
         Me.cmb_familia.Name = "cmb_familia"
         Me.cmb_familia.Size = New System.Drawing.Size(199, 24)
-        Me.cmb_familia.TabIndex = 18
+        Me.cmb_familia.TabIndex = 2
         '
         'frm_abm_grupos
         '
@@ -208,7 +208,7 @@ Partial Class frm_abm_grupos
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txt_nombre)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frm_abm_grupos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "ABM Grupos"

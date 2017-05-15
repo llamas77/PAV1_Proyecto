@@ -28,6 +28,8 @@ Public Class GrupoDAO
     Public Shared Sub update(ByRef grupo As GrupoVO)
         ' DOC: Actualiza el grupo en la BD
 
+        ' TODO BUG: Falla si estamos cambiando el nombre 
+        '           y poniendo uno que ya existe para esta familia.
         Dim sql_update As String
         sql_update = "UPDATE grupos"
         sql_update &= " SET "
@@ -49,15 +51,20 @@ Public Class GrupoDAO
         ' DOC: determina si existe el grupo en la BD, según PK
 
         ' TODO: Validar que el ID es >= 1, sino no existe (no hace falta consulta en bd si no existe)
-        Dim sql = "SELECT TOP 1 idGrupo FROM grupos WHERE idGrupo=" & grupo._id
-        Dim response = DataBase.getInstance().consulta_sql(sql)
-        Return response.Rows.Count = 1
+        If grupo._id > 0 Then
+            Dim sql = "SELECT TOP 1 idGrupo FROM grupos WHERE idGrupo=" & grupo._id
+            Dim response = DataBase.getInstance().consulta_sql(sql)
+            Return response.Rows.Count = 1
+        Else
+            Return False
+        End If
     End Function
 
     Public Shared Function is_name_in_use(ByRef grupo As GrupoVO) As Boolean
         ' DOC: determina si existe el nombre de un grupo en la BD
 
         Dim sql = "SELECT TOP 1 nombre FROM grupos WHERE nombre='" & grupo._nombre & "'"
+        sql &= " AND idFamilia=" & grupo._familia.get_id
         Dim response = DataBase.getInstance().consulta_sql(sql)
         Return response.Rows.Count = 1
     End Function
