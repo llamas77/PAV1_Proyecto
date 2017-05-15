@@ -36,10 +36,15 @@
         cmd.CommandText = sql
         Dim conexion = conectar()
         cmd.Connection = conexion
-        ' TODO: Poner un Try Catch
-        tabla.Load(cmd.ExecuteReader())
+        Try
+            tabla.Load(cmd.ExecuteReader())
+        Catch ex As Exception
+            MsgBox("Wops! Ocurrio un error al interactuar con la base de datos." &
+                    Chr(13) & Chr(13) & ex.Message, MsgBoxStyle.Critical, "Error")
+        Finally
+            conexion.Close()
+        End Try
 
-        conexion.Close()
         Return tabla
     End Function
 
@@ -52,10 +57,14 @@
         cmd.CommandText = sql
         Dim conexion = conectar()
         cmd.Connection = conexion
-        ' TODO: Poner un Try Catch
-        cmd.ExecuteNonQuery()
-
-        conexion.Close()
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            MsgBox("Wops! Ocurrio un error al interactuar con la base de datos." &
+                    Chr(13) & Chr(13) & ex.Message, MsgBoxStyle.Critical, "Error")
+        Finally
+            conexion.Close()
+        End Try
     End Sub
 
 End Class
