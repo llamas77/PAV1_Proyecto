@@ -25,14 +25,14 @@
     End Sub
 
     Private Sub frm_abm_generico_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         grilla_objeto.recargar(DAO_objeto.all())
-
     End Sub
 
     Private Sub btn_nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
         Dim frm As New frm_control_generico(DAO_objeto)
-        frm.Show()
+        frm.Parent = Me
+        frm.ShowDialog()
+        grilla_objeto.recargar(DAO_objeto.all())
     End Sub
 
     Private Sub btn_modificar_Click(sender As Object, e As EventArgs) Handles btn_modificar.Click
@@ -41,8 +41,10 @@
             MsgBox("No hay nada seleccionado en la tabla.", MsgBoxStyle.MsgBoxHelp, "Aviso")
         Else
             Dim frm As New frm_control_generico(DAO_objeto)
+
             frm.set_objeto(objeto)
-            frm.Show()
+            frm.ShowDialog()
+            grilla_objeto.recargar(DAO_objeto.all())
         End If
     End Sub
 
@@ -64,5 +66,4 @@
     Private Sub btn_salir_Click(sender As Object, e As EventArgs) Handles btn_salir.Click
         Me.Close()
     End Sub
-
 End Class

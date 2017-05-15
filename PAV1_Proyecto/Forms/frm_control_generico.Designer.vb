@@ -56,7 +56,7 @@ Partial Class frm_control_generico
         Me.MinimizeBox = False
         Me.Name = "frm_control_generico"
         Me.Padding = New System.Windows.Forms.Padding(10)
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Default Title"
         Me.ResumeLayout(False)
 

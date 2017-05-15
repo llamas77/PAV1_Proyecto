@@ -1,4 +1,6 @@
-﻿Public Class frm_control_generico
+﻿Imports System.ComponentModel
+
+Public Class frm_control_generico
     Dim ctrl_objeto As ObjetoCtrl
     Dim DAO_objeto As ObjetoDAO
 

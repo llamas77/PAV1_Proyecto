@@ -35,7 +35,8 @@ Public Class ControlGenerico
             campos_invisibles(id) = value
         ElseIf Me.Controls.ContainsKey(id) Then
             If TypeOf Me.Controls(id) Is LabeledTextBox Then
-                Me.Controls(id).Text = value
+                Dim ltext As LabeledTextBox = Controls(id)
+                ltext._text = value
             ElseIf TypeOf Me.Controls(id) Is LabeledComboBox Then
                 Dim lcmb As LabeledComboBox = Me.Controls(id)
                 lcmb._combo.SelectedValue = value
@@ -47,7 +48,8 @@ Public Class ControlGenerico
         Dim diccionario As New Dictionary(Of String, Object)
         For Each control As Control In Me.Controls
             If TypeOf control Is LabeledTextBox Then
-                diccionario.Add(control.Name, control.Text)
+                Dim ltext As LabeledTextBox = control
+                diccionario.Add(control.Name, ltext._text)
             ElseIf TypeOf control Is LabeledComboBox Then
                 Dim lcombo As LabeledComboBox = control
                 ' Trae el objeto que tiene seleccionado el combo.
