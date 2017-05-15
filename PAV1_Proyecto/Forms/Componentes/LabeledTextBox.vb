@@ -146,8 +146,4 @@ Public Class LabeledTextBox
         ' Reestablece el color de fondo por si estaba en error
         lbl_texto.ForeColor = System.Drawing.SystemColors.ControlText
     End Sub
-
-    Private Sub txt_caja_GotFocus(sender As Object, e As EventArgs) Handles txt_caja.GotFocus
-        txt_caja.SelectAll()
-    End Sub
 End Class

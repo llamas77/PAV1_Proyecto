@@ -53,14 +53,10 @@ Public Class TipoClienteVO
     End Function
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
-        Throw New NotImplementedException()
+        Dim diccionario As New Dictionary(Of String, Object)
+        diccionario.Add("id", _id)
+        diccionario.Add("nombre", _nombre)
+        diccionario.Add("descripcion", _descripcion)
+        Return diccionario
     End Function
-
-    'Public Function estructura_grilla(visibles As Boolean) As List(Of String) Implements ObjetoVOGrillable.estructura_grilla
-    '    If visibles Then ' Lista de columnas visibles
-    '        Return New List(Of String) From {"id", "nombre", "descripcion"}
-    '    Else ' Lista de columnas ocultas
-    '        Return New List(Of String) From {}
-    '    End If
-    'End Function
 End Class
