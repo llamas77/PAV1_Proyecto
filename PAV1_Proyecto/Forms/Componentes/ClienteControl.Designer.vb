@@ -34,66 +34,84 @@ Partial Class ClienteControl
         '
         Me.txt_direccion._label = "Dirección"
         Me.txt_direccion._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
+        Me.txt_direccion._max_length = 0
+        Me.txt_direccion._min_lenght = 0
         Me.txt_direccion._null = False
-        Me.txt_direccion.Location = New System.Drawing.Point(2, 73)
-        Me.txt_direccion.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txt_direccion._numeric = False
+        Me.txt_direccion._text = ""
+        Me.txt_direccion.Location = New System.Drawing.Point(3, 90)
+        Me.txt_direccion.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txt_direccion.Name = "txt_direccion"
-        Me.txt_direccion.Size = New System.Drawing.Size(199, 19)
+        Me.txt_direccion.Size = New System.Drawing.Size(265, 23)
         Me.txt_direccion.TabIndex = 7
         '
         'txt_telefono
         '
         Me.txt_telefono._label = "Teléfono"
         Me.txt_telefono._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.telefono
+        Me.txt_telefono._max_length = 13
+        Me.txt_telefono._min_lenght = 0
         Me.txt_telefono._null = False
-        Me.txt_telefono.Location = New System.Drawing.Point(2, 50)
-        Me.txt_telefono.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txt_telefono._numeric = False
+        Me.txt_telefono._text = "-4"
+        Me.txt_telefono.Location = New System.Drawing.Point(3, 62)
+        Me.txt_telefono.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txt_telefono.Name = "txt_telefono"
-        Me.txt_telefono.Size = New System.Drawing.Size(140, 19)
+        Me.txt_telefono.Size = New System.Drawing.Size(250, 23)
         Me.txt_telefono.TabIndex = 6
         '
         'txt_apellido
         '
         Me.txt_apellido._label = "Apellido"
         Me.txt_apellido._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
+        Me.txt_apellido._max_length = 0
+        Me.txt_apellido._min_lenght = 0
         Me.txt_apellido._null = False
-        Me.txt_apellido.Location = New System.Drawing.Point(2, 26)
-        Me.txt_apellido.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txt_apellido._numeric = False
+        Me.txt_apellido._text = ""
+        Me.txt_apellido.Location = New System.Drawing.Point(3, 32)
+        Me.txt_apellido.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txt_apellido.Name = "txt_apellido"
-        Me.txt_apellido.Size = New System.Drawing.Size(199, 19)
+        Me.txt_apellido.Size = New System.Drawing.Size(265, 23)
         Me.txt_apellido.TabIndex = 5
         '
         'txt_nombre
         '
         Me.txt_nombre._label = "Nombre"
         Me.txt_nombre._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
+        Me.txt_nombre._max_length = 0
+        Me.txt_nombre._min_lenght = 0
         Me.txt_nombre._null = False
-        Me.txt_nombre.Location = New System.Drawing.Point(2, 2)
-        Me.txt_nombre.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txt_nombre._numeric = False
+        Me.txt_nombre._text = ""
+        Me.txt_nombre.Location = New System.Drawing.Point(3, 2)
+        Me.txt_nombre.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txt_nombre.Name = "txt_nombre"
-        Me.txt_nombre.Size = New System.Drawing.Size(199, 19)
+        Me.txt_nombre.Size = New System.Drawing.Size(265, 23)
         Me.txt_nombre.TabIndex = 4
         '
         'txt_TipoCliente
         '
         Me.txt_TipoCliente.AutoSize = True
-        Me.txt_TipoCliente.Location = New System.Drawing.Point(3, 104)
+        Me.txt_TipoCliente.Location = New System.Drawing.Point(39, 128)
+        Me.txt_TipoCliente.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.txt_TipoCliente.Name = "txt_TipoCliente"
-        Me.txt_TipoCliente.Size = New System.Drawing.Size(63, 13)
+        Me.txt_TipoCliente.Size = New System.Drawing.Size(83, 17)
         Me.txt_TipoCliente.TabIndex = 9
         Me.txt_TipoCliente.Text = "Tipo Cliente"
         '
         'cmb_idTipoCliente
         '
         Me.cmb_idTipoCliente.FormattingEnabled = True
-        Me.cmb_idTipoCliente.Location = New System.Drawing.Point(70, 101)
+        Me.cmb_idTipoCliente.Location = New System.Drawing.Point(127, 125)
+        Me.cmb_idTipoCliente.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmb_idTipoCliente.Name = "cmb_idTipoCliente"
-        Me.cmb_idTipoCliente.Size = New System.Drawing.Size(131, 21)
+        Me.cmb_idTipoCliente.Size = New System.Drawing.Size(141, 24)
         Me.cmb_idTipoCliente.TabIndex = 8
         '
         'ClienteControl
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.txt_TipoCliente)
         Me.Controls.Add(Me.cmb_idTipoCliente)
@@ -101,8 +119,9 @@ Partial Class ClienteControl
         Me.Controls.Add(Me.txt_telefono)
         Me.Controls.Add(Me.txt_apellido)
         Me.Controls.Add(Me.txt_nombre)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "ClienteControl"
-        Me.Size = New System.Drawing.Size(210, 129)
+        Me.Size = New System.Drawing.Size(280, 159)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

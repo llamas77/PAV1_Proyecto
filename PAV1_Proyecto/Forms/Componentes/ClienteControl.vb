@@ -58,7 +58,10 @@ Public Class ClienteControl
     End Sub
 
     Public Function is_valid() As Boolean Implements ObjetoCtrl.is_valid
-        Return True ' TODO: Validar. Campos opcionales y obligatorios.
+        If txt_nombre._text = "" Or cmb_idTipoCliente.SelectedIndex = -1 Then
+            Return False
+        End If
+        Return True
     End Function
 
     Private Sub ClienteControl_Load(sender As Object, e As EventArgs) Handles MyBase.Load
