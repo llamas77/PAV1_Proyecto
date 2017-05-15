@@ -36,6 +36,6 @@ Public Class GananciaVO
     End Function
 
     Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
-        Return _grupo._nombre & " por " & _tipo_cliente._nombre & " (" & _ganancia * 100 & "%)"
+        Return "Ganancia sobre " & _tipo_cliente._nombre & " en " & _grupo._nombre & " (" & _porcentaje_ganancia & ")"
     End Function
 End Class

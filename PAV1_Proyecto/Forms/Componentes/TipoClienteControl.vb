@@ -48,4 +48,7 @@
         Me._TipoClienteVO = New TipoClienteVO()
     End Sub
 
+    Public Overloads Sub Focus() Implements ObjetoCtrl.Focus
+        MyBase.Focus()
+    End Sub
 End Class

@@ -62,6 +62,7 @@
             ctrl_objeto.reset()
             btn_actualizar.Text = "Agregar"
             grilla_objeto.recargar(DAO_objeto.all())
+            ctrl_objeto.Focus()
         Else
             MsgBox("Alguno/s de los valores ingresados no es/son válido/s.", MsgBoxStyle.Exclamation, "Aviso")
         End If
@@ -74,13 +75,13 @@
         Else
             ctrl_objeto._objeto = objeto
             btn_actualizar.Text = "Actualizar"
+            ctrl_objeto.Focus()
         End If
     End Sub
 
     Private Sub btn_eliminar_Click(sender As Object, e As EventArgs) Handles btn_eliminar.Click
         Dim objeto = grilla_objeto.get_selected()
         If IsNothing(objeto) Then
-            ' Error: No hay nada seleccionado en la grilla.
             MsgBox("No hay nada seleccionado en la tabla.", MsgBoxStyle.MsgBoxHelp, "Aviso")
         Else
             If MessageBox.Show("Esta seguro de borrar: " + objeto.toString(),
@@ -88,12 +89,14 @@
                                MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
                 DAO_objeto.delete(objeto)
                 grilla_objeto.recargar(DAO_objeto.all())
+                grilla_objeto.Focus()
             End If
         End If
     End Sub
 
     Private Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
         ctrl_objeto.reset()
+        ctrl_objeto.Focus()
         btn_actualizar.Text = "Agregar"
     End Sub
 

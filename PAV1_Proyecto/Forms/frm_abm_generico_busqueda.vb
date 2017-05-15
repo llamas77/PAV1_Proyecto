@@ -30,7 +30,6 @@
 
     Private Sub btn_nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
         Dim frm As New frm_control_generico(DAO_objeto)
-        frm.Parent = Me
         frm.ShowDialog()
         grilla_objeto.recargar(DAO_objeto.all())
     End Sub

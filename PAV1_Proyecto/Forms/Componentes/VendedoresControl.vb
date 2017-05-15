@@ -45,4 +45,7 @@ Public Class VendedoresControl
         Return True ' TODO: Validar. Campos opcionales y obligatorios.
     End Function
 
+    Public Overloads Sub Focus() Implements ObjetoCtrl.Focus
+        MyBase.Focus()
+    End Sub
 End Class

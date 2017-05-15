@@ -41,13 +41,19 @@ Public Class LabeledComboBox
         End If
 
         If Not valido Then
-            _combo.BackColor = System.Drawing.Color.Gold
+            lbl_label.ForeColor = System.Drawing.Color.Red
         End If
 
         Return valido
     End Function
 
+    Public Overrides Sub ResetText()
+        MyBase.ResetText()
+        cmb_combo.SelectedIndex = -1
+        lbl_label.ForeColor = System.Drawing.SystemColors.ControlText
+    End Sub
+
     Private Sub cmb_combo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_combo.SelectedIndexChanged
-        _combo.BackColor = System.Drawing.SystemColors.Window
+        lbl_label.ForeColor = System.Drawing.SystemColors.ControlText
     End Sub
 End Class

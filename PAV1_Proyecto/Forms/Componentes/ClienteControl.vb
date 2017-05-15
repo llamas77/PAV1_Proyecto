@@ -65,5 +65,7 @@ Public Class ClienteControl
         cargarCombo()
     End Sub
 
-
+    Public Overloads Sub Focus() Implements ObjetoCtrl.Focus
+        MyBase.Focus()
+    End Sub
 End Class

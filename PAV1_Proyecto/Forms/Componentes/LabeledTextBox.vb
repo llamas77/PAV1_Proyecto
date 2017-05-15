@@ -131,14 +131,20 @@ Public Class LabeledTextBox
 
         ' Marcar en Rojo
         If Not valido Then
-            txt_caja.BackColor = System.Drawing.Color.Gold
+            lbl_texto.ForeColor = System.Drawing.Color.Red
         End If
         Return valido
     End Function
 
+    Public Overrides Sub ResetText()
+        MyBase.ResetText()
+        txt_caja.ResetText()
+        lbl_texto.ForeColor = System.Drawing.SystemColors.ControlText
+    End Sub
+
     Private Sub txt_caja_TextChanged(sender As Object, e As EventArgs) Handles txt_caja.TextChanged
-        ' Reestablece el color de fondo por si estaba en error.
-        txt_caja.BackColor = System.Drawing.SystemColors.Window
+        ' Reestablece el color de fondo por si estaba en error
+        lbl_texto.ForeColor = System.Drawing.SystemColors.ControlText
     End Sub
 
     Private Sub txt_caja_GotFocus(sender As Object, e As EventArgs) Handles txt_caja.GotFocus

@@ -97,18 +97,14 @@ Public Class GananciaDAO
             ganancia = valores("porcentaje_ganancia").Replace("%", "") / 100
         End If
 
-        Dim grupo As GrupoVO
-        If valores.ContainsKey("grupo") Then
-            grupo = valores("grupo")
-        Else
-            grupo = New GrupoVO(valores("id_grupo"))
+        Dim grupo As New GrupoVO(valores("id_grupo"))
+        If valores.ContainsKey("nombre_grupo") Then
+            grupo._nombre = valores("nombre_grupo")
         End If
 
-        Dim tipo_cliente As TipoClienteVO
-        If valores.ContainsKey("tipo_cliente") Then
-            tipo_cliente = valores("tipo_cliente")
-        Else
-            tipo_cliente = New TipoClienteVO(valores("id_tipo_cliente"))
+        Dim tipo_cliente As New TipoClienteVO(valores("id_tipo_cliente"))
+        If valores.ContainsKey("nombre_tipo_cliente") Then
+            tipo_cliente._nombre = valores("nombre_tipo_cliente")
         End If
 
         Return New GananciaVO(grupo, tipo_cliente, ganancia)

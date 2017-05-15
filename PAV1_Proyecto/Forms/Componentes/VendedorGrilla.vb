@@ -50,4 +50,7 @@ Public Class VendedorGrilla
         Next
     End Sub
 
+    Public Overloads Sub Focus() Implements ObjetoGrilla.Focus
+        MyBase.Focus()
+    End Sub
 End Class

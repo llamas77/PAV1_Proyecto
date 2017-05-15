@@ -65,12 +65,7 @@ Public Class ControlGenerico
 
     Public Sub reset() Implements ObjetoCtrl.reset
         For Each control As Control In Me.Controls
-            If TypeOf control Is LabeledTextBox Then
-                control.Text = ""
-            ElseIf TypeOf control Is LabeledComboBox Then
-                Dim lcombo As LabeledComboBox = control
-                lcombo._combo.SelectedIndex = -1
-            End If
+            control.ResetText()
         Next
     End Sub
 
@@ -130,5 +125,9 @@ Public Class ControlGenerico
         combo.ValueMember = tabla.Columns(0).ColumnName
         combo.DisplayMember = tabla.Columns(1).ColumnName
         combo.SelectedIndex = -1 ' Para evitar que seleccione el primer elemento por defecto
+    End Sub
+
+    Public Overloads Sub Focus() Implements ObjetoCtrl.Focus
+        MyBase.Focus()
     End Sub
 End Class
