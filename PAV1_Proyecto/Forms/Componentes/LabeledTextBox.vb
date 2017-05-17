@@ -9,6 +9,7 @@ Public Class LabeledTextBox
         telefono
         celular
         porcentaje
+        fecha
     End Enum
 
     Dim mask_type As MaskType
@@ -61,6 +62,8 @@ Public Class LabeledTextBox
                     txt_caja.Mask = "9000-150-000000"
                 Case MaskType.porcentaje
                     txt_caja.Mask = "09%"
+                Case MaskType.fecha
+                    txt_caja.Mask = "00/00/0000"
             End Select
             resize_textBox()
         End Set
