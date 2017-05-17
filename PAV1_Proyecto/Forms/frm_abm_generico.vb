@@ -17,6 +17,7 @@
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        KeyPreview = True ' Para poder capturar las teclas presionadas.
         ' TODO: Refactor a esta funcion. Reacomodar.
         Me.ctrl_objeto = ctrl_objeto
         Me.grilla_objeto = grilla_objeto
@@ -59,6 +60,10 @@
     End Sub
 
     Private Sub btn_actualizar_Click(sender As Object, e As EventArgs) Handles btn_actualizar.Click
+        actualizar()
+    End Sub
+
+    Private Sub actualizar()
         ' Ejecuta la validacion en el control, si el objeto es valido consulta si ya esta almacenado
         ' (exists) y decide si inserta o modifica.
         If ctrl_objeto.is_valid() Then
@@ -80,6 +85,10 @@
     End Sub
 
     Private Sub btn_modificar_Click(sender As Object, e As EventArgs) Handles btn_modificar.Click
+        modificar()
+    End Sub
+
+    Private Sub modificar()
         ' Obtiene el Objeto seleccionado en la grilla y se lo pasa al control para que lo muestre.
         Dim objeto As ObjetoVO = grilla_objeto.get_selected()
         If IsNothing(objeto) Then
@@ -92,6 +101,10 @@
     End Sub
 
     Private Sub btn_eliminar_Click(sender As Object, e As EventArgs) Handles btn_eliminar.Click
+        eliminar()
+    End Sub
+
+    Private Sub eliminar()
         ' Obtiene el control seleccionado en la grilla, pide confirmacion y lo borra.
         Dim objeto = grilla_objeto.get_selected()
         If IsNothing(objeto) Then
@@ -117,4 +130,30 @@
     Private Sub btn_salir_Click(sender As Object, e As EventArgs) Handles btn_salir.Click
         Me.Close()
     End Sub
+
+    Private Sub frm_abm_generico_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Escape
+                Me.Close()
+            Case Keys.Enter
+                Dim control As Control
+                control = grilla_objeto
+                If control.Focused Then
+                    modificar()
+                    ' Lo dejo comentado porque puede producir comportamiento inesperado.
+                    'Else
+                    '    control = ctrl_objeto
+                    '    If control.Focused Then
+                    '        actualizar()
+                    '    End If
+                End If
+            Case Keys.Delete
+                Dim control As Control
+                control = grilla_objeto
+                If control.Focused Then
+                    eliminar()
+                End If
+        End Select
+    End Sub
+
 End Class
