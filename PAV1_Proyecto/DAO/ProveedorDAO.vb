@@ -48,21 +48,49 @@ Public Class ProveedorDAO
     End Sub
 
 
-
-
     Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
-        Throw New NotImplementedException()
+        Dim proveedor = cast(value)
+
+        If proveedor._id > 0 Then
+            Dim sql = "SELECT TOP 1 idProveedor FROM proveedores WHERE idProveedor=" & proveedor._id
+            Dim response = DataBase.getInstance().consulta_sql(sql)
+            Return response.Rows.Count = 1
+        Else
+            Return False
+        End If
     End Function
 
-    Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
-        Throw New NotImplementedException()
-    End Function
-
-    Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
-        Throw New NotImplementedException()
+    Private Function cast(value As ObjetoVO) As ProveedorVO
+        If TypeOf value Is ProveedorVO Then
+            Return value
+        Else
+            Throw New System.Exception("Error: proveedorDAO solo admite objetos proveedorVO")
+        End If
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
-        Throw New NotImplementedException()
+        Return New ProveedorVO(valores("idProveedor"),
+                             valores("razonSocial"),
+                             valores("cuit"),
+                             valores("domicilio"),
+                             valores("telefono"),
+                             valores("email"))
     End Function
+
+    Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
+        Return New ProveedorControl()
+    End Function
+
+    Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo("idProveedor", "", visible:=False))
+        campos.Add(New Campo("razonSocial", "Razón Social"))
+        campos.Add(New Campo("cuit", "CUIT"))
+        campos.Add(New Campo("domicilio", "Domicilio"))
+        campos.Add(New Campo("telefono", "Teléfono"))
+        campos.Add(New Campo("email", "Email"))
+        Return New GrillaGenerica(campos, Me)
+    End Function
+
+
 End Class
