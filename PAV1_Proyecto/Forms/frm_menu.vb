@@ -28,7 +28,7 @@
         frm.Show()
     End Sub
 
-    Private Sub btn_Clientes_Click(sender As Object, e As EventArgs) Handles btn_Clientes.Click
+    Private Sub btn_clientes_Click(sender As Object, e As EventArgs) Handles btn_clientes.Click
         ' Muestra de funcionamiento del ABM Generico.
         Dim frm As New frm_abm_generico(New ClienteDAO)
         frm.Text = "ABM Clientes"
@@ -47,9 +47,15 @@
         frm.Show()
     End Sub
 
-    Private Sub btn_productos_Click(sender As Object, e As EventArgs) Handles btn_productos.Click
-        Dim frm As New frm_abm_generico(New ProductoDAO)
-        frm.Text = "ABM Productos"
+    Private Sub btn_equipos_Click(sender As Object, e As EventArgs) Handles btn_equipos.Click
+        Dim frm As New frm_abm_generico_busqueda(New EquiposDAO)
+        frm.Text = "ABM Equipos"
+        frm.Show()
+    End Sub
+
+    Private Sub btn_proveedores_Click(sender As Object, e As EventArgs) Handles btn_proveedores.Click
+        Dim frm As New frm_abm_generico(New ProveedorDAO)
+        frm.Text = "ABM Proveedores"
         frm.Show()
     End Sub
 End Class

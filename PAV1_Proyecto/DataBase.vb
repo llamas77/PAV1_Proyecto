@@ -3,8 +3,9 @@
     '      Administra las conexiones.
 
     ' TODO: Crear un usuario en el SQL Server y poner el string de conexion.
+    ' TODO: Adaptar clase para trabajar con transacciones.
     Private Shared instance As DataBase
-    Private cadena_conexion As String = "Provider=SQLNCLI11;Data Source=franco-pc;Integrated Security=SSPI;Initial Catalog=sistema_stock"
+    Private cadena_conexion As String = "Provider=SQLNCLI11;Data Source=USUARIO-PC\MSSQLSERVER2;Integrated Security=SSPI;Initial Catalog=sistema_stock"
 
     Private Sub New() ' Constructor Privado. Patron Singleton.
     End Sub
@@ -51,6 +52,7 @@
     Public Sub ejecuta_sql(ByVal sql As String)
         ' DOC: Ejecuta una consulta que no trae resultados o los ignora.
         Dim cmd As New OleDb.OleDbCommand
+        Dim tabla As New DataTable
 
         cmd.CommandType = CommandType.Text
         cmd.CommandText = sql

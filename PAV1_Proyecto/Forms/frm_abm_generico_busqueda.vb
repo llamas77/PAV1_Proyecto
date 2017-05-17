@@ -40,7 +40,6 @@
             MsgBox("No hay nada seleccionado en la tabla.", MsgBoxStyle.MsgBoxHelp, "Aviso")
         Else
             Dim frm As New frm_control_generico(DAO_objeto)
-
             frm.set_objeto(objeto)
             frm.ShowDialog()
             grilla_objeto.recargar(DAO_objeto.all())

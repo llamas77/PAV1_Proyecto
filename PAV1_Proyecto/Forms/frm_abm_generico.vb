@@ -1,24 +1,37 @@
 ﻿Public Class frm_abm_generico
+    '
+    ' Formulario capaz de obtener los controles necesarios a partir de un ObjetoDAO.
+    ' El formulario permite ejecutar acciones de Consulta, Inserción, Modificacion y Borrado.
+    '
+
     Dim ctrl_objeto As ObjetoCtrl
     Dim grilla_objeto As ObjetoGrilla
     Dim DAO_objeto As ObjetoDAO
+
+    Public Sub New(objetoDAO As ObjetoDAO)
+        ' Toma un control y una grilla de objetoDAO y la utiliza para generar el formulario.
+        Me.New(objetoDAO.get_IU_control, objetoDAO.get_IU_grilla, objetoDAO)
+    End Sub
 
     Public Sub New(ctrl_objeto As ObjetoCtrl, grilla_objeto As ObjetoGrilla, objetoDAO As ObjetoDAO)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        KeyPreview = True ' Para poder capturar las teclas presionadas.
         ' TODO: Refactor a esta funcion. Reacomodar.
         Me.ctrl_objeto = ctrl_objeto
         Me.grilla_objeto = grilla_objeto
         Me.DAO_objeto = objetoDAO
 
         Dim control As Control
-        ' Ubicar seteo de atributos. (control de objeto) y boton actualizar.
+        ' Define la ubicacion y el TabIndex del control y lo agrega a los controles del formulario,
+        ' al agregarlo aparece en pantalla.
         control = ctrl_objeto
         control.Location = New Point(Me.Padding.Left, Me.Padding.Top) ' Esquina superior izquierda.
         control.TabIndex = 1
         Me.Controls.Add(control)
         control.Focus() ' Para que empiece con el foco en el control.
+        ' Ubica el boton actualizar de forma relativa al control.
         btn_actualizar.Location = New Point(control.Location.X + control.Size.Width + 15,
                                             control.Location.Y + control.Size.Height - btn_actualizar.Size.Height - 5)
 
@@ -29,7 +42,7 @@
         control.TabIndex = 3
         Me.Controls.Add(control)
 
-        ' Posiciona los botones.
+        ' Posiciona los otros botones de forma relativa a la grilla y entre ellos.
         Dim point = New Point(15, control.Location.Y + control.Size.Height + 15)
         btn_modificar.Location = point
         point.X += btn_modificar.Size.Width + 20
@@ -40,17 +53,19 @@
         btn_salir.Location = point
     End Sub
 
-    Public Sub New(objetoDAO As ObjetoDAO)
-        Me.New(objetoDAO.get_IU_control, objetoDAO.get_IU_grilla, objetoDAO)
-    End Sub
-
     Private Sub frm_abm_generico_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        ' Al cargar el formulario se carga la grilla con todos los objetos.
         grilla_objeto.recargar(DAO_objeto.all())
 
     End Sub
 
     Private Sub btn_actualizar_Click(sender As Object, e As EventArgs) Handles btn_actualizar.Click
+        actualizar()
+    End Sub
+
+    Private Sub actualizar()
+        ' Ejecuta la validacion en el control, si el objeto es valido consulta si ya esta almacenado
+        ' (exists) y decide si inserta o modifica.
         If ctrl_objeto.is_valid() Then
             Dim objeto = ctrl_objeto._objeto
 
@@ -61,6 +76,7 @@
             End If
             ctrl_objeto.reset()
             btn_actualizar.Text = "Agregar"
+            ' Recarga la grilla para que se vea el objeto modificado.
             grilla_objeto.recargar(DAO_objeto.all())
             ctrl_objeto.Focus()
         Else
@@ -69,6 +85,11 @@
     End Sub
 
     Private Sub btn_modificar_Click(sender As Object, e As EventArgs) Handles btn_modificar.Click
+        modificar()
+    End Sub
+
+    Private Sub modificar()
+        ' Obtiene el Objeto seleccionado en la grilla y se lo pasa al control para que lo muestre.
         Dim objeto As ObjetoVO = grilla_objeto.get_selected()
         If IsNothing(objeto) Then
             MsgBox("No hay nada seleccionado en la tabla.", MsgBoxStyle.MsgBoxHelp, "Aviso")
@@ -80,6 +101,11 @@
     End Sub
 
     Private Sub btn_eliminar_Click(sender As Object, e As EventArgs) Handles btn_eliminar.Click
+        eliminar()
+    End Sub
+
+    Private Sub eliminar()
+        ' Obtiene el control seleccionado en la grilla, pide confirmacion y lo borra.
         Dim objeto = grilla_objeto.get_selected()
         If IsNothing(objeto) Then
             MsgBox("No hay nada seleccionado en la tabla.", MsgBoxStyle.MsgBoxHelp, "Aviso")
@@ -95,6 +121,7 @@
     End Sub
 
     Private Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
+        ' Limpia el control y mueve el foco para agregar un nuevo objeto.
         ctrl_objeto.reset()
         ctrl_objeto.Focus()
         btn_actualizar.Text = "Agregar"
@@ -103,4 +130,30 @@
     Private Sub btn_salir_Click(sender As Object, e As EventArgs) Handles btn_salir.Click
         Me.Close()
     End Sub
+
+    Private Sub frm_abm_generico_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Escape
+                Me.Close()
+            Case Keys.Enter
+                Dim control As Control
+                control = grilla_objeto
+                If control.Focused Then
+                    modificar()
+                    ' Lo dejo comentado porque puede producir comportamiento inesperado.
+                    'Else
+                    '    control = ctrl_objeto
+                    '    If control.Focused Then
+                    '        actualizar()
+                    '    End If
+                End If
+            Case Keys.Delete
+                Dim control As Control
+                control = grilla_objeto
+                If control.Focused Then
+                    eliminar()
+                End If
+        End Select
+    End Sub
+
 End Class

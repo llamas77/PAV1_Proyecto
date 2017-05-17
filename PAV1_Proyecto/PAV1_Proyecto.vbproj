@@ -84,13 +84,21 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\EquiposDAO.vb" />
     <Compile Include="DAO\GananciaDAO.vb" />
     <Compile Include="DAO\ClienteDAO.vb" />
+    <Compile Include="DAO\ProveedorDAO.vb" />
     <Compile Include="DAO\ProductoDAO.vb" />
     <Compile Include="DAO\TipoClienteDAO.vb" />
     <Compile Include="DAO\VendedorDAO.vb" />
     <Compile Include="DataBase.vb" />
     <Compile Include="DAO\FamiliaDAO.vb" />
+    <Compile Include="Forms\Componentes\EquiposControl.Designer.vb">
+      <DependentUpon>EquiposControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Componentes\EquiposControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\frm_abm_generico_busqueda.Designer.vb">
       <DependentUpon>frm_abm_generico_busqueda.vb</DependentUpon>
     </Compile>
@@ -103,6 +111,7 @@
     <Compile Include="Forms\frm_control_generico.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="VO\EquiposVO.vb" />
     <Compile Include="Util.vb" />
     <Compile Include="VO\FamiliaVO.vb" />
     <Compile Include="Forms\Componentes\ClienteControl.Designer.vb">
@@ -228,6 +237,7 @@
     </Compile>
     <Compile Include="VO\GananciaVO.vb" />
     <Compile Include="VO\ClienteVO.vb" />
+    <Compile Include="VO\ProveedorVO.vb" />
     <Compile Include="VO\ProductoVO.vb" />
     <Compile Include="VO\TipoClienteVO.vb" />
     <Compile Include="VO\VendedorVO.vb" />
@@ -235,6 +245,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\Componentes\ControlGenerico.resx">
       <DependentUpon>ControlGenerico.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Componentes\EquiposControl.resx">
+      <DependentUpon>EquiposControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\LabeledComboBox.resx">
       <DependentUpon>LabeledComboBox.vb</DependentUpon>
