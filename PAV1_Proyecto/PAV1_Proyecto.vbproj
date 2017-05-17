@@ -88,6 +88,7 @@
     <Compile Include="DAO\GananciaDAO.vb" />
     <Compile Include="DAO\ClienteDAO.vb" />
     <Compile Include="DAO\ProveedorDAO.vb" />
+    <Compile Include="DAO\ProductoDAO.vb" />
     <Compile Include="DAO\TipoClienteDAO.vb" />
     <Compile Include="DAO\VendedorDAO.vb" />
     <Compile Include="DataBase.vb" />
@@ -96,18 +97,6 @@
       <DependentUpon>EquiposControl.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Componentes\EquiposControl.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Componentes\ProveedorControl.Designer.vb">
-      <DependentUpon>ProveedorControl.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Componentes\ProveedorControl.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Componentes\ProveedorGrilla.Designer.vb">
-      <DependentUpon>ProveedorGrilla.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Componentes\ProveedorGrilla.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\frm_abm_generico_busqueda.Designer.vb">
@@ -123,6 +112,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VO\EquiposVO.vb" />
+    <Compile Include="Util.vb" />
     <Compile Include="VO\FamiliaVO.vb" />
     <Compile Include="Forms\Componentes\ClienteControl.Designer.vb">
       <DependentUpon>ClienteControl.vb</DependentUpon>
@@ -248,6 +238,7 @@
     <Compile Include="VO\GananciaVO.vb" />
     <Compile Include="VO\ClienteVO.vb" />
     <Compile Include="VO\ProveedorVO.vb" />
+    <Compile Include="VO\ProductoVO.vb" />
     <Compile Include="VO\TipoClienteVO.vb" />
     <Compile Include="VO\VendedorVO.vb" />
   </ItemGroup>
@@ -269,12 +260,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\LabeledTextBox.resx">
       <DependentUpon>LabeledTextBox.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\ProveedorControl.resx">
-      <DependentUpon>ProveedorControl.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\ProveedorGrilla.resx">
-      <DependentUpon>ProveedorGrilla.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\TipoClienteControl.resx">
       <DependentUpon>TipoClienteControl.vb</DependentUpon>

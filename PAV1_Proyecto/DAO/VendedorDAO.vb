@@ -48,7 +48,7 @@ Public Class VendedorDAO
 
     Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
         Dim vendedor = cast(value)
-        ' DOC: determina si existe la marca en la BD, según PK
+        ' DOC: determina si existe el vendedor en la BD, según PK
 
         If vendedor._id > 0 Then
             Dim sql = "SELECT TOP 1 idVendedor FROM vendedores WHERE idVendedor=" & vendedor._id

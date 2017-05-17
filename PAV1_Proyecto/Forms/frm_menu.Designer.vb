@@ -32,6 +32,7 @@ Partial Class frm_menu
         Me.btn_ganancias2 = New System.Windows.Forms.Button()
         Me.btn_equipos = New System.Windows.Forms.Button()
         Me.btn_proveedores = New System.Windows.Forms.Button()
+        Me.btn_productos = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btn_marcas
@@ -116,7 +117,7 @@ Partial Class frm_menu
         '
         'btn_equipos
         '
-        Me.btn_equipos.Location = New System.Drawing.Point(230, 160)
+        Me.btn_equipos.Location = New System.Drawing.Point(231, 162)
         Me.btn_equipos.Margin = New System.Windows.Forms.Padding(2)
         Me.btn_equipos.Name = "btn_equipos"
         Me.btn_equipos.Size = New System.Drawing.Size(101, 67)
@@ -133,11 +134,21 @@ Partial Class frm_menu
         Me.btn_proveedores.Text = "Proveedores"
         Me.btn_proveedores.UseVisualStyleBackColor = True
         '
+        'btn_productos
+        '
+        Me.btn_productos.Location = New System.Drawing.Point(126, 232)
+        Me.btn_productos.Name = "btn_productos"
+        Me.btn_productos.Size = New System.Drawing.Size(101, 67)
+        Me.btn_productos.TabIndex = 9
+        Me.btn_productos.Text = "Productos"
+        Me.btn_productos.UseVisualStyleBackColor = True
+        '
         'frm_menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(362, 301)
+        Me.ClientSize = New System.Drawing.Size(362, 323)
+        Me.Controls.Add(Me.btn_productos)
         Me.Controls.Add(Me.btn_proveedores)
         Me.Controls.Add(Me.btn_equipos)
         Me.Controls.Add(Me.btn_ganancias2)
@@ -167,4 +178,5 @@ Partial Class frm_menu
     Friend WithEvents btn_ganancias2 As Button
     Friend WithEvents btn_equipos As Button
     Friend WithEvents btn_proveedores As Button
+    Friend WithEvents btn_productos As Button
 End Class
