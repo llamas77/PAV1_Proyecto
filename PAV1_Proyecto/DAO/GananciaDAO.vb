@@ -13,7 +13,7 @@ Public Class GananciaDAO
         sql_insertar &= ganancia._tipo_cliente._id & ", "
         sql_insertar &= ganancia._ganancia.ToString.Replace(",", ".") & ")"
         ' Nota: No es necesario retornar el ID porque ya lo estamos especificando, no lo asigna la BD.
-        Dim tabla = DataBase.getInstance().consulta_sql(sql_insertar)
+        DataBase.getInstance().ejecuta_sql(sql_insertar)
     End Sub
 
     Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
@@ -35,7 +35,7 @@ Public Class GananciaDAO
         sql_delete &= " WHERE idTipo=" & ganancia._tipo_cliente._id
         sql_delete &= " AND idGrupo=" & ganancia._grupo._id
         DataBase.getInstance().ejecuta_sql(sql_delete)
-        ganancia._grupo = Nothing
+        ganancia._grupo = Nothing 'DUDA: Para que vacias esto? no se podría destruir la GananciaVO directamente?
         ganancia._tipo_cliente = Nothing
     End Sub
 
@@ -50,7 +50,7 @@ Public Class GananciaDAO
 
     Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
         Dim ganancia = cast(value)
-        ' DOC: determina si existe la marca en la BD, según PK
+        ' DOC: determina si existe la ganancia en la BD, según PK
         If ganancia._grupo._id > 0 And ganancia._tipo_cliente._id > 0 Then
             Dim sql = "SELECT TOP 1 idTipo FROM ganancias WHERE idTipo=" & ganancia._tipo_cliente._id
             sql &= " AND idGrupo=" & ganancia._grupo._id

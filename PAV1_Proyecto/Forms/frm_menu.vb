@@ -52,4 +52,10 @@
         frm.Text = "ABM Equipos"
         frm.Show()
     End Sub
+
+    Private Sub btn_proveedores_Click(sender As Object, e As EventArgs) Handles btn_proveedores.Click
+        Dim frm As New frm_abm_generico(New ProveedorDAO)
+        frm.Text = "ABM Proveedores"
+        frm.Show()
+    End Sub
 End Class

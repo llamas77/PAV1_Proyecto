@@ -87,6 +87,8 @@
     <Compile Include="DAO\EquiposDAO.vb" />
     <Compile Include="DAO\GananciaDAO.vb" />
     <Compile Include="DAO\ClienteDAO.vb" />
+    <Compile Include="DAO\ProveedorDAO.vb" />
+    <Compile Include="DAO\ProductoDAO.vb" />
     <Compile Include="DAO\TipoClienteDAO.vb" />
     <Compile Include="DAO\VendedorDAO.vb" />
     <Compile Include="DataBase.vb" />
@@ -110,6 +112,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VO\EquiposVO.vb" />
+    <Compile Include="Util.vb" />
     <Compile Include="VO\FamiliaVO.vb" />
     <Compile Include="Forms\Componentes\ClienteControl.Designer.vb">
       <DependentUpon>ClienteControl.vb</DependentUpon>
@@ -234,6 +237,8 @@
     </Compile>
     <Compile Include="VO\GananciaVO.vb" />
     <Compile Include="VO\ClienteVO.vb" />
+    <Compile Include="VO\ProveedorVO.vb" />
+    <Compile Include="VO\ProductoVO.vb" />
     <Compile Include="VO\TipoClienteVO.vb" />
     <Compile Include="VO\VendedorVO.vb" />
   </ItemGroup>

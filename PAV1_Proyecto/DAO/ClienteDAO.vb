@@ -18,8 +18,8 @@ Public Class ClienteDAO
         sql_insertar &= " VALUES ("
         sql_insertar &= "'" & cliente._nombre & "', "
         sql_insertar &= "'" & cliente._apellido & "', "
-        sql_insertar &= "'" & cliente._direccion & "', '"
-        sql_insertar &= cliente._telefono & "', "
+        sql_insertar &= "'" & cliente._direccion & "', "
+        sql_insertar &= "'" & cliente._telefono & "', "
         sql_insertar &= cliente._idTipoCliente & ")"
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
         Dim tabla = DataBase.getInstance().consulta_sql(sql_insertar)
