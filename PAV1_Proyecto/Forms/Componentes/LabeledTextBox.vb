@@ -10,6 +10,8 @@ Public Class LabeledTextBox
         celular
         porcentaje
         fecha
+        cuit
+        email
     End Enum
 
     Dim mask_type As MaskType
@@ -57,13 +59,17 @@ Public Class LabeledTextBox
                 Case MaskType.texto
                     txt_caja.Mask = ""
                 Case MaskType.telefono
-                    txt_caja.Mask = "9000-40000009"
+                    txt_caja.Mask = "9000-4000009"
                 Case MaskType.celular
                     txt_caja.Mask = "9000-150-000000"
                 Case MaskType.porcentaje
                     txt_caja.Mask = "09%"
                 Case MaskType.fecha
                     txt_caja.Mask = "00/00/0000"
+                Case MaskType.cuit
+                    txt_caja.Mask = "00-00000000-0"
+                Case MaskType.email
+                    txt_caja.Mask = "" ' TODO: Validar que el mail tiene un @
             End Select
             resize_textBox()
         End Set

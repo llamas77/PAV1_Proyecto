@@ -87,9 +87,11 @@ Public Class ControlGenerico
             control.ResetText()
         Next
         ' Resetea todos los campos invisibles tambien.
-        For Each nombre_campo In campos_invisibles.Keys
-            campos_invisibles(nombre_campo) = Nothing
+        Dim nuevo_diccionario As New Dictionary(Of String, Object)
+        For Each campo In campos_invisibles.Keys
+            nuevo_diccionario.Add(campo, Nothing)
         Next
+        campos_invisibles = nuevo_diccionario
     End Sub
 
     Public Function is_valid() As Boolean Implements ObjetoCtrl.is_valid

@@ -68,6 +68,7 @@ Public Class GrillaGenerica
         Dim index = vaciar()
         cargar(valores)
         set_index(index)
+        execute_resize()
     End Sub
 
     Private Sub add_column(campo As Campo)
