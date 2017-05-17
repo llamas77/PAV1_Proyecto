@@ -27,7 +27,7 @@ Public Class EquiposControl
         Set(value As EquiposVO)
             equipos = value
             _txt_modelo._text = equipos._modelo
-            cmb_idMarca.Text = equipos._marca
+            cmb_idMarca.SelectedValue = equipos._idMarca
         End Set
     End Property
 
@@ -35,7 +35,15 @@ Public Class EquiposControl
         _equipos = New EquiposVO()
     End Sub
 
+    Public Sub New()
+        ' Esta llamada es exigida por el diseñador.
+        InitializeComponent()
 
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        ' El form de busqueda primero setea el objeto y despues muestra la ventana, 
+        ' al recargar el combo cuando se muestra, pierdo el valor del objeto.
+        cargarCombo()
+    End Sub
 
     Public Function sql_leerTabla(ByVal nombreTabla As String) As DataTable
         Dim sql_select = "SELECT * FROM " & nombreTabla
@@ -52,10 +60,6 @@ Public Class EquiposControl
     Public Function is_valid() As Boolean Implements ObjetoCtrl.is_valid
         Return True ' TODO: Validar. Campos opcionales y obligatorios.
     End Function
-
-    Private Sub ClienteControl_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cargarCombo()
-    End Sub
 
     Public Overloads Sub Focus() Implements ObjetoCtrl.Focus
         MyBase.Focus()
