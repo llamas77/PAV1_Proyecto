@@ -67,4 +67,8 @@ Public Class frm_control_generico
                 actualizar_objeto()
         End Select
     End Sub
+
+    Private Sub frm_control_generico_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

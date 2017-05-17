@@ -87,6 +87,7 @@
     <Compile Include="DAO\EquiposDAO.vb" />
     <Compile Include="DAO\GananciaDAO.vb" />
     <Compile Include="DAO\ClienteDAO.vb" />
+    <Compile Include="DAO\ProveedorDAO.vb" />
     <Compile Include="DAO\TipoClienteDAO.vb" />
     <Compile Include="DAO\VendedorDAO.vb" />
     <Compile Include="DataBase.vb" />
@@ -234,6 +235,7 @@
     </Compile>
     <Compile Include="VO\GananciaVO.vb" />
     <Compile Include="VO\ClienteVO.vb" />
+    <Compile Include="VO\ProveedorVO.vb" />
     <Compile Include="VO\TipoClienteVO.vb" />
     <Compile Include="VO\VendedorVO.vb" />
   </ItemGroup>
