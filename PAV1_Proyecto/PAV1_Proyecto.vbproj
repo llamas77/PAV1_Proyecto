@@ -112,7 +112,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VO\EquiposVO.vb" />
-    <Compile Include="Util.vb" />
     <Compile Include="VO\FamiliaVO.vb" />
     <Compile Include="Forms\Componentes\ClienteControl.Designer.vb">
       <DependentUpon>ClienteControl.vb</DependentUpon>

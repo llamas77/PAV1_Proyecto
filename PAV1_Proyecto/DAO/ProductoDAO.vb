@@ -15,14 +15,15 @@ Public Class ProductoDAO
         Dim producto = cast(value)
 
         Dim sql_insertar As String
-        sql_insertar = "INSERT INTO productos (codigoProducto, idGrupo, costo, nivelReposicion, ubicacion, stock)"
+        sql_insertar = "INSERT INTO productos (codigoProducto, idGrupo, costo, nivelReposicion, ubicacion, stock, fechaLista)"
         sql_insertar &= " VALUES ("
         sql_insertar &= "'" & producto._codigo & "', "
         sql_insertar &= producto._grupo._id & ", "
         sql_insertar &= producto._costo.ToString.Replace(",", ".") & ", "
         sql_insertar &= producto._nivelReposicion & ", "
         sql_insertar &= "'" & producto._ubicacion & "', "
-        sql_insertar &= producto._stock & ")"
+        sql_insertar &= producto._stock & ", "
+        sql_insertar &= "'" & producto._fechaLista & "' )"
         DataBase.getInstance().ejecuta_sql(sql_insertar)
     End Sub
 
@@ -33,10 +34,11 @@ Public Class ProductoDAO
         sql_update = "UPDATE productos"
         sql_update &= " SET "
         sql_update &= "idGrupo=" & producto._grupo._id & ", "
-        sql_update &= "costo=" & producto._costo.ToString.Replace(",", ".") & ", "
+        sql_update &= "costo=" & producto._costo.ToString().Replace(",", ".") & ", "
         sql_update &= "nivelReposicion=" & producto._nivelReposicion & ", "
         sql_update &= "ubicacion='" & producto._ubicacion & "', "
-        sql_update &= "stock=" & producto._stock
+        sql_update &= "stock=" & producto._stock & ", "
+        sql_update &= "fechaLista='" & producto._fechaLista & "'"
         sql_update &= " WHERE codigoProducto='" & producto._codigo & "'"
         DataBase.getInstance().ejecuta_sql(sql_update)
     End Sub
@@ -51,7 +53,7 @@ Public Class ProductoDAO
 
     Public Function all() As DataTable Implements ObjetoDAO.all
         Dim sql_select = ""
-        sql_select &= "SELECT codigoProducto, productos.idGrupo, grupos.nombre, costo, convert(datetime, fechaLista, 103) as fechaLista, nivelReposicion, ubicacion, stock FROM productos "
+        sql_select &= "SELECT codigoProducto, productos.idGrupo, grupos.nombre, costo, convert(char(10), fechaLista, 103) as fechaLista, nivelReposicion, ubicacion, stock FROM productos "
         sql_select &= "INNER JOIN grupos on grupos.idGrupo = productos.idGrupo"
         Dim tabla = DataBase.getInstance().consulta_sql(sql_select)
 
@@ -73,24 +75,15 @@ Public Class ProductoDAO
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("codigoProducto", "Código", maxLenght:=20))
+        campos.Add(New Campo("codigoProducto", "Código", maxLenght:=20, required:=True))
         campos.Add(New Campo("idGrupo", "Grupo", boxType:=Campo.BoxType.comboBox, combo_data_source:=New GrupoDAO))
-        campos.Add(New Campo("costo", "Costo"))
-        campos.Add(New Campo("fechaLista", "Fecha Act"))
+        campos.Add(New Campo("costo", "Costo", numeric:=True))
+        campos.Add(New Campo("fechaLista", "Fecha Actual", maskType:=LabeledTextBox.MaskType.fecha))
         campos.Add(New Campo("nivelReposicion", "Nivel de Reposicion", numeric:=True))
         campos.Add(New Campo("ubicacion", "Ubicación"))
         campos.Add(New Campo("stock", "Stock", numeric:=True))
 
         Return New ControlGenerico(campos, Me)
-
-        'campos.Add(New Campo("id", "id", visible:=False))
-        'campos.Add(New Campo("nombre", "Nombre", maxLenght:=50, required:=True))
-        'campos.Add(New Campo("apellido", "Apellido", maxLenght:=50))
-        'campos.Add(New Campo("telefono", "Teléfono", maskType:=LabeledTextBox.MaskType.telefono))
-        'campos.Add(New Campo("direccion", "Dirección", maxLenght:=50))
-        'campos.Add(New Campo("porcentaje", "Comisión", maskType:=LabeledTextBox.MaskType.porcentaje, required:=True))
-        'Return New ControlGenerico(campos, Me)
-
 
     End Function
 
@@ -122,13 +115,12 @@ Public Class ProductoDAO
 
         Dim costo As Single
         If valores.ContainsKey("costo") Then
-            costo = valores("costo").ToString().Replace(",", ".")
+            costo = valores("costo")
         End If
 
-        Dim fechaLista As Double
+        Dim fechaLista As String = ""
         If valores.ContainsKey("fechaLista") Then
-            'fechaLista = valores("fechaLista")
-            fechaLista = 555555
+            fechaLista = valores("fechaLista")
         End If
 
         Dim nivelReposicion As Integer
