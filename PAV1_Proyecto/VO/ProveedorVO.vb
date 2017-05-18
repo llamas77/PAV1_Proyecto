@@ -34,6 +34,13 @@ Public Class ProveedorVO
     End Function
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
-        Throw New NotImplementedException()
+        Dim diccionario As New Dictionary(Of String, Object)
+        diccionario.Add("idProveedor", _id)
+        diccionario.Add("razonSocial", _razonSocial)
+        diccionario.Add("cuit", _cuit)
+        diccionario.Add("domicilio", _domicilio)
+        diccionario.Add("telefono", _telefono)
+        diccionario.Add("email", _email)
+        Return diccionario
     End Function
 End Class
