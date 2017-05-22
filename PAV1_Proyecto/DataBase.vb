@@ -20,6 +20,10 @@
         End Set
     End Property
 
+    Public Sub New()
+        command.Connection = conexion
+    End Sub
+
     Public Shared Function getInstance() As DataBase ' TODO: Renombrar a new_connected()
         ' DOC: Se mantiene por compatibilidad con funcionamiento anterior.
         '      Devuelve una clase lista para recibir y ejecutar comandos.
@@ -32,7 +36,6 @@
         If Me.conexion.State <> ConnectionState.Closed Then
             Throw New System.Exception("Ya hay una conexión abierta.")
         End If
-        Dim conexion As New OleDb.OleDbConnection
         conexion.ConnectionString = cadena_conexion
         Try
             conexion.Open()
@@ -40,7 +43,6 @@
             MsgBox("No se puede establecer una conexion con la base de datos", MsgBoxStyle.Critical, "Error")
             Exit Sub
         End Try
-        Me.conexion = conexion
     End Sub
 
     Public Sub iniciar_transaccion()
