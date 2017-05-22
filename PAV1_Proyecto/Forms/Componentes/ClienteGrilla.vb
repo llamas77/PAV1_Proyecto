@@ -54,4 +54,7 @@ Public Class ClienteGrilla
         MyBase.Focus()
     End Sub
 
+    Private Sub grilla_datos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles grilla_datos.CellContentClick
+
+    End Sub
 End Class

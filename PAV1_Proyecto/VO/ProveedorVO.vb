@@ -3,9 +3,9 @@
 Public Class ProveedorVO
     Implements ObjetoVO
 
-    Public Property _id_proveedor As Integer
+    Public Property _id As Integer
 
-    Public Property _razon_social As String
+    Public Property _razonSocial As String
 
     Public Property _cuit As String
 
@@ -15,9 +15,9 @@ Public Class ProveedorVO
 
     Public Property _email As String
 
-    Public Sub New(id_proveedor, razon_social, cuit, domicilio, telefono, email)
-        _id_proveedor = id_proveedor
-        _razon_social = razon_social
+    Public Sub New(id, razonSocial, cuit, domicilio, telefono, email)
+        _id = id
+        _razonSocial = razonSocial
         _cuit = cuit
         _domicilio = domicilio
         _telefono = telefono
@@ -30,10 +30,17 @@ Public Class ProveedorVO
 
 
     Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
-        Return _cuit & " - " & _razon_social
+        Return _cuit & " - " & _razonSocial
     End Function
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
-        Throw New NotImplementedException()
+        Dim diccionario As New Dictionary(Of String, Object)
+        diccionario.Add("idProveedor", _id)
+        diccionario.Add("razonSocial", _razonSocial)
+        diccionario.Add("cuit", _cuit)
+        diccionario.Add("domicilio", _domicilio)
+        diccionario.Add("telefono", _telefono)
+        diccionario.Add("email", _email)
+        Return diccionario
     End Function
 End Class

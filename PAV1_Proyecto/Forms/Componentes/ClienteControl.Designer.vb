@@ -49,7 +49,7 @@ Partial Class ClienteControl
         '
         Me.txt_telefono._label = "Teléfono"
         Me.txt_telefono._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.telefono
-        Me.txt_telefono._max_length = 13
+        Me.txt_telefono._max_length = 12
         Me.txt_telefono._min_lenght = 0
         Me.txt_telefono._numeric = False
         Me.txt_telefono._required = False

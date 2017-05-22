@@ -30,6 +30,7 @@ Partial Class ClienteGrilla
         Me.direccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.idTipoCliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nombreIdTipoCliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.idProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.grilla_datos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -41,7 +42,7 @@ Partial Class ClienteGrilla
         Me.grilla_datos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.grilla_datos.BackgroundColor = System.Drawing.Color.White
         Me.grilla_datos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.grilla_datos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.nro, Me.nombre, Me.apellido, Me.telefono, Me.direccion, Me.idTipoCliente, Me.nombreIdTipoCliente})
+        Me.grilla_datos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.nro, Me.nombre, Me.apellido, Me.telefono, Me.direccion, Me.idTipoCliente, Me.nombreIdTipoCliente, Me.idProveedor})
         Me.grilla_datos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grilla_datos.Location = New System.Drawing.Point(0, 0)
         Me.grilla_datos.Margin = New System.Windows.Forms.Padding(2)
@@ -84,7 +85,6 @@ Partial Class ClienteGrilla
         Me.telefono.Name = "telefono"
         Me.telefono.ReadOnly = True
         Me.telefono.Visible = False
-        Me.telefono.Width = 74
         '
         'direccion
         '
@@ -101,7 +101,6 @@ Partial Class ClienteGrilla
         Me.idTipoCliente.Name = "idTipoCliente"
         Me.idTipoCliente.ReadOnly = True
         Me.idTipoCliente.Visible = False
-        Me.idTipoCliente.Width = 93
         '
         'nombreIdTipoCliente
         '
@@ -110,7 +109,14 @@ Partial Class ClienteGrilla
         Me.nombreIdTipoCliente.Name = "nombreIdTipoCliente"
         Me.nombreIdTipoCliente.ReadOnly = True
         Me.nombreIdTipoCliente.Visible = False
-        Me.nombreIdTipoCliente.Width = 129
+        '
+        'idProveedor
+        '
+        Me.idProveedor.HeaderText = "ID Proveedor"
+        Me.idProveedor.Name = "idProveedor"
+        Me.idProveedor.ReadOnly = True
+        Me.idProveedor.Visible = False
+        Me.idProveedor.Width = 95
         '
         'ClienteGrilla
         '
@@ -132,4 +138,5 @@ Partial Class ClienteGrilla
     Friend WithEvents direccion As DataGridViewTextBoxColumn
     Friend WithEvents idTipoCliente As DataGridViewTextBoxColumn
     Friend WithEvents nombreIdTipoCliente As DataGridViewTextBoxColumn
+    Friend WithEvents idProveedor As DataGridViewTextBoxColumn
 End Class

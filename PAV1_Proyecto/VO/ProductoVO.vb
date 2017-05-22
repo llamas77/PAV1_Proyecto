@@ -9,7 +9,7 @@ Public Class ProductoVO
     Public Property _codigo As String
     Public Property _grupo As GrupoVO
     Public Property _costo As Single
-    Public Property _fechaLista As Double
+    Public Property _fechaLista As String
     Public Property _nivelReposicion As Integer
     Public Property _ubicacion As String
     Public Property _stock As Integer
@@ -25,12 +25,7 @@ Public Class ProductoVO
         _nivelReposicion = nivelReposicion
         _ubicacion = ubicacion
         _stock = stock
-
-        If TypeOf fechaLista Is DateTime Then
-            _fechaLista = Util.DateTimeToUnixTimestamp(fechaLista)
-        Else
-            _fechaLista = fechaLista
-        End If
+        _fechaLista = fechaLista
     End Sub
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
