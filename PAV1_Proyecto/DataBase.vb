@@ -4,8 +4,21 @@
 
     ' TODO: Crear un usuario en el SQL Server y poner el string de conexion.
     Private cadena_conexion As String = "Provider=SQLNCLI11;Data Source=JUANI-PC\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=sistema_stock"
-    Private conexion As OleDb.OleDbConnection
-    Private transaccion As OleDb.OleDbTransaction
+    Private conexion As New OleDb.OleDbConnection
+    ' Nota: Trabajar con un solo comando puede mejorar la gestion de memoria evitando basura.
+    '       Pero en un ambiente MultiThread puede causar que se ejecute una consulta inesperada.
+    Private command As New OleDb.OleDbCommand
+    Private _transaccion As OleDb.OleDbTransaction
+
+    Private Property transaccion As OleDb.OleDbTransaction
+        Get
+            Return _transaccion
+        End Get
+        Set(value As OleDb.OleDbTransaction)
+            _transaccion = value
+            command.Transaction = value
+        End Set
+    End Property
 
     Public Shared Function getInstance() As DataBase ' TODO: Renombrar a new_connected()
         ' DOC: Se mantiene por compatibilidad con funcionamiento anterior.
@@ -16,9 +29,8 @@
     End Function
 
     Public Sub conectar()
-        ' Siempre que se llame a esta funcion es responsabilidad de quien llama cerrar la conexion.
-        If Me.conexion IsNot Nothing Then
-            Throw New System.Exception("Ya hay una conección abierta.")
+        If Me.conexion.State <> ConnectionState.Closed Then
+            Throw New System.Exception("Ya hay una conexión abierta.")
         End If
         Dim conexion As New OleDb.OleDbConnection
         conexion.ConnectionString = cadena_conexion
@@ -42,10 +54,7 @@
         ' Cierra la conexion con la base de datos.
         If transaccion Is Nothing Then ' Solo cierra si no hay transaccion pendiente.
             If conexion IsNot Nothing Then
-                transaccion.Commit()
                 conexion.Close()
-                transaccion = Nothing
-                conexion = Nothing
             Else
                 Throw New System.Exception("No hay ninguna conexion abierta.")
             End If
@@ -64,15 +73,11 @@
 
     Public Function consulta_sql(ByVal sql As String) As DataTable
         ' DOC: Ejecuta una consulta y retorna el resultado.
-        Dim cmd As New OleDb.OleDbCommand
         Dim tabla As New DataTable
 
-        cmd.CommandType = CommandType.Text
-        cmd.CommandText = sql
-        cmd.Connection = conexion
-        cmd.Transaction = transaccion
+        command.CommandText = sql
         Try
-            tabla.Load(cmd.ExecuteReader())
+            tabla.Load(command.ExecuteReader())
         Catch ex As Exception
             If transaccion IsNot Nothing Then
                 cancelar_transaccion()
@@ -92,14 +97,9 @@
             Throw New System.Exception("No hay una conexion abierta con la base de datos.")
         End If
 
-        Dim cmd As New OleDb.OleDbCommand
-
-        cmd.CommandType = CommandType.Text
-        cmd.CommandText = sql
-        cmd.Connection = conexion
-        cmd.Transaction = transaccion
+        command.CommandText = sql
         Try
-            cmd.ExecuteNonQuery()
+            command.ExecuteNonQuery()
         Catch ex As Exception
             If transaccion IsNot Nothing Then
                 cancelar_transaccion()
