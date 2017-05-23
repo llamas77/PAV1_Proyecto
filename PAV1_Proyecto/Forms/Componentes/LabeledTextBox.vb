@@ -26,6 +26,12 @@ Public Class LabeledTextBox
         End Get
         Set(ByVal value As String)
             lbl_texto.Text = value
+            ' Asegura que el texto siempre sea visible.
+            If lbl_texto.PreferredSize.Width > lbl_texto.Width Then
+                Dim add As Integer = lbl_texto.PreferredSize.Width - lbl_texto.Width
+                lbl_texto.Width += add
+                txt_caja.Location = New Point(txt_caja.Location.X + add, txt_caja.Location.Y)
+            End If
         End Set
     End Property
 

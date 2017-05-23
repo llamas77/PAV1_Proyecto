@@ -49,10 +49,13 @@ Partial Class LabeledTextBox
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.Controls.Add(Me.txt_caja)
         Me.Controls.Add(Me.lbl_texto)
+        Me.MaximumSize = New System.Drawing.Size(0, 28)
         Me.Name = "LabeledTextBox"
-        Me.Size = New System.Drawing.Size(302, 28)
+        Me.Size = New System.Drawing.Size(293, 28)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
