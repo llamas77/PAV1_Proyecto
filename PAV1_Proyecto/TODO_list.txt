@@ -9,4 +9,7 @@ ABM ProductosxEquipos (Se puede incluir en Productos y/o Equipos con una Checked
 Validaciones estrictas de todos los ABM (Atencion a las FK cuando estan apuntadas no se puede borrar el elemento.)
 Hacer menu desplegable en lugar de botones.
 
+Crear abstraccion de Campos, usando a Campo como fábrica del tipo de control adecuado.
+	(LabeledTextBox/LabeledComboBox), esto permitira crear campos más complejos.
+	Debe permitir anidar Campo o ControlGenerico con el objetivo de poder cargar un detalle.
 Unificar ABM's para funcionar con form's genericos -- Para poder cambiar la interfaz de todos los ABM a la vez.
