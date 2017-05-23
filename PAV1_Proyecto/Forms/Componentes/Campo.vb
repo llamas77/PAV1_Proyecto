@@ -1,6 +1,4 @@
-﻿Imports PAV1_Proyecto
-
-Public Class Campo
+﻿Public Class Campo
     Implements Validable
 
     Enum MaskType
@@ -51,5 +49,29 @@ Public Class Campo
     Public Function is_valid() As Boolean Implements Validable.is_valid
         ' La clase Campo es una abstraccion. Solo almacena datos, no valida.
         Throw New NotImplementedException()
+    End Function
+
+    Public Function get_UserControl() As UserControl
+        If _visible Then
+            Dim control As UserControl
+            Select Case _maskType
+                Case MaskType.comboBox
+                    control = New LabeledComboBox(_id, _name, _combo_data_source)
+                    'fabrica_combo.Add(_id, _combo_data_source)
+                    'load_combo(control, _combo_data_source)
+                Case Else
+                    Dim lctrl = New LabeledTextBox(_name, _maskType)
+                    lctrl._required = _required
+                    lctrl._numeric = _numeric
+                    If _max_lenght > 0 Then
+                        lctrl._max_length = _max_lenght
+                    End If
+                    control = lctrl
+            End Select
+            control.Name = _id
+            Return control
+        Else
+            Return New InvisibleControl(_id, Nothing)
+        End If
     End Function
 End Class
