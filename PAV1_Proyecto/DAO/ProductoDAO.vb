@@ -23,7 +23,7 @@ Public Class ProductoDAO
         sql_insertar &= producto._nivelReposicion & ", "
         sql_insertar &= "'" & producto._ubicacion & "', "
         sql_insertar &= producto._stock & ", "
-        sql_insertar &= "'" & producto._fechaLista & "' )"
+        sql_insertar &= "convert(date, '" & producto._fechaLista & "', 103))"
         DataBase.getInstance().ejecuta_sql(sql_insertar)
     End Sub
 
@@ -38,7 +38,7 @@ Public Class ProductoDAO
         sql_update &= "nivelReposicion=" & producto._nivelReposicion & ", "
         sql_update &= "ubicacion='" & producto._ubicacion & "', "
         sql_update &= "stock=" & producto._stock & ", "
-        sql_update &= "fechaLista='" & producto._fechaLista & "'"
+        sql_update &= "fechaLista=convert(date, '" & producto._fechaLista & "', 103))"
         sql_update &= " WHERE codigoProducto='" & producto._codigo & "'"
         DataBase.getInstance().ejecuta_sql(sql_update)
     End Sub
@@ -56,8 +56,6 @@ Public Class ProductoDAO
         sql_select &= "SELECT codigoProducto, productos.idGrupo, grupos.nombre, costo, convert(char(10), fechaLista, 103) as fechaLista, nivelReposicion, ubicacion, stock FROM productos "
         sql_select &= "INNER JOIN grupos on grupos.idGrupo = productos.idGrupo"
         Dim tabla = DataBase.getInstance().consulta_sql(sql_select)
-
-
         Return tabla
     End Function
 

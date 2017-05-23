@@ -1,0 +1,1 @@
+﻿Agregar campo nombre a producto en la base de datos y en el programa.

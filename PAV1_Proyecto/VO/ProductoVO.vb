@@ -4,8 +4,6 @@ Imports System
 Public Class ProductoVO
     Implements ObjetoVO
 
-    'No faltaria además un nombre para el producto?
-
     Public Property _codigo As String
     Public Property _grupo As GrupoVO
     Public Property _costo As Single
@@ -34,7 +32,7 @@ Public Class ProductoVO
         diccionario.Add("idGrupo", _grupo._id)
         diccionario.Add("nombre", _grupo._nombre)
         diccionario.Add("costo", _costo)
-        diccionario.Add("fechaLista", _fechaLista) 'Propiedad o atributo?? osea, trabajo en Double o DateTime? (ya lo tengo que ver)
+        diccionario.Add("fechaLista", _fechaLista)
         diccionario.Add("nivelReposicion", _nivelReposicion)
         diccionario.Add("ubicacion", _ubicacion)
         diccionario.Add("stock", _stock)
