@@ -102,6 +102,12 @@
     <Compile Include="Forms\Componentes\UserControls\InvisibleControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Forms\Componentes\UserControls\LabeledTextBox.Designer.vb">
+      <DependentUpon>LabeledTextBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Componentes\UserControls\LabeledTextBox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\frm_abm_generico_busqueda.Designer.vb">
       <DependentUpon>frm_abm_generico_busqueda.vb</DependentUpon>
     </Compile>
@@ -269,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\TipoClienteGrilla.resx">
       <DependentUpon>TipoClienteGrilla.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Componentes\UserControls\LabeledTextBox.resx">
+      <DependentUpon>LabeledTextBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\VendedoresControl.resx">
       <DependentUpon>VendedoresControl.vb</DependentUpon>
