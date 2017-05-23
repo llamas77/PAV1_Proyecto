@@ -1,6 +1,6 @@
 ﻿Imports PAV1_Proyecto
 
-Public Class LabeledTextBox
+Public Class LabeledMaskedTextBox
     Inherits UserControl
     Implements Validable
 

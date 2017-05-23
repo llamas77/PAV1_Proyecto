@@ -48,9 +48,9 @@ Public Class ControlGenerico
         If campos_invisibles.ContainsKey(id) Then
             campos_invisibles(id) = value
         ElseIf Me.Controls.ContainsKey(id) Then
-            If TypeOf Me.Controls(id) Is LabeledTextBox Then
+            If TypeOf Me.Controls(id) Is LabeledMaskedTextBox Then
                 ' Si el control es LabeledTextBox cambia el texto.
-                Dim ltext As LabeledTextBox = Controls(id)
+                Dim ltext As LabeledMaskedTextBox = Controls(id)
                 ltext._text = value
             ElseIf TypeOf Me.Controls(id) Is LabeledComboBox Then
                 ' Si el control es ComboBox cambia el valor elegido.
@@ -64,8 +64,8 @@ Public Class ControlGenerico
         ' Lee todos los textbox del control y guarda sus valores en un diccionario.
         Dim diccionario As New Dictionary(Of String, Object)
         For Each control As Control In Me.Controls
-            If TypeOf control Is LabeledTextBox Then
-                Dim ltext As LabeledTextBox = control
+            If TypeOf control Is LabeledMaskedTextBox Then
+                Dim ltext As LabeledMaskedTextBox = control
                 diccionario.Add(control.Name, ltext._text)
             ElseIf TypeOf control Is LabeledComboBox Then
                 Dim lcombo As LabeledComboBox = control
@@ -118,7 +118,7 @@ Public Class ControlGenerico
                         control = New LabeledComboBox(campo._id, campo._name, campo._combo_data_source)
                         fabrica_combo.Add(campo._id, campo._combo_data_source)
                     Case Else
-                        Dim lctrl = New LabeledTextBox(campo._name, campo._maskType)
+                        Dim lctrl = New LabeledMaskedTextBox(campo._name, campo._maskType)
                         lctrl._required = campo._required
                         lctrl._numeric = campo._numeric
                         If campo._max_lenght > 0 Then

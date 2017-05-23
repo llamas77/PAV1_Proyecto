@@ -22,8 +22,8 @@ Partial Class TipoClienteControl
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txt_descripcion = New PAV1_Proyecto.LabeledTextBox()
-        Me.txt_nombre = New PAV1_Proyecto.LabeledTextBox()
+        Me.txt_descripcion = New PAV1_Proyecto.LabeledMaskedTextBox()
+        Me.txt_nombre = New PAV1_Proyecto.LabeledMaskedTextBox()
         Me.SuspendLayout()
         '
         'txt_descripcion
@@ -54,6 +54,6 @@ Partial Class TipoClienteControl
 
     End Sub
 
-    Friend WithEvents txt_descripcion As LabeledTextBox
-    Friend WithEvents txt_nombre As LabeledTextBox
+    Friend WithEvents txt_descripcion As LabeledMaskedTextBox
+    Friend WithEvents txt_nombre As LabeledMaskedTextBox
 End Class

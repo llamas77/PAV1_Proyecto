@@ -22,10 +22,10 @@ Partial Class ClienteControl
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.txt_direccion = New PAV1_Proyecto.LabeledTextBox()
-        Me.txt_telefono = New PAV1_Proyecto.LabeledTextBox()
-        Me.txt_apellido = New PAV1_Proyecto.LabeledTextBox()
-        Me.txt_nombre = New PAV1_Proyecto.LabeledTextBox()
+        Me.txt_direccion = New PAV1_Proyecto.LabeledMaskedTextBox()
+        Me.txt_telefono = New PAV1_Proyecto.LabeledMaskedTextBox()
+        Me.txt_apellido = New PAV1_Proyecto.LabeledMaskedTextBox()
+        Me.txt_nombre = New PAV1_Proyecto.LabeledMaskedTextBox()
         Me.txt_TipoCliente = New System.Windows.Forms.Label()
         Me.cmb_idTipoCliente = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
@@ -124,10 +124,10 @@ Partial Class ClienteControl
 
     End Sub
 
-    Friend WithEvents txt_direccion As LabeledTextBox
-    Friend WithEvents txt_telefono As LabeledTextBox
-    Friend WithEvents txt_apellido As LabeledTextBox
-    Friend WithEvents txt_nombre As LabeledTextBox
+    Friend WithEvents txt_direccion As LabeledMaskedTextBox
+    Friend WithEvents txt_telefono As LabeledMaskedTextBox
+    Friend WithEvents txt_apellido As LabeledMaskedTextBox
+    Friend WithEvents txt_nombre As LabeledMaskedTextBox
     Friend WithEvents txt_TipoCliente As Label
     Friend WithEvents cmb_idTipoCliente As ComboBox
 End Class

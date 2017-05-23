@@ -145,10 +145,10 @@
     <Compile Include="Forms\Componentes\LabeledComboBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Componentes\LabeledTextBox.Designer.vb">
-      <DependentUpon>LabeledTextBox.vb</DependentUpon>
+    <Compile Include="Forms\Componentes\LabeledMaskedTextBox.Designer.vb">
+      <DependentUpon>LabeledMaskedTextBox.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Componentes\LabeledTextBox.vb">
+    <Compile Include="Forms\Componentes\LabeledMaskedTextBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\Componentes\TipoClienteControl.Designer.vb">
@@ -261,8 +261,8 @@
     <EmbeddedResource Include="Forms\Componentes\ClienteGrilla.resx">
       <DependentUpon>ClienteGrilla.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\LabeledTextBox.resx">
-      <DependentUpon>LabeledTextBox.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Componentes\LabeledMaskedTextBox.resx">
+      <DependentUpon>LabeledMaskedTextBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\TipoClienteControl.resx">
       <DependentUpon>TipoClienteControl.vb</DependentUpon>

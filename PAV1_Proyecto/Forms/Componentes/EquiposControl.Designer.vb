@@ -22,7 +22,7 @@ Partial Class EquiposControl
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me._txt_modelo = New PAV1_Proyecto.LabeledTextBox()
+        Me._txt_modelo = New PAV1_Proyecto.LabeledMaskedTextBox()
         Me.txt_Marca = New System.Windows.Forms.Label()
         Me.cmb_idMarca = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
@@ -73,7 +73,7 @@ Partial Class EquiposControl
 
     End Sub
 
-    Friend WithEvents _txt_modelo As LabeledTextBox
+    Friend WithEvents _txt_modelo As LabeledMaskedTextBox
     Friend WithEvents txt_Marca As Label
     Friend WithEvents cmb_idMarca As ComboBox
 End Class

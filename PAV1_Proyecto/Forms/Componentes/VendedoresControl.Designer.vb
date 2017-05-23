@@ -22,11 +22,11 @@ Partial Class VendedoresControl
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txt_direccion = New PAV1_Proyecto.LabeledTextBox()
-        Me.txt_telefono = New PAV1_Proyecto.LabeledTextBox()
-        Me.txt_apellido = New PAV1_Proyecto.LabeledTextBox()
-        Me.txt_nombre = New PAV1_Proyecto.LabeledTextBox()
-        Me.txt_comision = New PAV1_Proyecto.LabeledTextBox()
+        Me.txt_direccion = New PAV1_Proyecto.LabeledMaskedTextBox()
+        Me.txt_telefono = New PAV1_Proyecto.LabeledMaskedTextBox()
+        Me.txt_apellido = New PAV1_Proyecto.LabeledMaskedTextBox()
+        Me.txt_nombre = New PAV1_Proyecto.LabeledMaskedTextBox()
+        Me.txt_comision = New PAV1_Proyecto.LabeledMaskedTextBox()
         Me.SuspendLayout()
         '
         'txt_direccion
@@ -99,9 +99,9 @@ Partial Class VendedoresControl
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents txt_direccion As LabeledTextBox
-    Friend WithEvents txt_telefono As LabeledTextBox
-    Friend WithEvents txt_apellido As LabeledTextBox
-    Friend WithEvents txt_nombre As LabeledTextBox
-    Friend WithEvents txt_comision As LabeledTextBox
+    Friend WithEvents txt_direccion As LabeledMaskedTextBox
+    Friend WithEvents txt_telefono As LabeledMaskedTextBox
+    Friend WithEvents txt_apellido As LabeledMaskedTextBox
+    Friend WithEvents txt_nombre As LabeledMaskedTextBox
+    Friend WithEvents txt_comision As LabeledMaskedTextBox
 End Class

@@ -58,7 +58,7 @@
                 Case MaskType.comboBox
                     control = New LabeledComboBox(_id, _name, _combo_data_source)
                 Case Else
-                    Dim lctrl = New LabeledTextBox(_name, _maskType)
+                    Dim lctrl = New LabeledMaskedTextBox(_name, _maskType)
                     lctrl._required = _required
                     lctrl._numeric = _numeric
                     If _max_lenght > 0 Then
