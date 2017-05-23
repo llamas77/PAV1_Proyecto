@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ClienteControl
     Inherits System.Windows.Forms.UserControl
 
     'UserControl reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class ClienteControl
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.txt_direccion = New PAV1_Proyecto.LabeledTextBox()
         Me.txt_telefono = New PAV1_Proyecto.LabeledTextBox()
@@ -33,7 +33,7 @@ Partial Class ClienteControl
         'txt_direccion
         '
         Me.txt_direccion._label = "Dirección"
-        Me.txt_direccion._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
+        Me.txt_direccion._Mask = PAV1_Proyecto.Campo.MaskType.texto
         Me.txt_direccion._max_length = 0
         Me.txt_direccion._min_lenght = 0
         Me.txt_direccion._numeric = False
@@ -48,7 +48,7 @@ Partial Class ClienteControl
         'txt_telefono
         '
         Me.txt_telefono._label = "Teléfono"
-        Me.txt_telefono._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.telefono
+        Me.txt_telefono._Mask = PAV1_Proyecto.Campo.MaskType.telefono
         Me.txt_telefono._max_length = 12
         Me.txt_telefono._min_lenght = 0
         Me.txt_telefono._numeric = False
@@ -63,7 +63,7 @@ Partial Class ClienteControl
         'txt_apellido
         '
         Me.txt_apellido._label = "Apellido"
-        Me.txt_apellido._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
+        Me.txt_apellido._Mask = PAV1_Proyecto.Campo.MaskType.texto
         Me.txt_apellido._max_length = 0
         Me.txt_apellido._min_lenght = 0
         Me.txt_apellido._numeric = False
@@ -78,7 +78,7 @@ Partial Class ClienteControl
         'txt_nombre
         '
         Me.txt_nombre._label = "Nombre"
-        Me.txt_nombre._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
+        Me.txt_nombre._Mask = PAV1_Proyecto.Campo.MaskType.texto
         Me.txt_nombre._max_length = 0
         Me.txt_nombre._min_lenght = 0
         Me.txt_nombre._numeric = False

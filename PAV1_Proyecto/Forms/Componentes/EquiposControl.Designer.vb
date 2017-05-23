@@ -30,7 +30,7 @@ Partial Class EquiposControl
         '_txt_modelo
         '
         Me._txt_modelo._label = "Modelo"
-        Me._txt_modelo._Mask = PAV1_Proyecto.LabeledTextBox.MaskType.texto
+        Me._txt_modelo._Mask = PAV1_Proyecto.Campo.MaskType.texto
         Me._txt_modelo._max_length = 0
         Me._txt_modelo._min_lenght = 0
         Me._txt_modelo._numeric = False

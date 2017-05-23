@@ -71,9 +71,9 @@ Public Class GananciaDAO
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("id_grupo", "Grupo", boxType:=Campo.BoxType.comboBox, combo_data_source:=New GrupoDAO))
-        campos.Add(New Campo("id_tipo_cliente", "Tipo de Cliente", boxType:=Campo.BoxType.comboBox, combo_data_source:=New TipoClienteDAO))
-        campos.Add(New Campo("porcentaje_ganancia", "Ganancia", maskType:=LabeledTextBox.MaskType.porcentaje))
+        campos.Add(New Campo("id_grupo", "Grupo", maskType:=Campo.MaskType.comboBox, combo_data_source:=New GrupoDAO))
+        campos.Add(New Campo("id_tipo_cliente", "Tipo de Cliente", maskType:=Campo.MaskType.comboBox, combo_data_source:=New TipoClienteDAO))
+        campos.Add(New Campo("porcentaje_ganancia", "Ganancia", maskType:=Campo.MaskType.porcentaje))
         Return New ControlGenerico(campos, Me)
     End Function
 

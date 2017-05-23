@@ -113,8 +113,12 @@ Public Class ControlGenerico
         For Each campo In estructura
             If campo._visible Then
                 Dim control As Control
-                Select Case campo._boxType
-                    Case Campo.BoxType.maskedTextBox
+                Select Case campo._maskType
+                    Case Campo.MaskType.comboBox
+                        control = New LabeledComboBox(campo._name)
+                        fabrica_combo.Add(campo._id, campo._combo_data_source)
+                        load_combo(control, campo._combo_data_source)
+                    Case Else
                         Dim lctrl = New LabeledTextBox(campo._name, campo._maskType)
                         lctrl._required = campo._required
                         lctrl._numeric = campo._numeric
@@ -122,12 +126,6 @@ Public Class ControlGenerico
                             lctrl._max_length = campo._max_lenght
                         End If
                         control = lctrl
-                    Case Campo.BoxType.comboBox
-                        control = New LabeledComboBox(campo._name)
-                        fabrica_combo.Add(campo._id, campo._combo_data_source)
-                        load_combo(control, campo._combo_data_source)
-                    Case Else
-                        Return
                 End Select
                 control.Name = campo._id
                 add_control(control)

@@ -3,10 +3,14 @@
 Public Class Campo
     Implements Validable
 
-    Private maskType As LabeledTextBox.MaskType
-
-    Enum BoxType
-        maskedTextBox
+    Enum MaskType
+        texto
+        telefono
+        celular
+        porcentaje
+        fecha
+        cuit
+        email
         comboBox
     End Enum
 
@@ -16,8 +20,7 @@ Public Class Campo
 
     ' Propiedades opcionales.
     Public Property _visible As Boolean
-    Public Property _maskType As LabeledTextBox.MaskType
-    Public Property _boxType As BoxType
+    Public Property _maskType As MaskType
     Public Property _combo_data_source As ComboDataSource ' Solo para ser usado con BoxType.comboBox
 
     ' Propiedades de interfaz Validable
@@ -28,8 +31,7 @@ Public Class Campo
 
     Public Sub New(id As String, name As String,
                    Optional visible As Boolean = True,
-                   Optional maskType As LabeledTextBox.MaskType = LabeledTextBox.MaskType.texto,
-                   Optional boxType As BoxType = BoxType.maskedTextBox,
+                   Optional maskType As MaskType = MaskType.texto,
                    Optional combo_data_source As ComboDataSource = Nothing,
                    Optional required As Boolean = False,
                    Optional min_lenght As Integer = 0,
@@ -39,7 +41,6 @@ Public Class Campo
         _name = name
         _visible = visible
         _maskType = maskType
-        _boxType = boxType
         _combo_data_source = combo_data_source
         _required = required
         _min_lenght = min_lenght
@@ -48,6 +49,7 @@ Public Class Campo
     End Sub
 
     Public Function is_valid() As Boolean Implements Validable.is_valid
+        ' La clase Campo es una abstraccion. Solo almacena datos, no valida.
         Throw New NotImplementedException()
     End Function
 End Class

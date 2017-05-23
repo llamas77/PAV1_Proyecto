@@ -74,9 +74,9 @@ Public Class ProductoDAO
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
         campos.Add(New Campo("codigoProducto", "Código", maxLenght:=20, required:=True))
-        campos.Add(New Campo("idGrupo", "Grupo", boxType:=Campo.BoxType.comboBox, combo_data_source:=New GrupoDAO))
+        campos.Add(New Campo("idGrupo", "Grupo", maskType:=Campo.MaskType.comboBox, combo_data_source:=New GrupoDAO))
         campos.Add(New Campo("costo", "Costo", numeric:=True))
-        campos.Add(New Campo("fechaLista", "Fecha Actual", maskType:=LabeledTextBox.MaskType.fecha))
+        campos.Add(New Campo("fechaLista", "Fecha Actual", maskType:=Campo.MaskType.fecha))
         campos.Add(New Campo("nivelReposicion", "Nivel de Reposicion", numeric:=True))
         campos.Add(New Campo("ubicacion", "Ubicación"))
         campos.Add(New Campo("stock", "Stock", numeric:=True))

@@ -4,23 +4,13 @@ Public Class LabeledTextBox
     Inherits UserControl
     Implements Validable
 
-    Enum MaskType
-        texto
-        telefono
-        celular
-        porcentaje
-        fecha
-        cuit
-        email
-    End Enum
-
-    Dim mask_type As MaskType
+    Dim mask_type As Campo.MaskType
 
     Public Sub New()
-        Me.New("", MaskType.texto)
+        Me.New("", Campo.MaskType.texto)
     End Sub
 
-    Public Sub New(label As String, mascara As MaskType)
+    Public Sub New(label As String, mascara As Campo.MaskType)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
@@ -48,27 +38,27 @@ Public Class LabeledTextBox
         End Set
     End Property
 
-    Public Property _Mask As MaskType
+    Public Property _Mask As Campo.MaskType
         Get
             Return mask_type
         End Get
-        Set(value As MaskType)
+        Set(value As Campo.MaskType)
             mask_type = value
             txt_caja.PromptChar = "_" ' Lo reseteo por si se uso _max_length antes.
             Select Case mask_type
-                Case MaskType.texto
+                Case Campo.MaskType.texto
                     txt_caja.Mask = ""
-                Case MaskType.telefono
+                Case Campo.MaskType.telefono
                     txt_caja.Mask = "9000-4000009"
-                Case MaskType.celular
+                Case Campo.MaskType.celular
                     txt_caja.Mask = "9000-150-000000"
-                Case MaskType.porcentaje
+                Case Campo.MaskType.porcentaje
                     txt_caja.Mask = "09%"
-                Case MaskType.fecha
+                Case Campo.MaskType.fecha
                     txt_caja.Mask = "00/00/0000"
-                Case MaskType.cuit
+                Case Campo.MaskType.cuit
                     txt_caja.Mask = "00-00000000-0"
-                Case MaskType.email
+                Case Campo.MaskType.email
                     txt_caja.Mask = "" ' TODO: Validar que el mail tiene un @
             End Select
             resize_textBox()
@@ -101,7 +91,7 @@ Public Class LabeledTextBox
     Public Property _numeric As Boolean Implements Validable._numeric
 
     Private Sub valid_lenght(min As Integer, max As Integer)
-        If _Mask = MaskType.texto Then
+        If _Mask = Campo.MaskType.texto Then
             txt_caja.PromptChar = " "
             txt_caja.Mask = "".PadLeft(min, "A").PadLeft(max - min, "a")
             resize_textBox()

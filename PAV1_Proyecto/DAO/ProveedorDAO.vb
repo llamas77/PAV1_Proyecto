@@ -83,10 +83,10 @@ Public Class ProveedorDAO
         Dim campos As New List(Of Campo)
         campos.Add(New Campo("idProveedor", "", visible:=False))
         campos.Add(New Campo("razonSocial", "Razón Social"))
-        campos.Add(New Campo("cuit", "CUIT", maskType:=LabeledTextBox.MaskType.cuit))
+        campos.Add(New Campo("cuit", "CUIT", maskType:=Campo.MaskType.cuit))
         campos.Add(New Campo("domicilio", "Domicilio"))
-        campos.Add(New Campo("telefono", "Teléfono", maskType:=LabeledTextBox.MaskType.telefono))
-        campos.Add(New Campo("email", "Email", maskType:=LabeledTextBox.MaskType.email))
+        campos.Add(New Campo("telefono", "Teléfono", maskType:=Campo.MaskType.telefono))
+        campos.Add(New Campo("email", "Email", maskType:=Campo.MaskType.email))
         Return New ControlGenerico(campos, Me)
     End Function
 
