@@ -52,13 +52,11 @@
     End Function
 
     Public Function get_UserControl() As UserControl
+        Dim control As ObjetoCampo
         If _visible Then
-            Dim control As UserControl
             Select Case _maskType
                 Case MaskType.comboBox
                     control = New LabeledComboBox(_id, _name, _combo_data_source)
-                    'fabrica_combo.Add(_id, _combo_data_source)
-                    'load_combo(control, _combo_data_source)
                 Case Else
                     Dim lctrl = New LabeledTextBox(_name, _maskType)
                     lctrl._required = _required
@@ -68,10 +66,20 @@
                     End If
                     control = lctrl
             End Select
-            control.Name = _id
-            Return control
+            'control.Name = _id
+            Return Control
         Else
-            Return New InvisibleControl(_id, Nothing)
+            control = New InvisibleControl(_id, Nothing)
         End If
+
+        If TypeOf control Is Validable Then
+            Dim ctrl_validable As Validable = control
+            ctrl_validable._max_lenght = _max_lenght
+            ctrl_validable._min_lenght = _min_lenght
+            ctrl_validable._numeric = _numeric
+            ctrl_validable._required = _required
+        End If
+
+        Return control
     End Function
 End Class
