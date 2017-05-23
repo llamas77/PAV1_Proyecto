@@ -28,7 +28,10 @@ Public Class LabeledComboBox
 
     Public WriteOnly Property _source As ComboDataSource
         Set(value As ComboDataSource)
-            cmb_combo.DataSource = value.comboSource()
+            Dim datos As DataTable = value.comboSource()
+            cmb_combo.DataSource = datos
+            cmb_combo.ValueMember = datos.Columns(0).ColumnName
+            cmb_combo.DisplayMember = datos.Columns(1).ColumnName
             cmb_combo.SelectedIndex = -1
         End Set
     End Property

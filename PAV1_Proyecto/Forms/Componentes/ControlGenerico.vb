@@ -55,7 +55,7 @@ Public Class ControlGenerico
             ElseIf TypeOf Me.Controls(id) Is LabeledComboBox Then
                 ' Si el control es ComboBox cambia el valor elegido.
                 Dim lcmb As LabeledComboBox = Me.Controls(id)
-                lcmb._combo.SelectedValue = value
+                lcmb._value = value
             End If
         End If
     End Sub
@@ -69,7 +69,7 @@ Public Class ControlGenerico
                 diccionario.Add(control.Name, ltext._text)
             ElseIf TypeOf control Is LabeledComboBox Then
                 Dim lcombo As LabeledComboBox = control
-                diccionario.Add(control.Name, lcombo._combo.SelectedValue)
+                diccionario.Add(control.Name, lcombo._value)
             End If
         Next
         For Each key In campos_invisibles.Keys
@@ -115,9 +115,8 @@ Public Class ControlGenerico
                 Dim control As Control
                 Select Case campo._maskType
                     Case Campo.MaskType.comboBox
-                        control = New LabeledComboBox(campo._name)
+                        control = New LabeledComboBox(campo._id, campo._name, campo._combo_data_source)
                         fabrica_combo.Add(campo._id, campo._combo_data_source)
-                        load_combo(control, campo._combo_data_source)
                     Case Else
                         Dim lctrl = New LabeledTextBox(campo._name, campo._maskType)
                         lctrl._required = campo._required
@@ -140,16 +139,6 @@ Public Class ControlGenerico
         control.Location = next_point
         next_point.Y = next_point.Y + control.Height
         Me.Controls.Add(control)
-    End Sub
-
-    Private Sub load_combo(labeledCombo As LabeledComboBox, dataSource As ComboDataSource)
-        ' Carga un combo con los valores iniciales.
-        Dim combo As ComboBox = labeledCombo._combo
-        Dim tabla = dataSource.comboSource()
-        combo.DataSource = tabla
-        combo.ValueMember = tabla.Columns(0).ColumnName
-        combo.DisplayMember = tabla.Columns(1).ColumnName
-        combo.SelectedIndex = -1 ' Para evitar que seleccione el primer elemento por defecto
     End Sub
 
     Public Overloads Sub Focus() Implements ObjetoCtrl.Focus
