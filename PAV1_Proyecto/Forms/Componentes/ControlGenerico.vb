@@ -12,20 +12,8 @@ Public Class ControlGenerico
     '       es capaz de manejar ComboBox tambien.
     '
 
-    Dim fabrica As ObjectFactory
-    Dim fabrica_combo As New Dictionary(Of String, ComboDataSource)
-    Dim next_point As New Point(0, 0)
-    ' Todos los Campos que sean invisibles seran almacenados por el control, el usuario
-    ' no los podra modificar.
-    Dim campos_invisibles As New Dictionary(Of String, Object)
-
-    Public Sub New(estructura As List(Of Campo), fabrica As ObjectFactory)
-        ' Esta llamada es exigida por el diseñador.
-        InitializeComponent()
-        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        Me.fabrica = fabrica
-        Me.add_campos(estructura)
-    End Sub
+    Private fabrica As ObjectFactory
+    Private next_point As New Point(0, 0)
 
     Public Property _objeto As ObjetoVO Implements ObjetoCtrl._objeto
         Get
@@ -42,6 +30,14 @@ Public Class ControlGenerico
             Next
         End Set
     End Property
+
+    Public Sub New(estructura As List(Of Campo), fabrica As ObjectFactory)
+        ' Esta llamada es exigida por el diseñador.
+        InitializeComponent()
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        Me.fabrica = fabrica
+        Me.add_campos(estructura)
+    End Sub
 
     Private Sub set_control(id As String, value As Object)
         ' Busca el control que representa la variable id y cambia su valor por value.
@@ -72,12 +68,6 @@ Public Class ControlGenerico
         For Each control As Control In Me.Controls
             control.ResetText()
         Next
-        ' Resetea todos los campos invisibles tambien.
-        Dim nuevo_diccionario As New Dictionary(Of String, Object)
-        For Each campo In campos_invisibles.Keys
-            nuevo_diccionario.Add(campo, Nothing)
-        Next
-        campos_invisibles = nuevo_diccionario
     End Sub
 
     Public Function is_valid() As Boolean Implements ObjetoCtrl.is_valid
@@ -94,8 +84,6 @@ Public Class ControlGenerico
     End Function
 
     Public Sub add_campos(campos As List(Of Campo))
-        ' Lee la estructura del campo y altera la estructura del control para
-        ' asimilarse.
         For Each campo In campos
             Dim control As Control = campo.get_UserControl()
 
