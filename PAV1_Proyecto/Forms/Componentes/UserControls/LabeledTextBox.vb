@@ -41,42 +41,52 @@ Public Class LabeledTextBox
     '  -- Interfaz Validable
     '
     Public Property _required As Boolean Implements Validable._required
-        Get
-            Throw New NotImplementedException()
-        End Get
-        Set(value As Boolean)
-            Throw New NotImplementedException()
-        End Set
-    End Property
-
     Public Property _min_lenght As Integer Implements Validable._min_lenght
-        Get
-            Throw New NotImplementedException()
-        End Get
-        Set(value As Integer)
-            Throw New NotImplementedException()
-        End Set
-    End Property
-
     Public Property _max_lenght As Integer Implements Validable._max_lenght
         Get
-            Throw New NotImplementedException()
+            Return txt_caja.MaxLength
         End Get
         Set(value As Integer)
-            Throw New NotImplementedException()
+            txt_caja.MaxLength = value
         End Set
     End Property
-
     Public Property _numeric As Boolean Implements Validable._numeric
-        Get
-            Throw New NotImplementedException()
-        End Get
-        Set(value As Boolean)
-            Throw New NotImplementedException()
-        End Set
-    End Property
 
     Public Function is_valid() As Boolean Implements Validable.is_valid
-        Throw New NotImplementedException()
+        Dim valido = True
+        If _required Then
+            If _value = "" Then
+                ' La longitud máxima y minima se cargan en la máscara, si esta está completa es valido.
+                valido = False
+            End If
+            If _numeric And Not IsNumeric(_value) Then
+                valido = False
+            End If
+        Else
+            If _numeric And _value <> "" And Not IsNumeric(_value) Then
+                valido = False
+            End If
+        End If
+        If _min_lenght > 0 And _value.ToString.Length < _min_lenght Then
+            valido = False
+        End If
+        ' El maxLength lo valida automaticamente el TextBox
+
+        ' Marcar en Rojo
+        If Not valido Then
+            lbl_texto.ForeColor = System.Drawing.Color.Red
+        End If
+        Return valido
     End Function
+
+    Public Overrides Sub ResetText()
+        MyBase.ResetText()
+        txt_caja.ResetText()
+        lbl_texto.ForeColor = System.Drawing.SystemColors.ControlText
+    End Sub
+
+    Private Sub txt_caja_TextChanged(sender As Object, e As EventArgs) Handles txt_caja.TextChanged
+        ' Reestablece el color de fondo por si estaba en error
+        lbl_texto.ForeColor = System.Drawing.SystemColors.ControlText
+    End Sub
 End Class

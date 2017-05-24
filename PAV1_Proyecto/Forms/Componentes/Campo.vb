@@ -57,14 +57,12 @@
             Select Case _maskType
                 Case MaskType.comboBox
                     control = New LabeledComboBox(_id, _name, _combo_data_source)
+                Case MaskType.texto
+                    control = New LabeledTextBox With {._id = _id And ._label = _name}
                 Case Else
-                    Dim lctrl = New LabeledMaskedTextBox(_name, _maskType)
-                    lctrl._required = _required
-                    lctrl._numeric = _numeric
-                    If _max_lenght > 0 Then
-                        lctrl._max_length = _max_lenght
-                    End If
-                    control = lctrl
+                    control = New LabeledMaskedTextBox With {._id = _id And
+                                                               ._label = _name And
+                                                               ._mask = _maskType}
             End Select
             'control.Name = _id
             Return Control
@@ -73,11 +71,12 @@
         End If
 
         If TypeOf control Is Validable Then
-            Dim ctrl_validable As Validable = control
-            ctrl_validable._max_lenght = _max_lenght
-            ctrl_validable._min_lenght = _min_lenght
-            ctrl_validable._numeric = _numeric
-            ctrl_validable._required = _required
+            With DirectCast(control, Validable) ' Evita guardar el Cast en una variable.
+                ._max_lenght = _max_lenght
+                ._min_lenght = _min_lenght
+                ._numeric = _numeric
+                ._required = _required
+            End With
         End If
 
         Return control

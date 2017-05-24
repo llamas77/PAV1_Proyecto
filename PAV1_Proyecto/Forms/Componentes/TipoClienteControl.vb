@@ -28,14 +28,14 @@
     Public Property _TipoClienteVO As TipoClienteVO
         ' El ID Nunca cambia.
         Get
-            tipoCliente._nombre = txt_nombre._text.Trim
-            tipoCliente._descripcion = txt_descripcion._text.Trim
+            tipoCliente._nombre = txt_nombre._value.Trim
+            tipoCliente._descripcion = txt_descripcion._value.Trim
             Return tipoCliente
         End Get
         Set(value As TipoClienteVO)
             tipoCliente = value
-            txt_nombre._text = value._nombre
-            txt_descripcion._text = value._descripcion
+            txt_nombre._value = value._nombre
+            txt_descripcion._value = value._descripcion
         End Set
     End Property
 

@@ -12,4 +12,6 @@ Hacer menu desplegable en lugar de botones.
 Crear abstraccion de Campos, usando a Campo como fábrica del tipo de control adecuado.
 	(LabeledTextBox/LabeledComboBox), esto permitira crear campos más complejos.
 	Debe permitir anidar Campo o ControlGenerico con el objetivo de poder cargar un detalle.
+Mejorar gestion de errores en las validaciones para hacerlos mas informativos.
+	-- Probablemente sirva que is_valid retorne un array de errores, o Nothing si es valido.
 Unificar ABM's para funcionar con form's genericos -- Para poder cambiar la interfaz de todos los ABM a la vez.

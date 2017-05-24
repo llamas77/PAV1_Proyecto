@@ -19,14 +19,14 @@ Public Class EquiposControl
 
     Public Property _equipos As EquiposVO
         Get
-            equipos._modelo = _txt_modelo._text.Trim
+            equipos._modelo = _txt_modelo._value.Trim
             equipos._idMarca = cmb_idMarca.SelectedValue
             equipos._marca = cmb_idMarca.SelectedText
             Return equipos
         End Get
         Set(value As EquiposVO)
             equipos = value
-            _txt_modelo._text = equipos._modelo
+            _txt_modelo._value = equipos._modelo
             cmb_idMarca.SelectedValue = equipos._idMarca
         End Set
     End Property

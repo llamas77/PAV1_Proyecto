@@ -51,7 +51,7 @@ Public Class ControlGenerico
             If TypeOf Me.Controls(id) Is LabeledMaskedTextBox Then
                 ' Si el control es LabeledTextBox cambia el texto.
                 Dim ltext As LabeledMaskedTextBox = Controls(id)
-                ltext._text = value
+                ltext._value = value
             ElseIf TypeOf Me.Controls(id) Is LabeledComboBox Then
                 ' Si el control es ComboBox cambia el valor elegido.
                 Dim lcmb As LabeledComboBox = Me.Controls(id)
@@ -66,7 +66,7 @@ Public Class ControlGenerico
         For Each control As Control In Me.Controls
             If TypeOf control Is LabeledMaskedTextBox Then
                 Dim ltext As LabeledMaskedTextBox = control
-                diccionario.Add(control.Name, ltext._text)
+                diccionario.Add(control.Name, ltext._value)
             ElseIf TypeOf control Is LabeledComboBox Then
                 Dim lcombo As LabeledComboBox = control
                 diccionario.Add(control.Name, lcombo._value)

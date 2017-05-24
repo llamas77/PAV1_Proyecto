@@ -30,12 +30,12 @@ Partial Class EquiposControl
         '_txt_modelo
         '
         Me._txt_modelo._label = "Modelo"
-        Me._txt_modelo._Mask = PAV1_Proyecto.Campo.MaskType.texto
+        Me._txt_modelo._mask = PAV1_Proyecto.Campo.MaskType.texto
         Me._txt_modelo._max_length = 0
         Me._txt_modelo._min_lenght = 0
         Me._txt_modelo._numeric = False
         Me._txt_modelo._required = False
-        Me._txt_modelo._text = ""
+        Me._txt_modelo._value = ""
         Me._txt_modelo.Location = New System.Drawing.Point(-7, 0)
         Me._txt_modelo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me._txt_modelo.Name = "_txt_modelo"
