@@ -41,7 +41,8 @@ Public Class LabeledMaskedTextBox
                 Case Campo.MaskType.email
                     txt_caja.Mask = "" ' TODO: Validar que el mail tiene un @
                 Case Else
-                    Throw New System.Exception("La clase LabeledMaskedTextBox no esta preparada para trabajar con este MaskType")
+                    ' Ignora todos los otros MaskType
+                    txt_caja.Mask = ""
             End Select
             resize_textBox()
         End Set

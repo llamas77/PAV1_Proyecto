@@ -24,7 +24,7 @@ Public Class ControlGenerico
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Me.fabrica = fabrica
-        Me.set_structure(estructura)
+        Me.add_campos(estructura)
     End Sub
 
     Public Property _objeto As ObjetoVO Implements ObjetoCtrl._objeto
@@ -45,36 +45,22 @@ Public Class ControlGenerico
 
     Private Sub set_control(id As String, value As Object)
         ' Busca el control que representa la variable id y cambia su valor por value.
-        If campos_invisibles.ContainsKey(id) Then
-            campos_invisibles(id) = value
-        ElseIf Me.Controls.ContainsKey(id) Then
-            If TypeOf Me.Controls(id) Is LabeledMaskedTextBox Then
-                ' Si el control es LabeledTextBox cambia el texto.
-                Dim ltext As LabeledMaskedTextBox = Controls(id)
-                ltext._value = value
-            ElseIf TypeOf Me.Controls(id) Is LabeledComboBox Then
-                ' Si el control es ComboBox cambia el valor elegido.
-                Dim lcmb As LabeledComboBox = Me.Controls(id)
-                lcmb._value = value
+        For Each campo As ObjetoCampo In Me.Controls
+            ' Si llegase a haber 2 campos con el mismo id modifica ambos.
+            If campo._id = id Then
+                campo._value = value
+                Exit For
             End If
-        End If
+        Next
     End Sub
 
     Private Function read_controls() As Dictionary(Of String, Object)
-        ' Lee todos los textbox del control y guarda sus valores en un diccionario.
+        ' Lee todos los campos y guarda sus valores en un diccionario.
         Dim diccionario As New Dictionary(Of String, Object)
-        For Each control As Control In Me.Controls
-            If TypeOf control Is LabeledMaskedTextBox Then
-                Dim ltext As LabeledMaskedTextBox = control
-                diccionario.Add(control.Name, ltext._value)
-            ElseIf TypeOf control Is LabeledComboBox Then
-                Dim lcombo As LabeledComboBox = control
-                diccionario.Add(control.Name, lcombo._value)
-            End If
-        Next
-        For Each key In campos_invisibles.Keys
-            ' Los campos invisibles estan guardados aparte.
-            diccionario.Add(key, campos_invisibles(key))
+        For Each campo As ObjetoCampo In Me.Controls
+            ' Si llegase a haber 2 campos con el mismo id guarda el valor del ultimo en recorrer.
+            '   Pero se desconoce el orden de recorrido, es arbitrario cual se almacena.
+            diccionario.Add(campo._id, campo._value)
         Next
         Return diccionario
     End Function
@@ -107,38 +93,17 @@ Public Class ControlGenerico
         Return valido
     End Function
 
-    Public Sub set_structure(estructura As List(Of Campo))
+    Public Sub add_campos(campos As List(Of Campo))
         ' Lee la estructura del campo y altera la estructura del control para
         ' asimilarse.
-        For Each campo In estructura
-            If campo._visible Then
-                Dim control As Control
-                Select Case campo._maskType
-                    Case Campo.MaskType.comboBox
-                        control = New LabeledComboBox(campo._id, campo._name, campo._combo_data_source)
-                        fabrica_combo.Add(campo._id, campo._combo_data_source)
-                    Case Else
-                        Dim lctrl = New LabeledMaskedTextBox(campo._name, campo._maskType)
-                        lctrl._required = campo._required
-                        lctrl._numeric = campo._numeric
-                        If campo._max_lenght > 0 Then
-                            lctrl._max_length = campo._max_lenght
-                        End If
-                        control = lctrl
-                End Select
-                control.Name = campo._id
-                add_control(control)
-            Else
-                campos_invisibles.Add(campo._id, Nothing)
-            End If
-        Next
-    End Sub
+        For Each campo In campos
+            Dim control As Control = campo.get_UserControl()
 
-    Private Sub add_control(control As Control)
-        ' Situa un control en la ventana. Va situando uno debajo del otro.
-        control.Location = next_point
-        next_point.Y = next_point.Y + control.Height
-        Me.Controls.Add(control)
+            ' Situa un control en la ventana. Va situando uno debajo del otro.
+            control.Location = next_point
+            next_point.Y = next_point.Y + control.Height
+            Me.Controls.Add(control)
+        Next
     End Sub
 
     Public Overloads Sub Focus() Implements ObjetoCtrl.Focus

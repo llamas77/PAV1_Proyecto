@@ -27,6 +27,7 @@
     Public Property _max_lenght As Integer Implements Validable._max_lenght
     Public Property _numeric As Boolean Implements Validable._numeric
 
+    <Obsolete("Este método no debe seguirse usando. En su lugar cargar las propiedades con With al crear el objeto.")>
     Public Sub New(id As String, name As String,
                    Optional visible As Boolean = True,
                    Optional maskType As MaskType = MaskType.texto,
@@ -60,9 +61,9 @@
                 Case MaskType.texto
                     control = New LabeledTextBox With {._id = _id And ._label = _name}
                 Case Else
-                    control = New LabeledMaskedTextBox With {._id = _id And
-                                                               ._label = _name And
-                                                               ._mask = _maskType}
+                    control = New LabeledMaskedTextBox With {._id = _id,
+                                                             ._label = _name,
+                                                             ._mask = _maskType}
             End Select
             'control.Name = _id
             Return Control
