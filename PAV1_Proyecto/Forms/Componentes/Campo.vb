@@ -10,6 +10,7 @@
         cuit
         email
         comboBox
+        control ' Por lo general este tipo de mascaras trabaja con un diccionario de datos.
     End Enum
 
     ' Propiedades obligatorias.
@@ -19,7 +20,8 @@
     ' Propiedades opcionales.
     Public Property _visible As Boolean
     Public Property _maskType As MaskType
-    Public Property _combo_data_source As ComboDataSource ' Solo para ser usado con BoxType.comboBox
+    Public Property _combo_data_source As ComboDataSource ' Solo para ser usado con MaskType.comboBox
+    Public Property _control As ObjetoCampo ' Cuando se quiere definir un control especifico.
 
     ' Propiedades de interfaz Validable
     Public Property _required As Boolean Implements Validable._required
@@ -54,21 +56,25 @@
 
     Public Function get_UserControl() As UserControl
         Dim control As ObjetoCampo
-        If _visible Then
-            Select Case _maskType
-                Case MaskType.comboBox
-                    control = New LabeledComboBox(_id, _name, _combo_data_source)
-                Case MaskType.texto
-                    control = New LabeledTextBox With {._id = _id And ._label = _name}
-                Case Else
-                    control = New LabeledMaskedTextBox With {._id = _id,
-                                                             ._label = _name,
-                                                             ._mask = _maskType}
-            End Select
-            'control.Name = _id
-            Return Control
+        If _control Is Nothing And _maskType <> MaskType.control Then
+            If _visible Then
+                Select Case _maskType
+                    Case MaskType.comboBox
+                        control = New LabeledComboBox(_id, _name, _combo_data_source)
+                    Case MaskType.texto
+                        control = New LabeledTextBox With {._id = _id And ._label = _name}
+                    Case Else
+                        control = New LabeledMaskedTextBox With {._id = _id,
+                                                                 ._label = _name,
+                                                                 ._mask = _maskType}
+                End Select
+                'control.Name = _id
+                Return control
+            Else
+                control = New InvisibleControl(_id, Nothing)
+            End If
         Else
-            control = New InvisibleControl(_id, Nothing)
+            control = _control
         End If
 
         If TypeOf control Is Validable Then
