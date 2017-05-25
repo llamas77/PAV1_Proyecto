@@ -28,6 +28,10 @@ Public Class ProductoDAO
     End Sub
 
     Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
+        update_in(DataBase.getInstance(), value)
+    End Sub
+
+    Public Sub update_in(db As DataBase, value As ObjetoVO)
         Dim producto = cast(value)
 
         Dim sql_update As String
@@ -40,7 +44,7 @@ Public Class ProductoDAO
         sql_update &= "stock=" & producto._stock & ", "
         sql_update &= "fechaLista=convert(date, '" & producto._fechaLista & "', 103))"
         sql_update &= " WHERE codigoProducto='" & producto._codigo & "'"
-        DataBase.getInstance().ejecuta_sql(sql_update)
+        db.ejecuta_sql(sql_update)
     End Sub
 
     Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
@@ -57,6 +61,25 @@ Public Class ProductoDAO
         sql_select &= "INNER JOIN grupos on grupos.idGrupo = productos.idGrupo"
         Dim tabla = DataBase.getInstance().consulta_sql(sql_select)
         Return tabla
+    End Function
+
+    Public Function search_code(db As DataBase, codigo As String) As ObjetoVO
+        Dim sql = "SELECT TOP 1 codigoProducto, idGrupo, costo, convert(char(10), fechaLista, 103) as fechaLista, "
+        sql &= " nivelReposicion, ubicacion, stock FROM productos WHERE codigoProducto='" & codigo & "'"
+        Dim response = db.consulta_sql(sql)
+        If response.Rows.Count = 1 Then
+            Return New ProductoVO With {
+            ._codigo = response(0)("codigoProducto"),
+            ._costo = response(0)("costo"),
+            ._fechaLista = response(0)("fechaLista"),
+            ._grupo = response(0)("idGrupo"),
+            ._nivelReposicion = response(0)("nivelReposicion"),
+            ._stock = response(0)("stock"),
+            ._ubicacion = response(0)("ubicacion")}
+        Else
+            Return Nothing
+        End If
+
     End Function
 
     Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists

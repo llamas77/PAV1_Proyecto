@@ -5,24 +5,41 @@ Public Class CompraDAO
 
     Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
         Dim compra = cast(value)
-        Dim db As New DataBase
-        db.conectar()
-        db.iniciar_transaccion()
 
+        ' -- Seteo
         Dim sql_insertar As String
         sql_insertar = "INSERT INTO compras (fechaCompra, idProveedor)"
         sql_insertar &= " VALUES ("
         sql_insertar &= "convert(date, '" & compra.fecha_compra & "', 103), "
         sql_insertar &= compra.id_proveedor & ") "
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
-        Dim tabla = db.consulta_sql(sql_insertar)
-        compra.id = tabla(0)(0)
 
+        ' -- Ejecucion
+        Dim db As New DataBase
+        db.conectar()
+        db.iniciar_transaccion()
+
+        Dim tabla = db.consulta_sql(sql_insertar) ' Compra
+        compra.id = tabla(0)(0)
         Dim detalleDAO As New DetalleCompraDAO
+        Dim productoDAO As New ProductoDAO
+        Dim productoVO As ProductoVO
         For Each detalle In compra.detalle
             detalle.id_compra = compra.id
-            detalleDAO.insert_in(db, detalle)
+            detalleDAO.insert_in(db, detalle) ' Detalle
+            productoVO = productoDAO.search_code(db, detalle.codigo_producto)
+            If productoVO Is Nothing Then
+                db.cancelar_transaccion()
+                Throw New System.Exception("El Codigo de Producto no existe.")
+            End If
+            productoVO._stock += detalle.cantidad
+            If productoVO._fechaLista < compra.fecha_compra Then
+                productoVO._costo = detalle.costo
+                productoVO._fechaLista = compra.fecha_compra
+            End If
+            productoDAO.update_in(db, productoVO) ' Stock Producto
         Next
+
         db.cerrar_transaccion()
         db.desconectar()
     End Sub
