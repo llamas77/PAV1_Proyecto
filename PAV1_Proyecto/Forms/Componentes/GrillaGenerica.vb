@@ -3,6 +3,7 @@
 Public Class GrillaGenerica
     Inherits DataGridView
     Implements ObjetoGrilla
+
     '
     ' La GrillaGenerica lee una lista de campos y cambia su estructura para poder
     ' mostrarlos. El usuario solo puede seleccionar un objeto (y no mas). 
@@ -147,4 +148,33 @@ Public Class GrillaGenerica
     Public Overloads Sub Focus() Implements ObjetoGrilla.Focus
         MyBase.Focus()
     End Sub
+
+    Public Sub add_objeto(value As ObjetoVO) Implements ObjetoGrilla.add_objeto
+        Dim datos = value.toDictionary()
+        Me.Rows.Add()
+        Dim n_row = Me.Rows.Count - 1
+        For Each nombre In column_ids
+            Me.Rows(n_row).Cells(nombre).Value = datos(nombre)
+        Next
+    End Sub
+
+    Public Sub delete_selected() Implements ObjetoGrilla.delete_selected
+        Dim sRow = Me.CurrentRow()
+        If Not IsNothing(sRow) Then
+            Me.Rows.Remove(sRow)
+        End If
+    End Sub
+
+    Public Function get_all() As List(Of ObjetoVO) Implements ObjetoGrilla.get_all
+        ' Obtiene el objeto seleccionado. Retorna Nothing si no hay seleccion.
+        Dim objetos As New List(Of ObjetoVO)
+
+        If Me.RowCount > 0 Then
+            For Each sRow In Me.Rows
+                objetos.Add(fabrica.new_instance(toDictionary(sRow)))
+            Next
+        End If
+
+        Return objetos
+    End Function
 End Class

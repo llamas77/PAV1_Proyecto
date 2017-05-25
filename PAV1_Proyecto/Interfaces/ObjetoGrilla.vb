@@ -17,6 +17,21 @@
     '
     Function get_selected() As ObjetoVO
 
+    '
+    ' Retorna todos los objetos de la tabla convertidos.
+    '
+    Function get_all() As List(Of ObjetoVO)
+
+    '
+    ' Añade una fila más
+    '
+    Sub add_objeto(value As ObjetoVO)
+
+    '
+    ' Borra la fila seleccionada
+    '
+    Sub delete_selected()
+
     ' Función generalmente heredada de UserControl para poner el foco sobre el control.
     Sub Focus()
 End Interface

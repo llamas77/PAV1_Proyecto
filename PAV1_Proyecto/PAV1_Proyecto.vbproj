@@ -99,6 +99,12 @@
     <Compile Include="Forms\Componentes\EquiposControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Forms\Componentes\UserControls\Detalle.Designer.vb">
+      <DependentUpon>Detalle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Componentes\UserControls\Detalle.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\Componentes\UserControls\InvisibleControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
@@ -275,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\TipoClienteGrilla.resx">
       <DependentUpon>TipoClienteGrilla.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Componentes\UserControls\Detalle.resx">
+      <DependentUpon>Detalle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\UserControls\LabeledTextBox.resx">
       <DependentUpon>LabeledTextBox.vb</DependentUpon>
