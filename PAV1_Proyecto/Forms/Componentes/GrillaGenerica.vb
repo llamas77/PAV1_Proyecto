@@ -59,7 +59,9 @@ Public Class GrillaGenerica
         Next
         Me.Width = width + 3
         If width < MinimumSize.Width Then
-            Columns(visible_col_name).Width = Columns(visible_col_name).Width + MinimumSize.Width - width - 3
+            If visible_col_name IsNot Nothing Then ' Todavia no hay ninguna columna visible
+                Columns(visible_col_name).Width = Columns(visible_col_name).Width + MinimumSize.Width - width - 3
+            End If
         End If
     End Sub
 

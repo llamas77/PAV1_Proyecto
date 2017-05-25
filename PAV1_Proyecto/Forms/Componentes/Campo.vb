@@ -52,6 +52,15 @@
     Public Sub New()
         ' Al usar este constructor se setean todas las propiedades con With.
         ' TODO: Setear valores por defecto.
+        _id = Nothing
+        _name = Nothing
+        _visible = True
+        _maskType = Nothing
+        _combo_data_source = Nothing
+        _required = False
+        _min_lenght = 0
+        _max_lenght = 0
+        _numeric = False
     End Sub
 
     Public Function is_valid() As Boolean Implements Validable.is_valid
@@ -61,25 +70,24 @@
 
     Public Function get_UserControl() As UserControl
         Dim control As ObjetoCampo
-        If _control Is Nothing And _maskType <> MaskType.control Then
-            If _visible Then
-                Select Case _maskType
-                    Case MaskType.comboBox
-                        control = New LabeledComboBox(_id, _name, _combo_data_source)
-                    Case MaskType.texto
-                        control = New LabeledTextBox With {._id = _id And ._label = _name}
-                    Case Else
-                        control = New LabeledMaskedTextBox With {._id = _id,
-                                                                 ._label = _name,
-                                                                 ._mask = _maskType}
-                End Select
-                'control.Name = _id
-                Return control
-            Else
-                control = New InvisibleControl(_id, Nothing)
-            End If
+
+        If _visible Then
+            Select Case _maskType
+                Case MaskType.comboBox
+                    control = New LabeledComboBox(_id, _name, _combo_data_source)
+                Case MaskType.texto
+                    control = New LabeledTextBox With {._id = _id, ._label = _name}
+                Case MaskType.control
+                    _control._id = _id
+                    _control._label = _name
+                    control = _control
+                Case Else
+                    control = New LabeledMaskedTextBox With {._id = _id,
+                                                                ._label = _name,
+                                                                ._mask = _maskType}
+            End Select
         Else
-            control = _control
+            control = New InvisibleControl(_id, Nothing)
         End If
 
         If TypeOf control Is Validable Then

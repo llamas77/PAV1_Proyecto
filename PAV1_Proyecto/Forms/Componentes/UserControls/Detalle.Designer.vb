@@ -24,38 +24,53 @@ Partial Class Detalle
     Private Sub InitializeComponent()
         Me.btn_agregar = New System.Windows.Forms.Button()
         Me.btn_eliminar = New System.Windows.Forms.Button()
+        Me.lbl_label = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btn_agregar
         '
-        Me.btn_agregar.Location = New System.Drawing.Point(140, 72)
+        Me.btn_agregar.Location = New System.Drawing.Point(6, 44)
         Me.btn_agregar.Name = "btn_agregar"
-        Me.btn_agregar.Size = New System.Drawing.Size(107, 40)
+        Me.btn_agregar.Size = New System.Drawing.Size(165, 28)
         Me.btn_agregar.TabIndex = 2
         Me.btn_agregar.Text = "Agregar"
         Me.btn_agregar.UseVisualStyleBackColor = True
         '
         'btn_eliminar
         '
-        Me.btn_eliminar.Location = New System.Drawing.Point(140, 118)
+        Me.btn_eliminar.Location = New System.Drawing.Point(6, 90)
         Me.btn_eliminar.Name = "btn_eliminar"
-        Me.btn_eliminar.Size = New System.Drawing.Size(107, 40)
+        Me.btn_eliminar.Size = New System.Drawing.Size(165, 28)
         Me.btn_eliminar.TabIndex = 4
         Me.btn_eliminar.Text = "Eliminar"
         Me.btn_eliminar.UseVisualStyleBackColor = True
+        '
+        'lbl_label
+        '
+        Me.lbl_label.AutoSize = True
+        Me.lbl_label.Location = New System.Drawing.Point(3, 10)
+        Me.lbl_label.Name = "lbl_label"
+        Me.lbl_label.Size = New System.Drawing.Size(84, 17)
+        Me.lbl_label.TabIndex = 5
+        Me.lbl_label.Text = "Default Text"
         '
         'Detalle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.Controls.Add(Me.lbl_label)
         Me.Controls.Add(Me.btn_eliminar)
         Me.Controls.Add(Me.btn_agregar)
         Me.Name = "Detalle"
-        Me.Size = New System.Drawing.Size(395, 314)
+        Me.Size = New System.Drawing.Size(174, 121)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents btn_agregar As Button
     Friend WithEvents btn_eliminar As Button
+    Friend WithEvents lbl_label As Label
 End Class

@@ -16,9 +16,9 @@ Public Class CompraDAO
     End Sub
 
     Public Function all() As DataTable Implements ObjetoDAO.all
-        Dim sql_select = "SELECT idCompra as id, fechaCompra AS fecha_compra, _
-                                 idProveedor AS id_proveedor, 'NotImplemented' as detalle _
-                          FROM compras"
+        Dim sql_select = "SELECT idCompra as id, fechaCompra as fecha_compra, "
+        sql_select &= " idProveedor as id_proveedor, 'NotImplemented' as detalle"
+        sql_select &= " FROM compras"
         Return DataBase.getInstance().consulta_sql(sql_select)
     End Function
 
