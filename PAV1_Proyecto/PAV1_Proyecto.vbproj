@@ -84,6 +84,8 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\CompraDAO.vb" />
+    <Compile Include="DAO\DetalleCompraDAO.vb" />
     <Compile Include="DAO\EquiposDAO.vb" />
     <Compile Include="DAO\GananciaDAO.vb" />
     <Compile Include="DAO\ClienteDAO.vb" />
@@ -127,6 +129,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Interfaces\ObjetoCampo.vb" />
+    <Compile Include="VO\CompraVO.vb" />
+    <Compile Include="VO\DetalleCompraVO.vb" />
     <Compile Include="VO\EquiposVO.vb" />
     <Compile Include="VO\FamiliaVO.vb" />
     <Compile Include="Forms\Componentes\ClienteControl.Designer.vb">

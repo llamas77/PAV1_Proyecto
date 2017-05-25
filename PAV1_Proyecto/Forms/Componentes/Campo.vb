@@ -49,6 +49,11 @@
         _numeric = numeric
     End Sub
 
+    Public Sub New()
+        ' Al usar este constructor se setean todas las propiedades con With.
+        ' TODO: Setear valores por defecto.
+    End Sub
+
     Public Function is_valid() As Boolean Implements Validable.is_valid
         ' La clase Campo es una abstraccion. Solo almacena datos, no valida.
         Throw New NotImplementedException()
