@@ -53,4 +53,16 @@ Public Class VendedorGrilla
     Public Overloads Sub Focus() Implements ObjetoGrilla.Focus
         MyBase.Focus()
     End Sub
+
+    Public Function get_all() As List(Of ObjetoVO) Implements ObjetoGrilla.get_all
+        Throw New NotImplementedException()
+    End Function
+
+    Public Sub add_objeto(value As ObjetoVO) Implements ObjetoGrilla.add_objeto
+        Throw New NotImplementedException()
+    End Sub
+
+    Public Sub delete_selected() Implements ObjetoGrilla.delete_selected
+        Throw New NotImplementedException()
+    End Sub
 End Class

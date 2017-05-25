@@ -57,4 +57,16 @@ Public Class ClienteGrilla
     Private Sub grilla_datos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles grilla_datos.CellContentClick
 
     End Sub
+
+    Public Function get_all() As List(Of ObjetoVO) Implements ObjetoGrilla.get_all
+        Throw New NotImplementedException()
+    End Function
+
+    Public Sub add_objeto(value As ObjetoVO) Implements ObjetoGrilla.add_objeto
+        Throw New NotImplementedException()
+    End Sub
+
+    Public Sub delete_selected() Implements ObjetoGrilla.delete_selected
+        Throw New NotImplementedException()
+    End Sub
 End Class
