@@ -2,12 +2,11 @@
 
 Proceso Compras (ABM complejo) 
 	Hecho parcialmente.
-	Falta toda la implementacion del SQL 
-	y ver como manejar el detalle en la grilla de CompraDAO (el datatable que otorga .all() no alcanza, se
-	tiene que comunicar con DetalleDAO)
-	DetalleDAO tiene que tener un metodo que permita obtener todos los detalles que apuntan a una compra (o idCompra)
-
-Modificar Base de Datos: detalle_compras costo -> float, >= 0
+	Hay que mejorar el funcionamiento de la clase Detalle y el metodo CompraDAO.all() -- Usar un tipo de grilla que
+		acepte ObjetoVO en lugar de solo DataTable.
+	Hay que implementar las alteraciones de Stock.
+	Implementar validaciones.
+	
 ¿Un DetalleCompra deberia poder modificarse?
 Proceso Ventas (ABM complejo)
 
@@ -24,3 +23,4 @@ Hacer que el MaskedTextBox retorne lo que ingreso el usuario, sin los valores fi
 Mejorar gestion de errores en las validaciones para hacerlos mas informativos.
 	-- Probablemente sirva que is_valid retorne un array de errores, o Nothing si es valido.
 Unificar ABM's para funcionar con form's genericos -- Para poder cambiar la interfaz de todos los ABM a la vez.
+Unificar Nomenclatura de varibles.
