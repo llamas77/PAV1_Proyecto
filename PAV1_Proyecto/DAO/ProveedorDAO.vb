@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class ProveedorDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ComboDataSource
 
 
     Public Function all() As DataTable Implements ObjetoDAO.all
@@ -58,7 +58,7 @@ Public Class ProveedorDAO
             sql = "SELECT TOP 1 idProveedor FROM proveedores WHERE "
         End If
         sql &= " cuit='" & proveedor._cuit & "'"
-        Dim response = DataBase.getInstance().consulta_sql(Sql)
+        Dim response = DataBase.getInstance().consulta_sql(sql)
         Return response.Rows.Count = 1
     End Function
 
@@ -101,5 +101,9 @@ Public Class ProveedorDAO
         Return New GrillaGenerica(campos, Me)
     End Function
 
-
+    Public Function comboSource() As DataTable Implements ComboDataSource.comboSource
+        Dim sql_select = "SELECT idProveedor as id, razonSocial"
+        sql_select &= " FROM proveedores"
+        Return DataBase.getInstance().consulta_sql(sql_select)
+    End Function
 End Class
