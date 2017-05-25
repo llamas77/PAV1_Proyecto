@@ -48,11 +48,22 @@ Public Class CompraDAO
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
-        Return New CompraVO With {
+        Dim compra As New CompraVO With {
             .id = valores("id"),
             .fecha_compra = valores("fecha_compra"),
-            .id_proveedor = valores("id_proveedor"),
-            .detalle = valores("detalle")
+            .id_proveedor = valores("id_proveedor")
         }
+
+        If TypeOf valores("detalle") Is List(Of ObjetoVO) Then
+            Dim lista As New List(Of DetalleCompraVO)
+            For Each objeto In valores("detalle")
+                lista.Add(DirectCast(objeto, DetalleCompraVO))
+            Next
+            compra.detalle = lista
+        Else
+            Throw New System.Exception("El valor no es del tipo esperado.")
+        End If
+
+        Return compra
     End Function
 End Class

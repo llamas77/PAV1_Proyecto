@@ -84,4 +84,12 @@ Public Class Detalle
             grilla_objeto.delete_selected()
         End If
     End Sub
+
+    Private Sub btn_agregar_Click(sender As Object, e As EventArgs) Handles btn_agregar.Click
+        agregar()
+    End Sub
+
+    Private Sub btn_eliminar_Click(sender As Object, e As EventArgs) Handles btn_eliminar.Click
+        eliminar()
+    End Sub
 End Class

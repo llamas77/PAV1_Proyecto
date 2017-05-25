@@ -12,7 +12,12 @@ Public Class DetalleCompraVO
     Public Property cantidad As Integer
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
-        Throw New NotImplementedException()
+        Dim diccionario As New Dictionary(Of String, Object)
+        diccionario.Add("codigo_producto", codigo_producto)
+        diccionario.Add("id_compra", id_compra)
+        diccionario.Add("costo", costo)
+        diccionario.Add("cantidad", cantidad)
+        Return diccionario
     End Function
 
     Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
