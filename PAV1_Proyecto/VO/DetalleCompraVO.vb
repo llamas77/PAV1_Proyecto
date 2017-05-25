@@ -7,7 +7,7 @@ Public Class DetalleCompraVO
 
     Public Property id_compra As Integer
 
-    Public Property costo As Integer
+    Public Property costo As Double
 
     Public Property cantidad As Integer
 

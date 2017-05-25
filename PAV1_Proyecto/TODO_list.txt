@@ -6,6 +6,9 @@ Proceso Compras (ABM complejo)
 	y ver como manejar el detalle en la grilla de CompraDAO (el datatable que otorga .all() no alcanza, se
 	tiene que comunicar con DetalleDAO)
 	DetalleDAO tiene que tener un metodo que permita obtener todos los detalles que apuntan a una compra (o idCompra)
+
+Modificar Base de Datos: detalle_compras costo -> float, >= 0
+¿Un DetalleCompra deberia poder modificarse?
 Proceso Ventas (ABM complejo)
 
 Agregar campo nombre a producto en la base de datos y en el programa.
