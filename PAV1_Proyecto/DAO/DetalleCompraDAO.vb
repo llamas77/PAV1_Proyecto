@@ -4,6 +4,11 @@ Public Class DetalleCompraDAO
     Implements ObjetoDAO, ObjectFactory
 
     Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
+        insert_in(DataBase.getInstance(), value)
+    End Sub
+
+    Public Sub insert_in(db As DataBase, value As ObjetoVO)
+        ' Pensado para ser ejecutado en un DataBase con transaccion en curso.
         Dim detalle = cast(value)
 
         Dim sql_insertar As String
@@ -13,11 +18,16 @@ Public Class DetalleCompraDAO
         sql_insertar &= detalle.id_compra & ", "
         sql_insertar &= "'" & detalle.costo.ToString.Replace(",", ".") & "', "
         sql_insertar &= detalle.cantidad & ") "
-        Dim tabla = DataBase.getInstance().consulta_sql(sql_insertar)
+        Dim tabla = db.consulta_sql(sql_insertar)
     End Sub
 
     Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
+        update_in(DataBase.getInstance(), value)
+    End Sub
+
+    Public Sub update_in(db As DataBase, value As ObjetoVO)
         Dim detalle = cast(value)
+
         Dim sql_update As String
         sql_update = "UPDATE detalle_compras"
         sql_update &= " SET "
@@ -25,15 +35,21 @@ Public Class DetalleCompraDAO
         sql_update &= "cantidad='" & detalle.cantidad & "'"
         sql_update &= " WHERE codigoProducto='" & detalle.codigo_producto & "'"
         sql_update &= " AND idCompra=" & detalle.id_compra
-        DataBase.getInstance().ejecuta_sql(sql_update)
+        db.ejecuta_sql(sql_update)
     End Sub
 
     Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
+        delete_in(DataBase.getInstance(), value)
+    End Sub
+
+    Public Sub delete_in(db As DataBase, value As ObjetoVO)
         Dim detalle = cast(value)
+
         Dim sql_delete = "DELETE FROM detalle_compras" ' Si no existe en la BD el comando no falla.
         sql_delete &= " WHERE codigoProducto='" & detalle.codigo_producto & "'"
         sql_delete &= " AND idCompra=" & detalle.id_compra
-        DataBase.getInstance().ejecuta_sql(sql_delete)
+        db.ejecuta_sql(sql_delete)
+
         detalle.id_compra = 0
         detalle.codigo_producto = 0
     End Sub

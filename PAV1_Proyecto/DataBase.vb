@@ -10,6 +10,15 @@
     Private command As New OleDb.OleDbCommand
     Private _transaccion As OleDb.OleDbTransaction
 
+    Enum Estado
+        desconectado
+        listo
+        transaccion_listo
+        transaccion_error
+    End Enum
+
+    Private Property _estado As Estado
+
     Private Property transaccion As OleDb.OleDbTransaction
         Get
             Return _transaccion
@@ -17,11 +26,13 @@
         Set(value As OleDb.OleDbTransaction)
             _transaccion = value
             command.Transaction = value
+            _estado = Estado.transaccion_listo
         End Set
     End Property
 
     Public Sub New()
         command.Connection = conexion
+        _estado = Estado.desconectado
     End Sub
 
     Public Shared Function getInstance() As DataBase ' TODO: Renombrar a new_connected()
@@ -33,7 +44,7 @@
     End Function
 
     Public Sub conectar()
-        If Me.conexion.State <> ConnectionState.Closed Then
+        If _estado <> Estado.desconectado Then
             Throw New System.Exception("Ya hay una conexión abierta.")
         End If
         conexion.ConnectionString = cadena_conexion
@@ -43,6 +54,8 @@
             MsgBox("No se puede establecer una conexion con la base de datos", MsgBoxStyle.Critical, "Error")
             Exit Sub
         End Try
+
+        _estado = Estado.listo
     End Sub
 
     Public Sub iniciar_transaccion()
@@ -57,6 +70,7 @@
         If transaccion Is Nothing Then ' Solo cierra si no hay transaccion pendiente.
             If conexion IsNot Nothing Then
                 conexion.Close()
+                _estado = Estado.desconectado
             Else
                 Throw New System.Exception("No hay ninguna conexion abierta.")
             End If
@@ -66,15 +80,23 @@
     Public Sub cerrar_transaccion()
         transaccion.Commit()
         transaccion = Nothing
+        _estado = Estado.listo
     End Sub
 
     Public Sub cancelar_transaccion()
         transaccion.Rollback()
-        transaccion = Nothing
+        _estado = Estado.transaccion_error
     End Sub
 
     Public Function consulta_sql(ByVal sql As String) As DataTable
         ' DOC: Ejecuta una consulta y retorna el resultado.
+        If conexion Is Nothing Then
+            Throw New System.Exception("No hay una conexion abierta con la base de datos.")
+        End If
+        If _estado = Estado.transaccion_error Then
+            Return Nothing
+        End If
+
         Dim tabla As New DataTable
 
         command.CommandText = sql
@@ -97,6 +119,9 @@
         ' DOC: Ejecuta una consulta que no trae resultados o los ignora.
         If conexion Is Nothing Then
             Throw New System.Exception("No hay una conexion abierta con la base de datos.")
+        End If
+        If _estado = Estado.transaccion_error Then
+            Exit Sub
         End If
 
         command.CommandText = sql

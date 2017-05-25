@@ -4,26 +4,112 @@ Public Class CompraDAO
     Implements ObjetoDAO, ObjectFactory
 
     Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
-        Throw New NotImplementedException()
+        Dim compra = cast(value)
+        Dim db As New DataBase
+        db.conectar()
+        db.iniciar_transaccion()
+
+        Dim sql_insertar As String
+        sql_insertar = "INSERT INTO compras (fechaCompra, idProveedor)"
+        sql_insertar &= " VALUES ("
+        sql_insertar &= "convert(date, '" & compra.fecha_compra & "', 103)), "
+        sql_insertar &= compra.id_proveedor & ") "
+        sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
+        Dim tabla = db.consulta_sql(sql_insertar)
+        compra.id = tabla(0)(0)
+
+        Dim detalleDAO As New DetalleCompraDAO
+        For Each detalle In compra.detalle
+            detalle.id_compra = compra.id
+            detalleDAO.insert_in(db, detalle)
+        Next
+        db.cerrar_transaccion()
+        db.desconectar()
     End Sub
 
     Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
-        Throw New NotImplementedException()
+        Dim compra = cast(value)
+        Dim sql_update As String
+        sql_update = "UPDATE compras"
+        sql_update &= " SET "
+        sql_update &= "fechaCompra=convert(date, '" & compra.fecha_compra & "', 103)), "
+        sql_update &= "idProveedor=" & compra.id_proveedor
+        sql_update &= " WHERE idCompra=" & compra.id
+
+        Dim db As New DataBase
+        db.conectar()
+        db.iniciar_transaccion()
+        db.ejecuta_sql(sql_update)
+
+        Dim detalleDAO As New DetalleCompraDAO
+        For Each detalle In compra.detalle
+            If detalle.id_compra <> compra.id Then
+                db.cancelar_transaccion()
+                Throw New System.Exception("El ID del detalle es distinto del de la compra.")
+            End If
+
+            detalleDAO.update_in(db, detalle)
+        Next
+        db.cerrar_transaccion()
+        db.desconectar()
     End Sub
 
     Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
-        Throw New NotImplementedException()
+        Dim compra = cast(value)
+
+        Dim sql_delete = "DELETE FROM compras" ' Si no existe en la BD el comando no falla.
+        sql_delete &= " WHERE idCompra=" & compra.id
+
+        Dim db As New DataBase
+        db.conectar()
+        db.iniciar_transaccion()
+
+        Dim detalleDAO As New DetalleCompraDAO
+        For Each detalle In compra.detalle
+            If detalle.id_compra <> compra.id Then
+                db.cancelar_transaccion()
+                Throw New System.Exception("El ID del detalle es distinto del de la compra.")
+            End If
+            detalleDAO.delete_in(db, detalle)
+        Next
+        db.ejecuta_sql(sql_delete)
+        db.cerrar_transaccion()
+        db.desconectar()
+
+        compra.id = 0
     End Sub
 
     Public Function all() As DataTable Implements ObjetoDAO.all
         Dim sql_select = "SELECT idCompra as id, fechaCompra as fecha_compra, "
-        sql_select &= " idProveedor as id_proveedor, 'NotImplemented' as detalle"
+        sql_select &= " idProveedor as id_proveedor, NULL as detalle"
         sql_select &= " FROM compras"
-        Return DataBase.getInstance().consulta_sql(sql_select)
+        Dim datos = DataBase.getInstance().consulta_sql(sql_select)
+        Dim detalle As New DetalleCompraDAO
+        For Each dato In datos.Rows
+            dato("detalle") = detalle.all_from_compra(dato("id"))
+        Next
+        Return datos
     End Function
 
     Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
-        Throw New NotImplementedException()
+        Dim compra = cast(value)
+        ' DOC: determina si existe el vendedor en la BD, según PK
+
+        If compra.id > 0 Then
+            Dim sql = "SELECT TOP 1 idCompra FROM compras WHERE idCompra=" & compra.id
+            Dim response = DataBase.getInstance().consulta_sql(sql)
+            Return response.Rows.Count = 1
+        Else
+            Return False
+        End If
+    End Function
+
+    Private Function cast(value As ObjetoVO) As CompraVO
+        If TypeOf value Is CompraVO Then
+            Return value
+        Else
+            Throw New System.Exception("Error: CompraDAO solo admite objetos CompraVO")
+        End If
     End Function
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
