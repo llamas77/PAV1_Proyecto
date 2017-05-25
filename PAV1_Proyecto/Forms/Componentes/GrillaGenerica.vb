@@ -44,34 +44,24 @@ Public Class GrillaGenerica
         execute_resize()
     End Sub
 
-    Private Sub execute_resize()
-        '
-        ' AutoSize Manual para corregir el bug del espacio en blanco a la derecha.
-        ' Cambia el ancho del objeto para mostrar lo necesario. Si es menos que el mínimo
-        ' permitido, alarga la ultima columna.
-        '
-        Dim width As Integer = 0
-        For Each columna In Me.column_ids
-            If Columns(columna).Visible Then
-                Columns(columna).Width = Columns(columna).GetPreferredWidth(DataGridViewAutoSizeColumnMode.AllCells, True)
-                width += Columns(columna).Width
-            End If
-        Next
-        Me.Width = width + 3
-        If width < MinimumSize.Width Then
-            If visible_col_name IsNot Nothing Then ' Todavia no hay ninguna columna visible
-                Columns(visible_col_name).Width = Columns(visible_col_name).Width + MinimumSize.Width - width - 3
-            End If
-        End If
-    End Sub
-
-    Public Sub recargar(valores As DataTable) Implements ObjetoGrilla.recargar
+    Public Sub recargar(valores As List(Of ObjetoVO)) Implements ObjetoGrilla.recargar
         ' Vacia toda la grilla y la carga de nuevo con los elementos indicados.
         ' Guarda el indice del elemento seleccionado y lo reestablece despues.
         Dim index = vaciar()
-        cargar(valores)
+        For Each valor As ObjetoVO In valores
+            add_row(valor.toDictionary())
+        Next
         set_index(index)
         execute_resize()
+    End Sub
+
+    Private Sub add_row(datos As Dictionary(Of String, Object))
+        Dim i = Me.Rows.Add()
+        For Each nombre In column_ids
+            If datos.ContainsKey(nombre) Then ' Si el diccionario tiene un formato incorrecto cargara en blanco.
+                Me.Rows(i).Cells(nombre).Value = datos(nombre)
+            End If
+        Next
     End Sub
 
     Private Sub add_column(campo As Campo)
@@ -126,17 +116,7 @@ Public Class GrillaGenerica
         End If
     End Sub
 
-    Private Sub cargar(datos As DataTable)
-        ' TODO: Validar que el DataTable tiene un formato aceptable (columnas con los nombres requeridos.)
-        '   -- Por el momento no lo implemento porque es responsabilidad del programador que tenga el formato
-        '   -- correcto.
-        For i = 0 To datos.Rows.Count() - 1
-            Me.Rows.Add()
-            For Each nombre In column_ids
-                Me.Rows(i).Cells(nombre).Value = datos(i)(nombre)
-            Next
-        Next
-    End Sub
+
 
     Private Sub GrillaGenerica_LocationChanged(sender As Object, e As EventArgs) Handles Me.LocationChanged
         '
@@ -179,4 +159,26 @@ Public Class GrillaGenerica
 
         Return objetos
     End Function
+
+    Private Sub execute_resize()
+        '
+        ' AutoSize Manual para corregir el bug del espacio en blanco a la derecha.
+        ' Cambia el ancho del objeto para mostrar lo necesario. Si es menos que el mínimo
+        ' permitido, alarga la ultima columna.
+        '
+        Dim width As Integer = 0
+        For Each columna In Me.column_ids
+            If Columns(columna).Visible Then
+                Columns(columna).Width = Columns(columna).GetPreferredWidth(DataGridViewAutoSizeColumnMode.AllCells, True)
+                width += Columns(columna).Width
+            End If
+        Next
+        Me.Width = width + 3
+        If width < MinimumSize.Width Then
+            If visible_col_name IsNot Nothing Then ' Todavia no hay ninguna columna visible
+                Columns(visible_col_name).Width = Columns(visible_col_name).Width + MinimumSize.Width - width - 3
+            End If
+        End If
+    End Sub
+
 End Class

@@ -3,10 +3,12 @@
 Public Class ClienteGrilla
     Implements ObjetoGrilla
 
-    Public Sub recargar(value As DataTable) Implements ObjetoGrilla.recargar
+    Public Sub recargar(valores As List(Of ObjetoVO)) Implements ObjetoGrilla.recargar
         Dim index = vaciar()
         ' TODO: Validar que el DataTable tiene un formato aceptable (minimo de columnas)
-        cargar(value)
+        For Each valor As ObjetoVO In valores
+            add_row(valor.toDictionary())
+        Next
         set_index(index)
     End Sub
 
@@ -41,12 +43,10 @@ Public Class ClienteGrilla
         End If
     End Sub
 
-    Private Sub cargar(clientes As DataTable)
-        For i = 0 To clientes.Rows.Count() - 1 ' Recorre filas
-            grilla_datos.Rows.Add()
-            For Each column_name In {"nroCliente", "nombre", "apellido", "telefono", "direccion", "idTipoCliente", "nombreIdTipoCliente"}
-                grilla_datos.Rows(i).Cells(column_name).Value = clientes(i)(column_name)
-            Next
+    Private Sub add_row(clientes As Dictionary(Of String, Object))
+        Dim i = grilla_datos.Rows.Add()
+        For Each column_name In {"nroCliente", "nombre", "apellido", "telefono", "direccion", "idTipoCliente", "nombreIdTipoCliente"}
+            grilla_datos.Rows(i).Cells(column_name).Value = clientes(i)(column_name)
         Next
     End Sub
 

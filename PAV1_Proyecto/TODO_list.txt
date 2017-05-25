@@ -24,3 +24,7 @@ Mejorar gestion de errores en las validaciones para hacerlos mas informativos.
 	-- Probablemente sirva que is_valid retorne un array de errores, o Nothing si es valido.
 Unificar ABM's para funcionar con form's genericos -- Para poder cambiar la interfaz de todos los ABM a la vez.
 Unificar Nomenclatura de varibles.
+
+Tareas pendientes por clase:
+- GrillaGenerica.execute_resize() : Cuando el tamaño es mayor al minimo requerido deberia ampliar todas las columnas
+	por igual en lugar de la ultima.

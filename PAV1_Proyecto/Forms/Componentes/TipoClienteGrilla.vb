@@ -4,10 +4,12 @@ Public Class TipoClienteGrilla
     Inherits UserControl
     Implements ObjetoGrilla
 
-    Public Sub recargar(valores As DataTable) Implements ObjetoGrilla.recargar
+    Public Sub recargar(valores As List(Of ObjetoVO)) Implements ObjetoGrilla.recargar
         Dim index = vaciar()
-        ' TODO: Validar que el DataTable tiene un formato aceptable (minimo de columnas)
-        cargar(valores)
+
+        For Each valor As ObjetoVO In valores
+            add_row(valor.toDictionary())
+        Next
         set_index(index)
     End Sub
 
@@ -40,13 +42,11 @@ Public Class TipoClienteGrilla
         End If
     End Sub
 
-    Private Sub cargar(tipos_clientes As DataTable)
-        For i = 0 To tipos_clientes.Rows.Count() - 1
-            grilla_datos.Rows.Add()
-            grilla_datos.Rows(i).Cells(0).Value = tipos_clientes(i)(0)
-            grilla_datos.Rows(i).Cells(1).Value = tipos_clientes(i)(1)
-            grilla_datos.Rows(i).Cells(2).Value = tipos_clientes(i)(2)
-        Next
+    Private Sub add_row(tipos_clientes As Dictionary(Of String, Object))
+        Dim i = grilla_datos.Rows.Add()
+        grilla_datos.Rows(i).Cells(0).Value = tipos_clientes.ElementAt(0)
+        grilla_datos.Rows(i).Cells(1).Value = tipos_clientes.ElementAt(1)
+        grilla_datos.Rows(i).Cells(2).Value = tipos_clientes.ElementAt(2)
     End Sub
 
     Public Overloads Sub Focus() Implements ObjetoGrilla.Focus

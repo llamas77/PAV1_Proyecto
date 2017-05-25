@@ -8,7 +8,7 @@
     ' Limpia la pantalla (si esta mostrando objetos) y pasa a mostrar el listado
     ' pasado como parametro.
     '
-    Sub recargar(value As DataTable)
+    Sub recargar(value As List(Of ObjetoVO))
 
     '
     ' Retorna el ObjetoVO seleccionado por el usuario, o Nothing si no hay seleccion.
