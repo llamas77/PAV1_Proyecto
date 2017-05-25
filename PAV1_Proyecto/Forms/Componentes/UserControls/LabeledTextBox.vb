@@ -29,11 +29,7 @@ Public Class LabeledTextBox
             Return txt_caja.Text.Trim()
         End Get
         Set(value As Object)
-            If TypeOf value Is String Then
-                txt_caja.Text = value
-            Else
-                Throw New System.Exception("Un TextBox solo acepta valores del tipo String")
-            End If
+            txt_caja.Text = value.ToString
         End Set
     End Property
 

@@ -55,12 +55,29 @@ Public Class ProductoDAO
         producto._grupo = Nothing
     End Sub
 
-    Public Function all() As DataTable Implements ObjetoDAO.all
+    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
         Dim sql_select = ""
         sql_select &= "SELECT codigoProducto, productos.idGrupo, grupos.nombre, costo, convert(char(10), fechaLista, 103) as fechaLista, nivelReposicion, ubicacion, stock FROM productos "
         sql_select &= "INNER JOIN grupos on grupos.idGrupo = productos.idGrupo"
         Dim tabla = DataBase.getInstance().consulta_sql(sql_select)
-        Return tabla
+        Return dataTable_to_List(tabla)
+    End Function
+
+    Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
+        Dim lista As New List(Of ObjetoVO)
+        Dim params = {"codigoProducto", "idGrupo", "nombre", "costo", "fechaLista", "nivelReposicion",
+                      "ubicacion", "stock"}
+        Dim diccionario As New Dictionary(Of String, Object)
+        For Each param In params
+            diccionario.Add(param, Nothing)
+        Next
+        For Each row In tabla.Rows
+            For Each param In params
+                diccionario(param) = row(param)
+            Next
+            lista.Add(new_instance(diccionario))
+        Next
+        Return lista
     End Function
 
     Public Function search_code(db As DataBase, codigo As String) As ObjetoVO

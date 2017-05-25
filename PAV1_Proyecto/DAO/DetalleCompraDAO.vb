@@ -54,7 +54,7 @@ Public Class DetalleCompraDAO
         detalle.codigo_producto = 0
     End Sub
 
-    Public Function all() As DataTable Implements ObjetoDAO.all
+    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
         Throw New NotImplementedException()
     End Function
 

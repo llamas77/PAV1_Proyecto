@@ -2,12 +2,27 @@
 Public Class EquiposDAO
     Implements ObjetoDAO, ObjectFactory
 
-    Public Function all() As DataTable Implements ObjetoDAO.all
+    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
         Dim sql_select = "SELECT id, equipos.idMarca, marcas.nombre as marca, modelo FROM equipos INNER JOIN marcas ON equipos.idMarca = marcas.idMarca "
-        Return DataBase.getInstance().consulta_sql(sql_select)
+        Return dataTable_to_List(DataBase.getInstance().consulta_sql(sql_select))
     End Function
 
+    Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
+        Dim lista As New List(Of ObjetoVO)
+        Dim params = {"id", "idMarca", "marca", "modelo"}
+        Dim diccionario As New Dictionary(Of String, Object)
+        For Each param In params
+            diccionario.Add(param, Nothing)
+        Next
 
+        For Each row In tabla.Rows
+            For Each param In params
+                diccionario(param) = row(param)
+            Next
+            lista.Add(new_instance(diccionario))
+        Next
+        Return lista
+    End Function
     Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
         Dim equipos = cast(value)
 

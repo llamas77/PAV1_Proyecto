@@ -3,12 +3,28 @@
 Public Class ClienteDAO
     Implements ObjetoDAO, ObjectFactory
 
-    Public Function all() As DataTable Implements ObjetoDAO.all
-        Dim sql_select = "SELECT nroCliente, clientes.nombre, apellido, direccion, telefono, idTipoCliente , tipos_Cliente.nombre as nombreIdTipoCliente "
+    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
+        Dim sql_select = "SELECT nroCliente, nombre, apellido, direccion, telefono, idTipoCliente , tipos_Cliente.nombre as nombreIdTipoCliente "
         sql_select &= "FROM clientes INNER JOIN tipos_Cliente ON idTipoCliente = idTipo"
-        Return DataBase.getInstance().consulta_sql(sql_select)
+        Dim datos = DataBase.getInstance().consulta_sql(sql_select)
+        Return dataTable_to_List(datos)
     End Function
 
+    Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
+        Dim lista As New List(Of ObjetoVO)
+        For Each row In tabla.Rows
+            lista.Add(New ClienteVO With {
+                ._nro = row("nroCliente"),
+                ._nombre = row("nombre"),
+                ._apellido = row("apellido"),
+                ._telefono = row("telefono"),
+                ._direccion = row("direccion"),
+                ._idTipoCliente = row("idTipoCliente"),
+                ._nombreIdTipoCliente = row("nombreIdTipoCliente")}
+                )
+        Next
+        Return lista
+    End Function
 
     Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
         Dim cliente = cast(value)

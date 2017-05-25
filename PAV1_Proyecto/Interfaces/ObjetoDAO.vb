@@ -8,7 +8,7 @@
     ' Retorna un DataTable con todos los ObjetosVO de la base de datos de forma completa.
     ' Generalmente lo usamos para cargar una grilla con todos los objetos.
     '
-    Function all() As DataTable
+    Function all() As List(Of ObjetoVO)
 
     '
     ' Almacena el objeto.

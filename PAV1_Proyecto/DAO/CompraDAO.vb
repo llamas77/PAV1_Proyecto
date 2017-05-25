@@ -96,7 +96,7 @@ Public Class CompraDAO
         compra.id = 0
     End Sub
 
-    Public Function all() As DataTable Implements ObjetoDAO.all
+    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
         Dim dataSet As New GrillaCompras
         Dim dataTable As DataTable = dataSet.compras
 
@@ -119,7 +119,24 @@ Public Class CompraDAO
             last_row("detalle") = detalle.all_from_compra(compra("id"))
         Next
 
-        Return dataTable
+        Return dataTable_to_List(dataTable)
+    End Function
+
+    Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
+        Dim lista As New List(Of ObjetoVO)
+        Dim params = {"id", "fecha_compra", "id_proveedor", "detalle"}
+        Dim diccionario As New Dictionary(Of String, Object)
+        For Each param In params
+            diccionario.Add(param, Nothing)
+        Next
+
+        For Each row In tabla.Rows
+            For Each param In params
+                diccionario(param) = row(param)
+            Next
+            lista.Add(new_instance(diccionario))
+        Next
+        Return lista
     End Function
 
     Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists

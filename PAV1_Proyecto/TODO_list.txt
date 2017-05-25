@@ -4,7 +4,6 @@ Proceso Compras (ABM complejo)
 	Hecho parcialmente.
 	Hay que mejorar el funcionamiento de la clase Detalle y el metodo CompraDAO.all() -- Usar un tipo de grilla que
 		acepte ObjetoVO en lugar de solo DataTable.
-	Hay que implementar las alteraciones de Stock.
 	Implementar validaciones.
 	
 ¿Un DetalleCompra deberia poder modificarse?
@@ -28,3 +27,9 @@ Unificar Nomenclatura de varibles.
 Tareas pendientes por clase:
 - GrillaGenerica.execute_resize() : Cuando el tamaño es mayor al minimo requerido deberia ampliar todas las columnas
 	por igual en lugar de la ultima.
+- ObjetoVO : Tener composicion de objetos. Por cada FK tener una propiedad que retorne el ID y otra que retorne el objeto
+	completo, puede que conociendo el ID 
+
+Tareas pendientes generales:
+- Mejorar rendimiento disminuyendo conversiones de tipos de datos. Tratar de que todos los objetos entiendan de ObjetoVO
+	y simplificar su creacion a partir de DataTable.

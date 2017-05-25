@@ -39,13 +39,31 @@ Public Class GananciaDAO
         ganancia._tipo_cliente = Nothing
     End Sub
 
-    Public Function all() As DataTable Implements ObjetoDAO.all
+    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
         Dim sql_select = ""
         sql_select &= "SELECT ganancias.idGrupo as id_grupo, ganancias.idTipo as id_tipo_cliente, ganancias.ganancia, "
         sql_select &= "tipos_cliente.nombre as nombre_tipo_cliente, grupos.nombre as nombre_grupo FROM ganancias "
         sql_select &= " INNER JOIN tipos_cliente ON ganancias.idTipo=tipos_cliente.idTipo"
         sql_select &= " INNER JOIN grupos ON ganancias.idGrupo=grupos.idGrupo"
-        Return DataBase.getInstance().consulta_sql(sql_select)
+        Return dataTable_to_List(DataBase.getInstance().consulta_sql(sql_select))
+    End Function
+
+    Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
+        Dim lista As New List(Of ObjetoVO)
+        Dim params = {"id_grupo", "id_tipo_cliente", "ganancia", "nombre_tipo_cliente",
+                      "nombre_grupo"}
+        Dim diccionario As New Dictionary(Of String, Object)
+        For Each param In params
+            diccionario.Add(param, Nothing)
+        Next
+
+        For Each row In tabla.Rows
+            For Each param In params
+                diccionario(param) = row(param)
+            Next
+            lista.Add(new_instance(diccionario))
+        Next
+        Return lista
     End Function
 
     Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
