@@ -24,8 +24,24 @@ Public Class Detalle
             Return grilla_objeto.get_all()
         End Get
         Set(value As Object)
-            ' No esta probado e idealmente no deberia usarse...
-            grilla_objeto.recargar(value)
+            ' Programado a lo bruto. Solo le permite funcionar con este objeto.
+            If TypeOf value Is List(Of DetalleCompraVO) Then
+                Dim lista As List(Of DetalleCompraVO) = value
+                Dim tabla As New GrillaCompras.detalle_comprasDataTable
+                For Each detalle In lista
+                    tabla.Rows.Add()
+                    Dim last_row = tabla.Rows(tabla.Rows.Count - 1)
+                    last_row("id_compra") = detalle.id_compra
+                    last_row("codigo_producto") = detalle.codigo_producto
+                    last_row("costo") = detalle.costo
+                    last_row("cantidad") = detalle.cantidad
+                Next
+
+                grilla_objeto.recargar(tabla)
+            Else
+                ' No esta probado e idealmente no deberia usarse...
+                grilla_objeto.recargar(value)
+            End If
         End Set
     End Property
 

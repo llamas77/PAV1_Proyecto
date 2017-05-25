@@ -12,7 +12,7 @@ Public Class CompraDAO
         Dim sql_insertar As String
         sql_insertar = "INSERT INTO compras (fechaCompra, idProveedor)"
         sql_insertar &= " VALUES ("
-        sql_insertar &= "convert(date, '" & compra.fecha_compra & "', 103)), "
+        sql_insertar &= "convert(date, '" & compra.fecha_compra & "', 103), "
         sql_insertar &= compra.id_proveedor & ") "
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
         Dim tabla = db.consulta_sql(sql_insertar)
@@ -80,15 +80,29 @@ Public Class CompraDAO
     End Sub
 
     Public Function all() As DataTable Implements ObjetoDAO.all
-        Dim sql_select = "SELECT idCompra as id, fechaCompra as fecha_compra, "
-        sql_select &= " idProveedor as id_proveedor, NULL as detalle"
+        Dim dataSet As New GrillaCompras
+        Dim dataTable As DataTable = dataSet.compras
+
+        Dim sql_select = "SELECT idCompra as id, convert(char(10), fechaCompra, 103) as fecha_compra, "
+        sql_select &= " idProveedor as id_proveedor"
         sql_select &= " FROM compras"
-        Dim datos = DataBase.getInstance().consulta_sql(sql_select)
+        Dim compras = DataBase.getInstance().consulta_sql(sql_select)
         Dim detalle As New DetalleCompraDAO
-        For Each dato In datos.Rows
-            dato("detalle") = detalle.all_from_compra(dato("id"))
+
+        Dim detalles As New DataTable
+        detalles.Columns.Add()
+        detalles.Columns(0).ColumnName = "detalle"
+
+        For Each compra As DataRow In compras.Rows
+            dataTable.Rows.Add()
+            Dim last_row = dataTable.Rows(dataTable.Rows.Count - 1)
+            last_row("id") = compra("id")
+            last_row("fecha_compra") = compra("fecha_compra")
+            last_row("id_proveedor") = compra("id_proveedor")
+            last_row("detalle") = detalle.all_from_compra(compra("id"))
         Next
-        Return datos
+
+        Return dataTable
     End Function
 
     Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
@@ -140,7 +154,9 @@ Public Class CompraDAO
             .id_proveedor = valores("id_proveedor")
         }
 
-        If TypeOf valores("detalle") Is List(Of ObjetoVO) Then
+        If TypeOf valores("detalle") Is List(Of ObjetoVO) _
+            Or TypeOf valores("detalle") Is List(Of DetalleCompraVO) Then
+
             Dim lista As New List(Of DetalleCompraVO)
             For Each objeto In valores("detalle")
                 lista.Add(DirectCast(objeto, DetalleCompraVO))

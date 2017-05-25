@@ -8,7 +8,7 @@ Public Class CompraVO
 
     Public Property id As Integer
 
-    Public Property fecha_compra As Date
+    Public Property fecha_compra As String
 
     Public Property id_proveedor As Integer
         Get

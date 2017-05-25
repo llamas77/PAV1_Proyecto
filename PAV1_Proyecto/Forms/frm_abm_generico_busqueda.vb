@@ -25,7 +25,8 @@
     End Sub
 
     Private Sub frm_abm_generico_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        grilla_objeto.recargar(DAO_objeto.all())
+        Dim d = DAO_objeto.all()
+        grilla_objeto.recargar(d)
     End Sub
 
     Private Sub btn_nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
