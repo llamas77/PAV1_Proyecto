@@ -1,7 +1,11 @@
 ﻿Tareas pendientes (Alta prioridad primero)
 
-Proceso Compras (ABM complejo) -- Sugiero textBoxs que vayan cargando un datatable 
-	(añadiendo items/detalle_compras) y un boton finalizar para cargar la compra
+Proceso Compras (ABM complejo) 
+	Hecho parcialmente.
+	Falta toda la implementacion del SQL 
+	y ver como manejar el detalle en la grilla de CompraDAO (el datatable que otorga .all() no alcanza, se
+	tiene que comunicar con DetalleDAO)
+	DetalleDAO tiene que tener un metodo que permita obtener todos los detalles que apuntan a una compra (o idCompra)
 Proceso Ventas (ABM complejo)
 
 Agregar campo nombre a producto en la base de datos y en el programa.
