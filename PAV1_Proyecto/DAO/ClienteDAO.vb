@@ -7,8 +7,8 @@ Public Class ClienteDAO
         If db Is Nothing Then
             db = DataBase.getInstance()
         End If
-        Dim sql_select = "SELECT nroCliente, nombre, apellido, direccion, telefono, idTipoCliente , tipos_Cliente.nombre as nombreIdTipoCliente "
-        sql_select &= "FROM clientes INNER JOIN tipos_Cliente ON idTipoCliente = idTipo"
+        Dim sql_select = "SELECT nroCliente, c.nombre, apellido, direccion, telefono, idTipoCliente, tipos_Cliente.nombre as nombreIdTipoCliente "
+        sql_select &= "FROM clientes c INNER JOIN tipos_Cliente ON idTipoCliente = idTipo"
         Dim datos = db.consulta_sql(sql_select)
         Return dataTable_to_List(datos)
     End Function
