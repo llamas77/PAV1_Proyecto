@@ -29,7 +29,10 @@ Tareas pendientes por clase:
 	por igual en lugar de la ultima.
 - ObjetoVO : Tener composicion de objetos. Por cada FK tener una propiedad que retorne el ID y otra que retorne el objeto
 	completo, puede que conociendo el ID 
+- LabeledTextBox : La mascara porcentaje debe comunicarse con Double, pero mostrar al usuario una cadena con %
+- GrupoDAO : Implementar interfaces, adaptar metodos a la interfaz. Usar controles genericos.
 
 Tareas pendientes generales:
+- Adaptar todos los comboBox para que su value sea un objeto. Ver GananciaDAO como guia.
 - Mejorar rendimiento disminuyendo conversiones de tipos de datos. Tratar de que todos los objetos entiendan de ObjetoVO
 	y simplificar su creacion a partir de DataTable.

@@ -7,6 +7,10 @@ Public Class GrupoVO
     Dim nombre As String
     Dim familia As FamiliaVO
 
+    Public Sub New()
+        ' Para poder crear el objeto usando With.
+    End Sub
+
     Public Sub New(ByVal id As Integer, ByVal nombre As String, ByRef familia As FamiliaVO)
         If id > 0 Then ' Valida que el ID sea >= 0 sino lo pone en 0
             Me.id = id

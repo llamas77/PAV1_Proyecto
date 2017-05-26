@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class GrupoDAO
-    Implements ComboDataSource
+    Implements ObjetoDAO
 
     ' DOC: (MarcaDataAccessObject) Esta clase se encarga de las consultas SQL a la tabla de Grupos.
     '      Como parametros de entrada/salida generalmente trabaja con GrupoVO.
@@ -60,6 +60,14 @@ Public Class GrupoDAO
         End If
     End Function
 
+    Private Function cast(value As ObjetoVO) As GrupoVO
+        If TypeOf value Is GrupoVO Then
+            Return value
+        Else
+            Throw New System.Exception("Error: GrupoDAO solo admite objetos GrupoVO")
+        End If
+    End Function
+
     Public Shared Function is_name_in_use(ByRef grupo As GrupoVO) As Boolean
         ' DOC: determina si existe el nombre de un grupo en la BD
 
@@ -69,8 +77,57 @@ Public Class GrupoDAO
         Return response.Rows.Count = 1
     End Function
 
-    Public Function comboSource() As DataTable Implements ComboDataSource.comboSource
-        Dim sql_select = "SELECT idGrupo, nombre FROM GRUPOS "
-        Return DataBase.getInstance().consulta_sql(sql_select)
+    Private Function ObjetoDAO_all() As List(Of ObjetoVO) Implements ObjetoDAO.all
+        Dim lista As New List(Of ObjetoVO)
+        For Each row In all().Rows()
+            lista.Add(New GrupoVO With {
+                      ._id = row("id"),
+                      ._nombre = row("nombre"),
+                      ._familia = row("id_familia")})
+        Next
+        Return lista
     End Function
+
+    Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
+        insert(cast(value))
+    End Sub
+
+    Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
+        update(cast(value))
+    End Sub
+
+    Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
+        delete(cast(value))
+    End Sub
+
+    Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
+        exists(cast(value))
+    End Function
+
+    Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
+        Throw New NotImplementedException()
+    End Function
+
+    Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
+        Throw New NotImplementedException()
+    End Function
+
+    'Public Function comboSource() As DataTable Implements ComboDataSource.comboSource
+    '    Dim tabla As New DataTable
+    '    tabla.Columns.Add("grupo")
+    '    tabla.Columns.Add("nombre_grupo")
+
+    '    Dim tipo_cliente As TipoClienteVO
+    '    For Each valor In all().Rows
+    '        tipo_cliente = New TipoClienteVO With {
+    '            ._id = valor("id"),
+    '            ._nombre = valor("nombre"),
+    '            ._descripcion = valor("descripcion")}
+
+    '        Dim row = tabla.Rows.Add()
+    '        row(0) = tipo_cliente
+    '        row(1) = tipo_cliente._nombre
+    '    Next
+    '    Return tabla
+    'End Function
 End Class

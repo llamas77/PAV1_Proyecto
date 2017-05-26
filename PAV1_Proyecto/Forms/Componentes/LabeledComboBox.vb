@@ -26,17 +26,27 @@ Public Class LabeledComboBox
         End Set
     End Property
 
-    Public WriteOnly Property _source As ComboDataSource
-        Set(value As ComboDataSource)
-            Dim datos As DataTable = value.comboSource()
-            cmb_combo.DataSource = datos
-            cmb_combo.ValueMember = datos.Columns(0).ColumnName
-            cmb_combo.DisplayMember = datos.Columns(1).ColumnName
+    Public WriteOnly Property _source As ObjetoDAO
+        Set(value As ObjetoDAO)
+            Dim objetos As List(Of ObjetoVO) = value.all()
+            Dim tabla As New DataTable
+            tabla.Columns.Add("value")
+            tabla.Columns.Add("display")
+            cmb_combo.ValueMember = "value"
+            cmb_combo.DisplayMember = "display"
+
+            For Each valor As ObjetoVO In objetos
+                Dim row = tabla.NewRow()
+                row("value") = valor
+                row("display") = valor.toString()
+            Next
+
+            cmb_combo.DataSource = tabla
             cmb_combo.SelectedIndex = -1
         End Set
     End Property
 
-    Public Sub New(id As String, label As String, Optional datos As ComboDataSource = Nothing)
+    Public Sub New(id As String, label As String, Optional datos As ObjetoDAO = Nothing)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().

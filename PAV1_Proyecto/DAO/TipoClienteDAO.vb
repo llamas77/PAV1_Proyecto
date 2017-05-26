@@ -96,8 +96,16 @@ Public Class TipoClienteDAO
     End Function
 
     Public Function comboSource() As DataTable Implements ComboDataSource.comboSource
-        Dim sql_select = "SELECT idTipo, nombre FROM tipos_cliente"
-        Return DataBase.getInstance().consulta_sql(sql_select)
+        Dim tabla As New DataTable
+        tabla.Columns.Add("tipo_cliente")
+        tabla.Columns.Add("nombre_tipo_cliente")
+
+        For Each tipo_cliente As TipoClienteVO In Me.all()
+            Dim row = tabla.Rows.Add()
+            row(0) = tipo_cliente
+            row(1) = tipo_cliente._nombre
+        Next
+        Return tabla
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance

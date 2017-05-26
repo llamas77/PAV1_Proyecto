@@ -11,7 +11,7 @@ Public Class GananciaDAO
         sql_insertar &= " VALUES ("
         sql_insertar &= ganancia._grupo._id & ", "
         sql_insertar &= ganancia._tipo_cliente._id & ", "
-        sql_insertar &= ganancia._ganancia.ToString.Replace(",", ".") & ")"
+        sql_insertar &= ganancia._proporcion_ganancia.ToString.Replace(",", ".") & ")"
         ' Nota: No es necesario retornar el ID porque ya lo estamos especificando, no lo asigna la BD.
         DataBase.getInstance().ejecuta_sql(sql_insertar)
     End Sub
@@ -23,7 +23,7 @@ Public Class GananciaDAO
         sql_update &= " SET "
         sql_update &= "idGrupo=" & ganancia._grupo._id & ", "
         sql_update &= "idTipo=" & ganancia._tipo_cliente._id & ", "
-        sql_update &= "ganancia=" & ganancia._ganancia.ToString.Replace(",", ".") 
+        sql_update &= "ganancia=" & ganancia._proporcion_ganancia.ToString.Replace(",", ".")
         sql_update &= " WHERE idTipo=" & ganancia._tipo_cliente._id
         sql_update &= " AND idGrupo=" & ganancia._grupo._id
         DataBase.getInstance().ejecuta_sql(sql_update)
@@ -35,8 +35,6 @@ Public Class GananciaDAO
         sql_delete &= " WHERE idTipo=" & ganancia._tipo_cliente._id
         sql_delete &= " AND idGrupo=" & ganancia._grupo._id
         DataBase.getInstance().ejecuta_sql(sql_delete)
-        ganancia._grupo = Nothing 'DUDA: Para que vacias esto? no se podría destruir la GananciaVO directamente?
-        ganancia._tipo_cliente = Nothing
     End Sub
 
     Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
@@ -89,42 +87,53 @@ Public Class GananciaDAO
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("id_grupo", "Grupo", maskType:=Campo.MaskType.comboBox, combo_data_source:=New GrupoDAO))
-        campos.Add(New Campo("id_tipo_cliente", "Tipo de Cliente", maskType:=Campo.MaskType.comboBox, combo_data_source:=New TipoClienteDAO))
-        campos.Add(New Campo("porcentaje_ganancia", "Ganancia", maskType:=Campo.MaskType.porcentaje))
+        campos.Add(New Campo With {._id = "grupo", ._name = "Grupo",
+                                   ._maskType = Campo.MaskType.comboBox,
+                                   ._combo_data_source = New GrupoDAO})
+        campos.Add(New Campo With {._id = "tipo_cliente", ._name = "Tipo de Cliente",
+                                   ._maskType = Campo.MaskType.comboBox,
+                                   ._combo_data_source = New TipoClienteDAO})
+        campos.Add(New Campo With {._id = "porcentaje_ganancia", ._name = "Ganancia",
+                                   ._maskType = Campo.MaskType.porcentaje})
         Return New ControlGenerico(campos, Me)
     End Function
 
     Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("id_grupo", "", visible:=False))
-        campos.Add(New Campo("nombre_grupo", "Grupo"))
-        campos.Add(New Campo("id_tipo_cliente", "", visible:=False))
-        campos.Add(New Campo("nombre_tipo_cliente", "Tipo de Cliente"))
-        campos.Add(New Campo("ganancia", "Proporcion de Ganancia"))
+        campos.Add(New Campo With {._id = "id_grupo", ._visible = False})
+        campos.Add(New Campo With {._id = "grupo", ._name = "Grupo"})
+        campos.Add(New Campo With {._id = "tipo_cliente", ._name = "Tipo de Cliente"})
         Return New GrillaGenerica(campos, Me)
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
         ' Debe poder crear un ObjetoVO recibiendo datos con la estructura de una grilla o un control.
+        Dim objetoVO As New GananciaVO()
 
-        Dim ganancia As Double
-        If valores.ContainsKey("ganancia") Then
-            ganancia = valores("ganancia")
+        If valores.ContainsKey("proporcion_ganancia") Then
+            objetoVO._proporcion_ganancia = valores("proporcion_ganancia")
         Else
-            ganancia = valores("porcentaje_ganancia").Replace("%", "") / 100
+            objetoVO._porcentaje_ganancia = valores("porcentaje_ganancia")
         End If
 
-        Dim grupo As New GrupoVO(valores("id_grupo"))
-        If valores.ContainsKey("nombre_grupo") Then
-            grupo._nombre = valores("nombre_grupo")
+        If valores.ContainsKey("grupo") Then
+            objetoVO._grupo = valores("grupo")
+        Else
+            objetoVO._grupo = New GrupoVO With {
+                ._id = valores("id_grupo"),
+                ._nombre = valores("nombre_grupo"),
+                ._familia = valores("familia_grupo")}
         End If
 
-        Dim tipo_cliente As New TipoClienteVO(valores("id_tipo_cliente"))
-        If valores.ContainsKey("nombre_tipo_cliente") Then
-            tipo_cliente._nombre = valores("nombre_tipo_cliente")
+        If valores.ContainsKey("tipo_cliente") Then
+            objetoVO._tipo_cliente = valores("tipo_cliente")
+        Else
+            objetoVO._tipo_cliente = New TipoClienteVO With {
+                ._id = valores("id_tipo_cliente"),
+                ._nombre = valores("nombre_tipo_cliente"),
+                ._descripcion = valores("descripcion_tipo_cliente")}
         End If
 
-        Return New GananciaVO(grupo, tipo_cliente, ganancia)
+        Return objetoVO
     End Function
 End Class
