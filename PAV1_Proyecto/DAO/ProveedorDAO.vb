@@ -4,10 +4,13 @@ Public Class ProveedorDAO
     Implements ObjetoDAO, ObjectFactory, ComboDataSource
 
 
-    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
+    Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim sql_select = "SELECT idProveedor, razonSocial, cuit, domicilio, telefono, email"
         sql_select &= " FROM proveedores"
-        Return dataTable_to_List(DataBase.getInstance().consulta_sql(sql_select))
+        Return dataTable_to_List(db.consulta_sql(sql_select))
     End Function
 
     Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
@@ -27,7 +30,10 @@ Public Class ProveedorDAO
         Return lista
     End Function
 
-    Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
+    Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim proveedor = cast(value)
 
         Dim sql_insertar = "INSERT INTO proveedores (razonSocial, cuit, domicilio, telefono, email)"
@@ -38,11 +44,14 @@ Public Class ProveedorDAO
         sql_insertar &= "'" & proveedor._telefono & "', "
         sql_insertar &= "'" & proveedor._email & "')"
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
-        Dim tabla = DataBase.getInstance().consulta_sql(sql_insertar)
+        Dim tabla = db.consulta_sql(sql_insertar)
         proveedor._id = tabla(0)(0)
     End Sub
 
-    Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
+    Public Sub update(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.update
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim proveedor = cast(value)
         Dim sql_update As String
         sql_update = "UPDATE proveedores"
@@ -52,20 +61,26 @@ Public Class ProveedorDAO
         sql_update &= "telefono='" & proveedor._telefono & "', "
         sql_update &= "email='" & proveedor._email & "'"
         sql_update &= " WHERE idProveedor=" & proveedor._id
-        DataBase.getInstance().ejecuta_sql(sql_update)
+        db.ejecuta_sql(sql_update)
     End Sub
 
 
-    Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
+    Public Sub delete(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.delete
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim proveedor = cast(value)
         Dim sql_delete = "DELETE FROM proveedores"
         sql_delete &= " WHERE idProveedor=" & proveedor._id
-        DataBase.getInstance().ejecuta_sql(sql_delete)
+        db.ejecuta_sql(sql_delete)
         proveedor._id = 0
     End Sub
 
 
-    Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
+    Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim proveedor = cast(value)
 
         Dim sql As String = ""
@@ -75,7 +90,7 @@ Public Class ProveedorDAO
             sql = "SELECT TOP 1 idProveedor FROM proveedores WHERE "
         End If
         sql &= " cuit='" & proveedor._cuit & "'"
-        Dim response = DataBase.getInstance().consulta_sql(sql)
+        Dim response = db.consulta_sql(sql)
         Return response.Rows.Count = 1
     End Function
 

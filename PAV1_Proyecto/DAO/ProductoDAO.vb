@@ -11,7 +11,10 @@ Public Class ProductoDAO
         End If
     End Function
 
-    Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
+    Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim producto = cast(value)
 
         Dim sql_insertar As String
@@ -24,10 +27,13 @@ Public Class ProductoDAO
         sql_insertar &= "'" & producto._ubicacion & "', "
         sql_insertar &= producto._stock & ", "
         sql_insertar &= "convert(date, '" & producto._fechaLista & "', 103))"
-        DataBase.getInstance().ejecuta_sql(sql_insertar)
+        db.ejecuta_sql(sql_insertar)
     End Sub
 
-    Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
+    Public Sub update(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.update
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         update_in(DataBase.getInstance(), value)
     End Sub
 
@@ -47,19 +53,25 @@ Public Class ProductoDAO
         db.ejecuta_sql(sql_update)
     End Sub
 
-    Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
+    Public Sub delete(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.delete
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim producto = cast(value)
         Dim sql_delete = "DELETE FROM productos" ' Si no existe en la BD el comando no falla.
         sql_delete &= " WHERE codigoProducto='" & producto._codigo & "'"
-        DataBase.getInstance().ejecuta_sql(sql_delete)
+        db.ejecuta_sql(sql_delete)
         producto._grupo = Nothing
     End Sub
 
-    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
+    Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim sql_select = ""
         sql_select &= "SELECT codigoProducto, productos.idGrupo, grupos.nombre, costo, convert(char(10), fechaLista, 103) as fechaLista, nivelReposicion, ubicacion, stock FROM productos "
         sql_select &= "INNER JOIN grupos on grupos.idGrupo = productos.idGrupo"
-        Dim tabla = DataBase.getInstance().consulta_sql(sql_select)
+        Dim tabla = db.consulta_sql(sql_select)
         Return dataTable_to_List(tabla)
     End Function
 
@@ -99,12 +111,15 @@ Public Class ProductoDAO
 
     End Function
 
-    Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
+    Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim producto = cast(value)
         ' DOC: determina si existe el producto en la BD, según PK
         If producto._codigo <> "" Then
             Dim sql = "SELECT TOP 1 codigoProducto FROM productos WHERE codigoProducto='" & producto._codigo & "'"
-            Dim response = DataBase.getInstance().consulta_sql(sql)
+            Dim response = db.consulta_sql(sql)
             Return response.Rows.Count = 1
         Else
             Return False

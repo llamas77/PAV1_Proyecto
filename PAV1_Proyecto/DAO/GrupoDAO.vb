@@ -77,7 +77,7 @@ Public Class GrupoDAO
         Return response.Rows.Count = 1
     End Function
 
-    Private Function ObjetoDAO_all() As List(Of ObjetoVO) Implements ObjetoDAO.all
+    Private Function ObjetoDAO_all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
         Dim lista As New List(Of ObjetoVO)
         For Each row In all().Rows()
             lista.Add(New GrupoVO With {
@@ -88,20 +88,20 @@ Public Class GrupoDAO
         Return lista
     End Function
 
-    Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
+    Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
         insert(cast(value))
     End Sub
 
-    Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
+    Public Sub update(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.update
         update(cast(value))
     End Sub
 
-    Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
+    Public Sub delete(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.delete
         delete(cast(value))
     End Sub
 
-    Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
-        exists(cast(value))
+    Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists
+        Return exists(cast(value))
     End Function
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control

@@ -3,9 +3,12 @@
 Public Class TipoClienteDAO
     Implements ObjetoDAO, ComboDataSource, ObjectFactory
 
-    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
+    Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim sql_select = "SELECT idTipo as id, nombre, descripcion FROM tipos_cliente"
-        Return dataTable_to_List(DataBase.getInstance().consulta_sql(sql_select))
+        Return dataTable_to_List(db.consulta_sql(sql_select))
     End Function
 
     Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
@@ -25,7 +28,10 @@ Public Class TipoClienteDAO
         Return lista
     End Function
 
-    Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
+    Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim tipo_cliente = cast(value)
 
         Dim sql_insertar As String
@@ -34,11 +40,14 @@ Public Class TipoClienteDAO
         sql_insertar &= "'" & tipo_cliente._nombre & "', "
         sql_insertar &= "'" & tipo_cliente._descripcion & "')"
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
-        Dim tabla = DataBase.getInstance().consulta_sql(sql_insertar)
+        Dim tabla = db.consulta_sql(sql_insertar)
         tipo_cliente._id = tabla(0)(0)
     End Sub
 
-    Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
+    Public Sub update(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.update
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim tipo_cliente = cast(value)
         Dim sql_update As String
         sql_update = "UPDATE tipos_cliente"
@@ -52,27 +61,32 @@ Public Class TipoClienteDAO
             sql_update &= "nombre='" & tipo_cliente._nombre & "'"
         End If
 
-        DataBase.getInstance().ejecuta_sql(sql_update)
+        db.ejecuta_sql(sql_update)
     End Sub
 
-    Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
+    Public Sub delete(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.delete
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim tipo_cliente = cast(value)
         Dim sql_delete = "DELETE FROM tipos_cliente" ' Si no existe en la BD el comando no falla.
         sql_delete &= " WHERE idTipo=" & tipo_cliente._id
-        DataBase.getInstance().ejecuta_sql(sql_delete)
+        db.ejecuta_sql(sql_delete)
         tipo_cliente._id = 0
     End Sub
 
-    Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
+    Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim tipo_cliente = cast(value)
         ' DOC: determina si existe la marca en la BD, según PK
 
         ' En este caso no alcanza sólo el ID sino que el nombre debe ser Unico
         Dim sql = "SELECT TOP 1 idTipo FROM tipos_cliente WHERE idTipo=" & tipo_cliente._id
         sql &= "OR nombre='" & tipo_cliente._nombre & "'"
-        Dim response = DataBase.getInstance().consulta_sql(sql)
+        Dim response = db.consulta_sql(sql)
         Return response.Rows.Count = 1
-
     End Function
 
     Private Function cast(value As ObjetoVO) As TipoClienteVO

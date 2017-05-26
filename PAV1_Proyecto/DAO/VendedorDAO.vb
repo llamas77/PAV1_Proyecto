@@ -3,9 +3,12 @@
 Public Class VendedorDAO
     Implements ObjetoDAO, ObjectFactory
 
-    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
+    Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim sql_select = "SELECT idVendedor as id, nombre, apellido, direccion, telefono, comision FROM vendedores"
-        Return dataTable_to_List(DataBase.getInstance().consulta_sql(sql_select))
+        Return dataTable_to_List(db.consulta_sql(sql_select))
     End Function
 
     Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
@@ -25,7 +28,10 @@ Public Class VendedorDAO
         Return lista
     End Function
 
-    Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
+    Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim vendedor = cast(value)
 
         Dim sql_insertar As String
@@ -37,11 +43,14 @@ Public Class VendedorDAO
         sql_insertar &= "'" & vendedor._telefono & "', "
         sql_insertar &= vendedor._comision.ToString.Replace(",", ".") & ")" ' Nota: Hay que sacar todas las "," que separan decimal.
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
-        Dim tabla = DataBase.getInstance().consulta_sql(sql_insertar)
+        Dim tabla = db.consulta_sql(sql_insertar)
         vendedor._id = tabla(0)(0)
     End Sub
 
-    Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
+    Public Sub update(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.update
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim vendedor = cast(value)
         Dim sql_update As String
         sql_update = "UPDATE vendedores"
@@ -52,24 +61,30 @@ Public Class VendedorDAO
         sql_update &= "telefono='" & vendedor._telefono & "', "
         sql_update &= "comision=" & vendedor._comision.ToString.Replace(",", ".")
         sql_update &= " WHERE idVendedor=" & vendedor._id
-        DataBase.getInstance().ejecuta_sql(sql_update)
+        db.ejecuta_sql(sql_update)
     End Sub
 
-    Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
+    Public Sub delete(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.delete
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim vendedor = cast(value)
         Dim sql_delete = "DELETE FROM vendedores" ' Si no existe en la BD el comando no falla.
         sql_delete &= " WHERE idVendedor=" & vendedor._id
-        DataBase.getInstance().ejecuta_sql(sql_delete)
+        db.ejecuta_sql(sql_delete)
         vendedor._id = 0
     End Sub
 
-    Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
+    Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim vendedor = cast(value)
         ' DOC: determina si existe el vendedor en la BD, según PK
 
         If vendedor._id > 0 Then
             Dim sql = "SELECT TOP 1 idVendedor FROM vendedores WHERE idVendedor=" & vendedor._id
-            Dim response = DataBase.getInstance().consulta_sql(sql)
+            Dim response = db.consulta_sql(sql)
             Return response.Rows.Count = 1
         Else
             Return False

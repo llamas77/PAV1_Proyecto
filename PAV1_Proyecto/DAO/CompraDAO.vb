@@ -3,7 +3,7 @@
 Public Class CompraDAO
     Implements ObjetoDAO, ObjectFactory
 
-    Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
+    Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
         Dim compra = cast(value)
 
         ' -- Seteo
@@ -15,9 +15,13 @@ Public Class CompraDAO
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
 
         ' -- Ejecucion
-        Dim db As New DataBase
-        db.conectar()
-        db.iniciar_transaccion()
+        If db Is Nothing Then
+            db = New DataBase
+            db.conectar()
+            db.iniciar_transaccion()
+        ElseIf db._estado = DataBase.Estado.listo Then
+            db.iniciar_transaccion()
+        End If
 
         Dim tabla = db.consulta_sql(sql_insertar) ' Compra
         compra.id = tabla(0)(0)
@@ -26,7 +30,7 @@ Public Class CompraDAO
         Dim productoVO As ProductoVO
         For Each detalle In compra.detalle
             detalle.id_compra = compra.id
-            detalleDAO.insert_in(db, detalle) ' Detalle
+            detalleDAO.insert(detalle, db) ' Detalle
             productoVO = productoDAO.search_code(db, detalle.codigo_producto)
             If productoVO Is Nothing Then
                 db.cancelar_transaccion()
@@ -44,7 +48,7 @@ Public Class CompraDAO
         db.desconectar()
     End Sub
 
-    Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
+    Public Sub update(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.update
         Dim compra = cast(value)
         Dim sql_update As String
         sql_update = "UPDATE compras"
@@ -53,10 +57,13 @@ Public Class CompraDAO
         sql_update &= "idProveedor=" & compra.id_proveedor
         sql_update &= " WHERE idCompra=" & compra.id
 
-        Dim db As New DataBase
-        db.conectar()
-        db.iniciar_transaccion()
-        db.ejecuta_sql(sql_update)
+        If db Is Nothing Then
+            db = New DataBase
+            db.conectar()
+            db.iniciar_transaccion()
+        ElseIf db._estado = DataBase.Estado.listo Then
+            db.iniciar_transaccion()
+        End If
 
         Dim detalleDAO As New DetalleCompraDAO
         For Each detalle In compra.detalle
@@ -65,21 +72,25 @@ Public Class CompraDAO
                 Throw New System.Exception("El ID del detalle es distinto del de la compra.")
             End If
 
-            detalleDAO.update_in(db, detalle)
+            detalleDAO.update(detalle, db)
         Next
         db.cerrar_transaccion()
         db.desconectar()
     End Sub
 
-    Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
+    Public Sub delete(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.delete
         Dim compra = cast(value)
 
         Dim sql_delete = "DELETE FROM compras" ' Si no existe en la BD el comando no falla.
         sql_delete &= " WHERE idCompra=" & compra.id
 
-        Dim db As New DataBase
-        db.conectar()
-        db.iniciar_transaccion()
+        If db Is Nothing Then
+            db = New DataBase
+            db.conectar()
+            db.iniciar_transaccion()
+        ElseIf db._estado = DataBase.Estado.listo Then
+            db.iniciar_transaccion()
+        End If
 
         Dim detalleDAO As New DetalleCompraDAO
         For Each detalle In compra.detalle
@@ -87,7 +98,7 @@ Public Class CompraDAO
                 db.cancelar_transaccion()
                 Throw New System.Exception("El ID del detalle es distinto del de la compra.")
             End If
-            detalleDAO.delete_in(db, detalle)
+            detalleDAO.delete(detalle, db)
         Next
         db.ejecuta_sql(sql_delete)
         db.cerrar_transaccion()
@@ -96,7 +107,10 @@ Public Class CompraDAO
         compra.id = 0
     End Sub
 
-    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
+    Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim dataSet As New GrillaCompras
         Dim dataTable As DataTable = dataSet.compras
 
@@ -139,13 +153,16 @@ Public Class CompraDAO
         Return lista
     End Function
 
-    Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
+    Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim compra = cast(value)
         ' DOC: determina si existe el vendedor en la BD, según PK
 
         If compra.id > 0 Then
             Dim sql = "SELECT TOP 1 idCompra FROM compras WHERE idCompra=" & compra.id
-            Dim response = DataBase.getInstance().consulta_sql(sql)
+            Dim response = db.consulta_sql(sql)
             Return response.Rows.Count = 1
         Else
             Return False

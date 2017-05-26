@@ -3,11 +3,10 @@
 Public Class DetalleCompraDAO
     Implements ObjetoDAO, ObjectFactory
 
-    Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
-        insert_in(DataBase.getInstance(), value)
-    End Sub
-
-    Public Sub insert_in(db As DataBase, value As ObjetoVO)
+    Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         ' Pensado para ser ejecutado en un DataBase con transaccion en curso.
         Dim detalle = cast(value)
 
@@ -21,11 +20,15 @@ Public Class DetalleCompraDAO
         Dim tabla = db.consulta_sql(sql_insertar)
     End Sub
 
-    Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
-        update_in(DataBase.getInstance(), value)
+    <Obsolete("Obsoleta. Use Insert en su lugar.")> ' Borrar funcion si no tiene mas referencias.
+    Public Sub insert_in(db As DataBase, value As ObjetoVO)
+        insert(value, db)
     End Sub
 
-    Public Sub update_in(db As DataBase, value As ObjetoVO)
+    Public Sub update(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.update
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim detalle = cast(value)
 
         Dim sql_update As String
@@ -38,11 +41,15 @@ Public Class DetalleCompraDAO
         db.ejecuta_sql(sql_update)
     End Sub
 
-    Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
-        delete_in(DataBase.getInstance(), value)
+    <Obsolete("Obsoleta. Use Update en su lugar.")> ' Borrar funcion si no tiene mas referencias.
+    Public Sub update_in(db As DataBase, value As ObjetoVO)
+        update(value, db)
     End Sub
 
-    Public Sub delete_in(db As DataBase, value As ObjetoVO)
+    Public Sub delete(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.delete
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim detalle = cast(value)
 
         Dim sql_delete = "DELETE FROM detalle_compras" ' Si no existe en la BD el comando no falla.
@@ -54,7 +61,12 @@ Public Class DetalleCompraDAO
         detalle.codigo_producto = 0
     End Sub
 
-    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
+    <Obsolete("Obsoleta. Use Delete en su lugar.")> ' Borrar funcion si no tiene mas referencias.
+    Public Sub delete_in(db As DataBase, value As ObjetoVO)
+        delete(value, db)
+    End Sub
+
+    Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
         Throw New NotImplementedException()
     End Function
 
@@ -74,7 +86,7 @@ Public Class DetalleCompraDAO
         Return detalles
     End Function
 
-    Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
+    Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists
         Throw New NotImplementedException()
     End Function
 

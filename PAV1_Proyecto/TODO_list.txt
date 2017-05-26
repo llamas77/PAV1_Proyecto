@@ -31,8 +31,12 @@ Tareas pendientes por clase:
 	completo, puede que conociendo el ID 
 - LabeledTextBox : La mascara porcentaje debe comunicarse con Double, pero mostrar al usuario una cadena con %
 - GrupoDAO : Implementar interfaces, adaptar metodos a la interfaz. Usar controles genericos.
+		   : Implementar interfaces usando transacciones. Actualmente lo ignora y no las admite.
 
 Tareas pendientes generales:
 - Adaptar todos los comboBox para que su value sea un objeto. Ver GananciaDAO como guia.
 - Mejorar rendimiento disminuyendo conversiones de tipos de datos. Tratar de que todos los objetos entiendan de ObjetoVO
 	y simplificar su creacion a partir de DataTable.
+- Ordenar las funciones para que siempre esten igual que lo indicado en la interfaz.
+- Revisar que todos los DAO implementen transacciones y no las omitan (Que no creen otra instancia de DataBase
+	si se le paso una por parametro.)

@@ -2,9 +2,12 @@
 Public Class EquiposDAO
     Implements ObjetoDAO, ObjectFactory
 
-    Public Function all() As List(Of ObjetoVO) Implements ObjetoDAO.all
+    Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim sql_select = "SELECT id, equipos.idMarca, marcas.nombre as marca, modelo FROM equipos INNER JOIN marcas ON equipos.idMarca = marcas.idMarca "
-        Return dataTable_to_List(DataBase.getInstance().consulta_sql(sql_select))
+        Return dataTable_to_List(db.consulta_sql(sql_select))
     End Function
 
     Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
@@ -23,7 +26,10 @@ Public Class EquiposDAO
         Next
         Return lista
     End Function
-    Public Sub insert(value As ObjetoVO) Implements ObjetoDAO.insert
+    Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim equipos = cast(value)
 
         Dim sql_insertar As String
@@ -32,11 +38,14 @@ Public Class EquiposDAO
         sql_insertar &= equipos._idMarca & ", "
         sql_insertar &= "'" & equipos._modelo & "')"
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
-        Dim tabla = DataBase.getInstance().consulta_sql(sql_insertar)
+        Dim tabla = db.consulta_sql(sql_insertar)
         equipos._id = tabla(0)(0)
     End Sub
 
-    Public Sub update(value As ObjetoVO) Implements ObjetoDAO.update
+    Public Sub update(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.update
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim equipos = cast(value)
         Dim sql_update As String
         sql_update = "UPDATE equipos"
@@ -44,24 +53,30 @@ Public Class EquiposDAO
         sql_update &= "idMarca= " & equipos._idMarca & ", "
         sql_update &= "modelo= '" & equipos._modelo & "' "
         sql_update &= " WHERE id = " & equipos._id
-        DataBase.getInstance().ejecuta_sql(sql_update)
+        db.ejecuta_sql(sql_update)
     End Sub
 
-    Public Sub delete(value As ObjetoVO) Implements ObjetoDAO.delete
+    Public Sub delete(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.delete
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim equipos = cast(value)
         Dim sql_delete = "DELETE FROM equipos" ' Si no existe en la BD el comando no falla.
         sql_delete &= " WHERE id =" & equipos._id
-        DataBase.getInstance().ejecuta_sql(sql_delete)
+        db.ejecuta_sql(sql_delete)
         equipos._id = 0
     End Sub
 
-    Public Function exists(value As ObjetoVO) As Boolean Implements ObjetoDAO.exists
+    Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
         Dim equipos = cast(value)
         ' DOC: determina si existe la marca en la BD, según PK
 
         If equipos._id > 0 Then
             Dim sql = "SELECT TOP 1 id FROM equipos WHERE id=" & equipos._id
-            Dim response = DataBase.getInstance().consulta_sql(sql)
+            Dim response = db.consulta_sql(sql)
             Return response.Rows.Count = 1
         Else
             Return False

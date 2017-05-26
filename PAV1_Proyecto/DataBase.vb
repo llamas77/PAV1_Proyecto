@@ -16,8 +16,13 @@
         transaccion_listo
         transaccion_error
     End Enum
+    Private estado_actual As Estado
 
-    Private Property _estado As Estado
+    Public ReadOnly Property _estado As Estado
+        Get
+            Return estado_actual
+        End Get
+    End Property
 
     Private Property transaccion As OleDb.OleDbTransaction
         Get
@@ -26,13 +31,13 @@
         Set(value As OleDb.OleDbTransaction)
             _transaccion = value
             command.Transaction = value
-            _estado = Estado.transaccion_listo
+            estado_actual = Estado.transaccion_listo
         End Set
     End Property
 
     Public Sub New()
         command.Connection = conexion
-        _estado = Estado.desconectado
+        estado_actual = Estado.desconectado
     End Sub
 
     Public Shared Function getInstance() As DataBase ' TODO: Renombrar a new_connected()
@@ -55,7 +60,7 @@
             Exit Sub
         End Try
 
-        _estado = Estado.listo
+        estado_actual = Estado.listo
     End Sub
 
     Public Sub iniciar_transaccion()
@@ -70,7 +75,7 @@
         If transaccion Is Nothing Then ' Solo cierra si no hay transaccion pendiente.
             If conexion IsNot Nothing Then
                 conexion.Close()
-                _estado = Estado.desconectado
+                estado_actual = Estado.desconectado
             Else
                 Throw New System.Exception("No hay ninguna conexion abierta.")
             End If
@@ -80,12 +85,12 @@
     Public Sub cerrar_transaccion()
         transaccion.Commit()
         transaccion = Nothing
-        _estado = Estado.listo
+        estado_actual = Estado.listo
     End Sub
 
     Public Sub cancelar_transaccion()
         transaccion.Rollback()
-        _estado = Estado.transaccion_error
+        estado_actual = Estado.transaccion_error
     End Sub
 
     Public Function consulta_sql(ByVal sql As String) As DataTable
