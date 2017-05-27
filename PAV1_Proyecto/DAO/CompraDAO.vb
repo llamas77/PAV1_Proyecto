@@ -183,7 +183,7 @@ Public Class CompraDAO
         campos.Add(New Campo With {._id = "fecha_compra", ._name = "Fecha de Compra", ._maskType = Campo.MaskType.fecha,
                                    ._required = True})
         campos.Add(New Campo With {._id = "id_proveedor", ._name = "Proveedor", ._maskType = Campo.MaskType.comboBox,
-                                   ._combo_data_source = New ProveedorDAO, ._required = True})
+                                   ._objetoDAO = New ProveedorDAO, ._required = True})
         campos.Add(New Campo With {._id = "detalle", ._name = "Detalle", ._maskType = Campo.MaskType.control,
                                    ._control = New Detalle(New DetalleCompraDAO)})
         Return New ControlGenerico(campos, Me)

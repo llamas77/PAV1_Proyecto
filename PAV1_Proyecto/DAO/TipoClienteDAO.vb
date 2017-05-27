@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class TipoClienteDAO
-    Implements ObjetoDAO, ComboDataSource, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory
 
     Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
         If db Is Nothing Then
@@ -107,19 +107,6 @@ Public Class TipoClienteDAO
 
     Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Return New TipoClienteGrilla()
-    End Function
-
-    Public Function comboSource() As DataTable Implements ComboDataSource.comboSource
-        Dim tabla As New DataTable
-        tabla.Columns.Add("tipo_cliente")
-        tabla.Columns.Add("nombre_tipo_cliente")
-
-        For Each tipo_cliente As TipoClienteVO In Me.all()
-            Dim row = tabla.Rows.Add()
-            row(0) = tipo_cliente
-            row(1) = tipo_cliente._nombre
-        Next
-        Return tabla
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance

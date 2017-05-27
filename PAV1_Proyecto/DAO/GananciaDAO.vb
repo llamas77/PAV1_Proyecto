@@ -51,7 +51,7 @@ Public Class GananciaDAO
             db = DataBase.getInstance()
         End If
         Dim sql_select = ""
-        sql_select &= "SELECT ganancias.idGrupo as id_grupo, ganancias.idTipo as id_tipo_cliente, ganancias.ganancia, "
+        sql_select &= "SELECT ganancias.idGrupo as id_grupo, ganancias.idTipo as id_tipo_cliente, ganancias.ganancia as proporcion_ganancia, "
         sql_select &= "tipos_cliente.nombre as nombre_tipo_cliente, grupos.nombre as nombre_grupo FROM ganancias "
         sql_select &= " INNER JOIN tipos_cliente ON ganancias.idTipo=tipos_cliente.idTipo"
         sql_select &= " INNER JOIN grupos ON ganancias.idGrupo=grupos.idGrupo"
@@ -60,7 +60,7 @@ Public Class GananciaDAO
 
     Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
         Dim lista As New List(Of ObjetoVO)
-        Dim params = {"id_grupo", "id_tipo_cliente", "ganancia", "nombre_tipo_cliente",
+        Dim params = {"id_grupo", "id_tipo_cliente", "proporcion_ganancia", "nombre_tipo_cliente",
                       "nombre_grupo"}
         Dim diccionario As New Dictionary(Of String, Object)
         For Each param In params
@@ -104,10 +104,10 @@ Public Class GananciaDAO
         Dim campos As New List(Of Campo)
         campos.Add(New Campo With {._id = "grupo", ._name = "Grupo",
                                    ._maskType = Campo.MaskType.comboBox,
-                                   ._combo_data_source = New GrupoDAO})
+                                   ._objetoDAO = Me})
         campos.Add(New Campo With {._id = "tipo_cliente", ._name = "Tipo de Cliente",
                                    ._maskType = Campo.MaskType.comboBox,
-                                   ._combo_data_source = New TipoClienteDAO})
+                                   ._objetoDAO = Me})
         campos.Add(New Campo With {._id = "porcentaje_ganancia", ._name = "Ganancia",
                                    ._maskType = Campo.MaskType.porcentaje})
         Return New ControlGenerico(campos, Me)

@@ -20,8 +20,8 @@
     ' Propiedades opcionales.
     Public Property _visible As Boolean
     Public Property _maskType As MaskType
-    Public Property _combo_data_source As ComboDataSource ' Solo para ser usado con MaskType.comboBox
     Public Property _control As ObjetoCampo ' Cuando se quiere definir un control especifico.
+    Public Property _objetoDAO As ObjetoDAO ' El objeto que sera pasado a un ComboBox.
 
     ' Propiedades de interfaz Validable
     Public Property _required As Boolean Implements Validable._required
@@ -31,18 +31,16 @@
 
     <Obsolete("Este método no debe seguirse usando. En su lugar cargar las propiedades con With al crear el objeto.")>
     Public Sub New(id As String, name As String,
-                   Optional visible As Boolean = True,
-                   Optional maskType As MaskType = MaskType.texto,
-                   Optional combo_data_source As ComboDataSource = Nothing,
-                   Optional required As Boolean = False,
-                   Optional min_lenght As Integer = 0,
-                   Optional maxLenght As Integer = 0,
-                   Optional numeric As Boolean = False)
+        Optional visible As Boolean = True,
+        Optional maskType As MaskType = MaskType.texto,
+        Optional required As Boolean = False,
+        Optional min_lenght As Integer = 0,
+        Optional maxLenght As Integer = 0,
+        Optional numeric As Boolean = False)
         _id = id
         _name = name
         _visible = visible
         _maskType = maskType
-        _combo_data_source = combo_data_source
         _required = required
         _min_lenght = min_lenght
         _max_lenght = maxLenght
@@ -56,7 +54,6 @@
         _name = Nothing
         _visible = True
         _maskType = Nothing
-        _combo_data_source = Nothing
         _required = False
         _min_lenght = 0
         _max_lenght = 0
@@ -74,7 +71,7 @@
         If _visible Then
             Select Case _maskType
                 Case MaskType.comboBox
-                    control = New LabeledComboBox(_id, _name, _combo_data_source)
+                    control = New LabeledComboBox(_id, _name, _objetoDAO)
                 Case MaskType.texto
                     control = New LabeledTextBox With {._id = _id, ._label = _name}
                 Case MaskType.control

@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class ProveedorDAO
-    Implements ObjetoDAO, ObjectFactory, ComboDataSource
+    Implements ObjetoDAO, ObjectFactory
 
 
     Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
@@ -131,11 +131,5 @@ Public Class ProveedorDAO
         campos.Add(New Campo("telefono", "Teléfono"))
         campos.Add(New Campo("email", "Email"))
         Return New GrillaGenerica(campos, Me)
-    End Function
-
-    Public Function comboSource() As DataTable Implements ComboDataSource.comboSource
-        Dim sql_select = "SELECT idProveedor as id, razonSocial"
-        sql_select &= " FROM proveedores"
-        Return DataBase.getInstance().consulta_sql(sql_select)
     End Function
 End Class
