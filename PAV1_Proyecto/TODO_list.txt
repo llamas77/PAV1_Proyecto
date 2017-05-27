@@ -37,6 +37,7 @@ Tareas pendientes por clase:
 - LabeledComboBox.resize_box() : Ajustar el ancho de la lista desplegable para mostrar todos los elementos completos.
 	Si hay que recorrer los datos para buscar el más ancho, aprovechar el For de _source.
 - GrupoDAO.update() : Falla si estamos cambiando el nombre y poniendo uno que ya existe para esa familia.
+- frm_abm_generico_busqueda : Implementar atajos de teclado (Esc para salir, Enter en la grilla para modificar)
 
 Tareas pendientes generales:
 - Adaptar todos los comboBox para que su value sea un objeto. Ver GananciaDAO como guia. Sino no funcionan.
