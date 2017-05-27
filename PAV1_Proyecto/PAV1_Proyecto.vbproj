@@ -104,37 +104,37 @@
     <Compile Include="DataSets\GrillaCompras.vb">
       <DependentUpon>GrillaCompras.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Componentes\EquiposControl.Designer.vb">
+    <Compile Include="InterfazUsuario\Componentes\EquiposControl.Designer.vb">
       <DependentUpon>EquiposControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Componentes\EquiposControl.vb">
+    <Compile Include="InterfazUsuario\Componentes\EquiposControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Componentes\UserControls\Detalle.Designer.vb">
+    <Compile Include="InterfazUsuario\Componentes\UserControls\Detalle.Designer.vb">
       <DependentUpon>Detalle.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Componentes\UserControls\Detalle.vb">
+    <Compile Include="InterfazUsuario\Componentes\UserControls\Detalle.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Componentes\UserControls\InvisibleControl.vb">
+    <Compile Include="InterfazUsuario\Componentes\UserControls\InvisibleControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Componentes\UserControls\LabeledTextBox.Designer.vb">
+    <Compile Include="InterfazUsuario\Componentes\UserControls\LabeledTextBox.Designer.vb">
       <DependentUpon>LabeledTextBox.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Componentes\UserControls\LabeledTextBox.vb">
+    <Compile Include="InterfazUsuario\Componentes\UserControls\LabeledTextBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\frm_abm_generico_busqueda.Designer.vb">
+    <Compile Include="InterfazUsuario\Forms\frm_abm_generico_busqueda.Designer.vb">
       <DependentUpon>frm_abm_generico_busqueda.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_abm_generico_busqueda.vb">
+    <Compile Include="InterfazUsuario\Forms\frm_abm_generico_busqueda.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_control_generico.Designer.vb">
+    <Compile Include="InterfazUsuario\Forms\frm_control_generico.Designer.vb">
       <DependentUpon>frm_control_generico.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_control_generico.vb">
+    <Compile Include="InterfazUsuario\Forms\frm_control_generico.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Interfaces\ObjetoCampo.vb" />
@@ -142,38 +142,38 @@
     <Compile Include="VO\DetalleCompraVO.vb" />
     <Compile Include="VO\EquiposVO.vb" />
     <Compile Include="VO\FamiliaVO.vb" />
-    <Compile Include="Forms\Componentes\Campo.vb" />
-    <Compile Include="Forms\Componentes\ControlGenerico.Designer.vb">
+    <Compile Include="InterfazUsuario\Componentes\Campo.vb" />
+    <Compile Include="InterfazUsuario\Componentes\ControlGenerico.Designer.vb">
       <DependentUpon>ControlGenerico.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Componentes\ControlGenerico.vb">
+    <Compile Include="InterfazUsuario\Componentes\ControlGenerico.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Componentes\GrillaGenerica.vb">
+    <Compile Include="InterfazUsuario\Componentes\GrillaGenerica.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\Componentes\LabeledComboBox.Designer.vb">
+    <Compile Include="InterfazUsuario\Componentes\UserControls\LabeledComboBox.Designer.vb">
       <DependentUpon>LabeledComboBox.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Componentes\LabeledComboBox.vb">
+    <Compile Include="InterfazUsuario\Componentes\UserControls\LabeledComboBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Componentes\LabeledMaskedTextBox.Designer.vb">
+    <Compile Include="InterfazUsuario\Componentes\UserControls\LabeledMaskedTextBox.Designer.vb">
       <DependentUpon>LabeledMaskedTextBox.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Componentes\LabeledMaskedTextBox.vb">
+    <Compile Include="InterfazUsuario\Componentes\UserControls\LabeledMaskedTextBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\frm_abm_generico.Designer.vb">
+    <Compile Include="InterfazUsuario\Forms\frm_abm_generico.Designer.vb">
       <DependentUpon>frm_abm_generico.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_abm_generico.vb">
+    <Compile Include="InterfazUsuario\Forms\frm_abm_generico.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_menu.vb">
+    <Compile Include="InterfazUsuario\Forms\frm_menu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_menu.Designer.vb">
+    <Compile Include="InterfazUsuario\Forms\frm_menu.Designer.vb">
       <DependentUpon>frm_menu.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -210,34 +210,34 @@
     <Compile Include="VO\VendedorVO.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\Componentes\ControlGenerico.resx">
+    <EmbeddedResource Include="InterfazUsuario\Componentes\ControlGenerico.resx">
       <DependentUpon>ControlGenerico.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\EquiposControl.resx">
+    <EmbeddedResource Include="InterfazUsuario\Componentes\EquiposControl.resx">
       <DependentUpon>EquiposControl.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\LabeledComboBox.resx">
+    <EmbeddedResource Include="InterfazUsuario\Componentes\UserControls\LabeledComboBox.resx">
       <DependentUpon>LabeledComboBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\LabeledMaskedTextBox.resx">
+    <EmbeddedResource Include="InterfazUsuario\Componentes\UserControls\LabeledMaskedTextBox.resx">
       <DependentUpon>LabeledMaskedTextBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\UserControls\Detalle.resx">
+    <EmbeddedResource Include="InterfazUsuario\Componentes\UserControls\Detalle.resx">
       <DependentUpon>Detalle.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\UserControls\LabeledTextBox.resx">
+    <EmbeddedResource Include="InterfazUsuario\Componentes\UserControls\LabeledTextBox.resx">
       <DependentUpon>LabeledTextBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_abm_generico.resx">
+    <EmbeddedResource Include="InterfazUsuario\Forms\frm_abm_generico.resx">
       <DependentUpon>frm_abm_generico.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_abm_generico_busqueda.resx">
+    <EmbeddedResource Include="InterfazUsuario\Forms\frm_abm_generico_busqueda.resx">
       <DependentUpon>frm_abm_generico_busqueda.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_control_generico.resx">
+    <EmbeddedResource Include="InterfazUsuario\Forms\frm_control_generico.resx">
       <DependentUpon>frm_control_generico.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_menu.resx">
+    <EmbeddedResource Include="InterfazUsuario\Forms\frm_menu.resx">
       <DependentUpon>frm_menu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
