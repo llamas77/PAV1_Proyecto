@@ -127,33 +127,35 @@ Public Class ProveedorDAO
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
-        Return New ProveedorVO(valores("idProveedor"),
-                             valores("razonSocial"),
-                             valores("cuit"),
-                             valores("domicilio"),
-                             valores("telefono"),
-                             valores("email"))
+        Return New ProveedorVO With {
+            ._id = valores("idProveedor"),
+            ._razonSocial = valores("razonSocial"),
+            ._cuit = valores("cuit"),
+            ._domicilio = valores("domicilio"),
+            ._telefono = valores("telefono"),
+            ._email = valores("email")
+        }
     End Function
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("idProveedor", "", visible:=False))
-        campos.Add(New Campo("razonSocial", "Razón Social"))
-        campos.Add(New Campo("cuit", "CUIT", maskType:=Campo.MaskType.cuit))
-        campos.Add(New Campo("domicilio", "Domicilio"))
-        campos.Add(New Campo("telefono", "Teléfono", maskType:=Campo.MaskType.telefono))
-        campos.Add(New Campo("email", "Email", maskType:=Campo.MaskType.email))
+        campos.Add(New Campo With {._id = "idProveedor", ._visible = False})
+        campos.Add(New Campo With {._id = "razonSocial", ._name = "Razón Social"})
+        campos.Add(New Campo With {._id = "cuit", ._name = "CUIT", ._maskType = Campo.MaskType.cuit})
+        campos.Add(New Campo With {._id = "domicilio", ._name = "Domicilio"})
+        campos.Add(New Campo With {._id = "telefono", ._name = "Teléfono", ._maskType = Campo.MaskType.telefono})
+        campos.Add(New Campo With {._id = "email", ._name = "Email", ._maskType = Campo.MaskType.email})
         Return New ControlGenerico(campos, Me)
     End Function
 
     Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("idProveedor", "", visible:=False))
-        campos.Add(New Campo("razonSocial", "Razón Social"))
-        campos.Add(New Campo("cuit", "CUIT"))
-        campos.Add(New Campo("domicilio", "Domicilio"))
-        campos.Add(New Campo("telefono", "Teléfono"))
-        campos.Add(New Campo("email", "Email"))
+        campos.Add(New Campo With {._id = "idProveedor", ._visible = False})
+        campos.Add(New Campo With {._id = "razonSocial", ._name = "Razón Social"})
+        campos.Add(New Campo With {._id = "cuit", ._name = "CUIT", ._maskType = Campo.MaskType.cuit})
+        campos.Add(New Campo With {._id = "domicilio", ._name = "Domicilio"})
+        campos.Add(New Campo With {._id = "telefono", ._name = "Teléfono", ._maskType = Campo.MaskType.telefono})
+        campos.Add(New Campo With {._id = "email", ._name = "Email", ._maskType = Campo.MaskType.email})
         Return New GrillaGenerica(campos, Me)
     End Function
 End Class
