@@ -1,6 +1,7 @@
 ﻿Public Class frm_menu
     Private Sub btn_marcas_Click(sender As Object, e As EventArgs) Handles btn_marcas.Click
-        Dim frm As New frm_abm_marcas
+        Dim frm As New frm_abm_generico(New MarcaDAO)
+        frm.Text = "ABM Marcas"
         frm.Show()
     End Sub
 
