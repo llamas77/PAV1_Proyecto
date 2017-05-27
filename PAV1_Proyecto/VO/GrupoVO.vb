@@ -29,7 +29,7 @@ Public Class GrupoVO
         Me.New(id, "", Nothing)
     End Sub
 
-    Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
+    Public Overrides Function toString() As String Implements ObjetoVO.toString
         Return nombre
     End Function
 

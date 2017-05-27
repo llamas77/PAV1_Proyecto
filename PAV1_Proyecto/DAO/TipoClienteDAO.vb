@@ -89,6 +89,26 @@ Public Class TipoClienteDAO
         Return response.Rows.Count = 1
     End Function
 
+    Public Function search_by_id(tipo_id As Integer, Optional db As DataBase = Nothing) As ObjetoVO
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+
+        Dim sql = "SELECT nombre, descripcion FROM tipos_cliente WHERE idTipo=" & tipo_id
+        Dim registro = db.consulta_sql(sql)
+
+        Dim tipo_cliente As TipoClienteVO = Nothing
+        If registro.Rows.Count = 1 Then
+            tipo_cliente = New TipoClienteVO With {
+                ._id = tipo_id,
+                ._nombre = registro(0)("nombre"),
+                ._descripcion = registro(0)("descripcion")
+            }
+        End If
+
+        Return tipo_cliente
+    End Function
+
     Private Function cast(value As ObjetoVO) As TipoClienteVO
         If TypeOf value Is TipoClienteVO Then
             Return value

@@ -40,3 +40,4 @@ Tareas pendientes generales:
 - Ordenar las funciones para que siempre esten igual que lo indicado en la interfaz.
 - Revisar que todos los DAO implementen transacciones y no las omitan (Que no creen otra instancia de DataBase
 	si se le paso una por parametro.)
+- Corregir todas las referencias a metodos obsoletos. Si no hay referencias eliminar el metodo.

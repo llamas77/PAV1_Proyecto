@@ -115,9 +115,10 @@ Public Class GananciaDAO
 
     Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo With {._id = "id_grupo", ._visible = False})
+        'campos.Add(New Campo With {._id = "id_grupo", ._visible = False})
         campos.Add(New Campo With {._id = "grupo", ._name = "Grupo"})
         campos.Add(New Campo With {._id = "tipo_cliente", ._name = "Tipo de Cliente"})
+        campos.Add(New Campo With {._id = "porcentaje_ganancia", ._name = "Ganancia"})
         Return New GrillaGenerica(campos, Me)
     End Function
 
@@ -134,19 +135,17 @@ Public Class GananciaDAO
         If valores.ContainsKey("grupo") Then
             objetoVO._grupo = valores("grupo")
         Else
-            objetoVO._grupo = New GrupoVO With {
-                ._id = valores("id_grupo"),
-                ._nombre = valores("nombre_grupo"),
-                ._familia = valores("familia_grupo")}
+            With New GrupoDAO
+                objetoVO._grupo = .search_by_id(valores("id_grupo"))
+            End With
         End If
 
         If valores.ContainsKey("tipo_cliente") Then
             objetoVO._tipo_cliente = valores("tipo_cliente")
         Else
-            objetoVO._tipo_cliente = New TipoClienteVO With {
-                ._id = valores("id_tipo_cliente"),
-                ._nombre = valores("nombre_tipo_cliente"),
-                ._descripcion = valores("descripcion_tipo_cliente")}
+            With New TipoClienteDAO
+                objetoVO._tipo_cliente = .search_by_id(valores("id_tipo_cliente"))
+            End With
         End If
 
         Return objetoVO

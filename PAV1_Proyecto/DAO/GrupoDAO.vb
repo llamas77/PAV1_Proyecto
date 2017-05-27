@@ -19,7 +19,7 @@ Public Class GrupoDAO
         Dim sql_insertar As String
         sql_insertar = "INSERT INTO grupos (nombre, idFamilia)"
         sql_insertar &= " VALUES ("
-        sql_insertar &= "'" & grupo._nombre & "', " & grupo._familia.get_id() & ")"
+        sql_insertar &= "'" & grupo._nombre & "', " & grupo._familia._id & ")"
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
         Dim tabla = DataBase.getInstance().consulta_sql(sql_insertar)
         grupo._id = tabla(0)(0)
@@ -33,7 +33,7 @@ Public Class GrupoDAO
         Dim sql_update As String
         sql_update = "UPDATE grupos"
         sql_update &= " SET "
-        sql_update &= "nombre='" & grupo._nombre & "', idFamilia=" & grupo._familia.get_id()
+        sql_update &= "nombre='" & grupo._nombre & "', idFamilia=" & grupo._familia._id
         sql_update &= " WHERE idGrupo=" & grupo._id
         DataBase.getInstance().ejecuta_sql(sql_update)
     End Sub
@@ -72,9 +72,34 @@ Public Class GrupoDAO
         ' DOC: determina si existe el nombre de un grupo en la BD
 
         Dim sql = "SELECT TOP 1 nombre FROM grupos WHERE nombre='" & grupo._nombre & "'"
-        sql &= " AND idFamilia=" & grupo._familia.get_id
+        sql &= " AND idFamilia=" & grupo._familia._id
         Dim response = DataBase.getInstance().consulta_sql(sql)
         Return response.Rows.Count = 1
+    End Function
+
+    Public Function search_by_id(grupo_id As Integer, Optional db As DataBase = Nothing) As ObjetoVO
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+
+        Dim sql = "SELECT g.nombre as nombre_grupo, g.idFamilia, f.nombre as nombre_familia FROM grupos g "
+        sql &= " JOIN familias f ON g.idFamilia = f.idFamilia"
+        sql &= " WHERE idGrupo=" & grupo_id
+        Dim registro = db.consulta_sql(sql)
+
+        Dim grupo As GrupoVO = Nothing
+        If registro.Rows.Count = 1 Then
+            grupo = New GrupoVO With {
+                ._id = grupo_id,
+                ._nombre = registro(0)("nombre_grupo"),
+                ._familia = New FamiliaVO With {
+                    ._id = registro(0)("idFamilia"),
+                    ._nombre = registro(0)("nombre_familia")
+                }
+            }
+        End If
+
+        Return grupo
     End Function
 
     Private Function ObjetoDAO_all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
