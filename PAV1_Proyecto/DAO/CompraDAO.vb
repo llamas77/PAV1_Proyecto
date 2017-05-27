@@ -10,8 +10,8 @@ Public Class CompraDAO
         Dim sql_insertar As String
         sql_insertar = "INSERT INTO compras (fechaCompra, idProveedor)"
         sql_insertar &= " VALUES ("
-        sql_insertar &= "convert(date, '" & compra.fecha_compra & "', 103), "
-        sql_insertar &= compra.id_proveedor & ") "
+        sql_insertar &= "convert(date, '" & compra._fecha_compra & "', 103), "
+        sql_insertar &= compra._proveedor._id & ") "
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
 
         ' -- Ejecucion
@@ -24,12 +24,12 @@ Public Class CompraDAO
         End If
 
         Dim tabla = db.consulta_sql(sql_insertar) ' Compra
-        compra.id = tabla(0)(0)
+        compra._id = tabla(0)(0)
         Dim detalleDAO As New DetalleCompraDAO
         Dim productoDAO As New ProductoDAO
         Dim productoVO As ProductoVO
         For Each detalle In compra.detalle
-            detalle.id_compra = compra.id
+            detalle.id_compra = compra._id
             detalleDAO.insert(detalle, db) ' Detalle
             productoVO = productoDAO.search_code(db, detalle.codigo_producto)
             If productoVO Is Nothing Then
@@ -37,9 +37,9 @@ Public Class CompraDAO
                 Throw New System.Exception("El Codigo de Producto no existe.")
             End If
             productoVO._stock += detalle.cantidad
-            If productoVO._fechaLista < compra.fecha_compra Then
+            If productoVO._fechaLista < compra._fecha_compra Then
                 productoVO._costo = detalle.costo
-                productoVO._fechaLista = compra.fecha_compra
+                productoVO._fechaLista = compra._fecha_compra
             End If
             productoDAO.update_in(db, productoVO) ' Stock Producto
         Next
@@ -53,9 +53,9 @@ Public Class CompraDAO
         Dim sql_update As String
         sql_update = "UPDATE compras"
         sql_update &= " SET "
-        sql_update &= "fechaCompra=convert(date, '" & compra.fecha_compra & "', 103)), "
-        sql_update &= "idProveedor=" & compra.id_proveedor
-        sql_update &= " WHERE idCompra=" & compra.id
+        sql_update &= "fechaCompra=convert(date, '" & compra._fecha_compra & "', 103)), "
+        sql_update &= "idProveedor=" & compra._proveedor._id
+        sql_update &= " WHERE idCompra=" & compra._id
 
         If db Is Nothing Then
             db = New DataBase
@@ -67,7 +67,7 @@ Public Class CompraDAO
 
         Dim detalleDAO As New DetalleCompraDAO
         For Each detalle In compra.detalle
-            If detalle.id_compra <> compra.id Then
+            If detalle.id_compra <> compra._id Then
                 db.cancelar_transaccion()
                 Throw New System.Exception("El ID del detalle es distinto del de la compra.")
             End If
@@ -82,7 +82,7 @@ Public Class CompraDAO
         Dim compra = cast(value)
 
         Dim sql_delete = "DELETE FROM compras" ' Si no existe en la BD el comando no falla.
-        sql_delete &= " WHERE idCompra=" & compra.id
+        sql_delete &= " WHERE idCompra=" & compra._id
 
         If db Is Nothing Then
             db = New DataBase
@@ -94,7 +94,7 @@ Public Class CompraDAO
 
         Dim detalleDAO As New DetalleCompraDAO
         For Each detalle In compra.detalle
-            If detalle.id_compra <> compra.id Then
+            If detalle.id_compra <> compra._id Then
                 db.cancelar_transaccion()
                 Throw New System.Exception("El ID del detalle es distinto del de la compra.")
             End If
@@ -104,7 +104,7 @@ Public Class CompraDAO
         db.cerrar_transaccion()
         db.desconectar()
 
-        compra.id = 0
+        compra._id = 0
     End Sub
 
     Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
@@ -165,8 +165,8 @@ Public Class CompraDAO
         Dim compra = cast(value)
         ' DOC: determina si existe el vendedor en la BD, según PK
 
-        If compra.id > 0 Then
-            Dim sql = "SELECT TOP 1 idCompra FROM compras WHERE idCompra=" & compra.id
+        If compra._id > 0 Then
+            Dim sql = "SELECT TOP 1 idCompra FROM compras WHERE idCompra=" & compra._id
             Dim response = db.consulta_sql(sql)
             Return response.Rows.Count = 1
         Else
@@ -205,10 +205,17 @@ Public Class CompraDAO
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
         Dim compra As New CompraVO With {
-            .id = valores("id"),
-            .fecha_compra = valores("fecha_compra"),
-            .proveedor = valores("proveedor")
+            ._id = valores("id"),
+            ._fecha_compra = valores("fecha_compra")
         }
+
+        If valores.ContainsKey("proveedor") Then
+            compra._proveedor = valores("proveedor")
+        Else
+            With New ProveedorDAO
+                compra._proveedor = .search_by_id(valores("id_proveedor"))
+            End With
+        End If
 
         If TypeOf valores("detalle") Is List(Of ObjetoVO) _
             Or TypeOf valores("detalle") Is List(Of DetalleCompraVO) Then
