@@ -12,6 +12,7 @@
         comboBox
         campo ' Por lo general este tipo de mascaras trabaja con un diccionario de datos.
         controlYGrilla
+        comboYGrilla
     End Enum
 
     ' Propiedades obligatorias.
@@ -22,7 +23,6 @@
     Public Property _visible As Boolean
     Public Property _maskType As MaskType
     Public Property _campo As ObjetoCampo ' Cuando se quiere definir un campo especifico.
-    Public Property _control As ObjetoCtrl ' Cuando se quiere definir un control especifico, usado auxiliarmente.
     Public Property _objetoDAO As ObjetoDAO ' El objeto que sera pasado a un ComboBox.
 
     ' Propiedades de interfaz Validable
@@ -75,7 +75,9 @@
                 Case MaskType.comboBox
                     control = New LabeledComboBox(_id, _name, _objetoDAO)
                 Case MaskType.controlYGrilla
-                    control = New ControlYGrilla(_control, _objetoDAO.get_IU_grilla()) With {._id = _id, ._label = _name}
+                    control = New ControlYGrilla(_objetoDAO, _maskType) With {._id = _id, ._label = _name}
+                Case MaskType.comboYGrilla
+                    control = New ControlYGrilla(_objetoDAO, _maskType) With {._id = _id, ._label = _name}
                 Case MaskType.texto
                     control = New LabeledTextBox With {._id = _id, ._label = _name}
                 Case MaskType.campo

@@ -142,13 +142,8 @@ Public Class ProductoDAO
                                    ._numeric = True})
         campos.Add(New Campo With {._id = "ubicacion", ._name = "Ubicación"})
         campos.Add(New Campo With {._id = "stock", ._name = "Stock", ._numeric = True})
-        ' Campo que liste equipos.
-        Dim campos_aux As New List(Of Campo)
-        campos_aux.Add(New Campo With {._id = "equipo", ._name = "Equipo", ._maskType = Campo.MaskType.comboBox,
-                                       ._objetoDAO = New EquiposDAO, ._required = True})
-        Dim control_aux As New ControlGenerico(campos_aux, New EquiposDAO)
-        campos.Add(New Campo With {._id = "equipos", ._name = "Equipos", ._maskType = Campo.MaskType.controlYGrilla,
-                                   ._control = control_aux, ._objetoDAO = New EquiposDAO})
+        campos.Add(New Campo With {._id = "equipos", ._name = "Equipos compatibles", ._maskType = Campo.MaskType.comboYGrilla,
+                                   ._objetoDAO = New EquiposDAO})
         Return New ControlGenerico(campos, Me)
     End Function
 

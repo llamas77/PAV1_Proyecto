@@ -122,8 +122,8 @@ Public Class EquiposDAO
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
         Dim equipo As EquiposVO
-        If valores.ContainsKey("equipo") Then
-            equipo = valores("equipo")
+        If valores.ContainsKey("combo") Then
+            equipo = valores("combo") ' Caso especial en que el control es utilizado en un ControlYGrilla
         Else
             equipo = New EquiposVO With {
             ._id = valores("id"),
