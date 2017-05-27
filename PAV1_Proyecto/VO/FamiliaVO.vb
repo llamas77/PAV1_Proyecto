@@ -1,4 +1,8 @@
-﻿Public Class FamiliaVO
+﻿Imports PAV1_Proyecto
+
+Public Class FamiliaVO
+    Implements ObjetoVO
+
     ' DOC: FamiliaVO (FamilliaValueObject) solo tiene propiedades.
     '      Representa una fila de la tabla Familia. Se la utiliza para ahorrar parametros (un objeto
     '      en lugar de los atributos) y facilitar la modificacion del sistema.
@@ -20,4 +24,11 @@
         Me._nombre = nombre.Trim 'TODO: Validar String de longitud < 50 (segun BD)
     End Sub
 
+    Public Overrides Function toString() As String Implements ObjetoVO.toString
+        Return _nombre
+    End Function
+
+    Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
+        Throw New NotImplementedException()
+    End Function
 End Class

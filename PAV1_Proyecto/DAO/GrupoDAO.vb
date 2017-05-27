@@ -8,8 +8,9 @@ Public Class GrupoDAO
 
     Public Shared Function all() As DataTable
         Dim sql_select = ""
-        sql_select &= "SELECT idGrupo, grupos.nombre, familias.nombre as nombreFamilia, familias.idFamilia FROM GRUPOS "
-        sql_select &= "INNER JOIN FAMILIAS ON grupos.idFamilia=familias.idFamilia"
+        sql_select &= "SELECT idGrupo as id, grupos.nombre, familias.nombre as nombre_familia, familias.idFamilia as id_familia"
+        sql_select &= " FROM grupos"
+        sql_select &= " INNER JOIN FAMILIAS ON grupos.idFamilia=familias.idFamilia"
         Return DataBase.getInstance().consulta_sql(sql_select)
     End Function
 
@@ -108,7 +109,10 @@ Public Class GrupoDAO
             lista.Add(New GrupoVO With {
                       ._id = row("id"),
                       ._nombre = row("nombre"),
-                      ._familia = row("id_familia")})
+                      ._familia = New FamiliaVO With {
+                          ._id = row("id_familia"),
+                          ._nombre = row("nombre_familia")}
+                      })
         Next
         Return lista
     End Function
