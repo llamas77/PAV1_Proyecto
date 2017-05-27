@@ -34,6 +34,7 @@ Tareas pendientes por clase:
 		   : Implementar interfaces usando transacciones. Actualmente lo ignora y no las admite.
 - LabeledComboBox.resize_box() : Ajustar el ancho de la lista desplegable para mostrar todos los elementos completos.
 	Si hay que recorrer los datos para buscar el más ancho, aprovechar el For de _source.
+- GrupoDAO.update() : Falla si estamos cambiando el nombre y poniendo uno que ya existe para esa familia.
 
 Tareas pendientes generales:
 - Adaptar todos los comboBox para que su value sea un objeto. Ver GananciaDAO como guia. Sino no funcionan.

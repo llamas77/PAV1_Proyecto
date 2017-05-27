@@ -26,7 +26,8 @@
     End Sub
 
     Private Sub btn_grupos_Click(sender As Object, e As EventArgs) Handles btn_grupos.Click
-        Dim frm As New frm_abm_grupos
+        Dim frm As New frm_abm_generico(New GrupoDAO)
+        frm.Text = "ABM Grupos"
         frm.Show()
     End Sub
 

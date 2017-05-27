@@ -110,7 +110,7 @@ Public Class MarcaDAO
         Dim marca = cast(value)
 
         Dim sql = "SELECT TOP 1 nombre FROM marcas WHERE nombre='" & marca._nombre & "'"
-        Dim response = DataBase.getInstance().consulta_sql(sql)
+        Dim response = db.consulta_sql(sql)
         Return response.Rows.Count = 1
     End Function
 

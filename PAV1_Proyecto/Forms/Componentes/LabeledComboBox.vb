@@ -30,7 +30,10 @@ Public Class LabeledComboBox
         Set(value As ObjetoDAO)
             Dim objetos As List(Of ObjetoVO) = value.all()
             Dim tabla As New DataTable
-            tabla.Columns.Add("value")
+            tabla.Columns.Add(New DataColumn With {
+                                .ColumnName = "value",
+                                .DataType = (New Object).GetType
+                                })
             tabla.Columns.Add("display")
             For Each valor As ObjetoVO In objetos
                 Dim row = tabla.Rows.Add()
@@ -66,7 +69,7 @@ Public Class LabeledComboBox
 
     Public Function is_valid() As Boolean Implements Validable.is_valid
         Dim valido As Boolean = True
-        If Not _required And cmb_combo.SelectedIndex = -1 Then
+        If _required And cmb_combo.SelectedIndex = -1 Then
             valido = False
         End If
         If _numeric And Not IsNumeric(cmb_combo.SelectedValue) Then

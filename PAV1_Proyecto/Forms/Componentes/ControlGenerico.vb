@@ -42,7 +42,7 @@ Public Class ControlGenerico
     Private Sub set_control(id As String, value As Object)
         ' Busca el control que representa la variable id y cambia su valor por value.
         For Each campo As ObjetoCampo In Me.Controls
-            ' Si llegase a haber 2 campos con el mismo id modifica ambos.
+            ' Si llegase a haber 2 campos con el mismo id modifica al mismo 2 veces.
             If campo._id = id Then
                 campo._value = value
                 Exit For

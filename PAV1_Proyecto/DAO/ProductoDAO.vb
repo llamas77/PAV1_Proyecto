@@ -165,7 +165,7 @@ Public Class ProductoDAO
             codigoProducto = valores("codigoProducto")
         End If
 
-        Dim grupo As New GrupoVO(valores("idGrupo"))
+        Dim grupo As New GrupoVO With {._id = valores("idGrupo")}
         If valores.ContainsKey("nombre") Then
             grupo._nombre = valores("nombre")
         End If
