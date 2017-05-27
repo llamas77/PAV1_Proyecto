@@ -38,7 +38,9 @@
         ' Ubicar grilla del objeto.
         control = grilla_objeto
         Dim min_width As Integer = btn_actualizar.Location.X + btn_actualizar.Size.Width + 15
-        min_width = IIf(min_width < 380, 380, min_width) ' Controla que el ancho minimo alcance para acomodar los botones.
+        min_width = IIf(min_width < 360, 360, min_width) ' Controla que el ancho minimo alcance para acomodar los botones.
+        ' AVISO HARDCODING: 380 es el resultado de sumar el ancho de cada boton + un margen de 20 px a la izquierda para cada boton.
+        ' excepto el primero. Si se cambia el ancho de los botones, recalcular.
         control.MinimumSize = New Size(min_width, 150)
         control.Location = New Point(Me.Padding.Left, btn_actualizar.Location.Y + btn_actualizar.Size.Height + 15)
         control.TabIndex = 3

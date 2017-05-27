@@ -29,8 +29,8 @@ Public Class ProveedorVO
     End Sub
 
 
-    Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
-        Return _cuit & " - " & _razonSocial
+    Public Overrides Function toString() As String Implements ObjetoVO.toString
+        Return _razonSocial & " (" & _cuit & ")"
     End Function
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
