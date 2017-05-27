@@ -2,25 +2,25 @@
 
 Proceso Compras (ABM complejo) 
 	Hecho parcialmente.
-	Hay que mejorar el funcionamiento de la clase Detalle y el metodo CompraDAO.all() -- Usar un tipo de grilla que
-		acepte ObjetoVO en lugar de solo DataTable.
 	Implementar validaciones.
 	
 ¿Un DetalleCompra deberia poder modificarse?
 Proceso Ventas (ABM complejo)
 
-Cambiar interfaz DAO para que reciba DataBase como paremetro opcional en cada accion (por defecto crea uno)
-
 Agregar campo nombre a producto en la base de datos y en el programa.
+
 ABM ProductosxEquipos (Se puede incluir en Productos y/o Equipos con una CheckedListBox)
+
 Validaciones estrictas de todos los ABM (Atencion a las FK cuando estan apuntadas no se puede borrar el elemento.)
+
 Hacer menu desplegable en lugar de botones.
 
-Nuevo MaskType "Control" que admita un ControlGenerico con el objetivo de poder cargar un detalle en compra/venta.
 Hacer que el MaskedTextBox retorne lo que ingreso el usuario, sin los valores fijos de la mascara
 	y ademas sea capaz de hacer lo opuesto (cargar un valor en la mascara)
+
 Mejorar gestion de errores en las validaciones para hacerlos mas informativos.
-	-- Probablemente sirva que is_valid retorne un array de errores, o Nothing si es valido.
+	-- Probablemente sirva que is_valid retorne una lista de errores, o Nothing si es valido.
+
 Unificar ABM's para funcionar con form's genericos -- Para poder cambiar la interfaz de todos los ABM a la vez.
 Unificar Nomenclatura de varibles.
 
@@ -36,10 +36,12 @@ Tareas pendientes por clase:
 	Si hay que recorrer los datos para buscar el más ancho, aprovechar el For de _source.
 
 Tareas pendientes generales:
-- Adaptar todos los comboBox para que su value sea un objeto. Ver GananciaDAO como guia.
+- Adaptar todos los comboBox para que su value sea un objeto. Ver GananciaDAO como guia. Sino no funcionan.
 - Mejorar rendimiento disminuyendo conversiones de tipos de datos. Tratar de que todos los objetos entiendan de ObjetoVO
 	y simplificar su creacion a partir de DataTable.
 - Ordenar las funciones para que siempre esten igual que lo indicado en la interfaz.
 - Revisar que todos los DAO implementen transacciones y no las omitan (Que no creen otra instancia de DataBase
 	si se le paso una por parametro.)
+- Todos lo metodos de DAO que se comuniquen con la base de datos deben tener un parametro opcional db as DataBase = Nothing.
+	Es para poder utilizarlos dentro de una transaccion.
 - Corregir todas las referencias a metodos obsoletos. Si no hay referencias eliminar el metodo.
