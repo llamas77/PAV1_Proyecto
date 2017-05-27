@@ -46,3 +46,4 @@ Tareas pendientes generales:
 - Todos lo metodos de DAO que se comuniquen con la base de datos deben tener un parametro opcional db as DataBase = Nothing.
 	Es para poder utilizarlos dentro de una transaccion.
 - Corregir todas las referencias a metodos obsoletos. Si no hay referencias eliminar el metodo.
+- Aplicar restricciones de longitud segun base de datos en cada get_IU_control.

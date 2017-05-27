@@ -164,18 +164,6 @@
     <Compile Include="Forms\Componentes\LabeledMaskedTextBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Componentes\VendedoresControl.Designer.vb">
-      <DependentUpon>VendedoresControl.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Componentes\VendedoresControl.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Componentes\VendedorGrilla.Designer.vb">
-      <DependentUpon>VendedorGrilla.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Componentes\VendedorGrilla.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Forms\frm_abm_generico.Designer.vb">
       <DependentUpon>frm_abm_generico.vb</DependentUpon>
     </Compile>
@@ -239,12 +227,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\UserControls\LabeledTextBox.resx">
       <DependentUpon>LabeledTextBox.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\VendedoresControl.resx">
-      <DependentUpon>VendedoresControl.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\VendedorGrilla.resx">
-      <DependentUpon>VendedorGrilla.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_abm_generico.resx">
       <DependentUpon>frm_abm_generico.vb</DependentUpon>

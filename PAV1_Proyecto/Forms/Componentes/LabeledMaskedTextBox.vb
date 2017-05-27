@@ -34,6 +34,7 @@ Public Class LabeledMaskedTextBox
                     txt_caja.Mask = "9000-150-000000"
                 Case Campo.MaskType.porcentaje
                     txt_caja.Mask = "099%"
+                    txt_caja.PromptChar = " "
                 Case Campo.MaskType.fecha
                     txt_caja.Mask = "00/00/0000"
                 Case Campo.MaskType.cuit
@@ -67,7 +68,7 @@ Public Class LabeledMaskedTextBox
     Public Property _id As String Implements ObjetoCampo._id
     Public Property _label As String Implements ObjetoCampo._label
         Get
-            Return lbl_texto.Text
+            Return lbl_texto.Text.Trim
         End Get
         Set(ByVal value As String)
             lbl_texto.Text = value

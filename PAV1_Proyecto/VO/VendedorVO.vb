@@ -15,49 +15,29 @@ Public Class VendedorVO
 
     Public Property _direccion As String
 
-    Public Property _comision As Double
+    Public Property _proporcion_comision As Double
         Get
             Return comision
         End Get
         Set(value As Double)
-            If value < 0 Or value > 1 Then
-                comision = 0
+            If value < 0 Then
+                Throw New System.Exception("Un vendedor no puede tener una comision negativa.")
             Else
                 comision = value
             End If
         End Set
     End Property
 
-    Public Property _porcentaje As String ' String de la mascara 990%
+    Public Property _porcentaje_comision As String ' String de la mascara 990%
         Get
-            Return _comision * 100 & "%"
+            Return _proporcion_comision * 100 & "%"
         End Get
         Set(value As String)
             value = value.Replace("%", "")
-            _comision = value / 100
+            _proporcion_comision = value / 100
         End Set
     End Property
 
-    Public Sub New(id, nombre, apellido, telefono, direccion, comision)
-        _id = id
-        _nombre = nombre
-        _apellido = apellido
-        _telefono = telefono
-        _direccion = direccion
-        If TypeOf comision Is Double Then
-            Me.comision = comision
-        Else
-            _porcentaje = comision
-        End If
-    End Sub
-
-    Public Sub New()
-        Me.New(0, "", "", "", "", 0.0)
-    End Sub
-
-    '
-    ' Interfaz ObjetoVO
-    '
     Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
         Return _apellido & ", " & _nombre
     End Function
@@ -69,8 +49,8 @@ Public Class VendedorVO
         diccionario.Add("apellido", _apellido)
         diccionario.Add("telefono", _telefono)
         diccionario.Add("direccion", _direccion)
-        diccionario.Add("comision", _comision)
-        diccionario.Add("porcentaje", _porcentaje)
+        diccionario.Add("proporcion_comision", _proporcion_comision)
+        diccionario.Add("porcentaje_comision", _porcentaje_comision)
         Return diccionario
     End Function
 End Class
