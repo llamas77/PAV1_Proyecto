@@ -29,33 +29,44 @@ Public Class LabeledComboBox
     Public WriteOnly Property _source As ObjetoDAO
         Set(value As ObjetoDAO)
             Dim objetos As List(Of ObjetoVO) = value.all()
-            Dim tabla As New DataTable
-            tabla.Columns.Add(New DataColumn With {
-                                .ColumnName = "value",
-                                .DataType = (New Object).GetType
-                                })
-            tabla.Columns.Add("display")
+
+            Dim tabla As DataTable = cmb_combo.DataSource
+            tabla.Rows.Clear()
+
             For Each valor As ObjetoVO In objetos
                 Dim row = tabla.Rows.Add()
                 row("value") = valor
                 row("display") = valor.toString()
             Next
-            cmb_combo.DataSource = tabla
-            cmb_combo.ValueMember = "value"
-            cmb_combo.DisplayMember = "display"
 
+            ' Los cambios en la tabla se aplican automaticamente al ComboBox.
             cmb_combo.SelectedIndex = -1
             resize_box() ' Actualizar el ancho del control.
         End Set
     End Property
 
+
+
     Public Sub New(id As String, label As String, Optional datos As ObjetoDAO = Nothing)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        init_cmb_combo()
         _id = id
         _label = label
         _source = datos
+    End Sub
+
+    Private Sub init_cmb_combo()
+        Dim tabla As New DataTable
+        tabla.Columns.Add(New DataColumn With {
+                            .ColumnName = "value",
+                            .DataType = (New Object).GetType
+                            })
+        tabla.Columns.Add("display")
+        cmb_combo.DataSource = tabla
+        cmb_combo.ValueMember = "value"
+        cmb_combo.DisplayMember = "display"
     End Sub
 
     '
