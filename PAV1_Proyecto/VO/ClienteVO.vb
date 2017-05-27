@@ -3,43 +3,31 @@
 Public Class ClienteVO
     Implements ObjetoVO
 
+    Public Property _nro As Integer = 0
 
-    Public Property _nro As Integer
+    Public Property _nombre As String = ""
 
-    Public Property _nombre As String
+    Public Property _apellido As String = ""
 
-    Public Property _apellido As String
+    Public Property _telefono As String = ""
 
-    Public Property _telefono As String
+    Public Property _direccion As String = ""
 
-    Public Property _direccion As String
+    Public Property _tipo_cliente As TipoClienteVO = Nothing
 
-    Public Property _idTipoCliente As Integer
 
-    Public Property _nombreIdTipoCliente As String
-
-    Public Sub New(nro, nombre, apellido, telefono, direccion, idTipoCliente, nombreIdTipoCliente)
-        _nro = nro
-        _nombre = nombre
-        _apellido = apellido
-        _telefono = telefono
-        _direccion = direccion
-        _idTipoCliente = idTipoCliente
-        _nombreIdTipoCliente = nombreIdTipoCliente
-    End Sub
-
-    Public Sub New()
-        Me.New(0, "", "", "", "", 0, "")
-    End Sub
-
-    '
-    ' Interfaz ObjetoVO
-    '
     Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
         Return _apellido & ", " & _nombre
     End Function
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
-        Throw New NotImplementedException()
+        Dim diccionario As New Dictionary(Of String, Object)
+        diccionario.Add("nro", _nro)
+        diccionario.Add("nombre", _nombre)
+        diccionario.Add("apellido", _apellido)
+        diccionario.Add("telefono", _telefono)
+        diccionario.Add("direccion", _direccion)
+        diccionario.Add("tipo_cliente", _tipo_cliente)
+        Return diccionario
     End Function
 End Class

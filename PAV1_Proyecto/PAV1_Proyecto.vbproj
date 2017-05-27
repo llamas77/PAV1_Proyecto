@@ -142,18 +142,6 @@
     <Compile Include="VO\DetalleCompraVO.vb" />
     <Compile Include="VO\EquiposVO.vb" />
     <Compile Include="VO\FamiliaVO.vb" />
-    <Compile Include="Forms\Componentes\ClienteControl.Designer.vb">
-      <DependentUpon>ClienteControl.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Componentes\ClienteControl.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Componentes\ClienteGrilla.Designer.vb">
-      <DependentUpon>ClienteGrilla.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Componentes\ClienteGrilla.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Forms\Componentes\Campo.vb" />
     <Compile Include="Forms\Componentes\ControlGenerico.Designer.vb">
       <DependentUpon>ControlGenerico.vb</DependentUpon>
@@ -242,12 +230,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\LabeledComboBox.resx">
       <DependentUpon>LabeledComboBox.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\ClienteControl.resx">
-      <DependentUpon>ClienteControl.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\ClienteGrilla.resx">
-      <DependentUpon>ClienteGrilla.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\LabeledMaskedTextBox.resx">
       <DependentUpon>LabeledMaskedTextBox.vb</DependentUpon>

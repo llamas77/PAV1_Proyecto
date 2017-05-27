@@ -7,24 +7,27 @@ Public Class ClienteDAO
         If db Is Nothing Then
             db = DataBase.getInstance()
         End If
-        Dim sql_select = "SELECT nroCliente, c.nombre, apellido, direccion, telefono, idTipoCliente, tipos_Cliente.nombre as nombreIdTipoCliente "
-        sql_select &= "FROM clientes c INNER JOIN tipos_Cliente ON idTipoCliente = idTipo"
+        Dim sql_select = "SELECT c.nroCliente as nro, c.nombre, c.apellido, c.direccion, c.telefono, "
+        sql_select &= " c.idTipoCliente as id_tipo_cliente, t.nombre as nombre_tipo_cliente, t.descripcion as descripcion_tipo_cliente "
+        sql_select &= "FROM clientes c INNER JOIN tipos_Cliente t ON c.idTipoCliente = t.idTipo"
         Dim datos = db.consulta_sql(sql_select)
         Return dataTable_to_List(datos)
     End Function
 
     Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
         Dim lista As New List(Of ObjetoVO)
+        Dim params = {"nro", "nombre", "apellido", "direccion", "telefono",
+                      "id_tipo_cliente", "nombre_tipo_cliente", "descripcion_tipo_cliente"}
+        Dim diccionario As New Dictionary(Of String, Object)
+        For Each param In params
+            diccionario.Add(param, Nothing)
+        Next
+
         For Each row In tabla.Rows
-            lista.Add(New ClienteVO With {
-                ._nro = row("nroCliente"),
-                ._nombre = row("nombre"),
-                ._apellido = row("apellido"),
-                ._telefono = row("telefono"),
-                ._direccion = row("direccion"),
-                ._idTipoCliente = row("idTipoCliente"),
-                ._nombreIdTipoCliente = row("nombreIdTipoCliente")}
-                )
+            For Each param In params
+                diccionario(param) = row(param)
+            Next
+            lista.Add(new_instance(diccionario))
         Next
         Return lista
     End Function
@@ -42,7 +45,7 @@ Public Class ClienteDAO
         sql_insertar &= "'" & cliente._apellido & "', "
         sql_insertar &= "'" & cliente._direccion & "', "
         sql_insertar &= "'" & cliente._telefono & "', "
-        sql_insertar &= cliente._idTipoCliente & ")"
+        sql_insertar &= cliente._tipo_cliente._id & ")"
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
         Dim tabla = db.consulta_sql(sql_insertar)
         cliente._nro = tabla(0)(0)
@@ -60,7 +63,7 @@ Public Class ClienteDAO
         sql_update &= "apellido='" & cliente._apellido & "', "
         sql_update &= "direccion='" & cliente._direccion & "', "
         sql_update &= "telefono='" & cliente._telefono & "', "
-        sql_update &= "idTipoCliente=" & cliente._idTipoCliente
+        sql_update &= "idTipoCliente=" & cliente._tipo_cliente._id
         sql_update &= " WHERE nroCliente=" & cliente._nro
         db.ejecuta_sql(sql_update)
     End Sub
@@ -101,28 +104,46 @@ Public Class ClienteDAO
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
-        Return New ClienteVO(valores("nroCliente"),
-                              valores("nombre"),
-                              valores("apellido"),
-                              valores("telefono"),
-                              valores("direccion"),
-                              valores("idTipoCliente"),
-                              valores("nombreIdTipoCliente"))
+        Dim cliente As New ClienteVO With {
+            ._nro = valores("nro"),
+            ._nombre = valores("nombre"),
+            ._apellido = valores("apellido"),
+            ._telefono = valores("telefono"),
+            ._direccion = valores("direccion")
+        }
+
+        If valores.ContainsKey("tipo_cliente") Then
+            cliente._tipo_cliente = valores("tipo_cliente")
+        Else
+            cliente._tipo_cliente = New TipoClienteVO With {
+                ._id = valores("id_tipo_cliente"),
+                ._nombre = valores("nombre_tipo_cliente"),
+                ._descripcion = valores("descripcion_tipo_cliente")}
+        End If
+
+        Return cliente
     End Function
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
-        Return New ClienteControl()
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo With {._id = "nro", ._name = "Número", ._visible = False})
+        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._required = True})
+        campos.Add(New Campo With {._id = "apellido", ._name = "Apellido"})
+        campos.Add(New Campo With {._id = "telefono", ._name = "Teléfono", ._maskType = Campo.MaskType.telefono})
+        campos.Add(New Campo With {._id = "direccion", ._name = "Dirección"})
+        campos.Add(New Campo With {._id = "tipo_cliente", ._name = "Tipo", ._maskType = Campo.MaskType.comboBox,
+                                   ._objetoDAO = New TipoClienteDAO, ._required = True})
+        Return New ControlGenerico(campos, Me)
     End Function
 
     Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("nroCliente", "Nro Cliente"))
-        campos.Add(New Campo("nombre", "Nombre"))
-        campos.Add(New Campo("apellido", "Apellido"))
-        campos.Add(New Campo("telefono", "", visible:=False))
-        campos.Add(New Campo("direccion", "", visible:=False))
-        campos.Add(New Campo("idTipoCliente", "", visible:=False))
-        campos.Add(New Campo("nombreIdTipoCliente", "", visible:=False))
+        campos.Add(New Campo With {._id = "nro", ._name = "Número"})
+        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre"})
+        campos.Add(New Campo With {._id = "apellido", ._name = "Apellido"})
+        campos.Add(New Campo With {._id = "telefono", ._visible = False})
+        campos.Add(New Campo With {._id = "direccion", ._visible = False})
+        campos.Add(New Campo With {._id = "tipo_cliente", ._name = "Tipo"})
         Return New GrillaGenerica(campos, Me)
     End Function
 
