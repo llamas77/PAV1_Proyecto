@@ -92,7 +92,7 @@
 
         txt_id.Text = grupo._id
         txt_nombre.Text = grupo._nombre
-        cmb_familia.SelectedValue = grupo._familia.get_id
+        cmb_familia.SelectedValue = grupo._familia._id
         set_tipo_g(tipo_grabacion.modificar)
         txt_nombre.Focus()
     End Sub

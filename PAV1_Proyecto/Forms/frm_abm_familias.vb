@@ -57,7 +57,7 @@
                     If FamiliaDAO.exists(familia) Then
                         FamiliaDAO.update(familia)
                     Else
-                        MsgBox("La familia " & familia.get_nombre & " no existe. Imposible modificar.", MsgBoxStyle.Exclamation, "Aviso")
+                        MsgBox("La familia " & familia._nombre & " no existe. Imposible modificar.", MsgBoxStyle.Exclamation, "Aviso")
                         ' Duda - Juani: Si la familia no existe y el usuario la quiere guardar, no deberiamos
                         '           redirijir internamente al insert sin informar al usuario? En este caso no hace falta el estadoGrabacion.
                     End If
@@ -70,11 +70,11 @@
 
     Private Function validate_FamiliaVO(ByRef familia As FamiliaVO) As Boolean
         ' DUDA - Juani: El metodo deberia obtener los datos de los txtBox o que le pasen un MarcaVO y lo valide?
-        If familia.get_nombre() = "" Then
+        If familia._nombre = "" Then
             MsgBox("No puede ingresar un nombre de familia vacio.", MsgBoxStyle.Exclamation, "Aviso")
             Return False
         ElseIf FamiliaDAO.is_name_in_use(familia) Then
-            MsgBox("Ya existe una familia de nombre: " & familia.get_nombre, MsgBoxStyle.Exclamation, "Aviso")
+            MsgBox("Ya existe una familia de nombre: " & familia._nombre, MsgBoxStyle.Exclamation, "Aviso")
             Return False
         End If
 
@@ -86,7 +86,7 @@
         Dim familia = get_selected_FamiliaVO()
         If True Then ' TODO: Validar que no haya ningun equipo relacionado a esta marca.
             ' Confirmacion
-            If MessageBox.Show("Esta seguro de borrar la familia: " + familia.get_nombre(),
+            If MessageBox.Show("Esta seguro de borrar la familia: " + familia._nombre,
                            "Importante", MessageBoxButtons.YesNo,
                            MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
                 FamiliaDAO.delete(familia)
@@ -102,8 +102,8 @@
     Private Sub load_familia(ByRef familia As FamiliaVO)
         ' DOC: Completa el formulario con la marca seleccionada y se prepara para modificarla
 
-        txt_id.Text = familia.get_id()
-        txt_nombre.Text = familia.get_nombre()
+        txt_id.Text = familia._id
+        txt_nombre.Text = familia._nombre
         set_tipo_g(tipo_grabacion.modificar)
         txt_nombre.Focus()
     End Sub
