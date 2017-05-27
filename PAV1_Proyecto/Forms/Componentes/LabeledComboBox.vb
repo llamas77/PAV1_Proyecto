@@ -42,6 +42,7 @@ Public Class LabeledComboBox
             cmb_combo.DisplayMember = "display"
 
             cmb_combo.SelectedIndex = -1
+            resize_box() ' Actualizar el ancho del control.
         End Set
     End Property
 
@@ -87,5 +88,13 @@ Public Class LabeledComboBox
 
     Private Sub cmb_combo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_combo.SelectedIndexChanged
         lbl_label.ForeColor = System.Drawing.SystemColors.ControlText
+    End Sub
+
+    Private Sub resize_box()
+        If cmb_combo.PreferredSize.Width <> cmb_combo.Width Then
+            cmb_combo.Size = New Size(cmb_combo.Size.Height, cmb_combo.PreferredSize.Width)
+        End If
+
+        ' cmb_combo.DropDownWidth = 165 ' -- Se puede cambiar el ancho de la lista desplegable.
     End Sub
 End Class

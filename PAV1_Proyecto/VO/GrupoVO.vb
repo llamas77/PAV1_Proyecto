@@ -30,7 +30,7 @@ Public Class GrupoVO
     End Sub
 
     Public Overrides Function toString() As String Implements ObjetoVO.toString
-        Return nombre & " de la familia " & _familia.ToString()
+        Return nombre & " de " & _familia.toString()
     End Function
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary

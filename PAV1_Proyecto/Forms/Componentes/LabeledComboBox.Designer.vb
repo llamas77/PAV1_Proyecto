@@ -41,8 +41,7 @@ Partial Class LabeledComboBox
         Me.cmb_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmb_combo.FormattingEnabled = True
         Me.cmb_combo.Location = New System.Drawing.Point(125, 3)
-        Me.cmb_combo.MaximumSize = New System.Drawing.Size(165, 0)
-        Me.cmb_combo.MinimumSize = New System.Drawing.Size(4, 0)
+        Me.cmb_combo.MinimumSize = New System.Drawing.Size(165, 0)
         Me.cmb_combo.Name = "cmb_combo"
         Me.cmb_combo.Size = New System.Drawing.Size(165, 24)
         Me.cmb_combo.TabIndex = 0
