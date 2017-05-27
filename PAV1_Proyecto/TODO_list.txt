@@ -30,6 +30,8 @@ Tareas pendientes por clase:
 - ObjetoVO : Tener composicion de objetos. Por cada FK tener una propiedad que retorne el ID y otra que retorne el objeto
 	completo, puede que conociendo el ID 
 - LabeledTextBox : La mascara porcentaje debe comunicarse con Double, pero mostrar al usuario una cadena con %
+				 : Al crear un controlGenerico los labels deberian tener todos el tamaño minimo y no espacio en blanco
+						al principio como en Equipo.
 - GrupoDAO : Implementar interfaces, adaptar metodos a la interfaz. Usar controles genericos.
 		   : Implementar interfaces usando transacciones. Actualmente lo ignora y no las admite.
 - LabeledComboBox.resize_box() : Ajustar el ancho de la lista desplegable para mostrar todos los elementos completos.
@@ -47,3 +49,4 @@ Tareas pendientes generales:
 	Es para poder utilizarlos dentro de una transaccion.
 - Corregir todas las referencias a metodos obsoletos. Si no hay referencias eliminar el metodo.
 - Aplicar restricciones de longitud segun base de datos en cada get_IU_control.
+

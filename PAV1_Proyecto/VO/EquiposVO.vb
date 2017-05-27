@@ -3,36 +3,22 @@
 Public Class EquiposVO
     Implements ObjetoVO
 
-
     Public Property _id As Integer
-
-    Public Property _idMarca As Integer
 
     Public Property _modelo As String
 
-    Public Property _marca As String
+    Public Property _marca As MarcaVO
 
-    Public Sub New(id, idMarca, marca, modelo)
-        _id = id
-        _idMarca = idMarca
-        _marca = marca
-        _modelo = modelo
-
-    End Sub
-
-    Public Sub New()
-        Me.New(0, 0, "", "")
-    End Sub
-
-    '
-    ' Interfaz ObjetoVO
-    '
-    Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
-        Return _marca & ", " & _modelo
+    Public Overrides Function toString() As String Implements ObjetoVO.toString
+        Return _marca.toString() & ", " & _modelo
     End Function
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
-        Throw New NotImplementedException()
+        Dim diccionario As New Dictionary(Of String, Object)
+        diccionario.Add("id", _id)
+        diccionario.Add("modelo", _modelo)
+        diccionario.Add("marca", _marca)
+        Return diccionario
     End Function
 
 End Class

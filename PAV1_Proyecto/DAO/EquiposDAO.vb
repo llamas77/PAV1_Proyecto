@@ -6,13 +6,14 @@ Public Class EquiposDAO
         If db Is Nothing Then
             db = DataBase.getInstance()
         End If
-        Dim sql_select = "SELECT id, equipos.idMarca, marcas.nombre as marca, modelo FROM equipos INNER JOIN marcas ON equipos.idMarca = marcas.idMarca "
+        Dim sql_select = "SELECT e.id, e.modelo, e.idMarca as id_marca, m.nombre as nombre_marca "
+        sql_select &= " FROM equipos e INNER JOIN marcas m ON e.idMarca = m.idMarca "
         Return dataTable_to_List(db.consulta_sql(sql_select))
     End Function
 
     Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
         Dim lista As New List(Of ObjetoVO)
-        Dim params = {"id", "idMarca", "marca", "modelo"}
+        Dim params = {"id", "id_marca", "nombre_marca", "modelo"}
         Dim diccionario As New Dictionary(Of String, Object)
         For Each param In params
             diccionario.Add(param, Nothing)
@@ -35,7 +36,7 @@ Public Class EquiposDAO
         Dim sql_insertar As String
         sql_insertar = " INSERT INTO equipos (idMarca, modelo)"
         sql_insertar &= " VALUES ("
-        sql_insertar &= equipos._idMarca & ", "
+        sql_insertar &= equipos._marca._id & ", "
         sql_insertar &= "'" & equipos._modelo & "')"
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
         Dim tabla = db.consulta_sql(sql_insertar)
@@ -50,7 +51,7 @@ Public Class EquiposDAO
         Dim sql_update As String
         sql_update = "UPDATE equipos"
         sql_update &= " SET "
-        sql_update &= "idMarca= " & equipos._idMarca & ", "
+        sql_update &= "idMarca= " & equipos._marca._id & ", "
         sql_update &= "modelo= '" & equipos._modelo & "' "
         sql_update &= " WHERE id = " & equipos._id
         db.ejecuta_sql(sql_update)
@@ -91,23 +92,37 @@ Public Class EquiposDAO
         End If
     End Function
 
-    Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
-        Return New EquiposVO(valores("id"),
-                           valores("idMarca"),
-                           valores("marca"),
-                           valores("modelo"))
+    Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo With {._id = "id", ._visible = False})
+        campos.Add(New Campo With {._id = "marca", ._name = "Marca", ._maskType = Campo.MaskType.comboBox,
+                                   ._objetoDAO = New MarcaDAO, ._required = True})
+        campos.Add(New Campo With {._id = "modelo", ._name = "Modelo", ._required = True})
+        Return New ControlGenerico(campos, Me)
     End Function
+
     Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("id", "Id"))
-        campos.Add(New Campo("idMarca", "", visible:=False))
-        campos.Add(New Campo("marca", "Marca"))
-        campos.Add(New Campo("modelo", "Modelo"))
+        campos.Add(New Campo With {._id = "id", ._name = "ID"})
+        campos.Add(New Campo With {._id = "marca", ._name = "Marca"})
+        campos.Add(New Campo With {._id = "modelo", ._name = "Modelo"})
         Return New GrillaGenerica(campos, Me)
     End Function
 
-    Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
-        Return New EquiposControl()
+    Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
+        Dim equipo As New EquiposVO With {
+            ._id = valores("id"),
+            ._modelo = valores("modelo")}
+
+        If valores.ContainsKey("marca") Then
+            equipo._marca = valores("marca")
+        Else
+            equipo._marca = New MarcaVO With {
+                ._id = valores("id_marca"),
+                ._nombre = valores("nombre_marca")}
+        End If
+
+        Return equipo
     End Function
 
 End Class
