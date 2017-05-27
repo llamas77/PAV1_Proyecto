@@ -86,7 +86,7 @@ Public Class MarcaDAO
 
         If marca._id > 0 Then
             Dim sql = "SELECT TOP 1 idMarca FROM marcas WHERE idMarca=" & marca._id
-            Dim response = DataBase.getInstance().consulta_sql(sql)
+            Dim response = db.consulta_sql(sql)
             Return response.Rows.Count = 1
         Else
             Return False

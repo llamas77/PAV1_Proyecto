@@ -212,12 +212,6 @@
     <Compile Include="Forms\frm_abm_tipos_clientes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_abm_familias.Designer.vb">
-      <DependentUpon>frm_abm_familias.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frm_abm_familias.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\frm_abm_grupos.designer.vb">
       <DependentUpon>frm_abm_grupos.vb</DependentUpon>
     </Compile>
@@ -308,9 +302,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_abm_tipos_clientes.resx">
       <DependentUpon>frm_abm_tipos_clientes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_abm_familias.resx">
-      <DependentUpon>frm_abm_familias.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_abm_grupos.resx">
       <DependentUpon>frm_abm_grupos.vb</DependentUpon>

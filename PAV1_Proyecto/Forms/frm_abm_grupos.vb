@@ -7,7 +7,7 @@
     Dim tipo_g = tipo_grabacion.insertar
 
     Private Sub frm_abm_grupos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cargar_combo(cmb_familia, FamiliaDAO.all(), "idFamilia", "nombre")
+        'cargar_combo(cmb_familia, FamiliaDAO).all(), "idFamilia", "nombre")
         recargar_grilla_grupos()
     End Sub
 
@@ -110,12 +110,12 @@
     Private Function get_selected_GrupoVO() As GrupoVO
         ' DOC: Retorna el GrupoVO seleccionado en la grilla.
         Dim grupo = grid_grupos.CurrentRow()
-        Return New GrupoVO(grupo.Cells(0).Value(), grupo.Cells(1).Value(), New FamiliaVO(grupo.Cells(3).Value(), grupo.Cells(2).Value()))
+        'Return New GrupoVO(grupo.Cells(0).Value(), grupo.Cells(1).Value(), New FamiliaVO(grupo.Cells(3).Value(), grupo.Cells(2).Value()))
     End Function
 
     Private Function get_written_GrupoVO() As GrupoVO
         ' DOC: Retorna el grupo que esta escrito en los txtbox.
-        Return New GrupoVO(IIf(txt_id.Text = "", 0, txt_id.Text), txt_nombre.Text, New FamiliaVO(cmb_familia.SelectedValue, cmb_familia.Text))
+        'Return New GrupoVO(IIf(txt_id.Text = "", 0, txt_id.Text), txt_nombre.Text, New FamiliaVO(cmb_familia.SelectedValue, cmb_familia.Text))
     End Function
 
     Private Sub btn_modificar_Click(sender As Object, e As EventArgs) Handles btn_modificar.Click

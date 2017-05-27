@@ -6,7 +6,8 @@
     End Sub
 
     Private Sub btn_familias_Click(sender As Object, e As EventArgs) Handles btn_familias.Click
-        Dim frm As New frm_abm_familias
+        Dim frm As New frm_abm_generico(New FamiliaDAO)
+        frm.Text = "ABM Familias"
         frm.Show()
     End Sub
 

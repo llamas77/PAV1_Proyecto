@@ -1,53 +1,109 @@
-﻿Public Class FamiliaDAO
+﻿Imports PAV1_Proyecto
 
-    Public Shared Function all() As DataTable
-        Dim sql_select = "SELECT idFamilia, nombre FROM familias"
-        Return DataBase.getInstance().consulta_sql(sql_select)
+Public Class FamiliaDAO
+    Implements ObjetoDAO, ObjectFactory
+
+    Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+        Dim sql_select = "SELECT idFamilia as id, nombre FROM familias"
+        Return dataTable_to_List(db.consulta_sql(sql_select))
     End Function
 
-    Public Shared Sub insert(ByRef familia As FamiliaVO)
+    Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
+        Dim lista As New List(Of ObjetoVO)
+        Dim params = {"id", "nombre"}
+        Dim diccionario As New Dictionary(Of String, Object)
+        For Each param In params
+            diccionario.Add(param, Nothing)
+        Next
+
+        For Each row In tabla.Rows
+            For Each param In params
+                diccionario(param) = row(param)
+            Next
+            lista.Add(new_instance(diccionario))
+        Next
+        Return lista
+    End Function
+
+    Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
         ' DOC: Inserta la marca en la BD y actualiza el objeto asignandole su ID.
+
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+        Dim familia = cast(value)
 
         Dim sql_insertar As String
         sql_insertar = "INSERT INTO familias (nombre)"
         sql_insertar &= " VALUES ("
         sql_insertar &= "'" & familia._nombre & "')"
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
-        Dim tabla = DataBase.getInstance().consulta_sql(sql_insertar)
+        Dim tabla = db.consulta_sql(sql_insertar)
         familia._id = tabla(0)(0)
     End Sub
 
-    Public Shared Sub update(ByRef familia As FamiliaVO)
+    Public Sub update(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.update
         ' DOC: Actualiza la marca en la BD
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+        Dim familia = cast(value)
 
         Dim sql_update As String
         sql_update = "UPDATE familias"
         sql_update &= " SET "
         sql_update &= "nombre='" & familia._nombre & "'"
         sql_update &= " WHERE idFamilia=" & familia._id
-        DataBase.getInstance().ejecuta_sql(sql_update)
+        db.ejecuta_sql(sql_update)
     End Sub
 
-    Public Shared Sub delete(ByRef familia As FamiliaVO)
+    Public Sub delete(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.delete
         ' DOC: Elimina la marca de la BD
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+        Dim familia = cast(value)
 
         Dim sql_delete = "DELETE FROM familias" ' Si no existe en la BD el comando no falla.
         sql_delete &= " WHERE idFamilia=" & familia._id
-        DataBase.getInstance().ejecuta_sql(sql_delete)
+        db.ejecuta_sql(sql_delete)
         familia._id = 0
     End Sub
 
-    Shared Function exists(ByRef familia As FamiliaVO) As Boolean
+    Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists
         ' DOC: determina si existe la marca en la BD, según PK
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+        Dim familia = cast(value)
 
-        ' TODO: Validar que el ID es >= 1, sino no existe (no hace falta consulta en bd si no existe)
-        Dim sql = "SELECT TOP 1 idFamilia FROM familias WHERE idFamilia=" & familia._id
-        Dim response = DataBase.getInstance().consulta_sql(sql)
-        Return response.Rows.Count = 1
+        If familia._id > 0 Then
+            Dim sql = "SELECT TOP 1 idFamilia FROM familias WHERE idFamilia=" & familia._id
+            Dim response = db.consulta_sql(sql)
+            Return response.Rows.Count = 1
+        Else
+            Return False
+        End If
+
     End Function
 
-    Public Shared Function is_name_in_use(ByRef familia As FamiliaVO) As Boolean
+    Private Function cast(value As ObjetoVO) As FamiliaVO
+        If TypeOf value Is FamiliaVO Then
+            Return value
+        Else
+            Throw New System.Exception("Error: FamiliaDAO solo admite objetos FamiliaVO")
+        End If
+    End Function
+
+    Public Function is_name_in_use(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean
         ' DOC: determina si existe el nombre de la marca en la BD
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+        Dim familia = cast(value)
 
         Dim sql = "SELECT TOP 1 nombre FROM familias WHERE nombre='" & familia._nombre & "'"
         Dim response = DataBase.getInstance().consulta_sql(sql)
@@ -72,4 +128,24 @@
         Return familia
     End Function
 
+    Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo With {._id = "id", ._name = "", ._visible = False, ._numeric = True})
+        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._required = True})
+        Return New ControlGenerico(campos, Me)
+    End Function
+
+    Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo With {._id = "id", ._name = "ID"})
+        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre"})
+        Return New GrillaGenerica(campos, Me)
+    End Function
+
+    Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
+        Return New FamiliaVO With {
+            ._id = valores("id"),
+            ._nombre = valores("nombre")
+            }
+    End Function
 End Class
