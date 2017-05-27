@@ -15,7 +15,7 @@ Public Class ProductoVO
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
         Dim diccionario As New Dictionary(Of String, Object)
-        diccionario.Add("codigoProducto", _codigo)
+        diccionario.Add("codigo", _codigo)
         diccionario.Add("grupo", _grupo)
         diccionario.Add("costo", _costo)
         diccionario.Add("fechaLista", _fechaLista)
