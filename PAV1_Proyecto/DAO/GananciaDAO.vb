@@ -104,10 +104,10 @@ Public Class GananciaDAO
         Dim campos As New List(Of Campo)
         campos.Add(New Campo With {._id = "grupo", ._name = "Grupo",
                                    ._maskType = Campo.MaskType.comboBox,
-                                   ._objetoDAO = Me})
+                                   ._objetoDAO = New GrupoDAO})
         campos.Add(New Campo With {._id = "tipo_cliente", ._name = "Tipo de Cliente",
                                    ._maskType = Campo.MaskType.comboBox,
-                                   ._objetoDAO = Me})
+                                   ._objetoDAO = New TipoClienteDAO})
         campos.Add(New Campo With {._id = "porcentaje_ganancia", ._name = "Ganancia",
                                    ._maskType = Campo.MaskType.porcentaje})
         Return New ControlGenerico(campos, Me)

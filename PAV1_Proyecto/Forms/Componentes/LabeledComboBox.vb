@@ -32,16 +32,15 @@ Public Class LabeledComboBox
             Dim tabla As New DataTable
             tabla.Columns.Add("value")
             tabla.Columns.Add("display")
-            cmb_combo.ValueMember = "value"
-            cmb_combo.DisplayMember = "display"
-
             For Each valor As ObjetoVO In objetos
-                Dim row = tabla.NewRow()
+                Dim row = tabla.Rows.Add()
                 row("value") = valor
                 row("display") = valor.toString()
             Next
-
             cmb_combo.DataSource = tabla
+            cmb_combo.ValueMember = "value"
+            cmb_combo.DisplayMember = "display"
+
             cmb_combo.SelectedIndex = -1
         End Set
     End Property
