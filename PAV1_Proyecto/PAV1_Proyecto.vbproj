@@ -104,10 +104,10 @@
     <Compile Include="DataSets\GrillaCompras.vb">
       <DependentUpon>GrillaCompras.xsd</DependentUpon>
     </Compile>
-    <Compile Include="InterfazUsuario\Componentes\UserControls\Detalle.Designer.vb">
-      <DependentUpon>Detalle.vb</DependentUpon>
+    <Compile Include="InterfazUsuario\Componentes\UserControls\ControlYGrilla.Designer.vb">
+      <DependentUpon>ControlYGrilla.vb</DependentUpon>
     </Compile>
-    <Compile Include="InterfazUsuario\Componentes\UserControls\Detalle.vb">
+    <Compile Include="InterfazUsuario\Componentes\UserControls\ControlYGrilla.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="InterfazUsuario\Componentes\UserControls\InvisibleControl.vb">
@@ -213,8 +213,8 @@
     <EmbeddedResource Include="InterfazUsuario\Componentes\UserControls\LabeledMaskedTextBox.resx">
       <DependentUpon>LabeledMaskedTextBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InterfazUsuario\Componentes\UserControls\Detalle.resx">
-      <DependentUpon>Detalle.vb</DependentUpon>
+    <EmbeddedResource Include="InterfazUsuario\Componentes\UserControls\ControlYGrilla.resx">
+      <DependentUpon>ControlYGrilla.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfazUsuario\Componentes\UserControls\LabeledTextBox.resx">
       <DependentUpon>LabeledTextBox.vb</DependentUpon>

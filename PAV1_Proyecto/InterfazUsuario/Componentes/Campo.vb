@@ -10,7 +10,8 @@
         cuit
         email
         comboBox
-        control ' Por lo general este tipo de mascaras trabaja con un diccionario de datos.
+        campo ' Por lo general este tipo de mascaras trabaja con un diccionario de datos.
+        controlYGrilla
     End Enum
 
     ' Propiedades obligatorias.
@@ -20,7 +21,8 @@
     ' Propiedades opcionales.
     Public Property _visible As Boolean
     Public Property _maskType As MaskType
-    Public Property _control As ObjetoCampo ' Cuando se quiere definir un control especifico.
+    Public Property _campo As ObjetoCampo ' Cuando se quiere definir un campo especifico.
+    Public Property _control As ObjetoCtrl ' Cuando se quiere definir un control especifico, usado auxiliarmente.
     Public Property _objetoDAO As ObjetoDAO ' El objeto que sera pasado a un ComboBox.
 
     ' Propiedades de interfaz Validable
@@ -72,16 +74,19 @@
             Select Case _maskType
                 Case MaskType.comboBox
                     control = New LabeledComboBox(_id, _name, _objetoDAO)
+                Case MaskType.controlYGrilla
+                    control = New ControlYGrilla(_control, _objetoDAO.get_IU_grilla()) With {._id = _id, ._label = _name}
                 Case MaskType.texto
                     control = New LabeledTextBox With {._id = _id, ._label = _name}
-                Case MaskType.control
-                    _control._id = _id
-                    _control._label = _name
-                    control = _control
+                Case MaskType.campo
+                    _campo._id = _id
+                    _campo._label = _name
+                    control = _campo
                 Case Else
-                    control = New LabeledMaskedTextBox With {._id = _id,
-                                                                ._label = _name,
-                                                                ._mask = _maskType}
+                    control = New LabeledMaskedTextBox With {
+                        ._id = _id,
+                        ._label = _name,
+                        ._mask = _maskType}
             End Select
         Else
             control = New InvisibleControl(_id, Nothing)

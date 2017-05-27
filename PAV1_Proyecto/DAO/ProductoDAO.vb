@@ -142,6 +142,13 @@ Public Class ProductoDAO
                                    ._numeric = True})
         campos.Add(New Campo With {._id = "ubicacion", ._name = "Ubicación"})
         campos.Add(New Campo With {._id = "stock", ._name = "Stock", ._numeric = True})
+        ' Campo que liste equipos.
+        Dim campos_aux As New List(Of Campo)
+        campos_aux.Add(New Campo With {._id = "equipo", ._name = "Equipo", ._maskType = Campo.MaskType.comboBox,
+                                       ._objetoDAO = New EquiposDAO, ._required = True})
+        Dim control_aux As New ControlGenerico(campos_aux, New EquiposDAO)
+        campos.Add(New Campo With {._id = "equipos", ._name = "Equipos", ._maskType = Campo.MaskType.controlYGrilla,
+                                   ._control = control_aux, ._objetoDAO = New EquiposDAO})
         Return New ControlGenerico(campos, Me)
     End Function
 
@@ -154,6 +161,7 @@ Public Class ProductoDAO
         campos.Add(New Campo With {._id = "nivelReposicion", ._name = "Nivel de Reposicion"})
         campos.Add(New Campo With {._id = "ubicacion", ._name = "Ubicación"})
         campos.Add(New Campo With {._id = "stock", ._name = "Stock"})
+        campos.Add(New Campo With {._id = "equipos", ._visible = False})
         Return New GrillaGenerica(campos, Me)
     End Function
 
@@ -182,6 +190,18 @@ Public Class ProductoDAO
                     producto._grupo._familia = .search_by_id(valores("id_familia_grupo"))
                 End With
             End If
+        End If
+
+        If valores.ContainsKey("equipos") Then
+            producto._equipos = valores("equpos")
+        Else
+            Dim lista As New List(Of EquiposVO)
+            With New EquiposDAO
+                For Each objetoVO In .all_from_producto(producto._codigo)
+                    lista.Add(DirectCast(objetoVO, EquiposVO))
+                Next
+            End With
+            producto._equipos = lista
         End If
 
         Return producto

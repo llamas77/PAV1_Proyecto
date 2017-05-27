@@ -189,8 +189,8 @@ Public Class CompraDAO
                                    ._required = True})
         campos.Add(New Campo With {._id = "proveedor", ._name = "Proveedor", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New ProveedorDAO, ._required = True})
-        campos.Add(New Campo With {._id = "detalle", ._name = "Detalle", ._maskType = Campo.MaskType.control,
-                                   ._control = New Detalle(New DetalleCompraDAO)})
+        campos.Add(New Campo With {._id = "detalle", ._name = "Detalle", ._maskType = Campo.MaskType.campo,
+                                   ._campo = New ControlYGrilla(New DetalleCompraDAO)})
         Return New ControlGenerico(campos, Me)
     End Function
 

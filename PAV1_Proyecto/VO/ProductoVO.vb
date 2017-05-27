@@ -11,6 +11,7 @@ Public Class ProductoVO
     Public Property _nivelReposicion As Integer = 0
     Public Property _ubicacion As String = ""
     Public Property _stock As Integer = 0
+    Public Property _equipos As List(Of EquiposVO) = Nothing
 
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
@@ -22,6 +23,7 @@ Public Class ProductoVO
         diccionario.Add("nivelReposicion", _nivelReposicion)
         diccionario.Add("ubicacion", _ubicacion)
         diccionario.Add("stock", _stock)
+        diccionario.Add("equipos", _equipos)
         Return diccionario
     End Function
 

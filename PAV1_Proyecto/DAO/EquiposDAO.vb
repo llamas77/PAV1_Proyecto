@@ -84,6 +84,17 @@ Public Class EquiposDAO
         End If
     End Function
 
+    Public Function all_from_producto(codigo As String, Optional db As DataBase = Nothing) As List(Of ObjetoVO)
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+        Dim sql_select = "SELECT e.id, e.modelo, e.idMarca as id_marca, m.nombre as nombre_marca "
+        sql_select &= " FROM equipos e INNER JOIN marcas m ON e.idMarca = m.idMarca "
+        sql_select &= " INNER JOIN productosxequipos pe ON pe.idEquipo=e.id"
+        sql_select &= " WHERE pe.codigoProducto='" & codigo & "'"
+        Return dataTable_to_List(db.consulta_sql(sql_select))
+    End Function
+
     Private Function cast(value As ObjetoVO) As EquiposVO
         If TypeOf value Is EquiposVO Then
             Return value
@@ -110,16 +121,21 @@ Public Class EquiposDAO
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
-        Dim equipo As New EquiposVO With {
+        Dim equipo As EquiposVO
+        If valores.ContainsKey("equipo") Then
+            equipo = valores("equipo")
+        Else
+            equipo = New EquiposVO With {
             ._id = valores("id"),
             ._modelo = valores("modelo")}
 
-        If valores.ContainsKey("marca") Then
-            equipo._marca = valores("marca")
-        Else
-            equipo._marca = New MarcaVO With {
-                ._id = valores("id_marca"),
-                ._nombre = valores("nombre_marca")}
+            If valores.ContainsKey("marca") Then
+                equipo._marca = valores("marca")
+            Else
+                equipo._marca = New MarcaVO With {
+                    ._id = valores("id_marca"),
+                    ._nombre = valores("nombre_marca")}
+            End If
         End If
 
         Return equipo

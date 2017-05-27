@@ -29,6 +29,7 @@ Unificar ABM's para funcionar con form's genericos -- Para poder cambiar la inte
 Unificar Nomenclatura de varibles.
 
 Tareas pendientes por clase:
+- LabeledComboBoxAndList() : Implementar interfaz Validable.
 - GrillaGenerica.execute_resize() : Cuando el tamaño es mayor al minimo requerido deberia ampliar todas las columnas
 	por igual en lugar de la ultima.
 - ObjetoVO : Tener composicion de objetos. Por cada FK tener una propiedad que retorne el ID y otra que retorne el objeto

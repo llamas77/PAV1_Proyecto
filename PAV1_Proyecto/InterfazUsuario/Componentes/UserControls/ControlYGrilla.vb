@@ -1,6 +1,6 @@
 ﻿Imports PAV1_Proyecto
 
-Public Class Detalle
+Public Class ControlYGrilla
     Inherits UserControl
     Implements ObjetoCampo
 
@@ -24,30 +24,11 @@ Public Class Detalle
             Return grilla_objeto.get_all()
         End Get
         Set(value As Object)
-            ' Programado a lo bruto. Solo le permite funcionar con este objeto.
-            'If TypeOf value Is List(Of DetalleCompraVO) Then
-            '    Dim lista As List(Of DetalleCompraVO) = value
-            '    Dim tabla As New GrillaCompras.detalle_comprasDataTable
-            '    For Each detalle In lista
-            '        tabla.Rows.Add()
-            '        Dim last_row = tabla.Rows(tabla.Rows.Count - 1)
-            '        last_row("id_compra") = detalle.id_compra
-            '        last_row("codigo_producto") = detalle.codigo_producto
-            '        last_row("costo") = detalle.costo
-            '        last_row("cantidad") = detalle.cantidad
-            '    Next
-
-            '    grilla_objeto.recargar(tabla)
-            'Else
-            ' No esta probado e idealmente no deberia usarse...
-            '            grilla_objeto.recargar(value)
-            'End If
-            ' No esta probado e idealmente no deberia usarse...
             grilla_objeto.recargar(value)
         End Set
     End Property
 
-    Private Sub New(ctrl_objeto As ObjetoCtrl, grilla As ObjetoGrilla)
+    Public Sub New(ctrl_objeto As ObjetoCtrl, grilla As ObjetoGrilla)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
