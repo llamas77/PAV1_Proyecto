@@ -1,4 +1,8 @@
-﻿Tareas pendientes (Alta prioridad primero)
+﻿Nota - Comportamiento Extraño: Los nombres utilizados en las funciones .all() y .new_instance() de ObjetoDAO
+	deben ser los mismos, sino la grilla se muestra vacia (aunque no tira excepcion...). Lo mismo pasa si se
+	setea un valor por defecto invalido en algun ObjetoVO (ej un Double al que se le asigna un string "")
+
+Tareas pendientes (Alta prioridad primero)
 
 Proceso Compras (ABM complejo) 
 	Hecho parcialmente.
