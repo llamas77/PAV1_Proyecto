@@ -128,13 +128,17 @@ Public Class ProductoDAO
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("codigoProducto", "Código", maxLenght:=20, required:=True))
-        campos.Add(New Campo("idGrupo", "Grupo", maskType:=Campo.MaskType.comboBox))
-        campos.Add(New Campo("costo", "Costo", numeric:=True))
-        campos.Add(New Campo("fechaLista", "Fecha Actual", maskType:=Campo.MaskType.fecha))
-        campos.Add(New Campo("nivelReposicion", "Nivel de Reposicion", numeric:=True))
-        campos.Add(New Campo("ubicacion", "Ubicación"))
-        campos.Add(New Campo("stock", "Stock", numeric:=True))
+        campos.Add(New Campo With {._id = "codigoProducto", ._name = "Código",
+                                   ._max_lenght = 20, ._required = True})
+        campos.Add(New Campo With {._id = "idGrupo", ._name = "Grupo",
+                   ._maskType = Campo.MaskType.comboBox, ._objetoDAO = New GrupoDAO})
+        campos.Add(New Campo With {._id = "costo", ._name = "Costo", ._numeric = True})
+        campos.Add(New Campo With {._id = "fechaLista", ._name = "Fecha Actual",
+                                   ._maskType = Campo.MaskType.fecha})
+        campos.Add(New Campo With {._id = "nivelReposicion", ._name = "Nivel de Reposicion",
+                                   ._numeric = True})
+        campos.Add(New Campo With {._id = "ubicacion", ._name = "Ubicación"})
+        campos.Add(New Campo With {._id = "stock", ._name = "Stock", ._numeric = True})
 
         Return New ControlGenerico(campos, Me)
 

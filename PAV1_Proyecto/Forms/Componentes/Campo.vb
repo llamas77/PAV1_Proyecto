@@ -53,7 +53,7 @@
         _id = Nothing
         _name = Nothing
         _visible = True
-        _maskType = Nothing
+        _maskType = MaskType.texto
         _required = False
         _min_lenght = 0
         _max_lenght = 0
