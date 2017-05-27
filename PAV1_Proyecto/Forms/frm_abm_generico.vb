@@ -37,20 +37,23 @@
 
         ' Ubicar grilla del objeto.
         control = grilla_objeto
-        control.MinimumSize = New Size(btn_actualizar.Location.X + btn_actualizar.Size.Width + 15, 150)
+        Dim min_width As Integer = btn_actualizar.Location.X + btn_actualizar.Size.Width + 15
+        min_width = IIf(min_width < 380, 380, min_width) ' Controla que el ancho minimo alcance para acomodar los botones.
+        control.MinimumSize = New Size(min_width, 150)
         control.Location = New Point(Me.Padding.Left, btn_actualizar.Location.Y + btn_actualizar.Size.Height + 15)
         control.TabIndex = 3
         Me.Controls.Add(control)
 
         ' Posiciona los otros botones de forma relativa a la grilla y entre ellos.
-        Dim point = New Point(15, control.Location.Y + control.Size.Height + 15)
+        Dim point = New Point(control.Location.X, control.Location.Y + control.Size.Height + 15)
         btn_modificar.Location = point
         point.X += btn_modificar.Size.Width + 20
         btn_eliminar.Location = point
-        point.X += btn_eliminar.Size.Width + 50
-        btn_cancelar.Location = point
-        point.X += btn_cancelar.Size.Width + 20
+        point.X = control.Location.X + control.Width - btn_salir.Width
         btn_salir.Location = point
+        point.X -= btn_cancelar.Size.Width + 20
+        btn_cancelar.Location = point
+
     End Sub
 
     Private Sub frm_abm_generico_Load(sender As Object, e As EventArgs) Handles MyBase.Load
