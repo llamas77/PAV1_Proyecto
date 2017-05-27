@@ -94,6 +94,30 @@ Public Class ProveedorDAO
         Return response.Rows.Count = 1
     End Function
 
+    Public Function search_by_id(id_proveedor As Integer, Optional db As DataBase = Nothing) As ObjetoVO
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+
+        Dim sql = "SELECT razonSocial, cuit, domicilio, telefono, email"
+        sql &= " FROM proveedores WHERE idProveedor=" & id_proveedor
+        Dim registro = db.consulta_sql(sql)
+
+        Dim proveedor As ProveedorVO = Nothing
+        If registro.Rows.Count = 1 Then
+            proveedor = New ProveedorVO With {
+                ._id = id_proveedor,
+                ._cuit = registro(0)("cuit"),
+                ._domicilio = registro(0)("domicilio"),
+                ._email = registro(0)("email"),
+                ._razonSocial = registro(0)("razonSocial"),
+                ._telefono = registro(0)("telefono")
+            }
+        End If
+
+        Return proveedor
+    End Function
+
     Private Function cast(value As ObjetoVO) As ProveedorVO
         If TypeOf value Is ProveedorVO Then
             Return value

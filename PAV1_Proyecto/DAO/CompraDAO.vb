@@ -114,23 +114,28 @@ Public Class CompraDAO
         Dim dataSet As New GrillaCompras
         Dim dataTable As DataTable = dataSet.compras
 
-        Dim sql_select = "SELECT idCompra as id, convert(char(10), fechaCompra, 103) as fecha_compra, "
-        sql_select &= " idProveedor as id_proveedor"
-        sql_select &= " FROM compras"
-        Dim compras = DataBase.getInstance().consulta_sql(sql_select)
-        Dim detalle As New DetalleCompraDAO
+        Dim sql_select = "SELECT c.idCompra, convert(char(10), c.fechaCompra, 103) as fecha_compra, "
+        sql_select &= " p.idProveedor, p.razonSocial, p.cuit, p.domicilio, p.telefono, p.email"
+        sql_select &= " FROM compras c JOIN proveedores p ON c.idProveedor=p.idProveedor"
+        Dim compras = db.consulta_sql(sql_select)
 
-        Dim detalles As New DataTable
-        detalles.Columns.Add()
-        detalles.Columns(0).ColumnName = "detalle"
-
+        ' Formatea el resultado para adaptarse al DataSet
+        ' NOTA: Por alguna razon, si se produce una excepcion en el for, no avisa.
         For Each compra As DataRow In compras.Rows
-            dataTable.Rows.Add()
-            Dim last_row = dataTable.Rows(dataTable.Rows.Count - 1)
-            last_row("id") = compra("id")
-            last_row("fecha_compra") = compra("fecha_compra")
-            last_row("id_proveedor") = compra("id_proveedor")
-            last_row("detalle") = detalle.all_from_compra(compra("id"))
+            Dim row = dataTable.Rows.Add()
+            row("id") = compra("idCompra")
+            row("fecha_compra") = compra("fecha_compra")
+            row("proveedor") = New ProveedorVO With {
+                ._id = compra("idProveedor"),
+                ._cuit = compra("cuit"),
+                ._domicilio = compra("domicilio"),
+                ._email = compra("email"),
+                ._razonSocial = compra("razonSocial"),
+                ._telefono = compra("telefono")
+            }
+            With New DetalleCompraDAO
+                row("detalle") = .all_from_compra(compra("idCompra"))
+            End With
         Next
 
         Return dataTable_to_List(dataTable)
@@ -138,7 +143,7 @@ Public Class CompraDAO
 
     Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
         Dim lista As New List(Of ObjetoVO)
-        Dim params = {"id", "fecha_compra", "id_proveedor", "detalle"}
+        Dim params = {"id", "fecha_compra", "proveedor", "detalle"}
         Dim diccionario As New Dictionary(Of String, Object)
         For Each param In params
             diccionario.Add(param, Nothing)
@@ -182,7 +187,7 @@ Public Class CompraDAO
         campos.Add(New Campo With {._id = "id", ._name = "", ._visible = False, ._numeric = True})
         campos.Add(New Campo With {._id = "fecha_compra", ._name = "Fecha de Compra", ._maskType = Campo.MaskType.fecha,
                                    ._required = True})
-        campos.Add(New Campo With {._id = "id_proveedor", ._name = "Proveedor", ._maskType = Campo.MaskType.comboBox,
+        campos.Add(New Campo With {._id = "proveedor", ._name = "Proveedor", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New ProveedorDAO, ._required = True})
         campos.Add(New Campo With {._id = "detalle", ._name = "Detalle", ._maskType = Campo.MaskType.control,
                                    ._control = New Detalle(New DetalleCompraDAO)})
@@ -191,9 +196,9 @@ Public Class CompraDAO
 
     Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo With {._id = "id", ._name = "", ._visible = False, ._numeric = True})
+        campos.Add(New Campo With {._id = "id", ._name = "ID", ._numeric = True})
         campos.Add(New Campo With {._id = "fecha_compra", ._name = "Fecha de Compra"})
-        campos.Add(New Campo With {._id = "id_proveedor", ._name = "Proveedor"})
+        campos.Add(New Campo With {._id = "proveedor", ._name = "Proveedor"})
         campos.Add(New Campo With {._id = "detalle", ._name = "Detalle", ._visible = False})
         Return New GrillaGenerica(campos, Me)
     End Function
@@ -202,7 +207,7 @@ Public Class CompraDAO
         Dim compra As New CompraVO With {
             .id = valores("id"),
             .fecha_compra = valores("fecha_compra"),
-            .id_proveedor = valores("id_proveedor")
+            .proveedor = valores("proveedor")
         }
 
         If TypeOf valores("detalle") Is List(Of ObjetoVO) _

@@ -322,7 +322,7 @@ Partial Public Class GrillaCompras
         
         Private columnfecha_compra As Global.System.Data.DataColumn
         
-        Private columnid_proveedor As Global.System.Data.DataColumn
+        Private columnproveedor As Global.System.Data.DataColumn
         
         Private columndetalle As Global.System.Data.DataColumn
         
@@ -379,9 +379,9 @@ Partial Public Class GrillaCompras
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property id_proveedorColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property proveedorColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnid_proveedor
+                Return Me.columnproveedor
             End Get
         End Property
         
@@ -430,9 +430,9 @@ Partial Public Class GrillaCompras
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddcomprasRow(ByVal fecha_compra As String, ByVal id_proveedor As Integer, ByVal detalle As Object) As comprasRow
+        Public Overloads Function AddcomprasRow(ByVal fecha_compra As String, ByVal proveedor As Object, ByVal detalle As Object) As comprasRow
             Dim rowcomprasRow As comprasRow = CType(Me.NewRow,comprasRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, fecha_compra, id_proveedor, detalle}
+            Dim columnValuesArray() As Object = New Object() {Nothing, fecha_compra, proveedor, detalle}
             rowcomprasRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowcomprasRow)
             Return rowcomprasRow
@@ -457,7 +457,7 @@ Partial Public Class GrillaCompras
         Friend Sub InitVars()
             Me.columnid = MyBase.Columns("id")
             Me.columnfecha_compra = MyBase.Columns("fecha_compra")
-            Me.columnid_proveedor = MyBase.Columns("id_proveedor")
+            Me.columnproveedor = MyBase.Columns("proveedor")
             Me.columndetalle = MyBase.Columns("detalle")
         End Sub
         
@@ -468,8 +468,8 @@ Partial Public Class GrillaCompras
             MyBase.Columns.Add(Me.columnid)
             Me.columnfecha_compra = New Global.System.Data.DataColumn("fecha_compra", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnfecha_compra)
-            Me.columnid_proveedor = New Global.System.Data.DataColumn("id_proveedor", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnid_proveedor)
+            Me.columnproveedor = New Global.System.Data.DataColumn("proveedor", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproveedor)
             Me.columndetalle = New Global.System.Data.DataColumn("detalle", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndetalle)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnid}, false))
@@ -942,16 +942,16 @@ Partial Public Class GrillaCompras
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property id_proveedor() As Integer
+        Public Property proveedor() As Object
             Get
                 Try 
-                    Return CType(Me(Me.tablecompras.id_proveedorColumn),Integer)
+                    Return CType(Me(Me.tablecompras.proveedorColumn),Object)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'id_proveedor' de la tabla 'compras' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'proveedor' de la tabla 'compras' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablecompras.id_proveedorColumn) = value
+                Me(Me.tablecompras.proveedorColumn) = value
             End Set
         End Property
         
@@ -984,14 +984,14 @@ Partial Public Class GrillaCompras
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function Isid_proveedorNull() As Boolean
-            Return Me.IsNull(Me.tablecompras.id_proveedorColumn)
+        Public Function IsproveedorNull() As Boolean
+            Return Me.IsNull(Me.tablecompras.proveedorColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub Setid_proveedorNull()
-            Me(Me.tablecompras.id_proveedorColumn) = Global.System.Convert.DBNull
+        Public Sub SetproveedorNull()
+            Me(Me.tablecompras.proveedorColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
