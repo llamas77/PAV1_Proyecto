@@ -119,17 +119,25 @@ Public Class TipoClienteDAO
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo("id", "", visible:=False))
-        campos.Add(New Campo("nombre", "Nombre", maxLenght:=50))
-        campos.Add(New Campo("descripcion", "Descripcion", maxLenght:=50))
+        campos.Add(New Campo With {._id = "id", ._name = "", ._visible = False})
+        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._max_lenght = 50})
+        campos.Add(New Campo With {._id = "descripcion", ._name = "Descripcion", ._max_lenght = 50})
         Return New ControlGenerico(campos, Me)
     End Function
 
     Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
-        Return New TipoClienteGrilla()
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo With {._id = "id", ._name = "", ._visible = False})
+        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._max_lenght = 50})
+        campos.Add(New Campo With {._id = "descripcion", ._name = "Descripcion", ._max_lenght = 50})
+        Return New GrillaGenerica(campos, Me)
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
-        Return New TipoClienteVO(valores("id"), valores("nombre"), valores("descripcion"))
+        Return New TipoClienteVO With {
+            ._id = valores("id"),
+            ._nombre = valores("nombre"),
+            ._descripcion = valores("descripcion")
+        }
     End Function
 End Class

@@ -176,18 +176,6 @@
     <Compile Include="Forms\Componentes\LabeledMaskedTextBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Componentes\TipoClienteControl.Designer.vb">
-      <DependentUpon>TipoClienteControl.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Componentes\TipoClienteControl.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Componentes\TipoClienteGrilla.Designer.vb">
-      <DependentUpon>TipoClienteGrilla.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Componentes\TipoClienteGrilla.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Forms\Componentes\VendedoresControl.Designer.vb">
       <DependentUpon>VendedoresControl.vb</DependentUpon>
     </Compile>
@@ -204,12 +192,6 @@
       <DependentUpon>frm_abm_generico.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\frm_abm_generico.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frm_abm_tipos_clientes.Designer.vb">
-      <DependentUpon>frm_abm_tipos_clientes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frm_abm_tipos_clientes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frm_abm_grupos.designer.vb">
@@ -276,12 +258,6 @@
     <EmbeddedResource Include="Forms\Componentes\LabeledMaskedTextBox.resx">
       <DependentUpon>LabeledMaskedTextBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\TipoClienteControl.resx">
-      <DependentUpon>TipoClienteControl.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Componentes\TipoClienteGrilla.resx">
-      <DependentUpon>TipoClienteGrilla.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Componentes\UserControls\Detalle.resx">
       <DependentUpon>Detalle.vb</DependentUpon>
     </EmbeddedResource>
@@ -299,9 +275,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_abm_generico_busqueda.resx">
       <DependentUpon>frm_abm_generico_busqueda.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_abm_tipos_clientes.resx">
-      <DependentUpon>frm_abm_tipos_clientes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_abm_grupos.resx">
       <DependentUpon>frm_abm_grupos.vb</DependentUpon>
