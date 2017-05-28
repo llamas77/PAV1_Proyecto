@@ -33,22 +33,14 @@ Public Class ControlYGrilla
         End Set
     End Property
 
-    Public Sub New(objetoDAO As ObjetoDAO, Optional mask As Campo.MaskType = Campo.MaskType.controlYGrilla)
+    Public Sub New(ctrl As ObjetoCtrl, grilla As ObjetoGrilla)
+        'Public Sub New(objetoDAO As ObjetoDAO, Optional mask As Campo.MaskType = Campo.MaskType.controlYGrilla)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
-        Select Case mask
-            Case Campo.MaskType.controlYGrilla
-                Me.ctrl_objeto = objetoDAO.get_IU_control()
-            Case Campo.MaskType.comboYGrilla
-                Dim campos_aux As New List(Of Campo)
-                campos_aux.Add(New Campo With {._id = "combo", ._maskType = Campo.MaskType.comboBox,
-                                               ._objetoDAO = objetoDAO, ._required = True})
-                Me.ctrl_objeto = New ControlGenerico(campos_aux, objetoDAO)
-        End Select
-
-        Me.grilla_objeto = objetoDAO.get_IU_grilla()
+        Me.ctrl_objeto = ctrl
+        Me.grilla_objeto = grilla
 
         Dim control As Control
         ' Ubicar seteo de atributos. (control de objeto)
@@ -70,8 +62,10 @@ Public Class ControlYGrilla
         control.Location = New Point(Me.Padding.Left, btn_agregar.Location.Y + btn_agregar.Size.Height + 15)
         control.TabIndex = 3
         Me.Controls.Add(control)
+    End Sub
 
-
+    Public Sub New(objetoDAO As ObjetoDAO)
+        Me.New(objetoDAO.get_IU_control, objetoDAO.get_IU_grilla())
     End Sub
 
     Private Sub agregar()

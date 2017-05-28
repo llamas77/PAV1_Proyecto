@@ -43,6 +43,7 @@ Tareas pendientes por clase:
 	Si hay que recorrer los datos para buscar el más ancho, aprovechar el For de _source.
 - GrupoDAO.update() : Falla si estamos cambiando el nombre y poniendo uno que ya existe para esa familia.
 - frm_abm_generico_busqueda : Implementar atajos de teclado (Esc para salir, Enter en la grilla para modificar)
+- Campo.MaskType : Agregar mascara que permita búsqueda.
 
 Tareas pendientes generales:
 - Adaptar todos los comboBox para que su value sea un objeto. Ver GananciaDAO como guia. Sino no funcionan.
@@ -56,4 +57,5 @@ Tareas pendientes generales:
 - Corregir todas las referencias a metodos obsoletos. Si no hay referencias eliminar el metodo.
 - Aplicar restricciones de longitud segun base de datos en cada get_IU_control.
 - Agregar Reset() a la interfaz ObjetoCampo y usarlo en lugar de ResetText()
+
 

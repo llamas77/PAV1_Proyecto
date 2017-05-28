@@ -75,9 +75,15 @@
                 Case MaskType.comboBox
                     control = New LabeledComboBox(_id, _name, _objetoDAO)
                 Case MaskType.controlYGrilla
-                    control = New ControlYGrilla(_objetoDAO, _maskType) With {._id = _id, ._label = _name}
+                    control = New ControlYGrilla(_objetoDAO.get_IU_control(), _objetoDAO.get_IU_grilla()) _
+                                                With {._id = _id, ._label = _name}
                 Case MaskType.comboYGrilla
-                    control = New ControlYGrilla(_objetoDAO, _maskType) With {._id = _id, ._label = _name}
+                    Dim campos_aux As New List(Of Campo)
+                    campos_aux.Add(New Campo With {._id = "combo", ._maskType = Campo.MaskType.comboBox,
+                                               ._objetoDAO = _objetoDAO, ._required = True})
+                    Dim combo = New ControlGenerico(campos_aux, _objetoDAO)
+                    control = New ControlYGrilla(combo, _objetoDAO.get_IU_grilla()) _
+                                                With {._id = _id, ._label = _name}
                 Case MaskType.texto
                     control = New LabeledTextBox With {._id = _id, ._label = _name}
                 Case MaskType.campo

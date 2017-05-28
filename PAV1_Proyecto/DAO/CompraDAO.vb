@@ -192,8 +192,20 @@ Public Class CompraDAO
         campos.Add(New Campo With {._id = "proveedor", ._name = "Proveedor", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New ProveedorDAO, ._required = True})
         campos.Add(New Campo With {._id = "detalles", ._name = "Detalle", ._maskType = Campo.MaskType.campo,
-                                   ._campo = New ControlYGrilla(New DetalleCompraDAO)})
+                                   ._campo = get_detalle_campo()
+        })
         Return New ControlGenerico(campos, Me)
+    End Function
+
+    Private Function get_detalle_campo() As ObjetoCampo
+        Dim campos As New List(Of Campo)
+        campos.Add(New Campo With {._id = "id_compra", ._visible = False})
+        campos.Add(New Campo With {._id = "producto", ._name = "Producto", ._maskType = Campo.MaskType.comboBox,
+                                   ._objetoDAO = New ProductoDAO, ._required = True})
+        campos.Add(New Campo With {._id = "costo", ._name = "Costo", ._required = True, ._numeric = True})
+        campos.Add(New Campo With {._id = "cantidad", ._name = "Cantidad", ._required = True, ._numeric = True})
+        Dim detalle As New DetalleCompraDAO
+        Return New ControlYGrilla(New ControlGenerico(campos, detalle), detalle.get_IU_grilla)
     End Function
 
     Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
