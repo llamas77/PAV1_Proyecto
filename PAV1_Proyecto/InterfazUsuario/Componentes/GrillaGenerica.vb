@@ -29,6 +29,9 @@ Public Class GrillaGenerica
         RowHeadersVisible = False
         BackgroundColor = System.Drawing.Color.White
         StandardTab = True ' Indica que la tecla TABULADOR mueve el foco al siguiente elemento.
+        MinimumSize = New Size(10, 10)
+        Size = New Size(10, 10)
+        ScrollBars = ScrollBars.Vertical
         ' - - - Fin - - - 
 
         Me.fabrica = fabrica
@@ -138,12 +141,14 @@ Public Class GrillaGenerica
         For Each nombre In column_ids
             Me.Rows(n_row).Cells(nombre).Value = datos(nombre)
         Next
+        execute_resize()
     End Sub
 
     Public Sub delete_selected() Implements ObjetoGrilla.delete_selected
         Dim sRow = Me.CurrentRow()
         If Not IsNothing(sRow) Then
             Me.Rows.Remove(sRow)
+            execute_resize()
         End If
     End Sub
 
@@ -166,6 +171,7 @@ Public Class GrillaGenerica
         ' Cambia el ancho del objeto para mostrar lo necesario. Si es menos que el mínimo
         ' permitido, alarga la ultima columna.
         '
+
         Dim width As Integer = 0
         For Each columna In Me.column_ids
             If Columns(columna).Visible Then
@@ -176,8 +182,11 @@ Public Class GrillaGenerica
         Me.Width = width + 3
         If width < MinimumSize.Width Then
             If visible_col_name IsNot Nothing Then ' Todavia no hay ninguna columna visible
-                Columns(visible_col_name).Width = Columns(visible_col_name).Width + MinimumSize.Width - width - 3
+                Columns(visible_col_name).Width += MinimumSize.Width - width - 3
             End If
+        End If
+        If VerticalScrollBar.Visible And visible_col_name IsNot Nothing Then
+            Columns(visible_col_name).Width -= VerticalScrollBar.Size.Width
         End If
     End Sub
 

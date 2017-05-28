@@ -59,18 +59,19 @@ Public Class ControlYGrilla
         control.Focus() ' Para que empiece con el foco en el control.
 
         ' Posiciona boton agregar.
-        btn_agregar.Location = New Point(control.Location.X + control.Size.Width - btn_agregar.Size.Width - 3,
-                                         control.Location.Y + control.Size.Height)
-
+        btn_agregar.Location = New Point(control.Location.X + control.Size.Width + 5,
+                                         control.Location.Y + control.Size.Height - btn_agregar.Size.Height - 3)
+        ' Posiciona boton eliminar.
+        btn_eliminar.Location = New Point(btn_agregar.Location.X + btn_agregar.Size.Width + 5,
+                                          btn_agregar.Location.Y)
         ' Grilla
         control = grilla_objeto
-        control.MinimumSize = New Size(btn_agregar.Location.X + btn_agregar.Size.Width, 100)
+        control.MinimumSize = New Size(btn_eliminar.Location.X + btn_eliminar.Size.Width, 100)
         control.Location = New Point(Me.Padding.Left, btn_agregar.Location.Y + btn_agregar.Size.Height + 15)
         control.TabIndex = 3
         Me.Controls.Add(control)
 
-        btn_eliminar.Location = New Point(control.Location.X + control.Size.Width - btn_eliminar.Size.Width,
-                                          control.Location.Y + control.Size.Height + 3)
+
     End Sub
 
     Private Sub agregar()
@@ -106,5 +107,4 @@ Public Class ControlYGrilla
         ctrl_objeto.reset()
         grilla_objeto.recargar(New List(Of ObjetoVO))
     End Sub
-
 End Class

@@ -31,18 +31,18 @@ Partial Class ControlYGrilla
         '
         Me.btn_agregar.Location = New System.Drawing.Point(6, 44)
         Me.btn_agregar.Name = "btn_agregar"
-        Me.btn_agregar.Size = New System.Drawing.Size(165, 28)
+        Me.btn_agregar.Size = New System.Drawing.Size(25, 25)
         Me.btn_agregar.TabIndex = 2
-        Me.btn_agregar.Text = "Agregar"
+        Me.btn_agregar.Text = "+"
         Me.btn_agregar.UseVisualStyleBackColor = True
         '
         'btn_eliminar
         '
-        Me.btn_eliminar.Location = New System.Drawing.Point(6, 90)
+        Me.btn_eliminar.Location = New System.Drawing.Point(37, 44)
         Me.btn_eliminar.Name = "btn_eliminar"
-        Me.btn_eliminar.Size = New System.Drawing.Size(165, 28)
+        Me.btn_eliminar.Size = New System.Drawing.Size(25, 25)
         Me.btn_eliminar.TabIndex = 4
-        Me.btn_eliminar.Text = "Eliminar"
+        Me.btn_eliminar.Text = "-"
         Me.btn_eliminar.UseVisualStyleBackColor = True
         '
         'lbl_label
@@ -54,7 +54,7 @@ Partial Class ControlYGrilla
         Me.lbl_label.TabIndex = 5
         Me.lbl_label.Text = "Default Text"
         '
-        'Detalle
+        'ControlYGrilla
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -63,8 +63,8 @@ Partial Class ControlYGrilla
         Me.Controls.Add(Me.lbl_label)
         Me.Controls.Add(Me.btn_eliminar)
         Me.Controls.Add(Me.btn_agregar)
-        Me.Name = "Detalle"
-        Me.Size = New System.Drawing.Size(174, 121)
+        Me.Name = "ControlYGrilla"
+        Me.Size = New System.Drawing.Size(90, 72)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
