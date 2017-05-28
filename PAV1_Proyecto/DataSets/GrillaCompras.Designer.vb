@@ -324,7 +324,7 @@ Partial Public Class GrillaCompras
         
         Private columnproveedor As Global.System.Data.DataColumn
         
-        Private columndetalle As Global.System.Data.DataColumn
+        Private columndetalles As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -387,9 +387,9 @@ Partial Public Class GrillaCompras
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property detalleColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property detallesColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columndetalle
+                Return Me.columndetalles
             End Get
         End Property
         
@@ -430,9 +430,9 @@ Partial Public Class GrillaCompras
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddcomprasRow(ByVal fecha_compra As String, ByVal proveedor As Object, ByVal detalle As Object) As comprasRow
+        Public Overloads Function AddcomprasRow(ByVal fecha_compra As String, ByVal proveedor As Object, ByVal detalles As Object) As comprasRow
             Dim rowcomprasRow As comprasRow = CType(Me.NewRow,comprasRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, fecha_compra, proveedor, detalle}
+            Dim columnValuesArray() As Object = New Object() {Nothing, fecha_compra, proveedor, detalles}
             rowcomprasRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowcomprasRow)
             Return rowcomprasRow
@@ -458,7 +458,7 @@ Partial Public Class GrillaCompras
             Me.columnid = MyBase.Columns("id")
             Me.columnfecha_compra = MyBase.Columns("fecha_compra")
             Me.columnproveedor = MyBase.Columns("proveedor")
-            Me.columndetalle = MyBase.Columns("detalle")
+            Me.columndetalles = MyBase.Columns("detalles")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -470,8 +470,8 @@ Partial Public Class GrillaCompras
             MyBase.Columns.Add(Me.columnfecha_compra)
             Me.columnproveedor = New Global.System.Data.DataColumn("proveedor", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnproveedor)
-            Me.columndetalle = New Global.System.Data.DataColumn("detalle", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columndetalle)
+            Me.columndetalles = New Global.System.Data.DataColumn("detalles", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndetalles)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnid}, false))
             Me.columnid.AutoIncrement = true
             Me.columnid.AutoIncrementSeed = -1
@@ -957,16 +957,16 @@ Partial Public Class GrillaCompras
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property detalle() As Object
+        Public Property detalles() As Object
             Get
                 Try 
-                    Return CType(Me(Me.tablecompras.detalleColumn),Object)
+                    Return CType(Me(Me.tablecompras.detallesColumn),Object)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'detalle' de la tabla 'compras' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'detalles' de la tabla 'compras' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablecompras.detalleColumn) = value
+                Me(Me.tablecompras.detallesColumn) = value
             End Set
         End Property
         
@@ -996,14 +996,14 @@ Partial Public Class GrillaCompras
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsdetalleNull() As Boolean
-            Return Me.IsNull(Me.tablecompras.detalleColumn)
+        Public Function IsdetallesNull() As Boolean
+            Return Me.IsNull(Me.tablecompras.detallesColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetdetalleNull()
-            Me(Me.tablecompras.detalleColumn) = Global.System.Convert.DBNull
+        Public Sub SetdetallesNull()
+            Me(Me.tablecompras.detallesColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

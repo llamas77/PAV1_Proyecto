@@ -6,7 +6,7 @@ Public Class CompraVO
     Public Property _id As Integer = 0
     Public Property _fecha_compra As String = ""
     Public Property _proveedor As ProveedorVO = Nothing
-    Public Property detalle As List(Of DetalleCompraVO)
+    Public Property detalle As List(Of ObjetoVO) = Nothing
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
         Dim diccionario As New Dictionary(Of String, Object)

@@ -28,7 +28,8 @@ Public Class CompraDAO
         Dim detalleDAO As New DetalleCompraDAO
         Dim productoDAO As New ProductoDAO
         Dim productoVO As ProductoVO
-        For Each detalle In compra.detalle
+        Dim detalles = compra.detalle.Cast(Of DetalleCompraVO)
+        For Each detalle As DetalleCompraVO In detalles
             detalle.id_compra = compra._id
             detalleDAO.insert(detalle, db) ' Detalle
             productoVO = productoDAO.search_code(db, detalle.codigo_producto)
@@ -41,7 +42,7 @@ Public Class CompraDAO
                 productoVO._costo = detalle.costo
                 productoVO._fechaLista = compra._fecha_compra
             End If
-            productoDAO.update_in(db, productoVO) ' Stock Producto
+            productoDAO.update(productoVO, db) ' Stock Producto
         Next
 
         db.cerrar_transaccion()
@@ -66,12 +67,12 @@ Public Class CompraDAO
         End If
 
         Dim detalleDAO As New DetalleCompraDAO
-        For Each detalle In compra.detalle
+        Dim detalles = compra.detalle.Cast(Of DetalleCompraVO)
+        For Each detalle In detalles
             If detalle.id_compra <> compra._id Then
                 db.cancelar_transaccion()
                 Throw New System.Exception("El ID del detalle es distinto del de la compra.")
             End If
-
             detalleDAO.update(detalle, db)
         Next
         db.cerrar_transaccion()
@@ -93,7 +94,8 @@ Public Class CompraDAO
         End If
 
         Dim detalleDAO As New DetalleCompraDAO
-        For Each detalle In compra.detalle
+        Dim detalles = compra.detalle.Cast(Of DetalleCompraVO)
+        For Each detalle In detalles
             If detalle.id_compra <> compra._id Then
                 db.cancelar_transaccion()
                 Throw New System.Exception("El ID del detalle es distinto del de la compra.")
@@ -134,7 +136,7 @@ Public Class CompraDAO
                 ._telefono = compra("telefono")
             }
             With New DetalleCompraDAO
-                row("detalle") = .all_from_compra(compra("idCompra"))
+                row("detalles") = .all_from_compra(compra("idCompra"))
             End With
         Next
 
@@ -143,7 +145,7 @@ Public Class CompraDAO
 
     Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
         Dim lista As New List(Of ObjetoVO)
-        Dim params = {"id", "fecha_compra", "proveedor", "detalle"}
+        Dim params = {"id", "fecha_compra", "proveedor", "detalles"}
         Dim diccionario As New Dictionary(Of String, Object)
         For Each param In params
             diccionario.Add(param, Nothing)
@@ -189,7 +191,7 @@ Public Class CompraDAO
                                    ._required = True})
         campos.Add(New Campo With {._id = "proveedor", ._name = "Proveedor", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New ProveedorDAO, ._required = True})
-        campos.Add(New Campo With {._id = "detalle", ._name = "Detalle", ._maskType = Campo.MaskType.campo,
+        campos.Add(New Campo With {._id = "detalles", ._name = "Detalle", ._maskType = Campo.MaskType.campo,
                                    ._campo = New ControlYGrilla(New DetalleCompraDAO)})
         Return New ControlGenerico(campos, Me)
     End Function
@@ -199,7 +201,7 @@ Public Class CompraDAO
         campos.Add(New Campo With {._id = "id", ._name = "ID", ._numeric = True})
         campos.Add(New Campo With {._id = "fecha_compra", ._name = "Fecha de Compra"})
         campos.Add(New Campo With {._id = "proveedor", ._name = "Proveedor"})
-        campos.Add(New Campo With {._id = "detalle", ._name = "Detalle", ._visible = False})
+        campos.Add(New Campo With {._id = "detalles", ._name = "Detalle", ._visible = False})
         Return New GrillaGenerica(campos, Me)
     End Function
 
@@ -217,14 +219,8 @@ Public Class CompraDAO
             End With
         End If
 
-        If TypeOf valores("detalle") Is List(Of ObjetoVO) _
-            Or TypeOf valores("detalle") Is List(Of DetalleCompraVO) Then
-
-            Dim lista As New List(Of DetalleCompraVO)
-            For Each objeto In valores("detalle")
-                lista.Add(DirectCast(objeto, DetalleCompraVO))
-            Next
-            compra.detalle = lista
+        If TypeOf valores("detalles") Is List(Of ObjetoVO) Then
+            compra.detalle = valores("detalles")
         Else
             Throw New System.Exception("El valor no es del tipo esperado.")
         End If

@@ -55,4 +55,5 @@ Tareas pendientes generales:
 	Es para poder utilizarlos dentro de una transaccion.
 - Corregir todas las referencias a metodos obsoletos. Si no hay referencias eliminar el metodo.
 - Aplicar restricciones de longitud segun base de datos en cada get_IU_control.
+- Agregar Reset() a la interfaz ObjetoCampo y usarlo en lugar de ResetText()
 

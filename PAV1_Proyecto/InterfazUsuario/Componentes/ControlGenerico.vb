@@ -24,6 +24,7 @@ Public Class ControlGenerico
         Set(value As ObjetoVO)
             ' Obtiene un diccionario a partir del objetoVO y lo recorre cambiando
             ' los valores de los TextBox por el indicado en el diccionario.
+            Me.reset()
             Dim objeto = value.toDictionary()
             For Each key In objeto.Keys
                 set_control(key, objeto(key))

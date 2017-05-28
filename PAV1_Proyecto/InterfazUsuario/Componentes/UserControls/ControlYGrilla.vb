@@ -24,6 +24,11 @@ Public Class ControlYGrilla
             Return grilla_objeto.get_all()
         End Get
         Set(value As Object)
+            ' TODO: Corregir fallo al recibir un List(Of EquiposVO) causando un fallo.
+            '       Hay que castearlo.
+            If TypeOf value IsNot List(Of ObjetoVO) Then
+                Throw New System.Exception("El objeto debe ser del tipo List(Of ObjetoVO) explicitamente")
+            End If
             grilla_objeto.recargar(value)
         End Set
     End Property
@@ -96,4 +101,10 @@ Public Class ControlYGrilla
     Private Sub btn_eliminar_Click(sender As Object, e As EventArgs) Handles btn_eliminar.Click
         eliminar()
     End Sub
+
+    Public Overrides Sub ResetText()
+        ctrl_objeto.reset()
+        grilla_objeto.recargar(New List(Of ObjetoVO))
+    End Sub
+
 End Class

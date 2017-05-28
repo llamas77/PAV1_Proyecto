@@ -31,13 +31,15 @@ Public Class ProductoDAO
     End Sub
 
     Public Sub update(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.update
+        Dim cerrar = False ' Si le pasaron un db no lo cierra. Es responsabilidad de quien llama.
         If db Is Nothing Then
-            db = DataBase.getInstance()
+            db = New DataBase
+            db.conectar()
+            db.iniciar_transaccion()
+            cerrar = True
+        ElseIf db._estado = DataBase.Estado.listo Then
+            db.iniciar_transaccion()
         End If
-        update_in(DataBase.getInstance(), value)
-    End Sub
-
-    Public Sub update_in(db As DataBase, value As ObjetoVO)
         Dim producto = cast(value)
 
         Dim sql_update As String
@@ -48,9 +50,46 @@ Public Class ProductoDAO
         sql_update &= "nivelReposicion=" & producto._nivelReposicion & ", "
         sql_update &= "ubicacion='" & producto._ubicacion & "', "
         sql_update &= "stock=" & producto._stock & ", "
-        sql_update &= "fechaLista=convert(date, '" & producto._fechaLista & "', 103))"
+        sql_update &= "fechaLista=convert(date, '" & producto._fechaLista & "', 103)"
         sql_update &= " WHERE codigoProducto='" & producto._codigo & "'"
         db.ejecuta_sql(sql_update)
+
+        update_related_equipos(producto, db)
+        If cerrar Then
+            db.cerrar_transaccion()
+            db.desconectar()
+        End If
+    End Sub
+
+    Private Sub update_related_equipos(producto As ProductoVO, db As DataBase)
+        ' Tiene que detectar si se borraron elementos de la lista.
+        Dim sql As String
+        sql = "SELECT idEquipo as id FROM productosxequipos WHERE codigoProducto='" & producto._codigo & "'"
+        Dim equipos_almacenados = db.consulta_sql(sql)
+
+        Dim equipos = producto._equipos.Cast(Of EquiposVO)
+        For Each equipo As EquiposVO In equipos
+            Dim stored = False
+            For Each equipo_almacenado In equipos_almacenados.Rows
+                If equipo._id = equipo_almacenado("id") Then
+                    equipos_almacenados.Rows.Remove(equipo_almacenado)
+                    stored = True
+                    Exit For
+                End If
+            Next
+            If Not stored Then
+                sql = "INSERT INTO productosxequipos (codigoProducto, idEquipo)"
+                sql &= " VALUES ('" & producto._codigo & "'," & equipo._id & ")"
+                db.ejecuta_sql(sql)
+            End If
+        Next
+        If equipos_almacenados.Rows.Count > 0 Then
+            For Each equipo_almacenado In equipos_almacenados.Rows
+                sql = "DELETE FROM productosxequipos "
+                sql &= " WHERE codigoProducto='" & producto._codigo & "' AND idEquipo=" & equipo_almacenado("id")
+                db.ejecuta_sql(sql)
+            Next
+        End If
     End Sub
 
     Public Sub delete(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.delete
@@ -188,15 +227,12 @@ Public Class ProductoDAO
         End If
 
         If valores.ContainsKey("equipos") Then
-            producto._equipos = valores("equpos")
+            producto._equipos = valores("equipos")
         Else
-            Dim lista As New List(Of EquiposVO)
+            Dim lista As New List(Of ObjetoVO)
             With New EquiposDAO
-                For Each objetoVO In .all_from_producto(producto._codigo)
-                    lista.Add(DirectCast(objetoVO, EquiposVO))
-                Next
+                producto._equipos = .all_from_producto(producto._codigo)
             End With
-            producto._equipos = lista
         End If
 
         Return producto

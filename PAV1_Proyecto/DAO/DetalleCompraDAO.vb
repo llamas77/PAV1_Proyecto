@@ -70,8 +70,8 @@ Public Class DetalleCompraDAO
         Throw New NotImplementedException()
     End Function
 
-    Public Function all_from_compra(id_compra As Integer) As List(Of DetalleCompraVO)
-        Dim detalles As New List(Of DetalleCompraVO)
+    Public Function all_from_compra(id_compra As Integer) As List(Of ObjetoVO)
+        Dim detalles As New List(Of ObjetoVO)
         Dim sql_select = "SELECT codigoProducto, idCompra, costo, cantidad"
         sql_select &= " FROM detalle_compras"
         sql_select &= " WHERE idCompra=" & id_compra
