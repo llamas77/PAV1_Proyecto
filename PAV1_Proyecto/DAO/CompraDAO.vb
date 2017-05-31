@@ -70,10 +70,16 @@ Public Class CompraDAO
         Dim detalles = compra.detalle.Cast(Of DetalleCompraVO)
         For Each detalle In detalles
             If detalle.id_compra <> compra._id Then
-                db.cancelar_transaccion()
-                Throw New System.Exception("El ID del detalle es distinto del de la compra.")
+                ' Si agrego un nuevo detalle
+                If detalle.id_compra = 0 Then
+                    detalle.id_compra = compra._id
+                    detalleDAO.insert(detalle, db)
+                Else
+                    db.cancelar_transaccion()
+                    Throw New System.Exception("El ID del detalle pertenece a otra compra.")
+                End If
             End If
-            detalleDAO.update(detalle, db)
+                detalleDAO.update(detalle, db)
         Next
         db.cerrar_transaccion()
         db.desconectar()
