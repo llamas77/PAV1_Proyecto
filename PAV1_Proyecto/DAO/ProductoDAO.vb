@@ -136,21 +136,23 @@ Public Class ProductoDAO
 
     Public Function search_code(db As DataBase, codigo As String) As ObjetoVO
         Dim sql = "SELECT TOP 1 codigoProducto, idGrupo, costo, convert(char(10), fechaLista, 103) as fechaLista, "
-        sql &= " nivelReposicion, ubicacion, stock FROM productos WHERE codigoProducto='" & codigo & "'"
+        sql &= " nivelReposicion, ubicacion, stock FROM productos "
+        sql &= " WHERE codigoProducto='" & codigo & "'"
         Dim response = db.consulta_sql(sql)
+        Dim producto As ProductoVO = Nothing
         If response.Rows.Count = 1 Then
-            Return New ProductoVO With {
+            producto = New ProductoVO With {
             ._codigo = response(0)("codigoProducto"),
             ._costo = response(0)("costo"),
             ._fechaLista = response(0)("fechaLista"),
-            ._grupo = response(0)("idGrupo"),
             ._nivelReposicion = response(0)("nivelReposicion"),
             ._stock = response(0)("stock"),
             ._ubicacion = response(0)("ubicacion")}
-        Else
-            Return Nothing
+            With New GrupoDAO
+                producto._grupo = .search_by_id(response(0)("idGrupo"))
+            End With
         End If
-
+        Return producto
     End Function
 
     Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists

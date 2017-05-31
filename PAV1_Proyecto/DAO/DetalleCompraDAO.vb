@@ -117,11 +117,20 @@ Public Class DetalleCompraDAO
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
-        Return New DetalleCompraVO With {
-            .codigo_producto = valores("codigo_producto"),
+        Dim detalle As New DetalleCompraVO With {
             .id_compra = valores("id_compra"),
             .costo = valores("costo"),
             .cantidad = valores("cantidad")
         }
+
+        If valores.ContainsKey("producto") Then
+            With DirectCast(valores("producto"), ProductoVO)
+                detalle.codigo_producto = ._codigo
+            End With
+        Else
+            detalle.codigo_producto = valores("codigo_producto")
+        End If
+
+        Return detalle
     End Function
 End Class

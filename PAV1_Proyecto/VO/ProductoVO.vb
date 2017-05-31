@@ -11,7 +11,7 @@ Public Class ProductoVO
     Public Property _nivelReposicion As Integer = 0
     Public Property _ubicacion As String = ""
     Public Property _stock As Integer = 0
-    Public Property _equipos As List(Of ObjetoVO) = Nothing
+    Public Property _equipos As New List(Of ObjetoVO)
 
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
