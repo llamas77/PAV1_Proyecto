@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="DAO\CompraDAO.vb" />
     <Compile Include="DAO\DetalleCompraDAO.vb" />
+    <Compile Include="DAO\DetalleVentaDAO.vb" />
     <Compile Include="DAO\EquiposDAO.vb" />
     <Compile Include="DAO\GananciaDAO.vb" />
     <Compile Include="DAO\ClienteDAO.vb" />
@@ -94,6 +95,7 @@
     <Compile Include="DAO\ProductoDAO.vb" />
     <Compile Include="DAO\TipoClienteDAO.vb" />
     <Compile Include="DAO\VendedorDAO.vb" />
+    <Compile Include="DAO\VentaDAO.vb" />
     <Compile Include="DataBase.vb" />
     <Compile Include="DAO\FamiliaDAO.vb" />
     <Compile Include="DataSets\GrillaCompras.Designer.vb">
@@ -103,6 +105,11 @@
     </Compile>
     <Compile Include="DataSets\GrillaCompras.vb">
       <DependentUpon>GrillaCompras.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\GrillaVentas.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GrillaVentas.xsd</DependentUpon>
     </Compile>
     <Compile Include="InterfazUsuario\Componentes\UserControls\ControlYGrilla.Designer.vb">
       <DependentUpon>ControlYGrilla.vb</DependentUpon>
@@ -134,6 +141,7 @@
     <Compile Include="Interfaces\ObjetoCampo.vb" />
     <Compile Include="VO\CompraVO.vb" />
     <Compile Include="VO\DetalleCompraVO.vb" />
+    <Compile Include="VO\DetalleVentaVO.vb" />
     <Compile Include="VO\EquiposVO.vb" />
     <Compile Include="VO\FamiliaVO.vb" />
     <Compile Include="InterfazUsuario\Componentes\Campo.vb" />
@@ -202,6 +210,7 @@
     <Compile Include="VO\ProductoVO.vb" />
     <Compile Include="VO\TipoClienteVO.vb" />
     <Compile Include="VO\VendedorVO.vb" />
+    <Compile Include="VO\VentaVO.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="InterfazUsuario\Componentes\ControlGenerico.resx">
@@ -249,6 +258,17 @@
     </None>
     <None Include="DataSets\GrillaCompras.xss">
       <DependentUpon>GrillaCompras.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\GrillaVentas.xsc">
+      <DependentUpon>GrillaVentas.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\GrillaVentas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GrillaVentas.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSets\GrillaVentas.xss">
+      <DependentUpon>GrillaVentas.xsd</DependentUpon>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

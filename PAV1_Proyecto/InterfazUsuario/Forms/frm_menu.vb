@@ -73,4 +73,12 @@
         frm.Text = "ABM Compras"
         frm.Show()
     End Sub
+
+
+    Private Sub btn_ventas_Click(sender As Object, e As EventArgs) Handles btn_ventas.Click
+        Dim frm As New frm_abm_generico_busqueda(New ventaDAO)
+        frm.Text = "ABM Ventas"
+        frm.Show()
+    End Sub
+
 End Class
