@@ -21,6 +21,7 @@
 
     ' Propiedades opcionales.
     Public Property _visible As Boolean
+    Public Property _unique As Boolean ' Usado en Listas/Grillas. Si es True el objeto no se puede repetir en otra fila.
     Public Property _maskType As MaskType
     Public Property _campo As ObjetoCampo ' Cuando se quiere definir un campo especifico.
     Public Property _objetoDAO As ObjetoDAO ' El objeto que sera pasado a un ComboBox.
