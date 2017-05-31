@@ -12,6 +12,7 @@ Public Class GrillaGenerica
 
     Dim fabrica As ObjectFactory
     Dim column_ids As New List(Of String)
+    Dim columns_unique As New List(Of String)
     Dim visible_col_name As String
 
     Public Sub New(columnas As List(Of Campo), fabrica As ObjectFactory)
@@ -62,21 +63,49 @@ Public Class GrillaGenerica
         Dim i = Me.Rows.Add()
         For Each nombre In column_ids
             If datos.ContainsKey(nombre) Then ' Si el diccionario tiene un formato incorrecto cargara en blanco.
-                Me.Rows(i).Cells(nombre).Value = datos(nombre)
+                If columns_unique.Contains(nombre) Then ' Si es una columna unica
+                    If Not is_repeated(datos(nombre), nombre) Then
+                        Me.Rows(i).Cells(nombre).Value = datos(nombre)
+                    Else
+                        MsgBox("El valor ingresado ya existe.", MsgBoxStyle.Exclamation, "Aviso")
+                        Me.Rows.RemoveAt(i) ' Aborta la creacion de la fila.
+                        Exit Sub
+                    End If
+                Else
+                    Me.Rows(i).Cells(nombre).Value = datos(nombre)
+                End If
             End If
         Next
+    End Sub
+
+    Public Sub add_objeto(value As ObjetoVO) Implements ObjetoGrilla.add_objeto
+        add_row(value.toDictionary())
     End Sub
 
     Private Sub add_column(campo As Campo)
         ' Añade una columna formateada segun lo que especifica el campo.
         column_ids.Add(campo._id)
+        If campo._unique Then
+            columns_unique.Add(campo._id)
+        End If
+
         Dim col As New DataGridViewTextBoxColumn
         col.Name = campo._id
         col.DataPropertyName = campo._id
         col.HeaderText = campo._name
         col.Visible = campo._visible
         Me.Columns.Add(col)
+
     End Sub
+
+    Private Function is_repeated(value As Object, col_id As String) As Boolean
+        For Each row As DataGridViewRow In Me.Rows
+            If row.Cells(col_id).Value = value Then
+                Return True ' Repetida
+            End If
+        Next
+        Return False ' No repetida
+    End Function
 
     Public Function get_selected() As ObjetoVO Implements ObjetoGrilla.get_selected
         ' Obtiene el objeto seleccionado. Retorna Nothing si no hay seleccion.
@@ -132,16 +161,6 @@ Public Class GrillaGenerica
 
     Public Overloads Sub Focus() Implements ObjetoGrilla.Focus
         MyBase.Focus()
-    End Sub
-
-    Public Sub add_objeto(value As ObjetoVO) Implements ObjetoGrilla.add_objeto
-        Dim datos = value.toDictionary()
-        Me.Rows.Add()
-        Dim n_row = Me.Rows.Count - 1
-        For Each nombre In column_ids
-            Me.Rows(n_row).Cells(nombre).Value = datos(nombre)
-        Next
-        execute_resize()
     End Sub
 
     Public Sub delete_selected() Implements ObjetoGrilla.delete_selected

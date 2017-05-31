@@ -190,7 +190,7 @@ Public Class ProductoDAO
 
     Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo With {._id = "codigo", ._name = "Código"})
+        campos.Add(New Campo With {._id = "codigo", ._name = "Código", ._unique = True})
         campos.Add(New Campo With {._id = "grupo", ._name = "Grupo"})
         campos.Add(New Campo With {._id = "costo", ._name = "Costo"})
         campos.Add(New Campo With {._id = "fechaLista", ._name = "Fecha Act"})

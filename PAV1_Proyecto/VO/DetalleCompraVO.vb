@@ -3,13 +3,13 @@
 Public Class DetalleCompraVO
     Implements ObjetoVO
 
-    Public Property codigo_producto As String
+    Public Property codigo_producto As String = ""
 
-    Public Property id_compra As Integer
+    Public Property id_compra As Integer = 0
 
-    Public Property costo As Double
+    Public Property costo As Double = 0.0
 
-    Public Property cantidad As Integer
+    Public Property cantidad As Integer = 0
 
     Public Function toDictionary() As Dictionary(Of String, Object) Implements ObjetoVO.toDictionary
         Dim diccionario As New Dictionary(Of String, Object)
