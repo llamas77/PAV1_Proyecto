@@ -22,177 +22,241 @@ Partial Class frm_menu
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.btn_marcas = New System.Windows.Forms.Button()
-        Me.btn_familias = New System.Windows.Forms.Button()
-        Me.btn_tipos_cliente = New System.Windows.Forms.Button()
-        Me.btn_vendedores = New System.Windows.Forms.Button()
-        Me.btn_grupos = New System.Windows.Forms.Button()
-        Me.btn_ganancias = New System.Windows.Forms.Button()
-        Me.btn_clientes = New System.Windows.Forms.Button()
-        Me.btn_ganancias2 = New System.Windows.Forms.Button()
-        Me.btn_equipos = New System.Windows.Forms.Button()
-        Me.btn_proveedores = New System.Windows.Forms.Button()
-        Me.btn_productos = New System.Windows.Forms.Button()
-        Me.btn_compras = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.ProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FamiliasDeProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GruposToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GananciasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GruposToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProductosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EquiposToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MarcasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EquiposToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TiposDeClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClientesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VendedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VendedoresToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProveedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProveedoresToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ComprasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ComprasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReporteDeComprasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VentasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReporteDeVentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'btn_marcas
+        'MenuStrip1
         '
-        Me.btn_marcas.Location = New System.Drawing.Point(28, 26)
-        Me.btn_marcas.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btn_marcas.Name = "btn_marcas"
-        Me.btn_marcas.Size = New System.Drawing.Size(135, 82)
-        Me.btn_marcas.TabIndex = 0
-        Me.btn_marcas.Text = "ABM Marcas"
-        Me.btn_marcas.UseVisualStyleBackColor = True
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductosToolStripMenuItem, Me.EquiposToolStripMenuItem, Me.ClientesToolStripMenuItem, Me.VendedoresToolStripMenuItem, Me.ProveedoresToolStripMenuItem, Me.ComprasToolStripMenuItem, Me.VentasToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(612, 24)
+        Me.MenuStrip1.TabIndex = 10
+        Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'btn_familias
+        'ProductosToolStripMenuItem
         '
-        Me.btn_familias.Location = New System.Drawing.Point(168, 26)
-        Me.btn_familias.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btn_familias.Name = "btn_familias"
-        Me.btn_familias.Size = New System.Drawing.Size(135, 82)
-        Me.btn_familias.TabIndex = 1
-        Me.btn_familias.Text = "ABM Familias"
-        Me.btn_familias.UseVisualStyleBackColor = True
+        Me.ProductosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FamiliasDeProductosToolStripMenuItem, Me.GruposToolStripMenuItem, Me.ProductosToolStripMenuItem1})
+        Me.ProductosToolStripMenuItem.Name = "ProductosToolStripMenuItem"
+        Me.ProductosToolStripMenuItem.Size = New System.Drawing.Size(73, 20)
+        Me.ProductosToolStripMenuItem.Text = "Productos"
         '
-        'btn_tipos_cliente
+        'FamiliasDeProductosToolStripMenuItem
         '
-        Me.btn_tipos_cliente.Location = New System.Drawing.Point(307, 26)
-        Me.btn_tipos_cliente.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btn_tipos_cliente.Name = "btn_tipos_cliente"
-        Me.btn_tipos_cliente.Size = New System.Drawing.Size(135, 82)
-        Me.btn_tipos_cliente.TabIndex = 2
-        Me.btn_tipos_cliente.Text = "Tipos de Clientes"
-        Me.btn_tipos_cliente.UseVisualStyleBackColor = True
+        Me.FamiliasDeProductosToolStripMenuItem.Name = "FamiliasDeProductosToolStripMenuItem"
+        Me.FamiliasDeProductosToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.FamiliasDeProductosToolStripMenuItem.Text = "Familias de productos"
         '
-        'btn_vendedores
+        'GruposToolStripMenuItem
         '
-        Me.btn_vendedores.Location = New System.Drawing.Point(307, 112)
-        Me.btn_vendedores.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btn_vendedores.Name = "btn_vendedores"
-        Me.btn_vendedores.Size = New System.Drawing.Size(135, 82)
-        Me.btn_vendedores.TabIndex = 5
-        Me.btn_vendedores.Text = "Vendedores"
-        Me.btn_vendedores.UseVisualStyleBackColor = True
+        Me.GruposToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GananciasToolStripMenuItem, Me.GruposToolStripMenuItem1})
+        Me.GruposToolStripMenuItem.Name = "GruposToolStripMenuItem"
+        Me.GruposToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.GruposToolStripMenuItem.Text = "Grupos"
         '
-        'btn_grupos
+        'GananciasToolStripMenuItem
         '
-        Me.btn_grupos.Location = New System.Drawing.Point(28, 112)
-        Me.btn_grupos.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btn_grupos.Name = "btn_grupos"
-        Me.btn_grupos.Size = New System.Drawing.Size(135, 82)
-        Me.btn_grupos.TabIndex = 3
-        Me.btn_grupos.Text = "ABM Grupos"
-        Me.btn_grupos.UseVisualStyleBackColor = True
+        Me.GananciasToolStripMenuItem.Name = "GananciasToolStripMenuItem"
+        Me.GananciasToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.GananciasToolStripMenuItem.Text = "Ganancias"
         '
-        'btn_ganancias
+        'GruposToolStripMenuItem1
         '
-        Me.btn_ganancias.Location = New System.Drawing.Point(28, 197)
-        Me.btn_ganancias.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btn_ganancias.Name = "btn_ganancias"
-        Me.btn_ganancias.Size = New System.Drawing.Size(135, 82)
-        Me.btn_ganancias.TabIndex = 6
-        Me.btn_ganancias.Text = "Ganancias"
-        Me.btn_ganancias.UseVisualStyleBackColor = True
+        Me.GruposToolStripMenuItem1.Name = "GruposToolStripMenuItem1"
+        Me.GruposToolStripMenuItem1.Size = New System.Drawing.Size(128, 22)
+        Me.GruposToolStripMenuItem1.Text = "Grupos"
         '
-        'btn_clientes
+        'ProductosToolStripMenuItem1
         '
-        Me.btn_clientes.Location = New System.Drawing.Point(168, 112)
-        Me.btn_clientes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btn_clientes.Name = "btn_clientes"
-        Me.btn_clientes.Size = New System.Drawing.Size(135, 82)
-        Me.btn_clientes.TabIndex = 4
-        Me.btn_clientes.Text = "Clientes"
-        Me.btn_clientes.UseVisualStyleBackColor = True
+        Me.ProductosToolStripMenuItem1.Name = "ProductosToolStripMenuItem1"
+        Me.ProductosToolStripMenuItem1.Size = New System.Drawing.Size(190, 22)
+        Me.ProductosToolStripMenuItem1.Text = "Productos"
         '
-        'btn_ganancias2
+        'EquiposToolStripMenuItem
         '
-        Me.btn_ganancias2.Location = New System.Drawing.Point(168, 197)
-        Me.btn_ganancias2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btn_ganancias2.Name = "btn_ganancias2"
-        Me.btn_ganancias2.Size = New System.Drawing.Size(135, 82)
-        Me.btn_ganancias2.TabIndex = 7
-        Me.btn_ganancias2.Text = "Ganancias Diseño 2"
-        Me.btn_ganancias2.UseVisualStyleBackColor = True
+        Me.EquiposToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MarcasToolStripMenuItem, Me.EquiposToolStripMenuItem1})
+        Me.EquiposToolStripMenuItem.Name = "EquiposToolStripMenuItem"
+        Me.EquiposToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.EquiposToolStripMenuItem.Text = "Equipos"
         '
-        'btn_equipos
+        'MarcasToolStripMenuItem
         '
-        Me.btn_equipos.Location = New System.Drawing.Point(308, 199)
-        Me.btn_equipos.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btn_equipos.Name = "btn_equipos"
-        Me.btn_equipos.Size = New System.Drawing.Size(135, 82)
-        Me.btn_equipos.TabIndex = 8
-        Me.btn_equipos.Text = "Equipos"
-        Me.btn_equipos.UseVisualStyleBackColor = True
+        Me.MarcasToolStripMenuItem.Name = "MarcasToolStripMenuItem"
+        Me.MarcasToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
+        Me.MarcasToolStripMenuItem.Text = "Marcas"
         '
-        'btn_proveedores
+        'EquiposToolStripMenuItem1
         '
-        Me.btn_proveedores.Location = New System.Drawing.Point(28, 286)
-        Me.btn_proveedores.Margin = New System.Windows.Forms.Padding(4)
-        Me.btn_proveedores.Name = "btn_proveedores"
-        Me.btn_proveedores.Size = New System.Drawing.Size(135, 82)
-        Me.btn_proveedores.TabIndex = 9
-        Me.btn_proveedores.Text = "Proveedores"
-        Me.btn_proveedores.UseVisualStyleBackColor = True
+        Me.EquiposToolStripMenuItem1.Name = "EquiposToolStripMenuItem1"
+        Me.EquiposToolStripMenuItem1.Size = New System.Drawing.Size(116, 22)
+        Me.EquiposToolStripMenuItem1.Text = "Equipos"
         '
-        'btn_productos
+        'ClientesToolStripMenuItem
         '
-        Me.btn_productos.Location = New System.Drawing.Point(168, 286)
-        Me.btn_productos.Margin = New System.Windows.Forms.Padding(4)
-        Me.btn_productos.Name = "btn_productos"
-        Me.btn_productos.Size = New System.Drawing.Size(135, 82)
-        Me.btn_productos.TabIndex = 9
-        Me.btn_productos.Text = "Productos"
-        Me.btn_productos.UseVisualStyleBackColor = True
+        Me.ClientesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TiposDeClientesToolStripMenuItem, Me.ClientesToolStripMenuItem1})
+        Me.ClientesToolStripMenuItem.Name = "ClientesToolStripMenuItem"
+        Me.ClientesToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.ClientesToolStripMenuItem.Text = "Clientes"
         '
-        'btn_compras
+        'TiposDeClientesToolStripMenuItem
         '
-        Me.btn_compras.Location = New System.Drawing.Point(308, 286)
-        Me.btn_compras.Margin = New System.Windows.Forms.Padding(4)
-        Me.btn_compras.Name = "btn_compras"
-        Me.btn_compras.Size = New System.Drawing.Size(135, 82)
-        Me.btn_compras.TabIndex = 9
-        Me.btn_compras.Text = "Compras"
-        Me.btn_compras.UseVisualStyleBackColor = True
+        Me.TiposDeClientesToolStripMenuItem.Name = "TiposDeClientesToolStripMenuItem"
+        Me.TiposDeClientesToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.TiposDeClientesToolStripMenuItem.Text = "Tipos de clientes"
+        '
+        'ClientesToolStripMenuItem1
+        '
+        Me.ClientesToolStripMenuItem1.Name = "ClientesToolStripMenuItem1"
+        Me.ClientesToolStripMenuItem1.Size = New System.Drawing.Size(162, 22)
+        Me.ClientesToolStripMenuItem1.Text = "Clientes"
+        '
+        'VendedoresToolStripMenuItem
+        '
+        Me.VendedoresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VendedoresToolStripMenuItem1})
+        Me.VendedoresToolStripMenuItem.Name = "VendedoresToolStripMenuItem"
+        Me.VendedoresToolStripMenuItem.Size = New System.Drawing.Size(81, 20)
+        Me.VendedoresToolStripMenuItem.Text = "Vendedores"
+        '
+        'VendedoresToolStripMenuItem1
+        '
+        Me.VendedoresToolStripMenuItem1.Name = "VendedoresToolStripMenuItem1"
+        Me.VendedoresToolStripMenuItem1.Size = New System.Drawing.Size(136, 22)
+        Me.VendedoresToolStripMenuItem1.Text = "Vendedores"
+        '
+        'ProveedoresToolStripMenuItem
+        '
+        Me.ProveedoresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProveedoresToolStripMenuItem1})
+        Me.ProveedoresToolStripMenuItem.Name = "ProveedoresToolStripMenuItem"
+        Me.ProveedoresToolStripMenuItem.Size = New System.Drawing.Size(84, 20)
+        Me.ProveedoresToolStripMenuItem.Text = "Proveedores"
+        '
+        'ProveedoresToolStripMenuItem1
+        '
+        Me.ProveedoresToolStripMenuItem1.Name = "ProveedoresToolStripMenuItem1"
+        Me.ProveedoresToolStripMenuItem1.Size = New System.Drawing.Size(139, 22)
+        Me.ProveedoresToolStripMenuItem1.Text = "Proveedores"
+        '
+        'ComprasToolStripMenuItem
+        '
+        Me.ComprasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComprasToolStripMenuItem1, Me.ReporteDeComprasToolStripMenuItem})
+        Me.ComprasToolStripMenuItem.Name = "ComprasToolStripMenuItem"
+        Me.ComprasToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
+        Me.ComprasToolStripMenuItem.Text = "Compras"
+        '
+        'ComprasToolStripMenuItem1
+        '
+        Me.ComprasToolStripMenuItem1.Name = "ComprasToolStripMenuItem1"
+        Me.ComprasToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.ComprasToolStripMenuItem1.Text = "Compras"
+        '
+        'ReporteDeComprasToolStripMenuItem
+        '
+        Me.ReporteDeComprasToolStripMenuItem.Enabled = False
+        Me.ReporteDeComprasToolStripMenuItem.Name = "ReporteDeComprasToolStripMenuItem"
+        Me.ReporteDeComprasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ReporteDeComprasToolStripMenuItem.Text = "Reporte de compras"
+        '
+        'VentasToolStripMenuItem
+        '
+        Me.VentasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VentasToolStripMenuItem1, Me.ReporteDeVentasToolStripMenuItem})
+        Me.VentasToolStripMenuItem.Name = "VentasToolStripMenuItem"
+        Me.VentasToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
+        Me.VentasToolStripMenuItem.Text = "Ventas"
+        '
+        'VentasToolStripMenuItem1
+        '
+        Me.VentasToolStripMenuItem1.Enabled = False
+        Me.VentasToolStripMenuItem1.Name = "VentasToolStripMenuItem1"
+        Me.VentasToolStripMenuItem1.Size = New System.Drawing.Size(168, 22)
+        Me.VentasToolStripMenuItem1.Text = "Ventas"
+        '
+        'ReporteDeVentasToolStripMenuItem
+        '
+        Me.ReporteDeVentasToolStripMenuItem.Enabled = False
+        Me.ReporteDeVentasToolStripMenuItem.Name = "ReporteDeVentasToolStripMenuItem"
+        Me.ReporteDeVentasToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.ReporteDeVentasToolStripMenuItem.Text = "Reporte de ventas"
+        '
+        'AyudaToolStripMenuItem
+        '
+        Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AcercaDeToolStripMenuItem})
+        Me.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
+        Me.AyudaToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
+        Me.AyudaToolStripMenuItem.Text = "Ayuda"
+        '
+        'AcercaDeToolStripMenuItem
+        '
+        Me.AcercaDeToolStripMenuItem.Enabled = False
+        Me.AcercaDeToolStripMenuItem.Name = "AcercaDeToolStripMenuItem"
+        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AcercaDeToolStripMenuItem.Text = "Acerca de..."
         '
         'frm_menu
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(483, 398)
-        Me.Controls.Add(Me.btn_compras)
-        Me.Controls.Add(Me.btn_productos)
-        Me.Controls.Add(Me.btn_proveedores)
-        Me.Controls.Add(Me.btn_equipos)
-        Me.Controls.Add(Me.btn_ganancias2)
-        Me.Controls.Add(Me.btn_ganancias)
-        Me.Controls.Add(Me.btn_clientes)
-        Me.Controls.Add(Me.btn_vendedores)
-        Me.Controls.Add(Me.btn_tipos_cliente)
-        Me.Controls.Add(Me.btn_familias)
-        Me.Controls.Add(Me.btn_grupos)
-        Me.Controls.Add(Me.btn_marcas)
+        Me.ClientSize = New System.Drawing.Size(612, 444)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(4)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
         Me.Name = "frm_menu"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Menu"
+        Me.Text = "PAV1 Proyecto"
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents btn_marcas As Button
-    Friend WithEvents btn_familias As Button
-    Friend WithEvents btn_tipos_cliente As Button
-    Friend WithEvents btn_vendedores As Button
-    Friend WithEvents btn_grupos As Button
-    Friend WithEvents btn_ganancias As Button
-    Friend WithEvents btn_clientes As Button
-    Friend WithEvents btn_ganancias2 As Button
-    Friend WithEvents btn_equipos As Button
-    Friend WithEvents btn_proveedores As Button
-    Friend WithEvents btn_productos As Button
-    Friend WithEvents btn_compras As Button
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents ProductosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FamiliasDeProductosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GruposToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ProductosToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents EquiposToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MarcasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EquiposToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ClientesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TiposDeClientesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ClientesToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents GananciasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GruposToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents VendedoresToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VendedoresToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ProveedoresToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ProveedoresToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ComprasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ComprasToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents VentasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VentasToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ReporteDeComprasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ReporteDeVentasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AcercaDeToolStripMenuItem As ToolStripMenuItem
 End Class
