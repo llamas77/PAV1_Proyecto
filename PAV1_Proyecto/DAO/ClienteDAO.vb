@@ -95,6 +95,31 @@ Public Class ClienteDAO
         End If
     End Function
 
+    Public Function search_by_id(nroCliente As Integer, Optional db As DataBase = Nothing) As ObjetoVO
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+
+        Dim sql = "SELECT nombre, apellido, direccion, telefono, idTipoCliente"
+        sql &= " FROM vendedores WHERE idVendedor=" & nroCliente
+        Dim registro = db.consulta_sql(sql)
+
+        Dim cliente As ClienteVO = Nothing
+        If registro.Rows.Count = 1 Then
+            cliente = New ClienteVO With {
+                ._nro = nroCliente,
+                ._apellido = registro(0)("apellido"),
+                ._direccion = registro(0)("direccion"),
+                ._tipo_cliente = registro(0)("idTipoCliente"),
+                ._nombre = registro(0)("nombre"),
+                ._telefono = registro(0)("telefono")
+            }
+        End If
+
+        Return cliente
+
+    End Function
+
     Private Function cast(value As ObjetoVO) As ClienteVO
         If TypeOf value Is ClienteVO Then
             Return value

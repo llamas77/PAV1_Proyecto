@@ -92,6 +92,32 @@ Public Class VendedorDAO
         End If
     End Function
 
+
+    Public Function search_by_id(id_vendedor As Integer, Optional db As DataBase = Nothing) As ObjetoVO
+        If db Is Nothing Then
+            db = DataBase.getInstance()
+        End If
+
+        Dim sql = "SELECT nombre, apellido, direccion, telefono, comision"
+        sql &= " FROM vendedores WHERE idVendedor=" & id_vendedor
+        Dim registro = db.consulta_sql(sql)
+
+        Dim vendedor As VendedorVO = Nothing
+        If registro.Rows.Count = 1 Then
+            vendedor = New VendedorVO With {
+                ._id = id_vendedor,
+                ._apellido = registro(0)("apellido"),
+                ._direccion = registro(0)("direccion"),
+                ._porcentaje_comision = registro(0)("comision"),
+                ._nombre = registro(0)("nombre"),
+                ._telefono = registro(0)("telefono")
+            }
+        End If
+
+        Return vendedor
+
+    End Function
+
     Private Function cast(value As ObjetoVO) As VendedorVO
         If TypeOf value Is VendedorVO Then
             Return value

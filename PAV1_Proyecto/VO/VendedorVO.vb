@@ -5,15 +5,15 @@ Public Class VendedorVO
 
     Dim comision As Double
 
-    Public Property _id As Integer
+    Public Property _id As Integer = 0
 
-    Public Property _nombre As String
+    Public Property _nombre As String = ""
 
-    Public Property _apellido As String
+    Public Property _apellido As String = ""
 
-    Public Property _telefono As String
+    Public Property _telefono As String = ""
 
-    Public Property _direccion As String
+    Public Property _direccion As String = ""
 
     Public Property _proporcion_comision As Double
         Get
