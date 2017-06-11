@@ -3,7 +3,7 @@
     '      Administra las conexiones.
 
     ' TODO: Crear un usuario en el SQL Server y poner el string de conexion.
-    Private cadena_conexion As String = "Provider=SQLNCLI11;Data Source=FRANCO-PC;Integrated Security=SSPI;Initial Catalog=sistema_stock"
+    Private cadena_conexion As String = "Provider=SQLNCLI11;Data Source=JUANI-PC\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=sistema_stock"
     Private conexion As New OleDb.OleDbConnection
     ' Nota: Trabajar con un solo comando puede mejorar la gestion de memoria evitando basura.
     '       Pero en un ambiente MultiThread puede causar que se ejecute una consulta inesperada.

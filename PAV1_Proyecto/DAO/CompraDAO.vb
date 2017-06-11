@@ -67,10 +67,11 @@ Public Class CompraDAO
         End If
 
         Dim detalleDAO As New DetalleCompraDAO
+        Dim detalles_guardados = detalleDAO.all_from_compra(compra._id)
+
         Dim detalles = compra.detalle.Cast(Of DetalleCompraVO)
         For Each detalle In detalles
-            If detalle.id_compra <> compra._id Then
-                ' Si agrego un nuevo detalle
+            If detalle.id_compra <> compra._id Then ' Nuevo Detalle
                 If detalle.id_compra = 0 Then
                     detalle.id_compra = compra._id
                     detalleDAO.insert(detalle, db)
@@ -78,9 +79,15 @@ Public Class CompraDAO
                     db.cancelar_transaccion()
                     Throw New System.Exception("El ID del detalle pertenece a otra compra.")
                 End If
-            End If
+            Else ' Actualiza Detalle
                 detalleDAO.update(detalle, db)
+            End If
+            detalles_guardados.Remove(detalle)
         Next
+        For Each detalleG In detalles_guardados ' Los detalles que quedaron guardados pero el usuario borro.
+            detalleDAO.delete(detalleG, db)
+        Next
+
         db.cerrar_transaccion()
         db.desconectar()
     End Sub
