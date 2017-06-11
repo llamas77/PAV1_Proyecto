@@ -20,4 +20,14 @@ Public Class FamiliaVO
         diccionario.Add("nombre", _nombre)
         Return diccionario
     End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean Implements ObjetoVO.Equals
+        If TypeOf obj Is FamiliaVO Then
+            With DirectCast(obj, FamiliaVO)
+                Return ._id = Me._id
+            End With
+        Else
+            Return False
+        End If
+    End Function
 End Class

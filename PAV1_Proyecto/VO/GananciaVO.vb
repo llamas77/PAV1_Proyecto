@@ -38,4 +38,14 @@ Public Class GananciaVO
     Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
         Return "Ganancia sobre " & _tipo_cliente._nombre & " en " & _grupo._nombre & " (" & _porcentaje_ganancia & ")"
     End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean Implements ObjetoVO.Equals
+        If TypeOf obj Is GananciaVO Then
+            With DirectCast(obj, GananciaVO)
+                Return ._grupo.Equals(Me._grupo) And ._tipo_cliente.Equals(Me._tipo_cliente)
+            End With
+        Else
+            Return False
+        End If
+    End Function
 End Class

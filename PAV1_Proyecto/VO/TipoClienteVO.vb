@@ -18,4 +18,14 @@ Public Class TipoClienteVO
         diccionario.Add("descripcion", _descripcion)
         Return diccionario
     End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean Implements ObjetoVO.Equals
+        If TypeOf obj Is TipoClienteVO Then
+            With DirectCast(obj, TipoClienteVO)
+                Return ._id = Me._id
+            End With
+        Else
+            Return False
+        End If
+    End Function
 End Class

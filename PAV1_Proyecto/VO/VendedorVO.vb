@@ -53,4 +53,14 @@ Public Class VendedorVO
         diccionario.Add("porcentaje_comision", _porcentaje_comision)
         Return diccionario
     End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean Implements ObjetoVO.Equals
+        If TypeOf obj Is VendedorVO Then
+            With DirectCast(obj, VendedorVO)
+                Return ._id = Me._id
+            End With
+        Else
+            Return False
+        End If
+    End Function
 End Class

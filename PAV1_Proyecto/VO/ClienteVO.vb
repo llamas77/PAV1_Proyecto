@@ -30,4 +30,14 @@ Public Class ClienteVO
         diccionario.Add("tipo_cliente", _tipo_cliente)
         Return diccionario
     End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean Implements ObjetoVO.Equals
+        If TypeOf obj Is ClienteVO Then
+            With DirectCast(obj, ClienteVO)
+                Return ._nro = Me._nro
+            End With
+        Else
+            Return False
+        End If
+    End Function
 End Class

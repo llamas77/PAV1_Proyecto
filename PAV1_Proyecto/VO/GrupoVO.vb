@@ -18,4 +18,14 @@ Public Class GrupoVO
         diccionario.Add("familia", _familia)
         Return diccionario
     End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean Implements ObjetoVO.Equals
+        If TypeOf obj Is GrupoVO Then
+            With DirectCast(obj, GrupoVO)
+                Return ._id = Me._id
+            End With
+        Else
+            Return False
+        End If
+    End Function
 End Class

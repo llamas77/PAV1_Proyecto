@@ -20,4 +20,14 @@ Public Class CompraVO
     Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
         Return "Compra del " & _fecha_compra.ToString & "(" & _id & ")"
     End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean Implements ObjetoVO.Equals
+        If TypeOf obj Is CompraVO Then
+            With DirectCast(obj, CompraVO)
+                Return ._id = Me._id
+            End With
+        Else
+            Return False
+        End If
+    End Function
 End Class

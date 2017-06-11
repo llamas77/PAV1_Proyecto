@@ -24,8 +24,7 @@ Public Class DetalleCompraVO
         Throw New NotImplementedException()
     End Function
 
-    Public Overrides Function Equals(obj As Object) As Boolean
-        ' Valida que la PK sea igual. Los contenidos pueden ser distintos.
+    Public Overrides Function Equals(obj As Object) As Boolean Implements ObjetoVO.Equals
         If TypeOf obj Is DetalleCompraVO Then
             With DirectCast(obj, DetalleCompraVO)
                 Return .id_compra = Me.id_compra And .codigo_producto = Me.codigo_producto

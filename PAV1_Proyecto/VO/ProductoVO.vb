@@ -30,4 +30,14 @@ Public Class ProductoVO
     Public Overrides Function toString() As String Implements ObjetoVO.toString
         Return _codigo
     End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean Implements ObjetoVO.Equals
+        If TypeOf obj Is ProductoVO Then
+            With DirectCast(obj, ProductoVO)
+                Return ._codigo = Me._codigo
+            End With
+        Else
+            Return False
+        End If
+    End Function
 End Class

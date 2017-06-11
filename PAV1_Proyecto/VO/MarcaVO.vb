@@ -16,4 +16,14 @@ Public Class MarcaVO
     Public Overrides Function toString() As String Implements ObjetoVO.toString
         Return _nombre
     End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean Implements ObjetoVO.Equals
+        If TypeOf obj Is MarcaVO Then
+            With DirectCast(obj, MarcaVO)
+                Return ._id = Me._id
+            End With
+        Else
+            Return False
+        End If
+    End Function
 End Class

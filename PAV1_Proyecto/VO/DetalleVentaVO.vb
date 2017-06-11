@@ -23,4 +23,14 @@ Public Class DetalleVentaVO
     Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
         Throw New NotImplementedException()
     End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean Implements ObjetoVO.Equals
+        If TypeOf obj Is DetalleVentaVO Then
+            With DirectCast(obj, DetalleVentaVO)
+                Return .id_venta = Me.id_venta And .codigo_producto = Me.codigo_producto
+            End With
+        Else
+            Return False
+        End If
+    End Function
 End Class
