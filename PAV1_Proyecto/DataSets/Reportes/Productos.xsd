@@ -27,11 +27,73 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="ProductosXEquipos" msprop:Generator_TableClassName="ProductosXEquiposDataTable" msprop:Generator_TableVarName="tableProductosXEquipos" msprop:Generator_TablePropName="ProductosXEquipos" msprop:Generator_RowDeletingName="ProductosXEquiposRowDeleting" msprop:Generator_RowChangingName="ProductosXEquiposRowChanging" msprop:Generator_RowEvHandlerName="ProductosXEquiposRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductosXEquiposRowDeleted" msprop:Generator_UserTableName="ProductosXEquipos" msprop:Generator_RowChangedName="ProductosXEquiposRowChanged" msprop:Generator_RowEvArgName="ProductosXEquiposRowChangeEvent" msprop:Generator_RowClassName="ProductosXEquiposRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="codigoProducto" msprop:Generator_ColumnVarNameInTable="columncodigoProducto" msprop:Generator_ColumnPropNameInRow="codigoProducto" msprop:Generator_ColumnPropNameInTable="codigoProductoColumn" msprop:Generator_UserColumnName="codigoProducto" type="xs:string" />
+              <xs:element name="idEquipo" msprop:Generator_ColumnVarNameInTable="columnidEquipo" msprop:Generator_ColumnPropNameInRow="idEquipo" msprop:Generator_ColumnPropNameInTable="idEquipoColumn" msprop:Generator_UserColumnName="idEquipo" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Equipos" msprop:Generator_TableClassName="EquiposDataTable" msprop:Generator_TableVarName="tableEquipos" msprop:Generator_TablePropName="Equipos" msprop:Generator_RowDeletingName="EquiposRowDeleting" msprop:Generator_RowChangingName="EquiposRowChanging" msprop:Generator_RowEvHandlerName="EquiposRowChangeEventHandler" msprop:Generator_RowDeletedName="EquiposRowDeleted" msprop:Generator_UserTableName="Equipos" msprop:Generator_RowChangedName="EquiposRowChanged" msprop:Generator_RowEvArgName="EquiposRowChangeEvent" msprop:Generator_RowClassName="EquiposRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="modelo" msprop:Generator_ColumnVarNameInTable="columnmodelo" msprop:Generator_ColumnPropNameInRow="modelo" msprop:Generator_ColumnPropNameInTable="modeloColumn" msprop:Generator_UserColumnName="modelo" type="xs:string" minOccurs="0" />
+              <xs:element name="idMarca" msprop:Generator_ColumnVarNameInTable="columnidMarca" msprop:Generator_ColumnPropNameInRow="idMarca" msprop:Generator_ColumnPropNameInTable="idMarcaColumn" msprop:Generator_UserColumnName="idMarca" type="xs:int" minOccurs="0" />
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Marca" msprop:Generator_TableClassName="MarcaDataTable" msprop:Generator_TableVarName="tableMarca" msprop:Generator_TablePropName="Marca" msprop:Generator_RowDeletingName="MarcaRowDeleting" msprop:Generator_RowChangingName="MarcaRowChanging" msprop:Generator_RowEvHandlerName="MarcaRowChangeEventHandler" msprop:Generator_RowDeletedName="MarcaRowDeleted" msprop:Generator_UserTableName="Marca" msprop:Generator_RowChangedName="MarcaRowChanged" msprop:Generator_RowEvArgName="MarcaRowChangeEvent" msprop:Generator_RowClassName="MarcaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idMarca" msprop:Generator_ColumnVarNameInTable="columnidMarca" msprop:Generator_ColumnPropNameInRow="idMarca" msprop:Generator_ColumnPropNameInTable="idMarcaColumn" msprop:Generator_UserColumnName="idMarca" type="xs:int" />
+              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1">
       <xs:selector xpath=".//mstns:Productos" />
       <xs:field xpath="mstns:codigoProducto" />
     </xs:unique>
+    <xs:unique name="ProductosXEquipos_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProductosXEquipos" />
+      <xs:field xpath="mstns:codigoProducto" />
+      <xs:field xpath="mstns:idEquipo" />
+    </xs:unique>
+    <xs:unique name="Constraint2">
+      <xs:selector xpath=".//mstns:ProductosXEquipos" />
+      <xs:field xpath="mstns:codigoProducto" />
+    </xs:unique>
+    <xs:unique name="Constraint3">
+      <xs:selector xpath=".//mstns:ProductosXEquipos" />
+      <xs:field xpath="mstns:idEquipo" />
+    </xs:unique>
+    <xs:unique name="Equipos_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Equipos" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Equipos_Constraint2" msdata:ConstraintName="Constraint2">
+      <xs:selector xpath=".//mstns:Equipos" />
+      <xs:field xpath="mstns:idMarca" />
+    </xs:unique>
+    <xs:unique name="Marca_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Marca" />
+      <xs:field xpath="mstns:idMarca" />
+    </xs:unique>
+    <xs:keyref name="FK_Equipos_Marca" refer="Equipos_Constraint2" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:Marca" />
+      <xs:field xpath="mstns:idMarca" />
+    </xs:keyref>
+    <xs:keyref name="FK_ProductosXEquipos_Equipos" refer="Constraint3" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:Equipos" />
+      <xs:field xpath="mstns:id" />
+    </xs:keyref>
+    <xs:keyref name="FK_ProductosXEquipos_Productos" refer="Constraint2" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:Productos" />
+      <xs:field xpath="mstns:codigoProducto" />
+    </xs:keyref>
   </xs:element>
 </xs:schema>

@@ -126,6 +126,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Productos.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSets\Reportes\Productos.vb">
+      <DependentUpon>Productos.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\Reportes\Ventas.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
