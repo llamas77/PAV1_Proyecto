@@ -89,4 +89,26 @@
         frm.Text = "ABM Ventas"
         frm.Show()
     End Sub
+
+    Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FamiliasToolStripMenuItem.Click, ProductosEnStockToolStripMenuItem.Click
+        Dim itemMenu As ToolStripMenuItem
+        itemMenu = sender
+
+        Dim listaNombres As New List(Of String)
+        listaNombres.Add(FamiliasToolStripMenuItem.Text)
+        listaNombres.Add(ProductosEnStockToolStripMenuItem.Text)
+
+        Dim i As Integer
+        For i = 0 To listaNombres.Count - 1
+            If listaNombres(i) = itemMenu.Text Then
+                Dim frm As New frm_reporte(itemMenu.Text)
+                frm.Show()
+                Exit For
+            End If
+        Next
+    End Sub
+
+    Private Sub frm_menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
