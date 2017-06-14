@@ -165,6 +165,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Interfaces\ObjetoCampo.vb" />
+    <Compile Include="InterfazUsuario\Forms\frm_reporte.Designer.vb">
+      <DependentUpon>frm_reporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InterfazUsuario\Forms\frm_reporte.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="VO\CompraVO.vb" />
     <Compile Include="VO\DetalleCompraVO.vb" />
     <Compile Include="VO\DetalleVentaVO.vb" />
@@ -266,12 +272,16 @@
     <EmbeddedResource Include="InterfazUsuario\Forms\frm_menu.resx">
       <DependentUpon>frm_menu.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InterfazUsuario\Forms\frm_reporte.resx">
+      <DependentUpon>frm_reporte.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\repStock.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSets\GrillaCompras.xsc">
@@ -342,8 +352,6 @@
     </Content>
     <Content Include="TODO_list.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reportes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
