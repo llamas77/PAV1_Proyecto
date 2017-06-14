@@ -111,6 +111,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GrillaVentas.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSets\Reportes\Clientes.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Clientes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\Reportes\Compras.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Compras.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\Reportes\Productos.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Productos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\Reportes\Ventas.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ventas.xsd</DependentUpon>
+    </Compile>
     <Compile Include="InterfazUsuario\Componentes\UserControls\ControlYGrilla.Designer.vb">
       <DependentUpon>ControlYGrilla.vb</DependentUpon>
     </Compile>
@@ -270,6 +290,50 @@
     <None Include="DataSets\GrillaVentas.xss">
       <DependentUpon>GrillaVentas.xsd</DependentUpon>
     </None>
+    <None Include="DataSets\Reportes\Clientes.xsc">
+      <DependentUpon>Clientes.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\Reportes\Clientes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Clientes.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSets\Reportes\Clientes.xss">
+      <DependentUpon>Clientes.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\Reportes\Compras.xsc">
+      <DependentUpon>Compras.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\Reportes\Compras.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Compras.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSets\Reportes\Compras.xss">
+      <DependentUpon>Compras.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\Reportes\Productos.xsc">
+      <DependentUpon>Productos.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\Reportes\Productos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Productos.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSets\Reportes\Productos.xss">
+      <DependentUpon>Productos.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\Reportes\Ventas.xsc">
+      <DependentUpon>Ventas.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\Reportes\Ventas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Ventas.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSets\Reportes\Ventas.xss">
+      <DependentUpon>Ventas.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -289,6 +353,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TODO_list.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reportes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

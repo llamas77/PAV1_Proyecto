@@ -204,7 +204,7 @@ Public Class ventaDAO
         campos.Add(New Campo With {._id = "fecha_venta", ._name = "Fecha de venta", ._maskType = Campo.MaskType.fecha,
                                    ._required = True})
         campos.Add(New Campo With {._id = "nroComprobante", ._name = "Nro Comprobante", ._visible = True, ._numeric = True})
-        campos.Add(New Campo With {._id = "cliente", ._name = "cliente", ._maskType = Campo.MaskType.comboBox,
+        campos.Add(New Campo With {._id = "cliente", ._name = "Cliente", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New ClienteDAO, ._required = True})
         campos.Add(New Campo With {._id = "vendedor", ._name = "Vendedor", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New VendedorDAO, ._required = True})
@@ -229,8 +229,8 @@ Public Class ventaDAO
         Dim campos As New List(Of Campo)
         campos.Add(New Campo With {._id = "id", ._name = "ID", ._numeric = True})
         campos.Add(New Campo With {._id = "fecha_venta", ._name = "Fecha de venta"})
-        campos.Add(New Campo With {._id = "cliente", ._name = "cliente"})
-        campos.Add(New Campo With {._id = "vendedor", ._name = "vendedor"})
+        campos.Add(New Campo With {._id = "cliente", ._name = "Cliente"})
+        campos.Add(New Campo With {._id = "vendedor", ._name = "Vendedor"})
         campos.Add(New Campo With {._id = "detalles", ._name = "Detalle", ._visible = False})
         Return New GrillaGenerica(campos, Me)
     End Function

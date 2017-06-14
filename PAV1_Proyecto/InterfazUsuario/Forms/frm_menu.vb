@@ -84,4 +84,9 @@
         frm.Show()
     End Sub
 
+    Private Sub VentasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles VentasToolStripMenuItem1.Click
+        Dim frm As New frm_abm_generico_busqueda(New ventaDAO)
+        frm.Text = "ABM Ventas"
+        frm.Show()
+    End Sub
 End Class

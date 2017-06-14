@@ -19,4 +19,10 @@
     ' Proximamente:
     ' Function fromDictionary() As Dictionary(Of String, Object)
 
+    '
+    ' Retorna True si los dos objetos son de la misma clase
+    ' y tienen la misma Clave Primaria.
+    '
+    Function Equals(obj As Object) As Boolean
+
 End Interface
