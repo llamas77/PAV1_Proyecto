@@ -7,7 +7,7 @@ Public Class DetalleVentaVO
 
     Public Property id_venta As Integer
 
-    Public Property costo As Double
+    Public Property precio As Double
 
     Public Property cantidad As Integer
 
@@ -15,7 +15,7 @@ Public Class DetalleVentaVO
         Dim diccionario As New Dictionary(Of String, Object)
         diccionario.Add("codigo_producto", codigo_producto)
         diccionario.Add("id_venta", id_venta)
-        diccionario.Add("costo", costo)
+        diccionario.Add("precio", precio)
         diccionario.Add("cantidad", cantidad)
         Return diccionario
     End Function

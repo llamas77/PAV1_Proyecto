@@ -41,7 +41,7 @@ Public Class ventaDAO
             End If
             productoVO._stock += detalle.cantidad
             If productoVO._fechaLista < venta._fecha_venta Then
-                productoVO._costo = detalle.costo
+                productoVO._costo = detalle.precio
                 productoVO._fechaLista = venta._fecha_venta
             End If
             productoDAO.update(productoVO, db) ' Stock Producto
@@ -119,7 +119,7 @@ Public Class ventaDAO
         Dim dataSet As New Grillaventas
         Dim dataTable As DataTable = dataSet.ventas
 
-        Dim sql_select = "SELECT v.idVenta, convert(char(10), v.fechaVenta, 103) as fecha_venta, v.nroComprobante, "
+        Dim sql_select = "SELECT v.idVenta, convert(char(10), v.fechaVenta, 103) as fechaventa, v.nroComprobante, "
         sql_select &= "c.nroCliente, c.nombre as nombreCliente, c.apellido as apellidoCliente,c.direccion as direccionCliente, "
         sql_select &= "c.telefono as telCliente, c.idTipoCliente, ven.idVendedor, ven.nombre as nombreVendedor, "
         sql_select &= "ven.apellido as apellidoVendedor, ven.direccion as direccionVendedor,ven.telefono as telVendedor, ven.comision "
@@ -132,7 +132,7 @@ Public Class ventaDAO
         For Each venta As DataRow In ventas.Rows
             Dim row = dataTable.Rows.Add()
             row("id") = venta("idventa")
-            row("fecha_venta") = venta("fecha_venta")
+            row("fechaventa") = venta("fechaventa")
             row("cliente") = New ClienteVO With {
                 ._nro = venta("nroCliente"),
                 ._nombre = venta("nombreCliente"),
@@ -159,7 +159,7 @@ Public Class ventaDAO
 
     Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
         Dim lista As New List(Of ObjetoVO)
-        Dim params = {"id", "fecha_venta", "vendedor", "detalles"}
+        Dim params = {"id", "fechaventa", "vendedor", "detalles"}
         Dim diccionario As New Dictionary(Of String, Object)
         For Each param In params
             diccionario.Add(param, Nothing)
@@ -201,7 +201,7 @@ Public Class ventaDAO
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
         campos.Add(New Campo With {._id = "id", ._name = "", ._visible = False, ._numeric = True})
-        campos.Add(New Campo With {._id = "fecha_venta", ._name = "Fecha de venta", ._maskType = Campo.MaskType.fecha,
+        campos.Add(New Campo With {._id = "fechaventa", ._name = "Fecha de venta", ._maskType = Campo.MaskType.fecha,
                                    ._required = True})
         campos.Add(New Campo With {._id = "nroComprobante", ._name = "Nro Comprobante", ._visible = True, ._numeric = True})
         campos.Add(New Campo With {._id = "cliente", ._name = "Cliente", ._maskType = Campo.MaskType.comboBox,
@@ -219,7 +219,7 @@ Public Class ventaDAO
         campos.Add(New Campo With {._id = "id_venta", ._visible = False})
         campos.Add(New Campo With {._id = "producto", ._name = "Producto", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New ProductoDAO, ._required = True})
-        campos.Add(New Campo With {._id = "costo", ._name = "Costo", ._required = True, ._numeric = True})
+        campos.Add(New Campo With {._id = "precio", ._name = "Precio", ._required = True, ._numeric = True})
         campos.Add(New Campo With {._id = "cantidad", ._name = "Cantidad", ._required = True, ._numeric = True})
         Dim detalle As New DetalleVentaDAO
         Return New ControlYGrilla(New ControlGenerico(campos, detalle), detalle.get_IU_grilla)
@@ -228,7 +228,7 @@ Public Class ventaDAO
     Public Function get_IU_grilla() As ObjetoGrilla Implements ObjetoDAO.get_IU_grilla
         Dim campos As New List(Of Campo)
         campos.Add(New Campo With {._id = "id", ._name = "ID", ._numeric = True})
-        campos.Add(New Campo With {._id = "fecha_venta", ._name = "Fecha de venta"})
+        campos.Add(New Campo With {._id = "fechaventa", ._name = "Fecha de venta"})
         campos.Add(New Campo With {._id = "cliente", ._name = "Cliente"})
         campos.Add(New Campo With {._id = "vendedor", ._name = "Vendedor"})
         campos.Add(New Campo With {._id = "detalles", ._name = "Detalle", ._visible = False})
@@ -238,7 +238,7 @@ Public Class ventaDAO
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
         Dim venta As New VentaVO With {
             ._id = valores("id"),
-            ._fecha_venta = valores("fecha_venta"),
+            ._fecha_venta = valores("fechaventa"),
             ._nro_comprobante = valores("nroComprobante")
         }
 

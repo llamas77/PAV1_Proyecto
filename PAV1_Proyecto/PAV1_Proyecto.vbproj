@@ -283,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\repClientes.rdlc" />
     <EmbeddedResource Include="Reportes\repComprasXMes.rdlc" />
+    <EmbeddedResource Include="Reportes\repEstGananciasXCliente.rdlc" />
+    <EmbeddedResource Include="Reportes\repEstGananciasXTipoC.rdlc" />
+    <EmbeddedResource Include="Reportes\repEstGananciasXVendedor.rdlc" />
     <EmbeddedResource Include="Reportes\repStock.rdlc" />
   </ItemGroup>
   <ItemGroup>

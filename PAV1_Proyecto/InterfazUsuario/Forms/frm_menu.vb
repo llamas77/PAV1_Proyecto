@@ -90,7 +90,7 @@
         frm.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductosEnStockToolStripMenuItem.Click, ProductosBajoLimiteDeRepToolStripMenuItem.Click, ClientesPorFechaDeUltimaCompraToolStripMenuItem.Click, ProductosAsociadosAUnEquipoToolStripMenuItem.Click, ComprasPorMesToolStripMenuItem.Click
+    Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductosEnStockToolStripMenuItem.Click, ProductosBajoLimiteDeRepToolStripMenuItem.Click, ClientesPorFechaDeUltimaCompraToolStripMenuItem.Click, ProductosAsociadosAUnEquipoToolStripMenuItem.Click, ComprasPorMesToolStripMenuItem.Click, GananciasPorTipoDeClienteToolStripMenuItem.Click, GananciasPorVendedorToolStripMenuItem.Click, GananciasPorClienteToolStripMenuItem.Click
         Dim itemMenu As ToolStripMenuItem
         itemMenu = sender
 
@@ -100,6 +100,9 @@
         listaNombres.Add(ClientesPorFechaDeUltimaCompraToolStripMenuItem.Text)
         listaNombres.Add(ProductosAsociadosAUnEquipoToolStripMenuItem.Text)
         listaNombres.Add(ComprasPorMesToolStripMenuItem.Text)
+        listaNombres.Add(GananciasPorTipoDeClienteToolStripMenuItem.Text)
+        listaNombres.Add(GananciasPorVendedorToolStripMenuItem.Text)
+        listaNombres.Add(GananciasPorClienteToolStripMenuItem.Text)
 
         Dim i As Integer
         For i = 0 To listaNombres.Count - 1

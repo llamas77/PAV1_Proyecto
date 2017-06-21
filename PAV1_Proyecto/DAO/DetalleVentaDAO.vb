@@ -11,11 +11,11 @@ Public Class DetalleVentaDAO
         Dim detalle = cast(value)
 
         Dim sql_insertar As String
-        sql_insertar = "INSERT INTO detalle_ventas (codigoProducto, idVenta, costo, cantidad)"
+        sql_insertar = "INSERT INTO detalleVentas (codigoProducto, idVenta, precio, cantidad)"
         sql_insertar &= " VALUES ("
         sql_insertar &= "'" & detalle.codigo_producto & "', "
         sql_insertar &= detalle.id_venta & ", "
-        sql_insertar &= "'" & detalle.costo.ToString.Replace(",", ".") & "', "
+        sql_insertar &= "'" & detalle.precio.ToString.Replace(",", ".") & "', "
         sql_insertar &= detalle.cantidad & ") "
         Dim tabla = db.consulta_sql(sql_insertar)
     End Sub
@@ -32,9 +32,9 @@ Public Class DetalleVentaDAO
         Dim detalle = cast(value)
 
         Dim sql_update As String
-        sql_update = "UPDATE detalle_ventas"
+        sql_update = "UPDATE detalleVentas"
         sql_update &= " SET "
-        sql_update &= "costo='" & detalle.costo.ToString.Replace(",", ".") & "', "
+        sql_update &= "precio='" & detalle.precio.ToString.Replace(",", ".") & "', "
         sql_update &= "cantidad='" & detalle.cantidad & "'"
         sql_update &= " WHERE codigoProducto='" & detalle.codigo_producto & "'"
         sql_update &= " AND idVenta=" & detalle.id_Venta
@@ -52,7 +52,7 @@ Public Class DetalleVentaDAO
         End If
         Dim detalle = cast(value)
 
-        Dim sql_delete = "DELETE FROM detalle_ventas" ' Si no existe en la BD el comando no falla.
+        Dim sql_delete = "DELETE FROM detalleVentas" ' Si no existe en la BD el comando no falla.
         sql_delete &= " WHERE codigoProducto='" & detalle.codigo_producto & "'"
         sql_delete &= " AND idVenta=" & detalle.id_venta
         db.ejecuta_sql(sql_delete)
@@ -72,15 +72,15 @@ Public Class DetalleVentaDAO
 
     Public Function all_from_venta(id_venta As Integer) As List(Of ObjetoVO)
         Dim detalles As New List(Of ObjetoVO)
-        Dim sql_select = "SELECT codigoProducto, idVenta, costo, cantidad"
-        sql_select &= " FROM detalle_Ventas"
+        Dim sql_select = "SELECT codigoProducto, idVenta, precio, cantidad"
+        sql_select &= " FROM detalleVentas"
         sql_select &= " WHERE idVentas=" & id_venta
         Dim datos = DataBase.getInstance().consulta_sql(sql_select)
         For Each dato In datos.Rows
             detalles.Add(New DetalleVentaVO With {
                          .codigo_producto = dato("codigoProducto"),
                          .id_venta = dato("idVenta"),
-                         .costo = dato("costo"),
+                         .precio = dato("precio"),
                          .cantidad = dato("cantidad")})
         Next
         Return detalles
@@ -102,7 +102,7 @@ Public Class DetalleVentaDAO
         Dim campos As New List(Of Campo)
         campos.Add(New Campo With {._id = "codigo_producto", ._name = "Codigo"})
         campos.Add(New Campo With {._id = "id_venta", ._name = "", ._visible = False})
-        campos.Add(New Campo With {._id = "costo", ._name = "Costo", ._numeric = True, ._required = True})
+        campos.Add(New Campo With {._id = "precio", ._name = "precio", ._numeric = True, ._required = True})
         campos.Add(New Campo With {._id = "cantidad", ._name = "Cantidad", ._numeric = True, ._required = True})
         Return New ControlGenerico(campos, Me)
     End Function
@@ -111,7 +111,7 @@ Public Class DetalleVentaDAO
         Dim campos As New List(Of Campo)
         campos.Add(New Campo With {._id = "codigo_producto", ._name = "Codigo"})
         campos.Add(New Campo With {._id = "id_venta", ._name = "", ._visible = False})
-        campos.Add(New Campo With {._id = "costo", ._name = "Costo", ._numeric = True, ._required = True})
+        campos.Add(New Campo With {._id = "precio", ._name = "precio", ._numeric = True, ._required = True})
         campos.Add(New Campo With {._id = "cantidad", ._name = "Cantidad", ._numeric = True, ._required = True})
         Return New GrillaGenerica(campos, Me)
     End Function
@@ -119,7 +119,7 @@ Public Class DetalleVentaDAO
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
         Dim detalle As New DetalleVentaVO With {
             .id_venta = valores("id_venta"),
-            .costo = valores("costo"),
+            .precio = valores("precio"),
             .cantidad = valores("cantidad")
         }
 

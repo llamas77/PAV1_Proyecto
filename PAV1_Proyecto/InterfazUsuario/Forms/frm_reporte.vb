@@ -6,6 +6,10 @@
         productos_equipo
         clientes_fecha_compra
         compras_por_mes
+        ganancias_por_tipo_de_cliente
+        ganancias_por_vendedor
+        ganancias_por_cliente
+
     End Enum
     Dim tipoRep As tipo_reporte
 
@@ -27,6 +31,15 @@
 
             Case "compras por mes"
                 tipoRep = tipo_reporte.compras_por_mes
+
+            Case "ganancias por tipo de cliente"
+                tipoRep = tipo_reporte.ganancias_por_tipo_de_cliente
+
+            Case "ganancias por vendedor"
+                tipoRep = tipo_reporte.ganancias_por_vendedor
+
+            Case "ganancias por cliente"
+                tipoRep = tipo_reporte.ganancias_por_cliente
         End Select
         Text = reporte
     End Sub
@@ -87,8 +100,45 @@
                 tabla = db.consulta_sql(sql)
                 ReinitializeViewer("PAV1_Proyecto.repComprasXMes.rdlc")
 
+            Case tipo_reporte.ganancias_por_tipo_de_cliente
+                sql += "select tc.nombre , ganancia "
+                sql += "from tipos_cliente tc join ganancias g on tc.idTipo = g.idTipo "
+
+                tabla = db.consulta_sql(sql)
+                ReinitializeViewer("PAV1_Proyecto.repEstGananciasXTipoC.rdlc")
+
+            Case tipo_reporte.ganancias_por_vendedor
+                txt_fecha_inf.Visible = True
+                txt_fecha_sup.Visible = True
+
+                sql += "select ven.nombre, SUM(([cantidad]*[precio])) as ganancia "
+                sql += "from vendedores ven join ventas v on ven.idVendedor = v.idVendedor "
+                sql += "join detalleVentas dv on v.idVenta= dv.idVenta "
+                If txt_fecha_inf.Text <> "" And txt_fecha_sup.Text <> "" Then
+                    sql += "where v.fechaVenta between '" & txt_fecha_inf.Text & "' and '" & txt_fecha_sup.Text & "' "
+
+                End If
+                sql += "group by nombre"
 
 
+
+                tabla = db.consulta_sql(sql)
+                ReinitializeViewer("PAV1_Proyecto.repEstGananciasXVendedor.rdlc")
+
+            Case tipo_reporte.ganancias_por_cliente
+                txt_fecha_inf.Visible = True
+                txt_fecha_sup.Visible = True
+                sql += "select c.nombre, SUM(([cantidad]*[precio])) as ganancia "
+                sql += "from clientes c join ventas v on c.nroCliente = v.nroCliente "
+                sql += "join detalleVentas dv on v.idVenta= dv.idVenta "
+                If txt_fecha_inf.Text <> "" And txt_fecha_sup.Text <> "" Then
+                    sql += "where v.fechaVenta between '" & txt_fecha_inf.Text & "' and '" & txt_fecha_sup.Text & "' "
+
+                End If
+                sql += "group by nombre"
+
+                tabla = db.consulta_sql(sql)
+                ReinitializeViewer("PAV1_Proyecto.repEstGananciasXCliente.rdlc")
         End Select
 
         bindingSource.DataSource = tabla
@@ -123,4 +173,8 @@
         combo.ValueMember = pk
     End Sub
 
+    Private Sub btn_buscar_Click(sender As Object, e As EventArgs) Handles btn_buscar.Click
+        frm_reporte_Load(sender, e)
+
+    End Sub
 End Class
