@@ -281,6 +281,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\repClientes.rdlc" />
+    <EmbeddedResource Include="Reportes\repComprasXMes.rdlc" />
     <EmbeddedResource Include="Reportes\repStock.rdlc" />
   </ItemGroup>
   <ItemGroup>

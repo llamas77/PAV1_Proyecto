@@ -23,6 +23,13 @@ Partial Class frm_menu
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProductosEnStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProductosBajoLimiteDeRepToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProductosAsociadosAUnEquipoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EstadísticasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FamiliasDeProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GruposToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -45,26 +52,66 @@ Partial Class frm_menu
         Me.VentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VentasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReporteDeVentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ListadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FamiliasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GruposToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EstadísticasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ProductosEnStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ComprasPorMesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductosToolStripMenuItem, Me.EquiposToolStripMenuItem, Me.ClientesToolStripMenuItem, Me.VendedoresToolStripMenuItem, Me.ProveedoresToolStripMenuItem, Me.ComprasToolStripMenuItem, Me.VentasToolStripMenuItem, Me.ReportesToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportesToolStripMenuItem, Me.ProductosToolStripMenuItem, Me.EquiposToolStripMenuItem, Me.ClientesToolStripMenuItem, Me.VendedoresToolStripMenuItem, Me.ProveedoresToolStripMenuItem, Me.ComprasToolStripMenuItem, Me.VentasToolStripMenuItem, Me.AyudaToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(693, 24)
         Me.MenuStrip1.TabIndex = 10
         Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'ReportesToolStripMenuItem
+        '
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListadosToolStripMenuItem, Me.EstadísticasToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
+        Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
+        Me.ReportesToolStripMenuItem.Text = "Reportes"
+        '
+        'ListadosToolStripMenuItem
+        '
+        Me.ListadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductosEnStockToolStripMenuItem, Me.ProductosBajoLimiteDeRepToolStripMenuItem, Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem, Me.ProductosAsociadosAUnEquipoToolStripMenuItem, Me.ComprasPorMesToolStripMenuItem})
+        Me.ListadosToolStripMenuItem.Name = "ListadosToolStripMenuItem"
+        Me.ListadosToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ListadosToolStripMenuItem.Text = "Listados"
+        '
+        'ProductosEnStockToolStripMenuItem
+        '
+        Me.ProductosEnStockToolStripMenuItem.Name = "ProductosEnStockToolStripMenuItem"
+        Me.ProductosEnStockToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.ProductosEnStockToolStripMenuItem.Text = "Productos en Stock"
+        '
+        'ProductosBajoLimiteDeRepToolStripMenuItem
+        '
+        Me.ProductosBajoLimiteDeRepToolStripMenuItem.Name = "ProductosBajoLimiteDeRepToolStripMenuItem"
+        Me.ProductosBajoLimiteDeRepToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.ProductosBajoLimiteDeRepToolStripMenuItem.Text = "Productos bajo limite de rep"
+        '
+        'ClientesPorFechaDeUltimaCompraToolStripMenuItem
+        '
+        Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem.Name = "ClientesPorFechaDeUltimaCompraToolStripMenuItem"
+        Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem.Text = "Clientes por fecha de ultima compra"
+        '
+        'ProductosAsociadosAUnEquipoToolStripMenuItem
+        '
+        Me.ProductosAsociadosAUnEquipoToolStripMenuItem.Enabled = False
+        Me.ProductosAsociadosAUnEquipoToolStripMenuItem.Name = "ProductosAsociadosAUnEquipoToolStripMenuItem"
+        Me.ProductosAsociadosAUnEquipoToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.ProductosAsociadosAUnEquipoToolStripMenuItem.Text = "Productos asociados a un equipo"
+        '
+        'EstadísticasToolStripMenuItem
+        '
+        Me.EstadísticasToolStripMenuItem.Name = "EstadísticasToolStripMenuItem"
+        Me.EstadísticasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EstadísticasToolStripMenuItem.Text = "Estadísticas"
         '
         'ProductosToolStripMenuItem
         '
@@ -208,38 +255,6 @@ Partial Class frm_menu
         Me.ReporteDeVentasToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.ReporteDeVentasToolStripMenuItem.Text = "Reporte de ventas"
         '
-        'ReportesToolStripMenuItem
-        '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListadosToolStripMenuItem, Me.EstadísticasToolStripMenuItem})
-        Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
-        Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
-        Me.ReportesToolStripMenuItem.Text = "Reportes"
-        '
-        'ListadosToolStripMenuItem
-        '
-        Me.ListadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FamiliasToolStripMenuItem, Me.GruposToolStripMenuItem2, Me.ProductosEnStockToolStripMenuItem})
-        Me.ListadosToolStripMenuItem.Name = "ListadosToolStripMenuItem"
-        Me.ListadosToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ListadosToolStripMenuItem.Text = "Listados"
-        '
-        'FamiliasToolStripMenuItem
-        '
-        Me.FamiliasToolStripMenuItem.Name = "FamiliasToolStripMenuItem"
-        Me.FamiliasToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
-        Me.FamiliasToolStripMenuItem.Text = "Familias"
-        '
-        'GruposToolStripMenuItem2
-        '
-        Me.GruposToolStripMenuItem2.Name = "GruposToolStripMenuItem2"
-        Me.GruposToolStripMenuItem2.Size = New System.Drawing.Size(176, 22)
-        Me.GruposToolStripMenuItem2.Text = "Grupos"
-        '
-        'EstadísticasToolStripMenuItem
-        '
-        Me.EstadísticasToolStripMenuItem.Name = "EstadísticasToolStripMenuItem"
-        Me.EstadísticasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.EstadísticasToolStripMenuItem.Text = "Estadísticas"
-        '
         'AyudaToolStripMenuItem
         '
         Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AcercaDeToolStripMenuItem})
@@ -254,11 +269,11 @@ Partial Class frm_menu
         Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
         Me.AcercaDeToolStripMenuItem.Text = "Acerca de..."
         '
-        'ProductosEnStockToolStripMenuItem
+        'ComprasPorMesToolStripMenuItem
         '
-        Me.ProductosEnStockToolStripMenuItem.Name = "ProductosEnStockToolStripMenuItem"
-        Me.ProductosEnStockToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
-        Me.ProductosEnStockToolStripMenuItem.Text = "Productos en Stock"
+        Me.ComprasPorMesToolStripMenuItem.Name = "ComprasPorMesToolStripMenuItem"
+        Me.ComprasPorMesToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.ComprasPorMesToolStripMenuItem.Text = "Compras por mes"
         '
         'frm_menu
         '
@@ -305,8 +320,10 @@ Partial Class frm_menu
     Friend WithEvents AcercaDeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ListadosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents FamiliasToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GruposToolStripMenuItem2 As ToolStripMenuItem
     Friend WithEvents EstadísticasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProductosEnStockToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ProductosBajoLimiteDeRepToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ClientesPorFechaDeUltimaCompraToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ProductosAsociadosAUnEquipoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ComprasPorMesToolStripMenuItem As ToolStripMenuItem
 End Class

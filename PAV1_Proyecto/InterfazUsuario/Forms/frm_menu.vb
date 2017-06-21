@@ -90,13 +90,16 @@
         frm.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FamiliasToolStripMenuItem.Click, ProductosEnStockToolStripMenuItem.Click
+    Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductosEnStockToolStripMenuItem.Click, ProductosBajoLimiteDeRepToolStripMenuItem.Click, ClientesPorFechaDeUltimaCompraToolStripMenuItem.Click, ProductosAsociadosAUnEquipoToolStripMenuItem.Click, ComprasPorMesToolStripMenuItem.Click
         Dim itemMenu As ToolStripMenuItem
         itemMenu = sender
 
         Dim listaNombres As New List(Of String)
-        listaNombres.Add(FamiliasToolStripMenuItem.Text)
         listaNombres.Add(ProductosEnStockToolStripMenuItem.Text)
+        listaNombres.Add(ProductosBajoLimiteDeRepToolStripMenuItem.Text)
+        listaNombres.Add(ClientesPorFechaDeUltimaCompraToolStripMenuItem.Text)
+        listaNombres.Add(ProductosAsociadosAUnEquipoToolStripMenuItem.Text)
+        listaNombres.Add(ComprasPorMesToolStripMenuItem.Text)
 
         Dim i As Integer
         For i = 0 To listaNombres.Count - 1
@@ -108,7 +111,5 @@
         Next
     End Sub
 
-    Private Sub frm_menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    End Sub
 End Class
