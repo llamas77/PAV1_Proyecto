@@ -75,11 +75,13 @@ Public Class ventaDAO
         End If
 
         db.ejecuta_sql(sql_update) ' Actualiza Venta
-
+        ' ----------
         Dim detalleDAO As New DetalleVentaDAO
+        Dim detalles_guardados = detalleDAO.all_from_venta(venta._id)
+
         Dim detalles = venta.detalle.Cast(Of DetalleVentaVO)
         For Each detalle In detalles
-            If detalle.id_venta <> venta._id Then
+            If detalle.id_venta <> venta._id Then ' Nuevo Detalle
                 If detalle.id_venta = 0 Then
                     detalle.id_venta = venta._id
                     detalleDAO.insert(detalle, db)
@@ -87,9 +89,15 @@ Public Class ventaDAO
                     db.cancelar_transaccion()
                     Throw New System.Exception("El ID del detalle pertenece a otra venta.")
                 End If
+            Else ' Actualiza Detalle
+                detalleDAO.update(detalle, db)
             End If
-            detalleDAO.update(detalle, db)
+            detalles_guardados.Remove(detalle)
         Next
+        For Each detalleG In detalles_guardados ' Los detalles que quedaron guardados pero el usuario borro.
+            detalleDAO.delete(detalleG, db)
+        Next
+
         db.cerrar_transaccion()
         db.desconectar()
     End Sub
