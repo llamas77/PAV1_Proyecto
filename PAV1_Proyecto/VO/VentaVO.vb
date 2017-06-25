@@ -15,13 +15,13 @@ Public Class VentaVO
         diccionario.Add("id", _id)
         diccionario.Add("vendedor", _vendedor)
         diccionario.Add("cliente", _cliente)
-        diccionario.Add("fecha_venta", _fecha_venta)
+        diccionario.Add("fechaventa", _fecha_venta)
         diccionario.Add("nroComprobante", _nro_comprobante)
         diccionario.Add("detalles", detalle)
         Return diccionario
     End Function
 
-    Public Overrides Function ToString() As String Implements ObjetoVO.toString
+    Public Overrides Function toString() As String Implements ObjetoVO.toString
         Return "Venta del " & _fecha_venta.ToString & "(" & _id & ")"
     End Function
 

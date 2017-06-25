@@ -38,7 +38,7 @@ Public Class VendedorVO
         End Set
     End Property
 
-    Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
+    Public Overrides Function toString() As String Implements ObjetoVO.toString
         Return _apellido & ", " & _nombre
     End Function
 

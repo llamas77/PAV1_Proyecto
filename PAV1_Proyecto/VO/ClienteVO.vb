@@ -16,7 +16,7 @@ Public Class ClienteVO
     Public Property _tipo_cliente As TipoClienteVO = Nothing
 
 
-    Private Function ObjetoVO_toString() As String Implements ObjetoVO.toString
+    Public Overrides Function toString() As String Implements ObjetoVO.toString
         Return _apellido & ", " & _nombre
     End Function
 

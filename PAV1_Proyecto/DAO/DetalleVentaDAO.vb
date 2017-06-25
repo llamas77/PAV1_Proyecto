@@ -74,7 +74,7 @@ Public Class DetalleVentaDAO
         Dim detalles As New List(Of ObjetoVO)
         Dim sql_select = "SELECT codigoProducto, idVenta, precio, cantidad"
         sql_select &= " FROM detalleVentas"
-        sql_select &= " WHERE idVentas=" & id_venta
+        sql_select &= " WHERE idVenta=" & id_venta
         Dim datos = DataBase.getInstance().consulta_sql(sql_select)
         For Each dato In datos.Rows
             detalles.Add(New DetalleVentaVO With {

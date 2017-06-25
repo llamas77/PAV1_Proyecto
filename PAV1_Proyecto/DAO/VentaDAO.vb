@@ -8,12 +8,12 @@ Public Class ventaDAO
 
         ' -- Seteo
         Dim sql_insertar As String
-        sql_insertar = "INSERT INTO ventas (nroCliente,idVendedor,fechaVenta, nroComprobante)"
+        sql_insertar = "INSERT INTO ventas (nroCliente, idVendedor, fechaVenta, nroComprobante)"
         sql_insertar &= " VALUES ("
         sql_insertar &= venta._cliente._nro & ", "
         sql_insertar &= venta._vendedor._id & ", "
         sql_insertar &= "convert(date, '" & venta._fecha_venta & "', 103), "
-        sql_insertar &= venta._nro_comprobante & ") "
+        sql_insertar &= "'" & venta._nro_comprobante & "') " ' Nro Comprobante es en realidad un String (admite guiones)
         sql_insertar &= "; SELECT SCOPE_IDENTITY()" ' Retorna el ID de la fila insertada.
 
         ' -- Ejecucion
@@ -25,15 +25,19 @@ Public Class ventaDAO
             db.iniciar_transaccion()
         End If
 
-        Dim tabla = db.consulta_sql(sql_insertar) ' venta
+        Dim tabla = db.consulta_sql(sql_insertar) ' Inserta venta
         venta._id = tabla(0)(0)
+
+
         Dim detalleDAO As New DetalleVentaDAO
         Dim productoDAO As New ProductoDAO
         Dim productoVO As ProductoVO
+
         Dim detalles = venta.detalle.Cast(Of DetalleVentaVO)
         For Each detalle As DetalleVentaVO In detalles
             detalle.id_venta = venta._id
-            detalleDAO.insert(detalle, db) ' Detalle
+            detalleDAO.insert(detalle, db) ' Inserta Detalle
+            ' TODO: Mover responsabilidad de actualizar producto al detalle.
             productoVO = productoDAO.search_code(db, detalle.codigo_producto)
             If productoVO Is Nothing Then
                 db.cancelar_transaccion()
@@ -56,9 +60,10 @@ Public Class ventaDAO
         Dim sql_update As String
         sql_update = "UPDATE ventas"
         sql_update &= " SET "
-        sql_update &= "fechaventa=convert(date, '" & venta._fecha_venta & "', 103)), "
-        sql_update &= "idCliente=" & venta._cliente._nro
-        sql_update &= "idVendedor=" & venta._vendedor._id
+        sql_update &= " nroCliente=" & venta._cliente._nro & ", "
+        sql_update &= " idVendedor=" & venta._vendedor._id & ", "
+        sql_update &= " fechaventa=convert(date, '" & venta._fecha_venta & "', 103), "
+        sql_update &= " nroComprobante='" & venta._nro_comprobante & "'"
         sql_update &= " WHERE idVenta=" & venta._id
 
         If db Is Nothing Then
@@ -69,12 +74,19 @@ Public Class ventaDAO
             db.iniciar_transaccion()
         End If
 
+        db.ejecuta_sql(sql_update) ' Actualiza Venta
+
         Dim detalleDAO As New DetalleVentaDAO
         Dim detalles = venta.detalle.Cast(Of DetalleVentaVO)
         For Each detalle In detalles
             If detalle.id_venta <> venta._id Then
-                db.cancelar_transaccion()
-                Throw New System.Exception("El ID del detalle es distinto del de la venta.")
+                If detalle.id_venta = 0 Then
+                    detalle.id_venta = venta._id
+                    detalleDAO.insert(detalle, db)
+                Else
+                    db.cancelar_transaccion()
+                    Throw New System.Exception("El ID del detalle pertenece a otra venta.")
+                End If
             End If
             detalleDAO.update(detalle, db)
         Next
@@ -116,8 +128,8 @@ Public Class ventaDAO
         If db Is Nothing Then
             db = DataBase.getInstance()
         End If
-        Dim dataSet As New Grillaventas
-        Dim dataTable As DataTable = dataSet.ventas
+        Dim dataSet As New GrillaVentas
+        Dim dataTable As DataTable = dataSet._grillaVentas
 
         Dim sql_select = "SELECT v.idVenta, convert(char(10), v.fechaVenta, 103) as fechaventa, v.nroComprobante, "
         sql_select &= "c.nroCliente, c.nombre as nombreCliente, c.apellido as apellidoCliente,c.direccion as direccionCliente, "
@@ -129,37 +141,46 @@ Public Class ventaDAO
 
         ' Formatea el resultado para adaptarse al DataSet
         ' NOTA: Por alguna razon, si se produce una excepcion en el for, no avisa.
-        For Each venta As DataRow In ventas.Rows
-            Dim row = dataTable.Rows.Add()
-            row("id") = venta("idventa")
-            row("fechaventa") = venta("fechaventa")
-            row("cliente") = New ClienteVO With {
-                ._nro = venta("nroCliente"),
-                ._nombre = venta("nombreCliente"),
-                ._apellido = venta("apellidoCliente"),
-                ._direccion = venta("direccionCliente"),
-                ._telefono = venta("telCliente"),
-                ._tipo_cliente = venta("idTipoCliente")
-            }
-            row("vendedor") = New VendedorVO With {
-                ._id = venta("idvendedor"),
-                ._nombre = venta("nombreVendedor"),
-                ._apellido = venta("apellidoVendedor"),
-                ._direccion = venta("direccionVendedor"),
-                ._telefono = venta("telVendedor"),
-                ._porcentaje_comision = venta("comision")
-            }
-            With New DetalleVentaDAO
-                row("detalles") = .all_from_venta(venta("idventa"))
-            End With
-        Next
+        Try
+            Dim tipoCliente As TipoClienteVO = Nothing
+            For Each venta As DataRow In ventas.Rows
+                Dim row = dataTable.Rows.Add()
+                row("id") = venta("idventa")
+                row("fechaventa") = venta("fechaventa")
+                With New TipoClienteDAO
+                    tipoCliente = .search_by_id(venta("idTipoCliente"))
+                End With
+                row("cliente") = New ClienteVO With {
+                    ._nro = venta("nroCliente"),
+                    ._nombre = venta("nombreCliente"),
+                    ._apellido = venta("apellidoCliente"),
+                    ._direccion = venta("direccionCliente"),
+                    ._telefono = venta("telCliente"),
+                    ._tipo_cliente = tipoCliente
+                }
+                row("vendedor") = New VendedorVO With {
+                    ._id = venta("idvendedor"),
+                    ._nombre = venta("nombreVendedor"),
+                    ._apellido = venta("apellidoVendedor"),
+                    ._direccion = venta("direccionVendedor"),
+                    ._telefono = venta("telVendedor"),
+                    ._porcentaje_comision = venta("comision")
+                }
+                row("nroComprobante") = venta("nroComprobante")
+                With New DetalleVentaDAO
+                    row("detalles") = .all_from_venta(venta("idventa"))
+                End With
+            Next
+        Catch ex As Exception
+            MsgBox("Error al consultar ventas.")
+        End Try
 
         Return dataTable_to_List(dataTable)
     End Function
 
     Private Function dataTable_to_List(tabla As DataTable) As List(Of ObjetoVO)
         Dim lista As New List(Of ObjetoVO)
-        Dim params = {"id", "fechaventa", "vendedor", "detalles"}
+        Dim params = {"id", "fechaventa", "nroComprobante", "cliente", "vendedor", "detalles"}
         Dim diccionario As New Dictionary(Of String, Object)
         For Each param In params
             diccionario.Add(param, Nothing)
@@ -231,16 +252,23 @@ Public Class ventaDAO
         campos.Add(New Campo With {._id = "fechaventa", ._name = "Fecha de venta"})
         campos.Add(New Campo With {._id = "cliente", ._name = "Cliente"})
         campos.Add(New Campo With {._id = "vendedor", ._name = "Vendedor"})
+        campos.Add(New Campo With {._id = "nroComprobante", ._name = "Nro Comprobante", ._visible = False})
         campos.Add(New Campo With {._id = "detalles", ._name = "Detalle", ._visible = False})
         Return New GrillaGenerica(campos, Me)
     End Function
 
     Public Function new_instance(valores As Dictionary(Of String, Object)) As ObjetoVO Implements ObjectFactory.new_instance
         Dim venta As New VentaVO With {
-            ._id = valores("id"),
-            ._fecha_venta = valores("fechaventa"),
-            ._nro_comprobante = valores("nroComprobante")
+            ._id = valores("id")
         }
+
+        If valores.ContainsKey("nroComprobante") Then
+            venta._nro_comprobante = valores("nroComprobante")
+        End If
+
+        If valores.ContainsKey("fechaventa") Then
+            venta._fecha_venta = valores("fechaventa")
+        End If
 
         If valores.ContainsKey("cliente") Then
             venta._cliente = valores("cliente")
