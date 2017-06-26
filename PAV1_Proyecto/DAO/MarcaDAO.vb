@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class MarcaDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ICanDAO
 
     ' DOC: (MarcaDataAccessObject) Esta clase se encarga de las consultas SQL a la tabla de Marcas.
     '      Como parametros de entrada/salida generalmente trabaja con MarcaVO.
@@ -84,14 +84,10 @@ Public Class MarcaDAO
         End If
         Dim marca = cast(value)
 
-        If marca._id > 0 Then
-            Dim sql = "SELECT TOP 1 idMarca FROM marcas WHERE idMarca=" & marca._id
+        Dim sql = "SELECT TOP 1 idMarca FROM marcas WHERE idMarca=" & marca._id
+        sql &= " OR nombre='" & marca._nombre & "'"
             Dim response = db.consulta_sql(sql)
-            Return response.Rows.Count = 1
-        Else
-            Return False
-        End If
-
+        Return response.Rows.Count = 1
     End Function
 
     Private Function cast(value As ObjetoVO) As MarcaVO
@@ -133,5 +129,22 @@ Public Class MarcaDAO
             ._id = valores("id"),
             ._nombre = valores("nombre")
             }
+    End Function
+
+    Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
+        Return IIf(exists(value), "La marca ya existe.", Nothing)
+    End Function
+
+    Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
+        Return IIf(exists(value), "La marca ya existe.", Nothing)
+    End Function
+
+    Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        Dim marca = cast(value)
+        Dim sql = "SELECT TOP 1 0 FROM equipos WHERE idMarca=" & marca._id
+
+        Dim db = DataBase.getInstance()
+        Dim response = db.consulta_sql(sql)
+        Return IIf(response.Rows.Count = 1, "Hay al menos un equipo de esta marca. Imposible borrar marca.", Nothing)
     End Function
 End Class
