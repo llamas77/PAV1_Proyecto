@@ -93,7 +93,6 @@ Partial Class frm_abm_generico
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Default Form Title"
-        Me.TopMost = True
         Me.ResumeLayout(False)
 
     End Sub
