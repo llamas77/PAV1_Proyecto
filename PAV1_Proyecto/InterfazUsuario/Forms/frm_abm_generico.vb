@@ -72,21 +72,60 @@
         ' (exists) y decide si inserta o modifica.
         If ctrl_objeto.is_valid() Then
             Dim objeto = ctrl_objeto._objeto
+            Dim executed As Boolean
 
             If DAO_objeto.exists(objeto) Then
-                DAO_objeto.update(objeto)
+                executed = modificar_obj(objeto)
             Else
-                DAO_objeto.insert(objeto)
+                executed = insertar_obj(objeto)
             End If
-            ctrl_objeto.reset()
-            btn_actualizar.Text = "Agregar"
-            ' Recarga la grilla para que se vea el objeto modificado.
-            grilla_objeto.recargar(DAO_objeto.all())
+            If executed Then
+                ctrl_objeto.reset()
+                btn_actualizar.Text = "Agregar"
+                ' Recarga la grilla para que se vea el objeto modificado.
+                grilla_objeto.recargar(DAO_objeto.all())
+            End If
             ctrl_objeto.Focus()
         Else
             MsgBox("Alguno/s de los valores ingresados no es/son válido/s.", MsgBoxStyle.Exclamation, "Aviso")
         End If
     End Sub
+
+    Private Function insertar_obj(objeto As ObjetoVO) As Boolean
+        Dim response As String = Nothing
+        If Not DAO_objeto.GetType.GetInterface("ICanDAO") Is Nothing Then
+            'TODO: Si todos los DAO la implementan no hay que validar.
+            With DirectCast(DAO_objeto, ICanDAO)
+                response = .can_insert(objeto)
+            End With
+        End If
+
+        If response Is Nothing Then
+            DAO_objeto.insert(objeto)
+            Return True
+        Else
+            MsgBox(response, MsgBoxStyle.Exclamation, "Error")
+            Return False
+        End If
+    End Function
+
+    Private Function modificar_obj(objeto As ObjetoVO) As Boolean
+        Dim response As String = Nothing
+        If Not DAO_objeto.GetType.GetInterface("ICanDAO") Is Nothing Then
+            'TODO: Si todos los DAO la implementan no hay que validar.
+            With DirectCast(DAO_objeto, ICanDAO)
+                response = .can_update(objeto)
+            End With
+        End If
+
+        If response Is Nothing Then
+            DAO_objeto.update(objeto)
+            Return True
+        Else
+            MsgBox(response, MsgBoxStyle.Exclamation, "Error")
+            Return False
+        End If
+    End Function
 
     Private Sub btn_modificar_Click(sender As Object, e As EventArgs) Handles btn_modificar.Click
         modificar()
@@ -117,12 +156,31 @@
             If MessageBox.Show("Esta seguro de borrar: " + objeto.toString(),
                                "Importante", MessageBoxButtons.YesNo,
                                MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                DAO_objeto.delete(objeto)
-                grilla_objeto.recargar(DAO_objeto.all())
-                grilla_objeto.Focus()
+                If eliminar_obj(objeto) Then
+                    grilla_objeto.recargar(DAO_objeto.all())
+                    grilla_objeto.Focus()
+                End If
             End If
         End If
     End Sub
+
+    Private Function eliminar_obj(objeto As ObjetoVO) As Boolean
+        Dim response As String = Nothing
+        If Not DAO_objeto.GetType.GetInterface("ICanDAO") Is Nothing Then
+            'TODO: Si todos los DAO la implementan no hay que validar.
+            With DirectCast(DAO_objeto, ICanDAO)
+                response = .can_delete(objeto)
+            End With
+        End If
+
+        If response Is Nothing Then
+            DAO_objeto.delete(objeto)
+            Return True
+        Else
+            MsgBox(response, MsgBoxStyle.Exclamation, "Error")
+            Return False
+        End If
+    End Function
 
     Private Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
         ' Limpia el control y mueve el foco para agregar un nuevo objeto.
