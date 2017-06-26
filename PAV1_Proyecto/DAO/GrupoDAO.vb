@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class GrupoDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ICanDAO
 
 
     Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
@@ -76,6 +76,7 @@ Public Class GrupoDAO
         sql_delete &= " WHERE idGrupo=" & grupo._id
         db.ejecuta_sql(sql_delete)
         grupo._id = 0
+        ' Nota: Las ganancias asociadas se borran en cascada.
     End Sub
 
     Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists
@@ -90,7 +91,7 @@ Public Class GrupoDAO
             Dim response = DataBase.getInstance().consulta_sql(sql)
             Return response.Rows.Count = 1
         Else
-            Return False
+            Return is_name_in_use(value)
         End If
 
     End Function
@@ -143,7 +144,7 @@ Public Class GrupoDAO
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo With {._id = "id", ._visible = False})
+        campos.Add(New Campo With {._id = "id", ._visible = False, ._numeric = True})
         campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._required = True})
         campos.Add(New Campo With {._id = "familia", ._name = "Familia", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New FamiliaDAO, ._required = True})
@@ -176,4 +177,45 @@ Public Class GrupoDAO
         Return grupo
     End Function
 
+    Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
+        Dim grupo = cast(value)
+        If Len(grupo._nombre) > 50 Then
+            Return "El nombre del grupo es demasiado largo. (Máx. 50 caracteres)"
+        End If
+        If grupo._id <> 0 Then
+            Return "Esta tratando de insertar un grupo ya almacenado. [id=" & grupo._id & "]"
+        End If
+        With New FamiliaDAO
+            If Not .exists(grupo._familia) Then
+                Return "La familia indicada no existe."
+            End If
+        End With
+        Return IIf(is_name_in_use(value), "Ya existe un grupo con ese nombre para esa familia.", Nothing)
+    End Function
+
+    Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
+        Dim grupo = cast(value)
+        If Len(grupo._nombre) > 50 Then
+            Return "El nombre del grupo es demasiado largo. (Máx. 50 caracteres)"
+        End If
+        If grupo._id = 0 Then
+            Return "Esta tratando de modificar un grupo no almacenado."
+        End If
+        With New FamiliaDAO
+            If Not .exists(grupo._familia) Then
+                Return "La familia indicada no existe."
+            End If
+        End With
+        Return IIf(is_name_in_use(grupo), "Ya existe un grupo con ese nombre para esa familia.", Nothing)
+    End Function
+
+    Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        ' Nota: Las ganancias se borran en cascada. No se valida que existan.
+        Dim grupo = cast(value)
+        Dim sql = "SELECT TOP 1 0 FROM productos WHERE idGrupo=" & grupo._id
+
+        Dim db = DataBase.getInstance()
+        Dim response = db.consulta_sql(sql)
+        Return IIf(response.Rows.Count = 1, "Hay al menos un producto de este grupo. " & Chr(13) & "Imposible borrar grupo.", Nothing)
+    End Function
 End Class
