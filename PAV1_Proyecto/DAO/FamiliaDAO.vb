@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class FamiliaDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ICanDAO
 
     Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
         If db Is Nothing Then
@@ -74,20 +74,16 @@ Public Class FamiliaDAO
     End Sub
 
     Public Function exists(value As ObjetoVO, Optional db As DataBase = Nothing) As Boolean Implements ObjetoDAO.exists
-        ' DOC: determina si existe la marca en la BD, según PK
+        ' DOC: determina si existe la marca en la BD, según PK y UNIQUE
         If db Is Nothing Then
             db = DataBase.getInstance()
         End If
         Dim familia = cast(value)
 
-        If familia._id > 0 Then
-            Dim sql = "SELECT TOP 1 idFamilia FROM familias WHERE idFamilia=" & familia._id
-            Dim response = db.consulta_sql(sql)
-            Return response.Rows.Count = 1
-        Else
-            Return False
-        End If
-
+        Dim sql = "SELECT TOP 1 idFamilia FROM familias WHERE idFamilia=" & familia._id
+        sql &= " OR nombre='" & familia._nombre & "'"
+        Dim response = db.consulta_sql(sql)
+        Return response.Rows.Count = 1
     End Function
 
     Private Function cast(value As ObjetoVO) As FamiliaVO
@@ -147,5 +143,30 @@ Public Class FamiliaDAO
             ._id = valores("id"),
             ._nombre = valores("nombre")
             }
+    End Function
+
+    Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
+        Dim familia = cast(value)
+        If Len(familia._nombre) > 50 Then
+            Return "El nombre de la familia es demasiado largo. (Máx. 50 caracteres)"
+        End If
+        Return IIf(exists(value), "Ya existe una familia con ese nombre.", Nothing)
+    End Function
+
+    Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
+        Dim familia = cast(value)
+        If Len(familia._nombre) > 50 Then
+            Return "El nombre de la familia es demasiado largo. (Máx. 50 caracteres)"
+        End If
+        Return IIf(is_name_in_use(familia), "Ya existe una familia con ese nombre.", Nothing)
+    End Function
+
+    Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        Dim familia = cast(value)
+        Dim sql = "SELECT TOP 1 0 FROM familias WHERE idFamilia=" & familia._id
+
+        Dim db = DataBase.getInstance()
+        Dim response = db.consulta_sql(sql)
+        Return IIf(response.Rows.Count = 1, "Hay al menos un grupo de esta familia. Imposible borrar familia.", Nothing)
     End Function
 End Class

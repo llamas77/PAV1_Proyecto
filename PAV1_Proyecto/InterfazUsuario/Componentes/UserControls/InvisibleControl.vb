@@ -48,4 +48,13 @@ Public Class InvisibleControl
 
         Return valido
     End Function
+
+    Public Overrides Sub ResetText()
+        MyBase.ResetText()
+        If _numeric Then
+            _value = 0
+        Else
+            _value = ""
+        End If
+    End Sub
 End Class
