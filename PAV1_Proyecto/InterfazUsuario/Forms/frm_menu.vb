@@ -22,7 +22,7 @@
     End Sub
 
     Private Sub GananciasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GananciasToolStripMenuItem.Click
-        Dim frm As New frm_abm_generico_busqueda(New GananciaDAO)
+        Dim frm As New frm_abm_generico(New GananciaDAO)
         frm.Text = "ABM Ganancias"
         frm.Show()
     End Sub
@@ -46,7 +46,7 @@
     End Sub
 
     Private Sub EquiposToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EquiposToolStripMenuItem1.Click
-        Dim frm As New frm_abm_generico_busqueda(New EquiposDAO)
+        Dim frm As New frm_abm_generico(New EquiposDAO)
         frm.Text = "ABM Equipos"
         frm.Show()
     End Sub
@@ -79,13 +79,13 @@
     End Sub
 
     Private Sub ComprasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ComprasToolStripMenuItem1.Click
-        Dim frm As New frm_abm_generico_busqueda(New CompraDAO)
+        Dim frm As New frm_abm_generico(New CompraDAO)
         frm.Text = "ABM Compras"
         frm.Show()
     End Sub
 
     Private Sub VentasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles VentasToolStripMenuItem1.Click
-        Dim frm As New frm_abm_generico_busqueda(New ventaDAO)
+        Dim frm As New frm_abm_generico(New ventaDAO)
         frm.Text = "ABM Ventas"
         frm.Show()
     End Sub
