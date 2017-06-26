@@ -11,8 +11,12 @@ Public Class GananciaVO
             Return _proporcion_ganancia * 100 & "%"
         End Get
         Set(value As String)
-            value = value.Replace("%", "")
-            _proporcion_ganancia = value / 100
+            value = value.Replace("%", "").Replace(" ", "")
+            If value <> "" Then
+                _proporcion_ganancia = value / 100
+            Else
+                _proporcion_ganancia = Nothing
+            End If
         End Set
     End Property
 
