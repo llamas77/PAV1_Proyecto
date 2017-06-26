@@ -137,6 +137,7 @@
     <Compile Include="DataSets\Reportes\DatosListado.vb">
       <DependentUpon>DatosListado.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ICanDAO.vb" />
     <Compile Include="InterfazUsuario\Componentes\UserControls\ControlYGrilla.Designer.vb">
       <DependentUpon>ControlYGrilla.vb</DependentUpon>
     </Compile>

@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class ventaDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ICanDAO
 
     Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
         Dim venta = cast(value)
@@ -301,5 +301,101 @@ Public Class ventaDAO
         End If
 
         Return venta
+    End Function
+
+    Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
+        ' TODO: Invocar can_insert en los detalles.
+        Dim venta = cast(value)
+        If venta._id <> 0 Then
+            Return "Para insertar una venta el ID debe ser 0. [id=" & venta._id & "]"
+        End If
+
+        If venta._fecha_venta Is Nothing Then
+            Return "La venta no tiene fecha."
+            ' TODO: Validar que la fecha de venta no sea superior al día actual.
+        End If
+
+        If Len(venta._nro_comprobante) > 20 Then
+            Return "El numero de comprobante es demasiado largo."
+        End If
+
+        If venta._cliente Is Nothing Then
+            Return "No hay ningun Cliente seleccionado."
+        Else
+            With New ClienteDAO
+                If Not .exists(venta._cliente) Then
+                    Return "El cliente seleccionado no existe."
+                End If
+            End With
+        End If
+
+        If venta._vendedor Is Nothing Then
+            Return "No hay ningun Vendedor seleccionado."
+        Else
+            With New VendedorDAO
+                If Not .exists(venta._vendedor) Then
+                    Return "El vendedor seleccionado no existe."
+                End If
+            End With
+        End If
+
+        Return Nothing
+    End Function
+
+    Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
+        ' TODO: Invocar can_update en los detalles.
+        Dim venta = cast(value)
+
+        Dim sql As String
+        Dim response As DataTable
+        Dim db As New DataBase
+        db.conectar()
+
+        If venta._id <= 0 Then
+            Return "El ID no es válido. [id=" & venta._id & "]"
+        Else
+            sql = "SELECT TOP 1 idVenta FROM ventas WHERE idventa=" & venta._id
+            response = db.consulta_sql(sql)
+            If response.Rows.Count < 1 Then
+                Return "La venta que se quiere modificar no existe."
+            End If
+        End If
+
+        If venta._fecha_venta Is Nothing Then
+            Return "La venta no tiene fecha."
+            ' TODO: Validar que la fecha de venta no sea superior al día actual.
+        End If
+
+        If Len(venta._nro_comprobante) > 20 Then
+            Return "El numero de comprobante es demasiado largo."
+        End If
+
+        If venta._cliente Is Nothing Then
+            Return "No hay ningun Cliente seleccionado."
+        Else
+            With New ClienteDAO
+                If Not .exists(venta._cliente) Then
+                    Return "El cliente seleccionado no existe."
+                End If
+            End With
+        End If
+
+        If venta._vendedor Is Nothing Then
+            Return "No hay ningun Vendedor seleccionado."
+        Else
+            With New VendedorDAO
+                If Not .exists(venta._vendedor) Then
+                    Return "El vendedor seleccionado no existe."
+                End If
+            End With
+        End If
+
+        Return Nothing
+    End Function
+
+    Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        ' Solo los detalles de venta apuntan a venta y son borrados en cascada.
+        ' Ningun otro objeto tiene FK a venta, siempre es posible borrarlo.
+        Return Nothing
     End Function
 End Class
