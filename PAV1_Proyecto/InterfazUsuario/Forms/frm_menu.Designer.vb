@@ -24,11 +24,6 @@ Partial Class frm_menu
     Private Sub InitializeComponent()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ListadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ProductosEnStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ProductosBajoLimiteDeRepToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ProductosAsociadosAUnEquipoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EstadísticasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GananciasPorTipoDeClienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GananciasPorVendedorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -74,42 +69,10 @@ Partial Class frm_menu
         '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListadosToolStripMenuItem, Me.EstadísticasToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EstadísticasToolStripMenuItem})
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(80, 24)
         Me.ReportesToolStripMenuItem.Text = "Reportes"
-        '
-        'ListadosToolStripMenuItem
-        '
-        Me.ListadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductosEnStockToolStripMenuItem, Me.ProductosBajoLimiteDeRepToolStripMenuItem, Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem, Me.ProductosAsociadosAUnEquipoToolStripMenuItem})
-        Me.ListadosToolStripMenuItem.Name = "ListadosToolStripMenuItem"
-        Me.ListadosToolStripMenuItem.Size = New System.Drawing.Size(160, 26)
-        Me.ListadosToolStripMenuItem.Text = "Listados"
-        '
-        'ProductosEnStockToolStripMenuItem
-        '
-        Me.ProductosEnStockToolStripMenuItem.Name = "ProductosEnStockToolStripMenuItem"
-        Me.ProductosEnStockToolStripMenuItem.Size = New System.Drawing.Size(325, 26)
-        Me.ProductosEnStockToolStripMenuItem.Text = "Productos en Stock"
-        '
-        'ProductosBajoLimiteDeRepToolStripMenuItem
-        '
-        Me.ProductosBajoLimiteDeRepToolStripMenuItem.Name = "ProductosBajoLimiteDeRepToolStripMenuItem"
-        Me.ProductosBajoLimiteDeRepToolStripMenuItem.Size = New System.Drawing.Size(325, 26)
-        Me.ProductosBajoLimiteDeRepToolStripMenuItem.Text = "Productos bajo limite de rep"
-        '
-        'ClientesPorFechaDeUltimaCompraToolStripMenuItem
-        '
-        Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem.Name = "ClientesPorFechaDeUltimaCompraToolStripMenuItem"
-        Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem.Size = New System.Drawing.Size(325, 26)
-        Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem.Text = "Clientes por fecha de ultima compra"
-        '
-        'ProductosAsociadosAUnEquipoToolStripMenuItem
-        '
-        Me.ProductosAsociadosAUnEquipoToolStripMenuItem.Enabled = False
-        Me.ProductosAsociadosAUnEquipoToolStripMenuItem.Name = "ProductosAsociadosAUnEquipoToolStripMenuItem"
-        Me.ProductosAsociadosAUnEquipoToolStripMenuItem.Size = New System.Drawing.Size(325, 26)
-        Me.ProductosAsociadosAUnEquipoToolStripMenuItem.Text = "Productos asociados a un equipo"
         '
         'EstadísticasToolStripMenuItem
         '
@@ -339,12 +302,7 @@ Partial Class frm_menu
     Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AcercaDeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportesToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ListadosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EstadísticasToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ProductosEnStockToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ProductosBajoLimiteDeRepToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ClientesPorFechaDeUltimaCompraToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ProductosAsociadosAUnEquipoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GananciasPorTipoDeClienteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GananciasPorVendedorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GananciasPorClienteToolStripMenuItem As ToolStripMenuItem

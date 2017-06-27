@@ -67,6 +67,9 @@ Partial Class RepProductos
         Me.grid_datos.AllowUserToAddRows = False
         Me.grid_datos.AllowUserToDeleteRows = False
         Me.grid_datos.AllowUserToResizeRows = False
+        Me.grid_datos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grid_datos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.grid_datos.BackgroundColor = System.Drawing.Color.White
         Me.grid_datos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -77,7 +80,7 @@ Partial Class RepProductos
         Me.grid_datos.ReadOnly = True
         Me.grid_datos.RowTemplate.Height = 24
         Me.grid_datos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.grid_datos.Size = New System.Drawing.Size(791, 389)
+        Me.grid_datos.Size = New System.Drawing.Size(791, 197)
         Me.grid_datos.TabIndex = 7
         '
         'codigo
@@ -140,11 +143,13 @@ Partial Class RepProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(812, 646)
+        Me.ClientSize = New System.Drawing.Size(812, 455)
         Me.Controls.Add(Me.lbl_resultados)
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
         Me.Controls.Add(Me.grid_datos)
+        Me.MaximumSize = New System.Drawing.Size(830, 9999)
+        Me.MinimumSize = New System.Drawing.Size(830, 500)
         Me.Name = "RepProductos"
         Me.Text = "RepProductos"
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).EndInit()
