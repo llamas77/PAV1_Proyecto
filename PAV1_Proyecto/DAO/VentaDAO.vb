@@ -43,7 +43,16 @@ Public Class ventaDAO
                 db.cancelar_transaccion()
                 Throw New System.Exception("El Codigo de Producto no existe.")
             End If
-            productoVO._stock += detalle.cantidad
+
+            productoVO._stock -= detalle.cantidad
+
+            'Validacion nueva.. esta bien hacerla aca??
+            If productoVO._stock < 0 Then
+                db.cancelar_transaccion()
+                Throw New System.Exception("Stock insuficiente.")
+            End If
+
+
             If productoVO._fechaLista < venta._fecha_venta Then
                 productoVO._costo = detalle.precio
                 productoVO._fechaLista = venta._fecha_venta

@@ -22,7 +22,7 @@ Public Class ProductoDAO
         sql_insertar &= " VALUES ("
         sql_insertar &= "'" & producto._codigo & "', "
         sql_insertar &= producto._grupo._id & ", "
-        sql_insertar &= producto._costo.ToString.Replace(",", ".") & ", "
+        sql_insertar &= producto._costo.ToString().Replace(",", ".") & ", "
         sql_insertar &= producto._nivelReposicion & ", "
         sql_insertar &= "'" & producto._ubicacion & "', "
         sql_insertar &= producto._stock & ", "
@@ -240,12 +240,14 @@ Public Class ProductoDAO
         Return producto
     End Function
 
+
+
     Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
-        Return True ' No hay condiciones especiales para validar. Todo filtrado en el control.
+        Return Nothing ' No hay condiciones especiales para validar. Todo filtrado en el control.
     End Function
 
     Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
-        Return True ' No hay condiciones especiales para validar. Todo filtrado en el control.
+        Return Nothing ' No hay condiciones especiales para validar. Todo filtrado en el control.
     End Function
 
     Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
