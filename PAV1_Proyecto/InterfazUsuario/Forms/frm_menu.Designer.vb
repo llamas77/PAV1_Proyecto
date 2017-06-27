@@ -29,7 +29,6 @@ Partial Class frm_menu
         Me.ProductosBajoLimiteDeRepToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProductosAsociadosAUnEquipoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ComprasPorMesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EstadísticasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GananciasPorTipoDeClienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GananciasPorVendedorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -52,12 +51,11 @@ Partial Class frm_menu
         Me.ProveedoresToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComprasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComprasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ReporteDeComprasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VentasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ReporteDeVentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ComprasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.VentasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -82,7 +80,7 @@ Partial Class frm_menu
         '
         'ListadosToolStripMenuItem
         '
-        Me.ListadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductosEnStockToolStripMenuItem, Me.ProductosBajoLimiteDeRepToolStripMenuItem, Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem, Me.ProductosAsociadosAUnEquipoToolStripMenuItem, Me.ComprasPorMesToolStripMenuItem, Me.VentasToolStripMenuItem2})
+        Me.ListadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductosEnStockToolStripMenuItem, Me.ProductosBajoLimiteDeRepToolStripMenuItem, Me.ClientesPorFechaDeUltimaCompraToolStripMenuItem, Me.ProductosAsociadosAUnEquipoToolStripMenuItem})
         Me.ListadosToolStripMenuItem.Name = "ListadosToolStripMenuItem"
         Me.ListadosToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
         Me.ListadosToolStripMenuItem.Text = "Listados"
@@ -111,12 +109,6 @@ Partial Class frm_menu
         Me.ProductosAsociadosAUnEquipoToolStripMenuItem.Name = "ProductosAsociadosAUnEquipoToolStripMenuItem"
         Me.ProductosAsociadosAUnEquipoToolStripMenuItem.Size = New System.Drawing.Size(325, 26)
         Me.ProductosAsociadosAUnEquipoToolStripMenuItem.Text = "Productos asociados a un equipo"
-        '
-        'ComprasPorMesToolStripMenuItem
-        '
-        Me.ComprasPorMesToolStripMenuItem.Name = "ComprasPorMesToolStripMenuItem"
-        Me.ComprasPorMesToolStripMenuItem.Size = New System.Drawing.Size(325, 26)
-        Me.ComprasPorMesToolStripMenuItem.Text = "Compras por mes"
         '
         'EstadísticasToolStripMenuItem
         '
@@ -247,7 +239,7 @@ Partial Class frm_menu
         '
         'ComprasToolStripMenuItem
         '
-        Me.ComprasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComprasToolStripMenuItem1, Me.ReporteDeComprasToolStripMenuItem})
+        Me.ComprasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComprasToolStripMenuItem1, Me.ComprasToolStripMenuItem2})
         Me.ComprasToolStripMenuItem.Name = "ComprasToolStripMenuItem"
         Me.ComprasToolStripMenuItem.Size = New System.Drawing.Size(80, 24)
         Me.ComprasToolStripMenuItem.Text = "Compras"
@@ -258,16 +250,9 @@ Partial Class frm_menu
         Me.ComprasToolStripMenuItem1.Size = New System.Drawing.Size(219, 26)
         Me.ComprasToolStripMenuItem1.Text = "Compras"
         '
-        'ReporteDeComprasToolStripMenuItem
-        '
-        Me.ReporteDeComprasToolStripMenuItem.Enabled = False
-        Me.ReporteDeComprasToolStripMenuItem.Name = "ReporteDeComprasToolStripMenuItem"
-        Me.ReporteDeComprasToolStripMenuItem.Size = New System.Drawing.Size(219, 26)
-        Me.ReporteDeComprasToolStripMenuItem.Text = "Reporte de compras"
-        '
         'VentasToolStripMenuItem
         '
-        Me.VentasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VentasToolStripMenuItem1, Me.ReporteDeVentasToolStripMenuItem})
+        Me.VentasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VentasToolStripMenuItem1, Me.VentasToolStripMenuItem2})
         Me.VentasToolStripMenuItem.Name = "VentasToolStripMenuItem"
         Me.VentasToolStripMenuItem.Size = New System.Drawing.Size(65, 24)
         Me.VentasToolStripMenuItem.Text = "Ventas"
@@ -277,13 +262,6 @@ Partial Class frm_menu
         Me.VentasToolStripMenuItem1.Name = "VentasToolStripMenuItem1"
         Me.VentasToolStripMenuItem1.Size = New System.Drawing.Size(204, 26)
         Me.VentasToolStripMenuItem1.Text = "Ventas"
-        '
-        'ReporteDeVentasToolStripMenuItem
-        '
-        Me.ReporteDeVentasToolStripMenuItem.Enabled = False
-        Me.ReporteDeVentasToolStripMenuItem.Name = "ReporteDeVentasToolStripMenuItem"
-        Me.ReporteDeVentasToolStripMenuItem.Size = New System.Drawing.Size(204, 26)
-        Me.ReporteDeVentasToolStripMenuItem.Text = "Reporte de ventas"
         '
         'AyudaToolStripMenuItem
         '
@@ -299,11 +277,17 @@ Partial Class frm_menu
         Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(159, 26)
         Me.AcercaDeToolStripMenuItem.Text = "Acerca de..."
         '
+        'ComprasToolStripMenuItem2
+        '
+        Me.ComprasToolStripMenuItem2.Name = "ComprasToolStripMenuItem2"
+        Me.ComprasToolStripMenuItem2.Size = New System.Drawing.Size(181, 26)
+        Me.ComprasToolStripMenuItem2.Text = "Listado"
+        '
         'VentasToolStripMenuItem2
         '
         Me.VentasToolStripMenuItem2.Name = "VentasToolStripMenuItem2"
-        Me.VentasToolStripMenuItem2.Size = New System.Drawing.Size(325, 26)
-        Me.VentasToolStripMenuItem2.Text = "Ventas"
+        Me.VentasToolStripMenuItem2.Size = New System.Drawing.Size(181, 26)
+        Me.VentasToolStripMenuItem2.Text = "Listado"
         '
         'frm_menu
         '
@@ -313,7 +297,7 @@ Partial Class frm_menu
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.Name = "frm_menu"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -345,8 +329,6 @@ Partial Class frm_menu
     Friend WithEvents ComprasToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents VentasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VentasToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents ReporteDeComprasToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ReporteDeVentasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AcercaDeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportesToolStripMenuItem As ToolStripMenuItem
@@ -356,9 +338,9 @@ Partial Class frm_menu
     Friend WithEvents ProductosBajoLimiteDeRepToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ClientesPorFechaDeUltimaCompraToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProductosAsociadosAUnEquipoToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ComprasPorMesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GananciasPorTipoDeClienteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GananciasPorVendedorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GananciasPorClienteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ComprasToolStripMenuItem2 As ToolStripMenuItem
     Friend WithEvents VentasToolStripMenuItem2 As ToolStripMenuItem
 End Class

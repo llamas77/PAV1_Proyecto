@@ -90,7 +90,7 @@
         frm.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductosEnStockToolStripMenuItem.Click, ProductosBajoLimiteDeRepToolStripMenuItem.Click, ClientesPorFechaDeUltimaCompraToolStripMenuItem.Click, ProductosAsociadosAUnEquipoToolStripMenuItem.Click, ComprasPorMesToolStripMenuItem.Click, GananciasPorTipoDeClienteToolStripMenuItem.Click, GananciasPorVendedorToolStripMenuItem.Click, GananciasPorClienteToolStripMenuItem.Click
+    Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductosEnStockToolStripMenuItem.Click, ProductosBajoLimiteDeRepToolStripMenuItem.Click, ClientesPorFechaDeUltimaCompraToolStripMenuItem.Click, ProductosAsociadosAUnEquipoToolStripMenuItem.Click, GananciasPorTipoDeClienteToolStripMenuItem.Click, GananciasPorVendedorToolStripMenuItem.Click, GananciasPorClienteToolStripMenuItem.Click
         Dim itemMenu As ToolStripMenuItem
         itemMenu = sender
 
@@ -99,7 +99,6 @@
         listaNombres.Add(ProductosBajoLimiteDeRepToolStripMenuItem.Text)
         listaNombres.Add(ClientesPorFechaDeUltimaCompraToolStripMenuItem.Text)
         listaNombres.Add(ProductosAsociadosAUnEquipoToolStripMenuItem.Text)
-        listaNombres.Add(ComprasPorMesToolStripMenuItem.Text)
         listaNombres.Add(GananciasPorTipoDeClienteToolStripMenuItem.Text)
         listaNombres.Add(GananciasPorVendedorToolStripMenuItem.Text)
         listaNombres.Add(GananciasPorClienteToolStripMenuItem.Text)
@@ -114,7 +113,13 @@
         Next
     End Sub
 
-    Private Sub VentasToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles VentasToolStripMenuItem2.Click
+    Private Sub ComprasToolStripMenuItem2_Click_1(sender As Object, e As EventArgs) Handles ComprasToolStripMenuItem2.Click
+        Dim frm As New RepCompras()
+        frm.Text = "Listado de Compras"
+        frm.Show()
+    End Sub
+
+    Private Sub VentasToolStripMenuItem2_Click_1(sender As Object, e As EventArgs) Handles VentasToolStripMenuItem2.Click
         Dim frm As New RepVentas()
         frm.Text = "Listado de Ventas"
         frm.Show()

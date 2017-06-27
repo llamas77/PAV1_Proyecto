@@ -15,16 +15,16 @@
             panel_control.Controls.Add(campo.get_UserControl)
         Next
 
+        buscar()
     End Sub
 
     Private Sub btn_buscar_Click(sender As Object, e As EventArgs) Handles btn_buscar.Click
+        buscar()
+    End Sub
 
+    Private Sub buscar()
         Dim db = DataBase.getInstance()
-        Dim params = {"cliente", "fecha_desde", "fecha_hasta", "vendedor", "nro_comprobante"}
         Dim filtros As New Dictionary(Of String, Object)
-        For Each param In params
-            filtros.Add(param, Nothing)
-        Next
         For Each campo As ObjetoCampo In panel_control.Controls
             filtros(campo._id) = campo._value
         Next
