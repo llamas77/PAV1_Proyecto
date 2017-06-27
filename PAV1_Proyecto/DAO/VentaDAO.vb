@@ -232,14 +232,13 @@ Public Class ventaDAO
         campos.Add(New Campo With {._id = "id", ._name = "", ._visible = False, ._numeric = True})
         campos.Add(New Campo With {._id = "fechaventa", ._name = "Fecha de venta", ._maskType = Campo.MaskType.fecha,
                                    ._required = True})
-        campos.Add(New Campo With {._id = "nroComprobante", ._name = "Nro Comprobante", ._visible = True, ._numeric = True})
+        campos.Add(New Campo With {._id = "nroComprobante", ._name = "Nro Comprobante", ._visible = True, ._max_lenght = 20})
         campos.Add(New Campo With {._id = "cliente", ._name = "Cliente", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New ClienteDAO, ._required = True})
         campos.Add(New Campo With {._id = "vendedor", ._name = "Vendedor", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New VendedorDAO, ._required = True})
         campos.Add(New Campo With {._id = "detalles", ._name = "Detalle", ._maskType = Campo.MaskType.campo,
-                                   ._campo = get_detalle_campo()
-        })
+                                   ._campo = get_detalle_campo()})
         Return New ControlGenerico(campos, Me)
     End Function
 
@@ -310,33 +309,8 @@ Public Class ventaDAO
             Return "Para insertar una venta el ID debe ser 0. [id=" & venta._id & "]"
         End If
 
-        If venta._fecha_venta Is Nothing Then
-            Return "La venta no tiene fecha."
-            ' TODO: Validar que la fecha de venta no sea superior al día actual.
-        End If
-
-        If Len(venta._nro_comprobante) > 20 Then
-            Return "El numero de comprobante es demasiado largo."
-        End If
-
-        If venta._cliente Is Nothing Then
-            Return "No hay ningun Cliente seleccionado."
-        Else
-            With New ClienteDAO
-                If Not .exists(venta._cliente) Then
-                    Return "El cliente seleccionado no existe."
-                End If
-            End With
-        End If
-
-        If venta._vendedor Is Nothing Then
-            Return "No hay ningun Vendedor seleccionado."
-        Else
-            With New VendedorDAO
-                If Not .exists(venta._vendedor) Then
-                    Return "El vendedor seleccionado no existe."
-                End If
-            End With
+        If venta.detalle.Count = 0 Then
+            Return "La venta debe incluir al menos un producto en su detalle."
         End If
 
         Return Nothing
@@ -346,50 +320,13 @@ Public Class ventaDAO
         ' TODO: Invocar can_update en los detalles.
         Dim venta = cast(value)
 
-        Dim sql As String
-        Dim response As DataTable
-        Dim db As New DataBase
-        db.conectar()
-
         If venta._id <= 0 Then
             Return "El ID no es válido. [id=" & venta._id & "]"
-        Else
-            sql = "SELECT TOP 1 idVenta FROM ventas WHERE idventa=" & venta._id
-            response = db.consulta_sql(sql)
-            If response.Rows.Count < 1 Then
-                Return "La venta que se quiere modificar no existe."
-            End If
         End If
 
-        If venta._fecha_venta Is Nothing Then
-            Return "La venta no tiene fecha."
-            ' TODO: Validar que la fecha de venta no sea superior al día actual.
+        If venta.detalle.Count = 0 Then
+            Return "La venta debe incluir al menos un producto en su detalle."
         End If
-
-        If Len(venta._nro_comprobante) > 20 Then
-            Return "El numero de comprobante es demasiado largo."
-        End If
-
-        If venta._cliente Is Nothing Then
-            Return "No hay ningun Cliente seleccionado."
-        Else
-            With New ClienteDAO
-                If Not .exists(venta._cliente) Then
-                    Return "El cliente seleccionado no existe."
-                End If
-            End With
-        End If
-
-        If venta._vendedor Is Nothing Then
-            Return "No hay ningun Vendedor seleccionado."
-        Else
-            With New VendedorDAO
-                If Not .exists(venta._vendedor) Then
-                    Return "El vendedor seleccionado no existe."
-                End If
-            End With
-        End If
-
         Return Nothing
     End Function
 
