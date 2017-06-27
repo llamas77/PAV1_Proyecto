@@ -19,7 +19,11 @@ Public Class LabeledComboBox
 
     Public Property _value As Object Implements ObjetoCampo._value
         Get
-            Return cmb_combo.SelectedValue
+            If cmb_combo.SelectedIndex = 0 Then
+                Return Nothing
+            Else
+                Return cmb_combo.SelectedValue
+            End If
         End Get
         Set(value As Object)
             cmb_combo.SelectedValue = value
@@ -33,8 +37,14 @@ Public Class LabeledComboBox
             Dim tabla As DataTable = cmb_combo.DataSource
             tabla.Rows.Clear()
 
+            ' Agregar fila en blanco.
+            Dim row As DataRow
+            row = tabla.Rows.Add()
+            row("value") = Nothing
+            row("display") = ""
+
             For Each valor As ObjetoVO In objetos
-                Dim row = tabla.Rows.Add()
+                row = tabla.Rows.Add()
                 row("value") = valor
                 row("display") = valor.toString()
             Next
@@ -80,7 +90,7 @@ Public Class LabeledComboBox
 
     Public Function is_valid() As Boolean Implements Validable.is_valid
         Dim valido As Boolean = True
-        If _required And cmb_combo.SelectedIndex = -1 Then
+        If _required And (cmb_combo.SelectedIndex = -1 Or cmb_combo.SelectedIndex = 0) Then
             valido = False
         End If
         If _numeric And Not IsNumeric(cmb_combo.SelectedValue) Then

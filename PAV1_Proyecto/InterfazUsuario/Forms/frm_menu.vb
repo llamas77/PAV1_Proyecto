@@ -114,5 +114,9 @@
         Next
     End Sub
 
-
+    Private Sub VentasToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles VentasToolStripMenuItem2.Click
+        Dim frm As New RepVentas()
+        frm.Text = "Listado de Ventas"
+        frm.Show()
+    End Sub
 End Class
