@@ -54,7 +54,7 @@ Public Class CompraDAO
         Dim sql_update As String
         sql_update = "UPDATE compras"
         sql_update &= " SET "
-        sql_update &= "fechaCompra=convert(date, '" & compra._fecha_compra & "', 103)), "
+        sql_update &= "fechaCompra=convert(date, '" & compra._fecha_compra & "', 103), "
         sql_update &= "idProveedor=" & compra._proveedor._id
         sql_update &= " WHERE idCompra=" & compra._id
 
@@ -66,6 +66,7 @@ Public Class CompraDAO
             db.iniciar_transaccion()
         End If
 
+        db.ejecuta_sql(sql_update)
         Dim detalleDAO As New DetalleCompraDAO
         Dim detalles_guardados = detalleDAO.all_from_compra(compra._id)
 
@@ -212,7 +213,7 @@ Public Class CompraDAO
 
     Private Function get_detalle_campo() As ObjetoCampo
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo With {._id = "id_compra", ._visible = False})
+        campos.Add(New Campo With {._id = "id_compra", ._visible = False, ._numeric = True})
         campos.Add(New Campo With {._id = "producto", ._name = "Producto", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New ProductoDAO, ._required = True})
         campos.Add(New Campo With {._id = "costo", ._name = "Costo", ._required = True, ._numeric = True})
