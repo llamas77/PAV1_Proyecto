@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class ProductoDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ICanDAO
 
     Private Function cast(value As ObjetoVO) As ProductoVO
         If TypeOf value Is ProductoVO Then
@@ -174,15 +174,15 @@ Public Class ProductoDAO
         Dim campos As New List(Of Campo)
         campos.Add(New Campo With {._id = "codigo", ._name = "Código",
                                    ._max_lenght = 20, ._required = True})
-        campos.Add(New Campo With {._id = "grupo", ._name = "Grupo",
+        campos.Add(New Campo With {._id = "grupo", ._name = "Grupo", ._required = True,
                    ._maskType = Campo.MaskType.comboBox, ._objetoDAO = New GrupoDAO})
-        campos.Add(New Campo With {._id = "costo", ._name = "Costo", ._numeric = True})
-        campos.Add(New Campo With {._id = "fechaLista", ._name = "Fecha Actual",
+        campos.Add(New Campo With {._id = "costo", ._name = "Costo", ._numeric = True, ._required = True})
+        campos.Add(New Campo With {._id = "fechaLista", ._name = "Fecha Actual", ._required = True,
                                    ._maskType = Campo.MaskType.fecha})
-        campos.Add(New Campo With {._id = "nivelReposicion", ._name = "Nivel de Reposicion",
+        campos.Add(New Campo With {._id = "nivelReposicion", ._name = "Stock Min.",
                                    ._numeric = True})
-        campos.Add(New Campo With {._id = "ubicacion", ._name = "Ubicación"})
-        campos.Add(New Campo With {._id = "stock", ._name = "Stock", ._numeric = True})
+        campos.Add(New Campo With {._id = "ubicacion", ._name = "Ubicación", ._max_lenght = 25})
+        campos.Add(New Campo With {._id = "stock", ._name = "Stock", ._numeric = True, ._required = True})
         campos.Add(New Campo With {._id = "equipos", ._name = "Equipos compatibles", ._maskType = Campo.MaskType.comboYGrilla,
                                    ._objetoDAO = New EquiposDAO})
         Return New ControlGenerico(campos, Me)
@@ -194,7 +194,7 @@ Public Class ProductoDAO
         campos.Add(New Campo With {._id = "grupo", ._name = "Grupo"})
         campos.Add(New Campo With {._id = "costo", ._name = "Costo"})
         campos.Add(New Campo With {._id = "fechaLista", ._name = "Fecha Act"})
-        campos.Add(New Campo With {._id = "nivelReposicion", ._name = "Nivel de Reposicion"})
+        campos.Add(New Campo With {._id = "nivelReposicion", ._name = "Stock Min."})
         campos.Add(New Campo With {._id = "ubicacion", ._name = "Ubicación"})
         campos.Add(New Campo With {._id = "stock", ._name = "Stock"})
         campos.Add(New Campo With {._id = "equipos", ._visible = False})
@@ -238,5 +238,40 @@ Public Class ProductoDAO
         End If
 
         Return producto
+    End Function
+
+    Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
+        Return True ' No hay condiciones especiales para validar. Todo filtrado en el control.
+    End Function
+
+    Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
+        Return True ' No hay condiciones especiales para validar. Todo filtrado en el control.
+    End Function
+
+    Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        Dim producto = cast(value)
+
+        Dim db = DataBase.getInstance()
+
+        If producto._codigo = "" Then
+            Return "No puede borrar un producto que no existe. [Sin Codigo]"
+        End If
+
+
+        Dim sql = "SELECT TOP 1 0 FROM detalle_compras WHERE codigoProducto='" & producto._codigo & "'"
+        Dim response = db.consulta_sql(sql)
+        If response.Rows.Count = 1 Then
+            db.desconectar()
+            Return "El producto existe en al menos una compra. Imposible borrar."
+        End If
+
+        sql = "SELECT TOP 1 0 FROM detalle_ventas WHERE codigoProducto='" & producto._codigo & "'"
+        response = db.consulta_sql(sql)
+        If response.Rows.Count = 1 Then
+            db.desconectar()
+            Return "El producto existe en al menos una venta. Imposible borrar."
+        End If
+
+        Return Nothing
     End Function
 End Class

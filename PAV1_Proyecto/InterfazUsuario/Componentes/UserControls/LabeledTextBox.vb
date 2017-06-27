@@ -26,7 +26,12 @@ Public Class LabeledTextBox
 
     Public Property _value As Object Implements ObjetoCampo._value
         Get
-            Return txt_caja.Text.Trim()
+            Dim val = txt_caja.Text.Trim()
+            If _numeric And val = "" Then
+                Return 0
+            Else
+                Return val
+            End If
         End Get
         Set(value As Object)
             txt_caja.Text = value.ToString
@@ -59,7 +64,7 @@ Public Class LabeledTextBox
                 valido = False
             End If
         Else
-            If _numeric And _value <> "" And Not IsNumeric(_value) Then
+            If _numeric And Not IsNumeric(_value) Then
                 valido = False
             End If
         End If

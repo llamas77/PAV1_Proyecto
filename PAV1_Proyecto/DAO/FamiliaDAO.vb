@@ -127,7 +127,7 @@ Public Class FamiliaDAO
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
         campos.Add(New Campo With {._id = "id", ._name = "", ._visible = False, ._numeric = True})
-        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._required = True})
+        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._required = True, ._max_lenght = 50})
         Return New ControlGenerico(campos, Me)
     End Function
 
@@ -147,17 +147,11 @@ Public Class FamiliaDAO
 
     Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
         Dim familia = cast(value)
-        If Len(familia._nombre) > 50 Then
-            Return "El nombre de la familia es demasiado largo. (Máx. 50 caracteres)"
-        End If
         Return IIf(exists(value), "Ya existe una familia con ese nombre.", Nothing)
     End Function
 
     Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
         Dim familia = cast(value)
-        If Len(familia._nombre) > 50 Then
-            Return "El nombre de la familia es demasiado largo. (Máx. 50 caracteres)"
-        End If
         Return IIf(is_name_in_use(familia), "Ya existe una familia con ese nombre.", Nothing)
     End Function
 

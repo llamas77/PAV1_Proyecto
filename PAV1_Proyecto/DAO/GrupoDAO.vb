@@ -145,7 +145,7 @@ Public Class GrupoDAO
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
         campos.Add(New Campo With {._id = "id", ._visible = False, ._numeric = True})
-        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._required = True})
+        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._required = True, ._max_lenght = 50})
         campos.Add(New Campo With {._id = "familia", ._name = "Familia", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New FamiliaDAO, ._required = True})
         Return New ControlGenerico(campos, Me)
@@ -179,9 +179,6 @@ Public Class GrupoDAO
 
     Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
         Dim grupo = cast(value)
-        If Len(grupo._nombre) > 50 Then
-            Return "El nombre del grupo es demasiado largo. (Máx. 50 caracteres)"
-        End If
         If grupo._id <> 0 Then
             Return "Esta tratando de insertar un grupo ya almacenado. [id=" & grupo._id & "]"
         End If
@@ -195,9 +192,6 @@ Public Class GrupoDAO
 
     Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
         Dim grupo = cast(value)
-        If Len(grupo._nombre) > 50 Then
-            Return "El nombre del grupo es demasiado largo. (Máx. 50 caracteres)"
-        End If
         If grupo._id = 0 Then
             Return "Esta tratando de modificar un grupo no almacenado."
         End If
