@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class TipoClienteDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ICanDAO
 
     Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
         If db Is Nothing Then
@@ -84,7 +84,7 @@ Public Class TipoClienteDAO
 
         ' En este caso no alcanza sólo el ID sino que el nombre debe ser Unico
         Dim sql = "SELECT TOP 1 idTipo FROM tipos_cliente WHERE idTipo=" & tipo_cliente._id
-        sql &= "OR nombre='" & tipo_cliente._nombre & "'"
+        sql &= " OR nombre='" & tipo_cliente._nombre & "'"
         Dim response = db.consulta_sql(sql)
         Return response.Rows.Count = 1
     End Function
@@ -119,8 +119,8 @@ Public Class TipoClienteDAO
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo With {._id = "id", ._name = "", ._visible = False})
-        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._max_lenght = 50})
+        campos.Add(New Campo With {._id = "id", ._name = "", ._visible = False, ._numeric = True})
+        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._max_lenght = 20, ._required = True})
         campos.Add(New Campo With {._id = "descripcion", ._name = "Descripcion", ._max_lenght = 50})
         Return New ControlGenerico(campos, Me)
     End Function
@@ -139,5 +139,30 @@ Public Class TipoClienteDAO
             ._nombre = valores("nombre"),
             ._descripcion = valores("descripcion")
         }
+    End Function
+
+    Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
+        Return Nothing ' Nada que no este validado en el control.
+    End Function
+
+    Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
+        Return Nothing ' Nada que no este validado en el control.
+    End Function
+
+    Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        Dim tipoCliente = cast(value)
+
+        If tipoCliente._id <= 0 Then
+            Return "No puede borrar un tipo de cliente que no existe. [Codigo invalido]"
+        End If
+
+        Dim db = DataBase.getInstance()
+        Dim sql = "SELECT COUNT(nroCliente) FROM clientes WHERE idTipoCliente=" & tipoCliente._id
+        Dim cant_clientes = (db.consulta_sql(sql))(0)(0)
+        db.desconectar()
+        If cant_clientes > 0 Then
+            Return "Hay " & cant_clientes & " cliente/s de este tipo. Imposible borrar."
+        End If
+        Return Nothing
     End Function
 End Class
