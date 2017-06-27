@@ -74,7 +74,7 @@
             hay_having = True
         End If
         If filtros("monto_max") <> 0 Then
-            sql &= IIf(hay_where, " AND ", " HAVING ")
+            sql &= IIf(hay_having, " AND ", " HAVING ")
             sql &= " SUM(dv.cantidad * dv.precio) <= " & filtros("monto_max")
             hay_having = True
         End If
