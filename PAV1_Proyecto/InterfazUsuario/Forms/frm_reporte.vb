@@ -70,7 +70,6 @@
 
             Case tipo_reporte.clientes_fecha_compra
 
-
                 'Dim fecha As Integer = InputBox("Indique el límite de reposición:")
 
                 sql += "SELECT nroCliente, nombre, apellido, direccion, telefono "
@@ -101,21 +100,32 @@
                 ReinitializeViewer("PAV1_Proyecto.repComprasXMes.rdlc")
 
             Case tipo_reporte.ganancias_por_tipo_de_cliente
-                sql += "select tc.nombre , ganancia "
+                lblGanInf.Visible = True
+                lblGanSup.Visible = True
+                txt_gan_sup.Visible = True
+                txt_gan_inf.Visible = True
+                sql += "select tc.nombre , SUM(ganancia) as ganancia "
                 sql += "from tipos_cliente tc join ganancias g on tc.idTipo = g.idTipo "
+                sql += "group by tc.nombre "
+                If txt_gan_inf.Text <> "" And txt_gan_sup.Text <> "" Then
+                    sql += " having SUM(ganancia) between '" & txt_gan_inf.Text & "' and '" & txt_gan_sup.Text & "' "
+
+                End If
 
                 tabla = db.consulta_sql(sql)
                 ReinitializeViewer("PAV1_Proyecto.repEstGananciasXTipoC.rdlc")
 
             Case tipo_reporte.ganancias_por_vendedor
-                txt_fecha_inf.Visible = True
-                txt_fecha_sup.Visible = True
+                lblFechaInf.Visible = True
+                lblFechaSup.Visible = True
+                fecha_inf.Visible = True
+                fecha_sup.Visible = True
 
                 sql += "select ven.nombre, SUM(([cantidad]*[precio])) as ganancia "
                 sql += "from vendedores ven join ventas v on ven.idVendedor = v.idVendedor "
                 sql += "join detalleVentas dv on v.idVenta= dv.idVenta "
-                If txt_fecha_inf.Text <> "" And txt_fecha_sup.Text <> "" Then
-                    sql += "where v.fechaVenta between '" & txt_fecha_inf.Text & "' and '" & txt_fecha_sup.Text & "' "
+                If fecha_inf.Text <> "  /  /" And fecha_sup.Text <> "  /  /" Then
+                    sql += "where v.fechaVenta between '" & fecha_inf.Text & "' and '" & fecha_sup.Text & "' "
 
                 End If
                 sql += "group by nombre"
@@ -126,13 +136,15 @@
                 ReinitializeViewer("PAV1_Proyecto.repEstGananciasXVendedor.rdlc")
 
             Case tipo_reporte.ganancias_por_cliente
-                txt_fecha_inf.Visible = True
-                txt_fecha_sup.Visible = True
+                lblFechaInf.Visible = True
+                lblFechaSup.Visible = True
+                fecha_inf.Visible = True
+                fecha_sup.Visible = True
                 sql += "select c.nombre, SUM(([cantidad]*[precio])) as ganancia "
                 sql += "from clientes c join ventas v on c.nroCliente = v.nroCliente "
                 sql += "join detalleVentas dv on v.idVenta= dv.idVenta "
-                If txt_fecha_inf.Text <> "" And txt_fecha_sup.Text <> "" Then
-                    sql += "where v.fechaVenta between '" & txt_fecha_inf.Text & "' and '" & txt_fecha_sup.Text & "' "
+                If fecha_inf.Text <> "  /  /" And fecha_sup.Text <> "  /  /" Then
+                    sql += "where v.fechaVenta between '" & fecha_inf.Text & "' and '" & fecha_sup.Text & "' "
 
                 End If
                 sql += "group by nombre"
