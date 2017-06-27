@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class ProveedorDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ICanDAO
 
 
     Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
@@ -139,12 +139,12 @@ Public Class ProveedorDAO
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo With {._id = "idProveedor", ._visible = False})
-        campos.Add(New Campo With {._id = "razonSocial", ._name = "Razón Social"})
-        campos.Add(New Campo With {._id = "cuit", ._name = "CUIT", ._maskType = Campo.MaskType.cuit})
-        campos.Add(New Campo With {._id = "domicilio", ._name = "Domicilio"})
+        campos.Add(New Campo With {._id = "idProveedor", ._visible = False, ._numeric = True})
+        campos.Add(New Campo With {._id = "razonSocial", ._name = "Razón Social", ._required = True, ._max_lenght = 50})
+        campos.Add(New Campo With {._id = "cuit", ._name = "CUIT", ._maskType = Campo.MaskType.cuit, ._required = True})
+        campos.Add(New Campo With {._id = "domicilio", ._name = "Domicilio", ._max_lenght = 50})
         campos.Add(New Campo With {._id = "telefono", ._name = "Teléfono", ._maskType = Campo.MaskType.telefono})
-        campos.Add(New Campo With {._id = "email", ._name = "Email", ._maskType = Campo.MaskType.email})
+        campos.Add(New Campo With {._id = "email", ._name = "Email", ._maskType = Campo.MaskType.email, ._max_lenght = 50})
         Return New ControlGenerico(campos, Me)
     End Function
 
@@ -157,5 +157,45 @@ Public Class ProveedorDAO
         campos.Add(New Campo With {._id = "telefono", ._name = "Teléfono", ._maskType = Campo.MaskType.telefono})
         campos.Add(New Campo With {._id = "email", ._name = "Email", ._maskType = Campo.MaskType.email})
         Return New GrillaGenerica(campos, Me)
+    End Function
+
+    Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
+        Return IIf(exists(value), "Ya hay un proveedor con este CUIT.", Nothing)
+    End Function
+
+    Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
+        Dim proveedor = cast(value)
+
+        Dim db = DataBase.getInstance()
+        Dim sql = "SELECT TOP 1 0 FROM proveedores WHERE cuit='" & proveedor._cuit & "'"
+        sql &= " AND idProveedor<>" & proveedor._id
+        Dim response = db.consulta_sql(sql)
+        db.desconectar()
+        If response.Rows.Count = 1 Then
+            Return "Ya existe otro proveedor con ese CUIT."
+        End If
+
+        If proveedor._id <= 0 Then
+            Return "No puede modificar un proveedor que no existe. [ID invalido]"
+        End If
+
+        Return Nothing
+    End Function
+
+    Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        Dim proveedor = cast(value)
+
+        If proveedor._id <= 0 Then
+            Return "No puede borrar un proveedor que no existe. [ID invalido]"
+        End If
+
+        Dim db = DataBase.getInstance()
+        Dim sql = "SELECT COUNT(idCompra) FROM compras WHERE idProveedor=" & proveedor._id
+        Dim cant_compras = (db.consulta_sql(sql))(0)(0)
+        db.desconectar()
+        If cant_compras > 0 Then
+            Return "Hay " & cant_compras & " compra/s a este proveedor. Imposible borrar."
+        End If
+        Return Nothing
     End Function
 End Class
