@@ -45,23 +45,24 @@ Public Class ControlYGrilla
         Dim control As Control
         ' Ubicar seteo de atributos. (control de objeto)
         control = ctrl_objeto
-        control.Location = New Point(lbl_label.Location.X, lbl_label.Location.Y + lbl_label.Height) ' Esquina superior izquierda.
+        control.Location = New Point(10, 10) ' Esquina superior izquierda.
         control.TabIndex = 1
-        Me.Controls.Add(control)
+        panel.Controls.Add(control)
         control.Focus() ' Para que empiece con el foco en el control.
 
         ' Posiciona boton agregar.
-        btn_agregar.Location = New Point(control.Location.X + control.Size.Width + 5,
-                                         control.Location.Y + control.Size.Height - btn_agregar.Size.Height - 3)
+        btn_agregar.Location = New Point(control.Location.X + control.Size.Width / 2 - btn_agregar.Size.Width - 5,
+                                         control.Location.Y + control.Size.Height + 5)
         ' Posiciona boton eliminar.
-        btn_eliminar.Location = New Point(btn_agregar.Location.X + btn_agregar.Size.Width + 5,
-                                          btn_agregar.Location.Y)
+        btn_eliminar.Location = New Point(control.Location.X + control.Size.Width / 2 + 5,
+                                         control.Location.Y + control.Size.Height + 5)
         ' Grilla
         control = grilla_objeto
-        control.MinimumSize = New Size(btn_eliminar.Location.X + btn_eliminar.Size.Width, 100)
-        control.Location = New Point(Me.Padding.Left, btn_agregar.Location.Y + btn_agregar.Size.Height + 15)
+        control.MinimumSize = New Size(panel.Size.Width, 100)
+        control.Margin = New Padding(0)
+        control.Location = New Point(0, btn_agregar.Location.Y + btn_agregar.Size.Height + 15)
         control.TabIndex = 3
-        Me.Controls.Add(control)
+        panel.Controls.Add(control)
     End Sub
 
     Public Sub New(objetoDAO As ObjetoDAO)
