@@ -151,6 +151,7 @@ Partial Class RepProductos
         Me.MaximumSize = New System.Drawing.Size(830, 9999)
         Me.MinimumSize = New System.Drawing.Size(830, 500)
         Me.Name = "RepProductos"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RepProductos"
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
