@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class CompraDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ICanDAO
 
     Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
         Dim compra = cast(value)
@@ -252,5 +252,29 @@ Public Class CompraDAO
         End If
 
         Return compra
+    End Function
+
+    Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
+        Dim compra = cast(value)
+
+        If compra.detalle.Count = 0 Then
+            Return "La compra debe incluir al menos un producto en su detalle."
+        End If
+
+        Return Nothing
+    End Function
+
+    Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
+        Dim compra = cast(value)
+
+        If compra.detalle.Count = 0 Then
+            Return "La compra debe incluir al menos un producto en su detalle."
+        End If
+
+        Return Nothing
+    End Function
+
+    Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        Return Nothing
     End Function
 End Class
