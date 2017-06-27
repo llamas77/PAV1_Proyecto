@@ -113,7 +113,7 @@ Public Class MarcaDAO
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
         campos.Add(New Campo With {._id = "id", ._name = "", ._visible = False, ._numeric = True})
-        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._required = True})
+        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._required = True, ._max_lenght = 50})
         Return New ControlGenerico(campos, Me)
     End Function
 
@@ -132,11 +132,15 @@ Public Class MarcaDAO
     End Function
 
     Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
-        Return IIf(exists(value), "La marca ya existe.", Nothing)
+        Dim marca = cast(value)
+        If marca._id <> 0 Then
+            Return "La marca ya esta almacenada. No se puede reinsertar."
+        End If
+        Return IIf(is_name_in_use(value), "Ya existe una marca con ese nombre.", Nothing)
     End Function
 
     Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
-        Return IIf(exists(value), "La marca ya existe.", Nothing)
+        Return IIf(is_name_in_use(value), "Ya existe una marca con ese nombre.", Nothing)
     End Function
 
     Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
