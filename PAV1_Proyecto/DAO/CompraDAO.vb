@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class CompraDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ICanDAO
 
     Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
         Dim compra = cast(value)
@@ -54,7 +54,7 @@ Public Class CompraDAO
         Dim sql_update As String
         sql_update = "UPDATE compras"
         sql_update &= " SET "
-        sql_update &= "fechaCompra=convert(date, '" & compra._fecha_compra & "', 103)), "
+        sql_update &= "fechaCompra=convert(date, '" & compra._fecha_compra & "', 103), "
         sql_update &= "idProveedor=" & compra._proveedor._id
         sql_update &= " WHERE idCompra=" & compra._id
 
@@ -66,6 +66,7 @@ Public Class CompraDAO
             db.iniciar_transaccion()
         End If
 
+        db.ejecuta_sql(sql_update)
         Dim detalleDAO As New DetalleCompraDAO
         Dim detalles_guardados = detalleDAO.all_from_compra(compra._id)
 
@@ -212,7 +213,7 @@ Public Class CompraDAO
 
     Private Function get_detalle_campo() As ObjetoCampo
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo With {._id = "id_compra", ._visible = False})
+        campos.Add(New Campo With {._id = "id_compra", ._visible = False, ._numeric = True})
         campos.Add(New Campo With {._id = "producto", ._name = "Producto", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New ProductoDAO, ._required = True})
         campos.Add(New Campo With {._id = "costo", ._name = "Costo", ._required = True, ._numeric = True})
@@ -251,5 +252,29 @@ Public Class CompraDAO
         End If
 
         Return compra
+    End Function
+
+    Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
+        Dim compra = cast(value)
+
+        If compra.detalle.Count = 0 Then
+            Return "La compra debe incluir al menos un producto en su detalle."
+        End If
+
+        Return Nothing
+    End Function
+
+    Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
+        Dim compra = cast(value)
+
+        If compra.detalle.Count = 0 Then
+            Return "La compra debe incluir al menos un producto en su detalle."
+        End If
+
+        Return Nothing
+    End Function
+
+    Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        Return Nothing
     End Function
 End Class

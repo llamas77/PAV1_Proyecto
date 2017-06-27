@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class ClienteDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ICanDAO
 
     Public Function all(Optional db As DataBase = Nothing) As List(Of ObjetoVO) Implements ObjetoDAO.all
         If db Is Nothing Then
@@ -151,10 +151,11 @@ Public Class ClienteDAO
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo With {._id = "nro", ._name = "Número", ._visible = False})
-        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._required = True})
-        campos.Add(New Campo With {._id = "apellido", ._name = "Apellido"})
-        campos.Add(New Campo With {._id = "telefono", ._name = "Teléfono", ._maskType = Campo.MaskType.telefono})
+        campos.Add(New Campo With {._id = "nro", ._name = "Número", ._visible = False, ._numeric = True})
+        campos.Add(New Campo With {._id = "nombre", ._name = "Nombre", ._required = True, ._max_lenght = 50})
+        campos.Add(New Campo With {._id = "apellido", ._name = "Apellido", ._max_lenght = 50})
+        campos.Add(New Campo With {._id = "telefono", ._name = "Teléfono", ._maskType = Campo.MaskType.telefono,
+                                   ._max_lenght = 50})
         campos.Add(New Campo With {._id = "direccion", ._name = "Dirección"})
         campos.Add(New Campo With {._id = "tipo_cliente", ._name = "Tipo", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New TipoClienteDAO, ._required = True})
@@ -172,5 +173,28 @@ Public Class ClienteDAO
         Return New GrillaGenerica(campos, Me)
     End Function
 
+    Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
+        Return Nothing ' Validaciones primitivas en el control.
+    End Function
 
+    Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
+        Return Nothing ' Validaciones primitivas en el control.
+    End Function
+
+    Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        Dim cliente = cast(value)
+
+        If cliente._nro <= 0 Then
+            Return "No puede borrar un cliente que no existe. [Nro invalido]"
+        End If
+
+        Dim db = DataBase.getInstance()
+        Dim sql = "SELECT COUNT(idVenta) FROM ventas WHERE nroCliente=" & cliente._nro
+        Dim cant_ventas = (db.consulta_sql(sql))(0)(0)
+        db.desconectar()
+        If cant_ventas > 0 Then
+            Return "Hay " & cant_ventas & " venta/s a este cliente. Imposible borrar."
+        End If
+        Return Nothing
+    End Function
 End Class
