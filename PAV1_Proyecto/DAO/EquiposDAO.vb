@@ -75,13 +75,11 @@ Public Class EquiposDAO
         Dim equipos = cast(value)
         ' DOC: determina si existe la marca en la BD, según PK
 
-        If equipos._id > 0 Then
-            Dim sql = "SELECT TOP 1 id FROM equipos WHERE id=" & equipos._id
-            Dim response = db.consulta_sql(sql)
-            Return response.Rows.Count = 1
-        Else
-            Return False
-        End If
+        Dim sql = "SELECT TOP 1 id FROM equipos WHERE id=" & equipos._id
+        sql &= " OR (idMarca=" & equipos._marca._id & " AND modelo='" & equipos._modelo & "')"
+        Dim response = db.consulta_sql(sql)
+        Return response.Rows.Count = 1
+
     End Function
 
     Public Function all_from_producto(codigo As String, Optional db As DataBase = Nothing) As List(Of ObjetoVO)
@@ -105,10 +103,10 @@ Public Class EquiposDAO
 
     Public Function get_IU_control() As ObjetoCtrl Implements ObjetoDAO.get_IU_control
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo With {._id = "id", ._visible = False})
+        campos.Add(New Campo With {._id = "id", ._visible = False, ._numeric = True})
         campos.Add(New Campo With {._id = "marca", ._name = "Marca", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New MarcaDAO, ._required = True})
-        campos.Add(New Campo With {._id = "modelo", ._name = "Modelo", ._required = True})
+        campos.Add(New Campo With {._id = "modelo", ._name = "Modelo", ._required = True, ._max_lenght = 50})
         Return New ControlGenerico(campos, Me)
     End Function
 
