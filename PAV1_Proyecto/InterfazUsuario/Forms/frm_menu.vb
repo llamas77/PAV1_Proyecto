@@ -150,4 +150,10 @@
         frm.Text = "Listado de Proveedores"
         frm.Show()
     End Sub
+
+    Private Sub ListadoDeGruposToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListadoDeGruposToolStripMenuItem.Click
+        Dim frm As New RepGrupos()
+        frm.Text = "Listado de Grupos"
+        frm.Show()
+    End Sub
 End Class
