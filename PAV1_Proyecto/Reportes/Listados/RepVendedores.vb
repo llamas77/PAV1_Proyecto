@@ -6,9 +6,9 @@
         ctrl_list.Add(New Campo With {._id = "fecha_desde", ._name = "Ventas desde", ._maskType = Campo.MaskType.fecha})
         ctrl_list.Add(New Campo With {._id = "apellido", ._name = "Apellido"})
         ctrl_list.Add(New Campo With {._id = "fecha_hasta", ._name = "Ventas hasta", ._maskType = Campo.MaskType.fecha})
-        ctrl_list.Add(New Campo With {._id = "monto_min", ._name = "Monto Ventas Max.", ._numeric = True})
+        ctrl_list.Add(New Campo With {._id = "monto_min", ._name = "Monto Ventas Min.", ._numeric = True})
         ctrl_list.Add(New Campo With {._id = "direccion", ._name = "Direccion"})
-        ctrl_list.Add(New Campo With {._id = "monto_max", ._name = "Monto Ventas Min.", ._numeric = True})
+        ctrl_list.Add(New Campo With {._id = "monto_max", ._name = "Monto Ventas Max.", ._numeric = True})
 
         For Each campo In ctrl_list
             panel_control.Controls.Add(campo.get_UserControl)
@@ -51,12 +51,12 @@
         End If
         If Not filtros("fecha_desde") = "/  /" Then
             sql &= IIf(hay_where, " AND ", " WHERE ")
-            sql &= " v.fechaVenta >= convert(date,'" & filtros("fecha_desde") & "', 103) "
+            sql &= " vta.fechaVenta >= convert(date,'" & filtros("fecha_desde") & "', 103) "
             hay_where = True
         End If
         If Not filtros("fecha_hasta") = "/  /" Then
             sql &= IIf(hay_where, " AND ", " WHERE ")
-            sql &= " v.fechaVenta <= convert(date,'" & filtros("fecha_hasta") & "', 103) "
+            sql &= " vta.fechaVenta <= convert(date,'" & filtros("fecha_hasta") & "', 103) "
             hay_where = True
         End If
         sql &= " GROUP BY v.idVendedor, v.nombre, v.apellido, v.direccion, v.telefono, v.comision"

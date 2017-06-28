@@ -8,9 +8,9 @@
         ctrl_list.Add(New Campo With {._id = "tipo", ._name = "Tipo de Cliente", ._maskType = Campo.MaskType.comboBox,
                       ._objetoDAO = New TipoClienteDAO})
         ctrl_list.Add(New Campo With {._id = "fecha_desde", ._name = "Compras desde", ._maskType = Campo.MaskType.fecha})
-        ctrl_list.Add(New Campo With {._id = "monto_min", ._name = "Monto Ventas Max.", ._numeric = True})
+        ctrl_list.Add(New Campo With {._id = "monto_min", ._name = "Monto Ventas Min.", ._numeric = True})
         ctrl_list.Add(New Campo With {._id = "fecha_hasta", ._name = "Compras Hasta", ._maskType = Campo.MaskType.fecha})
-        ctrl_list.Add(New Campo With {._id = "monto_max", ._name = "Monto Ventas Min.", ._numeric = True})
+        ctrl_list.Add(New Campo With {._id = "monto_max", ._name = "Monto Ventas Max.", ._numeric = True})
         ctrl_list.Add(New Campo With {._id = "vendedor", ._name = "Vendedor", ._maskType = Campo.MaskType.comboBox,
                       ._objetoDAO = New VendedorDAO})
 
