@@ -55,6 +55,7 @@ Partial Class frm_menu
         Me.ListadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListadoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListadoToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListadoToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -179,7 +180,7 @@ Partial Class frm_menu
         '
         'VendedoresToolStripMenuItem
         '
-        Me.VendedoresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VendedoresToolStripMenuItem1})
+        Me.VendedoresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VendedoresToolStripMenuItem1, Me.ListadoToolStripMenuItem3})
         Me.VendedoresToolStripMenuItem.Name = "VendedoresToolStripMenuItem"
         Me.VendedoresToolStripMenuItem.Size = New System.Drawing.Size(100, 24)
         Me.VendedoresToolStripMenuItem.Text = "Vendedores"
@@ -273,6 +274,12 @@ Partial Class frm_menu
         Me.ListadoToolStripMenuItem2.Size = New System.Drawing.Size(195, 26)
         Me.ListadoToolStripMenuItem2.Text = "Listado"
         '
+        'ListadoToolStripMenuItem3
+        '
+        Me.ListadoToolStripMenuItem3.Name = "ListadoToolStripMenuItem3"
+        Me.ListadoToolStripMenuItem3.Size = New System.Drawing.Size(181, 26)
+        Me.ListadoToolStripMenuItem3.Text = "Listado"
+        '
         'frm_menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -325,4 +332,5 @@ Partial Class frm_menu
     Friend WithEvents ListadoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ListadoToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ListadoToolStripMenuItem2 As ToolStripMenuItem
+    Friend WithEvents ListadoToolStripMenuItem3 As ToolStripMenuItem
 End Class

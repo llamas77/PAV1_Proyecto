@@ -196,6 +196,12 @@
     <Compile Include="Reportes\Listados\RepProductos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reportes\Listados\RepVendedores.Designer.vb">
+      <DependentUpon>RepVendedores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Listados\RepVendedores.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reportes\Listados\RepVentas.Designer.vb">
       <DependentUpon>RepVentas.vb</DependentUpon>
     </Compile>
@@ -323,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Listados\RepProductos.resx">
       <DependentUpon>RepProductos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Listados\RepVendedores.resx">
+      <DependentUpon>RepVendedores.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Listados\RepVentas.resx">
       <DependentUpon>RepVentas.vb</DependentUpon>
