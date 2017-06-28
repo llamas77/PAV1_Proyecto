@@ -111,7 +111,7 @@
         If Not filtros("equipo") Is Nothing Then
             sql &= IIf(hay_where, " AND ", " WHERE ")
             With DirectCast(filtros("equipo"), EquiposVO)
-                sql &= " EXISTS (SELECT 0 FROM productosxequipos pxe"
+                sql &= " EXISTS (SELECT TOP 1 0 FROM productosxequipos pxe"
                 sql &= " WHERE pxe.codigoProducto = p.codigoProducto"
                 sql &= " AND pxe.idEquipo=" & ._id & ")"
             End With

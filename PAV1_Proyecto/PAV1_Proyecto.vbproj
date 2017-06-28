@@ -172,6 +172,12 @@
     <Compile Include="InterfazUsuario\Forms\frm_reporte.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reportes\Listados\RepClientes.Designer.vb">
+      <DependentUpon>RepClientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Listados\RepClientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reportes\Listados\RepCompras.Designer.vb">
       <DependentUpon>RepCompras.vb</DependentUpon>
     </Compile>
@@ -305,6 +311,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Listados\RepClientes.resx">
+      <DependentUpon>RepClientes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Listados\RepCompras.resx">
       <DependentUpon>RepCompras.vb</DependentUpon>

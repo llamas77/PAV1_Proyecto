@@ -132,4 +132,10 @@
         frm.Text = "Listado de Equipos"
         frm.Show()
     End Sub
+
+    Private Sub ListadoToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ListadoToolStripMenuItem2.Click
+        Dim frm As New RepClientes()
+        frm.Text = "Listado de Clientes"
+        frm.Show()
+    End Sub
 End Class
