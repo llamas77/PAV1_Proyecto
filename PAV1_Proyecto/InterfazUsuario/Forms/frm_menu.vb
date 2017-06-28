@@ -144,4 +144,10 @@
         frm.Text = "Listado de Vendedores"
         frm.Show()
     End Sub
+
+    Private Sub ListadoToolStripMenuItem4_Click(sender As Object, e As EventArgs) Handles ListadoToolStripMenuItem4.Click
+        Dim frm As New RepProveedores()
+        frm.Text = "Listado de Proveedores"
+        frm.Show()
+    End Sub
 End Class
