@@ -12,8 +12,11 @@ Public Class ProductoDAO
     End Function
 
     Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
+        Dim cerrar = False
         If db Is Nothing Then
             db = DataBase.getInstance()
+            db.iniciar_transaccion()
+            cerrar = True
         End If
         Dim producto = cast(value)
 
@@ -28,6 +31,12 @@ Public Class ProductoDAO
         sql_insertar &= producto._stock & ", "
         sql_insertar &= "convert(date, '" & producto._fechaLista & "', 103))"
         db.ejecuta_sql(sql_insertar)
+
+        update_related_equipos(producto, db)
+        If cerrar Then
+            db.cerrar_transaccion()
+            db.desconectar()
+        End If
     End Sub
 
     Public Sub update(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.update
@@ -259,21 +268,18 @@ Public Class ProductoDAO
             Return "No puede borrar un producto que no existe. [Sin Codigo]"
         End If
 
-
         Dim sql = "SELECT TOP 1 0 FROM detalle_compras WHERE codigoProducto='" & producto._codigo & "'"
         Dim response = db.consulta_sql(sql)
         If response.Rows.Count = 1 Then
-            db.desconectar()
             Return "El producto existe en al menos una compra. Imposible borrar."
         End If
 
         sql = "SELECT TOP 1 0 FROM detalle_ventas WHERE codigoProducto='" & producto._codigo & "'"
+        db.conectar() ' Hay que reconectar porque cuando hace una consulta cierra automaticamente.
         response = db.consulta_sql(sql)
         If response.Rows.Count = 1 Then
-            db.desconectar()
             Return "El producto existe en al menos una venta. Imposible borrar."
         End If
-
         Return Nothing
     End Function
 End Class

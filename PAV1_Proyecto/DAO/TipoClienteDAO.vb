@@ -159,7 +159,6 @@ Public Class TipoClienteDAO
         Dim db = DataBase.getInstance()
         Dim sql = "SELECT COUNT(nroCliente) FROM clientes WHERE idTipoCliente=" & tipoCliente._id
         Dim cant_clientes = (db.consulta_sql(sql))(0)(0)
-        db.desconectar()
         If cant_clientes > 0 Then
             Return "Hay " & cant_clientes & " cliente/s de este tipo. Imposible borrar."
         End If

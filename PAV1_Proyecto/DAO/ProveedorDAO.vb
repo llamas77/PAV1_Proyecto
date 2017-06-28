@@ -170,7 +170,6 @@ Public Class ProveedorDAO
         Dim sql = "SELECT TOP 1 0 FROM proveedores WHERE cuit='" & proveedor._cuit & "'"
         sql &= " AND idProveedor<>" & proveedor._id
         Dim response = db.consulta_sql(sql)
-        db.desconectar()
         If response.Rows.Count = 1 Then
             Return "Ya existe otro proveedor con ese CUIT."
         End If
@@ -192,7 +191,6 @@ Public Class ProveedorDAO
         Dim db = DataBase.getInstance()
         Dim sql = "SELECT COUNT(idCompra) FROM compras WHERE idProveedor=" & proveedor._id
         Dim cant_compras = (db.consulta_sql(sql))(0)(0)
-        db.desconectar()
         If cant_compras > 0 Then
             Return "Hay " & cant_compras & " compra/s a este proveedor. Imposible borrar."
         End If

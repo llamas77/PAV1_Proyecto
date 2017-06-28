@@ -184,7 +184,6 @@ Public Class VendedorDAO
         Dim db = DataBase.getInstance()
         Dim sql = "SELECT COUNT(idVenta) FROM ventas WHERE idVendedor=" & vendedor._id
         Dim cant_ventas = (db.consulta_sql(sql))(0)(0)
-        db.desconectar()
         If cant_ventas > 0 Then
             Return "Hay " & cant_ventas & " venta/s de este vendedor. Imposible borrar."
         End If
