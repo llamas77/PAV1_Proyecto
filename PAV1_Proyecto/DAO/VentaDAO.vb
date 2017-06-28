@@ -253,7 +253,7 @@ Public Class ventaDAO
 
     Private Function get_detalle_campo() As ObjetoCampo
         Dim campos As New List(Of Campo)
-        campos.Add(New Campo With {._id = "id_venta", ._visible = False})
+        campos.Add(New Campo With {._id = "id_venta", ._visible = False, ._numeric = True})
         campos.Add(New Campo With {._id = "producto", ._name = "Producto", ._maskType = Campo.MaskType.comboBox,
                                    ._objetoDAO = New ProductoDAO, ._required = True})
         campos.Add(New Campo With {._id = "precio", ._name = "Precio", ._required = True, ._numeric = True})
