@@ -1,7 +1,7 @@
 ﻿Imports PAV1_Proyecto
 
 Public Class DetalleVentaDAO
-    Implements ObjetoDAO, ObjectFactory
+    Implements ObjetoDAO, ObjectFactory, ICanDAO
 
     Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
         If db Is Nothing Then
@@ -132,5 +132,52 @@ Public Class DetalleVentaDAO
         End If
 
         Return detalle
+    End Function
+
+    Public Function can_insert(value As ObjetoVO) As String Implements ICanDAO.can_insert
+        Dim detalle = cast(value)
+
+        Dim sql = "SELECT p.stock FROM productos p"
+        sql &= " WHERE p.codigoProducto='" & detalle.codigo_producto & "'"
+        Dim db = DataBase.getInstance()
+        Dim response = db.consulta_sql(sql)
+        If response.Rows.Count = 0 Then
+            Return "El producto " & detalle.codigo_producto & " no existe."
+        Else
+            If response(0)(0) - detalle.cantidad < 0 Then
+                Return "No hay suficiente stock del producto " & detalle.codigo_producto & Chr(13) _
+                    & "[Stock=" & response(0)(0) & "]"
+            End If
+        End If
+        Return Nothing
+    End Function
+
+    Public Function can_update(value As ObjetoVO) As String Implements ICanDAO.can_update
+        Dim detalle = cast(value)
+
+        ' Busco la cantidad actual de stock, mas la cantidad del detalle viejo (que esta guardado en db)
+        ' para poder rehacer el calculo con el stock correcto.
+        Dim sql = "SELECT p.stock + dv.cantidad FROM detalleVentas dv"
+        sql &= " JOIN productos p ON dv.codigoProducto = p.codigoProducto"
+        sql &= " WHERE p.codigoProducto='" & detalle.codigo_producto & "'"
+        sql &= " AND dv.idVenta=" & detalle.id_venta
+
+        Dim db = DataBase.getInstance()
+        Dim response = db.consulta_sql(sql)
+        If response.Rows.Count = 0 Then
+            Return "El detalle del producto " & detalle.codigo_producto & " no existe." & Chr(13) _
+                & "[IdVenta=" & detalle.id_venta & "]"
+        Else
+            If response(0)(0) - detalle.cantidad < 0 Then
+                Return "No hay suficiente stock del producto " & detalle.codigo_producto & Chr(13) _
+                    & "[Stock=" & response(0)(0) & "]"
+            End If
+        End If
+        Return Nothing
+    End Function
+
+    Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        ' Siempre se puede borrar un detalle de venta. Causa aumento de Stock.
+        Return Nothing
     End Function
 End Class

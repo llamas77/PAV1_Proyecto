@@ -261,6 +261,14 @@ Public Class CompraDAO
             Return "La compra debe incluir al menos un producto en su detalle."
         End If
 
+        Dim errMsg As String
+        Dim detalleDAO As New DetalleCompraDAO
+        For Each detalle In compra.detalle
+            errMsg = detalleDAO.can_insert(detalle)
+            If Not errMsg Is Nothing Then
+                Return errMsg
+            End If
+        Next
         Return Nothing
     End Function
 
@@ -271,10 +279,46 @@ Public Class CompraDAO
             Return "La compra debe incluir al menos un producto en su detalle."
         End If
 
+        Dim errMsg As String
+        Dim detalleDAO As New DetalleCompraDAO
+        Dim detalles_guardados = detalleDAO.all_from_compra(compra._id)
+
+        Dim detalles = compra.detalle.Cast(Of DetalleVentaVO)
+        For Each detalle In detalles
+            If detalle.id_venta <> compra._id Then ' Nuevo Detalle
+                If detalle.id_venta = 0 Then
+                    errMsg = detalleDAO.can_insert(detalle)
+                Else
+                    Throw New System.Exception("El ID del detalle pertenece a otra compra.")
+                End If
+            Else ' Actualiza Detalle
+                errMsg = detalleDAO.can_insert(detalle)
+            End If
+            detalles_guardados.Remove(detalle)
+            If Not errMsg Is Nothing Then
+                Return errMsg
+            End If
+        Next
+        For Each detalleG In detalles_guardados ' Los detalles que quedaron guardados pero el usuario borro.
+            errMsg = detalleDAO.can_delete(detalleG)
+            If Not errMsg Is Nothing Then
+                Return errMsg
+            End If
+        Next
+
         Return Nothing
     End Function
 
     Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
+        Dim compra = cast(value)
+        Dim errMsg As String
+        Dim detalleDAO As New DetalleCompraDAO
+        For Each detalle In compra.detalle
+            errMsg = detalleDAO.can_delete(detalle)
+            If Not errMsg Is Nothing Then
+                Return errMsg
+            End If
+        Next
         Return Nothing
     End Function
 End Class

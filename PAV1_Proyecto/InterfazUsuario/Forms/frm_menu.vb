@@ -200,4 +200,14 @@
         frm.Text = "Ganancias por tipo de cliente"
         frm.Show()
     End Sub
+
+    Private Sub frm_menu_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.Show()
+        With New DataBase
+            If Not .probar_conexion Then
+                MsgBox("No se puede conectar con la base de datos.")
+                Me.Close()
+            End If
+        End With
+    End Sub
 End Class

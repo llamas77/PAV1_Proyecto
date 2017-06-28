@@ -146,4 +146,18 @@
         MsgBox("Wops! Ocurrio un error al interactuar con la base de datos." &
                 Chr(13) & Chr(13) & ex.Message, MsgBoxStyle.Critical, "Error")
     End Sub
+
+    Public Function probar_conexion() As Boolean
+        If _estado <> Estado.desconectado Then
+            Throw New System.Exception("Ya hay una conexión abierta.")
+        End If
+        conexion.ConnectionString = cadena_conexion
+        Try
+            conexion.Open()
+        Catch ex As Exception
+            Return False
+        End Try
+        conexion.Close()
+        Return True
+    End Function
 End Class

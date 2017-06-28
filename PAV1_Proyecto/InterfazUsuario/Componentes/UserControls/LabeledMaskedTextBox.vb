@@ -119,6 +119,18 @@ Public Class LabeledMaskedTextBox
             End If
         End If
 
+        If _mask = Campo.MaskType.fecha And _value <> "/  /" Then
+            If txt_caja.MaskCompleted Then
+                Try
+                    DateTime.ParseExact(_value, "dd/MM/yyyy", Nothing)
+                Catch ex As Exception
+                    valido = False
+                End Try
+            Else
+                valido = False
+            End If
+
+        End If
         ' Marcar en Rojo
         If Not valido Then
             lbl_texto.ForeColor = System.Drawing.Color.Red

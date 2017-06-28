@@ -50,7 +50,7 @@ Public Class LabeledComboBox
             Next
 
             ' Los cambios en la tabla se aplican automaticamente al ComboBox.
-            cmb_combo.SelectedIndex = -1
+            cmb_combo.SelectedIndex = 0
             resize_box() ' Actualizar el ancho del control.
         End Set
     End Property
