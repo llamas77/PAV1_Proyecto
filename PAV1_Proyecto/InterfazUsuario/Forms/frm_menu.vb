@@ -77,23 +77,6 @@
         frm.Show()
     End Sub
 
-    '   Private Sub VentasPorVendedorMenuItem1_Click(sender As Object, e As EventArgs) Handles VentasPorVendedorToolStripMenuItem.Click
-    '   Dim frm As New frm_reporte("ventas por vendedor")
-    '       frm.Text = "Grafico de Ventas por Vendedor"
-    '       frm.Show()
-    '   End Sub
-
-    '  Private Sub VentasPorClienteMenuItem1_Click(sender As Object, e As EventArgs) Handles VentasPorClienteToolStripMenuItem.Click
-    '  Dim frm As New frm_reporte("ventas por cliente")
-    '      frm.Text = "Grafico de Ventas por Cliente"
-    '      frm.Show()
-    '  End Sub
-    '  Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GananciasPorTipoDeClienteToolStripMenuItem.Click
-    '  Dim frm As New frm_reporte("ganancias por tipo de cliente")
-    '      frm.Text = "Grafico de Ganancias por tipo de cliente"
-    '      frm.Show()
-    '  End Sub
-
     Private Sub ComprasToolStripMenuItem2_Click_1(sender As Object, e As EventArgs) Handles ComprasToolStripMenuItem2.Click
         Dim frm As New RepCompras()
         frm.Text = "Listado de Compras"
@@ -220,6 +203,12 @@
     Private Sub VentasPorTipoDeClienteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VentasPorTipoDeClienteToolStripMenuItem.Click
         Dim frm As New repEstVentaXTipoC()
         frm.Text = "Ventas por tipos de cliente"
+        frm.Show()
+    End Sub
+
+    Private Sub GananciasPorVendedorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GananciasPorVendedorToolStripMenuItem.Click
+        Dim frm As New repEstVentaXVendedor()
+        frm.Text = "Ventas por vendedor"
         frm.Show()
     End Sub
 End Class

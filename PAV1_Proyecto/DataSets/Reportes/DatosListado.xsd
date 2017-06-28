@@ -216,6 +216,14 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="ventas_por_vendedor" msprop:Generator_TableClassName="ventas_por_vendedorDataTable" msprop:Generator_TableVarName="tableventas_por_vendedor" msprop:Generator_TablePropName="ventas_por_vendedor" msprop:Generator_RowDeletingName="ventas_por_vendedorRowDeleting" msprop:Generator_RowChangingName="ventas_por_vendedorRowChanging" msprop:Generator_RowEvHandlerName="ventas_por_vendedorRowChangeEventHandler" msprop:Generator_RowDeletedName="ventas_por_vendedorRowDeleted" msprop:Generator_UserTableName="ventas_por_vendedor" msprop:Generator_RowChangedName="ventas_por_vendedorRowChanged" msprop:Generator_RowEvArgName="ventas_por_vendedorRowChangeEvent" msprop:Generator_RowClassName="ventas_por_vendedorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="monto" msprop:Generator_ColumnVarNameInTable="columnmonto" msprop:Generator_ColumnPropNameInRow="monto" msprop:Generator_ColumnPropNameInTable="montoColumn" msprop:Generator_UserColumnName="monto" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1">
