@@ -25,7 +25,6 @@
         ReinitializeViewer("PAV1_Proyecto.repEstMovXGrupo.rdlc")
         BindingSource1.DataSource = tabla
         Me.ReportViewer1.RefreshReport()
-        Me.ReportViewer1.RefreshReport
     End Sub
 
     Private Sub btn_buscar_Click(sender As Object, e As EventArgs) Handles btn_buscar.Click

@@ -82,14 +82,14 @@ Partial Class repEstMovXGrupo
         Me.ReportViewer1.Location = New System.Drawing.Point(9, 36)
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(424, 244)
+        Me.ReportViewer1.Size = New System.Drawing.Size(660, 297)
         Me.ReportViewer1.TabIndex = 21
         '
         'repEstMovXGrupo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(445, 292)
+        Me.ClientSize = New System.Drawing.Size(681, 345)
         Me.Controls.Add(Me.ReportViewer1)
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.lblLimiteSup)

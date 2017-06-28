@@ -182,6 +182,14 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="comp_ventas_fgf" msprop:Generator_TableClassName="comp_ventas_fgfDataTable" msprop:Generator_TableVarName="tablecomp_ventas_fgf" msprop:Generator_TablePropName="comp_ventas_fgf" msprop:Generator_RowDeletingName="comp_ventas_fgfRowDeleting" msprop:Generator_RowChangingName="comp_ventas_fgfRowChanging" msprop:Generator_RowEvHandlerName="comp_ventas_fgfRowChangeEventHandler" msprop:Generator_RowDeletedName="comp_ventas_fgfRowDeleted" msprop:Generator_UserTableName="comp_ventas_fgf" msprop:Generator_RowChangedName="comp_ventas_fgfRowChanged" msprop:Generator_RowEvArgName="comp_ventas_fgfRowChangeEvent" msprop:Generator_RowClassName="comp_ventas_fgfRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="mes" msprop:Generator_ColumnVarNameInTable="columnmes" msprop:Generator_ColumnPropNameInRow="mes" msprop:Generator_ColumnPropNameInTable="mesColumn" msprop:Generator_UserColumnName="mes" type="xs:int" minOccurs="0" />
+              <xs:element name="monto_ventas" msprop:Generator_ColumnVarNameInTable="columnmonto_ventas" msprop:Generator_ColumnPropNameInRow="monto_ventas" msprop:Generator_ColumnPropNameInTable="monto_ventasColumn" msprop:Generator_UserColumnName="monto_ventas" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1">
