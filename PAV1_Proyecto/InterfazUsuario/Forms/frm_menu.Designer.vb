@@ -60,6 +60,7 @@ Partial Class frm_menu
         Me.GananciasPorTipoDeClienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GananciasPorClienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VentasPorPeríodoGrupoYFamiliaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ComprasPorPeríodoGrupoYFamiliaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -75,7 +76,7 @@ Partial Class frm_menu
         '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MovimientosPorFamiliaToolStripMenuItem, Me.MovimientosPorGrupoToolStripMenuItem, Me.GananciasPorVendedorToolStripMenuItem, Me.GananciasPorTipoDeClienteToolStripMenuItem, Me.GananciasPorClienteToolStripMenuItem, Me.VentasPorPeríodoGrupoYFamiliaToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MovimientosPorFamiliaToolStripMenuItem, Me.MovimientosPorGrupoToolStripMenuItem, Me.GananciasPorVendedorToolStripMenuItem, Me.GananciasPorTipoDeClienteToolStripMenuItem, Me.GananciasPorClienteToolStripMenuItem, Me.VentasPorPeríodoGrupoYFamiliaToolStripMenuItem, Me.ComprasPorPeríodoGrupoYFamiliaToolStripMenuItem})
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem.Text = "Reportes"
@@ -306,6 +307,12 @@ Partial Class frm_menu
         Me.VentasPorPeríodoGrupoYFamiliaToolStripMenuItem.Size = New System.Drawing.Size(259, 22)
         Me.VentasPorPeríodoGrupoYFamiliaToolStripMenuItem.Text = "Ventas por período, grupo y familia"
         '
+        'ComprasPorPeríodoGrupoYFamiliaToolStripMenuItem
+        '
+        Me.ComprasPorPeríodoGrupoYFamiliaToolStripMenuItem.Name = "ComprasPorPeríodoGrupoYFamiliaToolStripMenuItem"
+        Me.ComprasPorPeríodoGrupoYFamiliaToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
+        Me.ComprasPorPeríodoGrupoYFamiliaToolStripMenuItem.Text = "Compras por período, grupo y familia"
+        '
         'frm_menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -363,4 +370,5 @@ Partial Class frm_menu
     Friend WithEvents GananciasPorTipoDeClienteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GananciasPorClienteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VentasPorPeríodoGrupoYFamiliaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ComprasPorPeríodoGrupoYFamiliaToolStripMenuItem As ToolStripMenuItem
 End Class

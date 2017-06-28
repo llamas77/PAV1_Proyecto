@@ -35,21 +35,6 @@
         Dim tabla As New DataTable
 
         Select Case tipoRep
-            Case tipo_reporte.ganancias_por_tipo_de_cliente
-                lblGanInf.Visible = True
-                lblGanSup.Visible = True
-                txt_gan_sup.Visible = True
-                txt_gan_inf.Visible = True
-                sql += "select tc.nombre , SUM(ganancia) as ganancia "
-                sql += "from tipos_cliente tc join ganancias g on tc.idTipo = g.idTipo "
-                sql += "group by tc.nombre "
-                If txt_gan_inf.Text <> "" And txt_gan_sup.Text <> "" Then
-                    sql += " having SUM(ganancia) between '" & txt_gan_inf.Text & "' and '" & txt_gan_sup.Text & "' "
-
-                End If
-
-                tabla = db.consulta_sql(sql)
-                ReinitializeViewer(bindingSource, "PAV1_Proyecto.repEstGananciasXTipoC.rdlc")
 
             Case tipo_reporte.ganancias_por_vendedor
                 lblFechaInf.Visible = True

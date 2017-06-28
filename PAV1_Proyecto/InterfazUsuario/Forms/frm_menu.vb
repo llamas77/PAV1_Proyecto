@@ -189,6 +189,12 @@
         frm.Show()
     End Sub
 
+    Private Sub ComprasPorPeríodoGrupoYFamiliaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComprasPorPeríodoGrupoYFamiliaToolStripMenuItem.Click
+        Dim frm As New repEstComprasFGF()
+        frm.Text = "Compras por período, grupo y familia"
+        frm.Show()
+    End Sub
+
     Private Sub GananciasPorTipoDeClienteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GananciasPorTipoDeClienteToolStripMenuItem.Click
         Dim frm As New repEstGananciasXTipoC()
         frm.Text = "Ganancias por tipo de cliente"

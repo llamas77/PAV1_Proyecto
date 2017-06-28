@@ -172,6 +172,12 @@
     <Compile Include="InterfazUsuario\Forms\frm_reporte.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reportes\Estadisticas\FormsEst\repEstComprasFGF.Designer.vb">
+      <DependentUpon>repEstComprasFGF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Estadisticas\FormsEst\repEstComprasFGF.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reportes\Estadisticas\FormsEst\repEstGananciasXTipoC.Designer.vb">
       <DependentUpon>repEstGananciasXTipoC.vb</DependentUpon>
     </Compile>
@@ -354,6 +360,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estadisticas\FormsEst\repEstComprasFGF.resx">
+      <DependentUpon>repEstComprasFGF.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Estadisticas\FormsEst\repEstGananciasXTipoC.resx">
       <DependentUpon>repEstGananciasXTipoC.vb</DependentUpon>
     </EmbeddedResource>
@@ -366,6 +375,7 @@
     <EmbeddedResource Include="Reportes\Estadisticas\FormsEst\repEstVentasFGF.resx">
       <DependentUpon>repEstVentasFGF.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estadisticas\repEstComprasFGF.rdlc" />
     <EmbeddedResource Include="Reportes\Estadisticas\repEstMovXFlia.rdlc" />
     <EmbeddedResource Include="Reportes\Estadisticas\repEstMovXGrupo.rdlc" />
     <EmbeddedResource Include="Reportes\Estadisticas\repEstVentasFGF.rdlc" />
