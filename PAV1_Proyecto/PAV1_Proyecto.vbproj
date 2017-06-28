@@ -208,6 +208,12 @@
     <Compile Include="Reportes\Estadisticas\FormsEst\repEstVentasFGF.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reportes\Estadisticas\FormsEst\repEstVentaXTipoC.Designer.vb">
+      <DependentUpon>repEstVentaXTipoC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Estadisticas\FormsEst\repEstVentaXTipoC.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reportes\Listados\RepClientes.Designer.vb">
       <DependentUpon>RepClientes.vb</DependentUpon>
     </Compile>
@@ -381,6 +387,9 @@
     <EmbeddedResource Include="Reportes\Estadisticas\FormsEst\repEstVentaEMP.resx">
       <DependentUpon>repEstVentaEMP.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estadisticas\FormsEst\repEstVentaXTipoC.resx">
+      <DependentUpon>repEstVentaXTipoC.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Estadisticas\repEstVentaEMP.rdlc" />
     <EmbeddedResource Include="Reportes\Estadisticas\FormsEst\repEstVentasFGF.resx">
       <DependentUpon>repEstVentasFGF.vb</DependentUpon>
@@ -389,6 +398,7 @@
     <EmbeddedResource Include="Reportes\Estadisticas\repEstMovXFlia.rdlc" />
     <EmbeddedResource Include="Reportes\Estadisticas\repEstMovXGrupo.rdlc" />
     <EmbeddedResource Include="Reportes\Estadisticas\repEstVentasFGF.rdlc" />
+    <EmbeddedResource Include="Reportes\Estadisticas\repEstVentaXTipoC.rdlc" />
     <EmbeddedResource Include="Reportes\Listados\RepClientes.resx">
       <DependentUpon>RepClientes.vb</DependentUpon>
     </EmbeddedResource>

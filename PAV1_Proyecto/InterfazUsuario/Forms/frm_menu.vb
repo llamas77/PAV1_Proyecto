@@ -216,4 +216,10 @@
         frm.Text = "Ventas de productos por equipo, marca y período"
         frm.Show()
     End Sub
+
+    Private Sub VentasPorTipoDeClienteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VentasPorTipoDeClienteToolStripMenuItem.Click
+        Dim frm As New repEstVentaXTipoC()
+        frm.Text = "Ventas por tipos de cliente"
+        frm.Show()
+    End Sub
 End Class
