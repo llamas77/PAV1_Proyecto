@@ -77,6 +77,7 @@ Public Class ControlYGrilla
                 MsgBox("Ya fue añadido a la lista.", MsgBoxStyle.Exclamation, "Aviso")
             Else
                 grilla_objeto.add_objeto(objeto)
+                ctrl_objeto.reset()
                 ctrl_objeto.Focus()
             End If
         Else
