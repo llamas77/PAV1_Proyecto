@@ -27,6 +27,7 @@ Public Class EquiposDAO
         Next
         Return lista
     End Function
+
     Public Sub insert(value As ObjetoVO, Optional db As DataBase = Nothing) Implements ObjetoDAO.insert
         If db Is Nothing Then
             db = DataBase.getInstance()

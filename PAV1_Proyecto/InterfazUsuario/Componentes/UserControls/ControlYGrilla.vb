@@ -73,8 +73,12 @@ Public Class ControlYGrilla
         ' Agregar un elemento al detalle.
         If ctrl_objeto.is_valid() Then
             Dim objeto As ObjetoVO = ctrl_objeto._objeto
-            grilla_objeto.add_objeto(objeto)
-            ctrl_objeto.Focus()
+            If grilla_objeto.get_all().Contains(objeto) Then
+                MsgBox("Ya fue añadido a la lista.", MsgBoxStyle.Exclamation, "Aviso")
+            Else
+                grilla_objeto.add_objeto(objeto)
+                ctrl_objeto.Focus()
+            End If
         Else
             MsgBox("Alguno/s de los valores ingresados no es/son válido/s.", MsgBoxStyle.Exclamation, "Aviso")
         End If
