@@ -322,6 +322,15 @@ Public Class ventaDAO
             Return "La venta debe incluir al menos un producto en su detalle."
         End If
 
+        Dim errMsg As String
+        Dim detalleDAO As New DetalleVentaDAO
+        For Each detalle In venta.detalle
+            errMsg = detalleDAO.can_insert(detalle)
+            If Not errMsg Is Nothing Then
+                Return errMsg
+            End If
+        Next
+
         Return Nothing
     End Function
 
@@ -336,12 +345,49 @@ Public Class ventaDAO
         If venta.detalle.Count = 0 Then
             Return "La venta debe incluir al menos un producto en su detalle."
         End If
+
+        Dim errMsg As String
+        Dim detalleDAO As New DetalleVentaDAO
+        Dim detalles_guardados = detalleDAO.all_from_venta(venta._id)
+
+        Dim detalles = venta.detalle.Cast(Of DetalleVentaVO)
+        For Each detalle In detalles
+            If detalle.id_venta <> venta._id Then ' Nuevo Detalle
+                If detalle.id_venta = 0 Then
+                    errMsg = detalleDAO.can_insert(detalle)
+                Else
+                    Throw New System.Exception("El ID del detalle pertenece a otra venta.")
+                End If
+            Else ' Actualiza Detalle
+                errMsg = detalleDAO.can_insert(detalle)
+            End If
+            detalles_guardados.Remove(detalle)
+            If Not errMsg Is Nothing Then
+                Return errMsg
+            End If
+        Next
+        For Each detalleG In detalles_guardados ' Los detalles que quedaron guardados pero el usuario borro.
+            errMsg = detalleDAO.can_delete(detalleG)
+            If Not errMsg Is Nothing Then
+                Return errMsg
+            End If
+        Next
+
         Return Nothing
     End Function
 
     Public Function can_delete(value As ObjetoVO) As String Implements ICanDAO.can_delete
         ' Solo los detalles de venta apuntan a venta y son borrados en cascada.
         ' Ningun otro objeto tiene FK a venta, siempre es posible borrarlo.
+        Dim venta = cast(value)
+        Dim errMsg As String
+        Dim detalleDAO As New DetalleVentaDAO
+        For Each detalle In venta.detalle
+            errMsg = detalleDAO.can_delete(detalle)
+            If Not errMsg Is Nothing Then
+                Return errMsg
+            End If
+        Next
         Return Nothing
     End Function
 End Class
