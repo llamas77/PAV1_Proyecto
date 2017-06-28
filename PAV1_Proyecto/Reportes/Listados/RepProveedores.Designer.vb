@@ -138,6 +138,7 @@ Partial Class RepProveedores
         Me.MaximumSize = New System.Drawing.Size(696, 9999)
         Me.MinimumSize = New System.Drawing.Size(696, 400)
         Me.Name = "RepProveedores"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RepProveedores"
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).EndInit()

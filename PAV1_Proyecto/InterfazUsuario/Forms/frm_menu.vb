@@ -1,19 +1,6 @@
 ﻿Public Class frm_menu
 
-    Private Sub btn_vendedores_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-
-    ' Version antigua de Ganancias:
-
-    'Private Sub btn_ganancias_Click(sender As Object, e As EventArgs) Handles btn_ganancias.Click
-    '   Dim frm As New frm_abm_generico(New GananciaDAO)
-    '    frm.Text = "ABM Ganancias"
-    '    frm.Show()
-    'End Sub
-
-
+    Dim frm_hijo As Form
 
     Private Sub FamiliasDeProductosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FamiliasDeProductosToolStripMenuItem.Click
         Dim frm As New frm_abm_generico(New FamiliaDAO)
@@ -148,12 +135,41 @@
     Private Sub ListadoToolStripMenuItem4_Click(sender As Object, e As EventArgs) Handles ListadoToolStripMenuItem4.Click
         Dim frm As New RepProveedores()
         frm.Text = "Listado de Proveedores"
-        frm.Show()
+        mostrar(frm)
     End Sub
 
     Private Sub ListadoDeGruposToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListadoDeGruposToolStripMenuItem.Click
         Dim frm As New RepGrupos()
         frm.Text = "Listado de Grupos"
+        frm.Show()
+    End Sub
+
+    Private Sub frm_menu_GotFocus(sender As Object, e As EventArgs) Handles Me.GotFocus
+        If Not frm_hijo Is Nothing Then
+            If Application.OpenForms.Count = 1 Then ' Solo esta abierto el Menu.
+                frm_hijo = Nothing
+                Me.MenuStrip1.Enabled = True
+            Else
+                frm_hijo.BringToFront()
+                Me.MenuStrip1.Enabled = False
+            End If
+        End If
+        Me.MenuStrip1.Enabled = True
+    End Sub
+
+    Private Sub frm_menu_SizeChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.SizeChanged
+        If Not frm_hijo Is Nothing Then
+            If Me.WindowState = FormWindowState.Minimized Then
+                frm_hijo.Visible = False
+            Else
+                frm_hijo.Visible = True
+                frm_hijo.BringToFront()
+            End If
+        End If
+    End Sub
+
+    Private Sub mostrar(frm As Form)
+        frm_hijo = frm
         frm.Show()
     End Sub
 End Class
