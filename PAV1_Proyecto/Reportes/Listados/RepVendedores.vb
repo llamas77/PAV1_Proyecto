@@ -1,4 +1,5 @@
 ﻿Public Class RepVendedores
+
     Private Sub RepVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim ctrl_list As New List(Of Campo)
         ctrl_list.Add(New Campo With {._id = "nombre", ._name = "Nombre"})
@@ -87,10 +88,21 @@
 
     End Sub
 
-    Private Sub repCompras_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+    Private Sub repCompras_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Select Case e.KeyCode
             Case Keys.Escape
                 Me.Close()
         End Select
+    End Sub
+
+    Private Sub PrintDocument1_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) _
+        Handles PrintDocument1.PrintPage
+
+        Dim argumentosImpresion As New PaintEventArgs(e.Graphics, New Rectangle(New Point(0, 0), grid_datos.Size))
+        Me.InvokePaint(grid_datos, argumentosImpresion)
+    End Sub
+
+    Private Sub btn_imprimir_Click(sender As Object, e As EventArgs)
+        PrintDocument1.Print()
     End Sub
 End Class

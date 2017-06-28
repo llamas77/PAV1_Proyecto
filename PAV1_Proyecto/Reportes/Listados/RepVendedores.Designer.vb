@@ -32,6 +32,8 @@ Partial Class RepVendedores
         Me.direccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.telefono = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.monto_ventas = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btn_imprimir = New System.Windows.Forms.Button()
+        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -123,11 +125,21 @@ Partial Class RepVendedores
         Me.monto_ventas.Name = "monto_ventas"
         Me.monto_ventas.ReadOnly = True
         '
+        'btn_imprimir
+        '
+        Me.btn_imprimir.Location = New System.Drawing.Point(300, 154)
+        Me.btn_imprimir.Name = "btn_imprimir"
+        Me.btn_imprimir.Size = New System.Drawing.Size(100, 33)
+        Me.btn_imprimir.TabIndex = 13
+        Me.btn_imprimir.Text = "Imprimir"
+        Me.btn_imprimir.UseVisualStyleBackColor = True
+        '
         'RepVendedores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(679, 540)
+        Me.Controls.Add(Me.btn_imprimir)
         Me.Controls.Add(Me.lbl_resultados)
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
@@ -150,4 +162,6 @@ Partial Class RepVendedores
     Friend WithEvents direccion As DataGridViewTextBoxColumn
     Friend WithEvents telefono As DataGridViewTextBoxColumn
     Friend WithEvents monto_ventas As DataGridViewTextBoxColumn
+    Friend WithEvents btn_imprimir As Button
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
 End Class
