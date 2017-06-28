@@ -56,17 +56,13 @@ Public Class LabeledTextBox
     Public Function is_valid() As Boolean Implements Validable.is_valid
         Dim valido = True
         If _required Then
-            If _value = "" Then
+            If txt_caja.Text.Trim = "" Then
                 ' La longitud máxima y minima se cargan en la máscara, si esta está completa es valido.
                 valido = False
             End If
-            If _numeric And Not IsNumeric(_value) Then
-                valido = False
-            End If
-        Else
-            If _numeric And Not IsNumeric(_value) Then
-                valido = False
-            End If
+        End If
+        If _numeric And Not IsNumeric(_value) Then
+            valido = False
         End If
         If _min_lenght > 0 And _value.ToString.Length < _min_lenght Then
             valido = False
