@@ -198,6 +198,16 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="venta_emp" msprop:Generator_TableClassName="venta_empDataTable" msprop:Generator_TableVarName="tableventa_emp" msprop:Generator_TablePropName="venta_emp" msprop:Generator_RowDeletingName="venta_empRowDeleting" msprop:Generator_RowChangingName="venta_empRowChanging" msprop:Generator_RowEvHandlerName="venta_empRowChangeEventHandler" msprop:Generator_RowDeletedName="venta_empRowDeleted" msprop:Generator_UserTableName="venta_emp" msprop:Generator_RowChangedName="venta_empRowChanged" msprop:Generator_RowEvArgName="venta_empRowChangeEvent" msprop:Generator_RowClassName="venta_empRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombre_marca" msprop:Generator_ColumnVarNameInTable="columnnombre_marca" msprop:Generator_ColumnPropNameInRow="nombre_marca" msprop:Generator_ColumnPropNameInTable="nombre_marcaColumn" msprop:Generator_UserColumnName="nombre_marca" type="xs:string" minOccurs="0" />
+              <xs:element name="modelo" msprop:Generator_ColumnVarNameInTable="columnmodelo" msprop:Generator_ColumnPropNameInRow="modelo" msprop:Generator_ColumnPropNameInTable="modeloColumn" msprop:Generator_UserColumnName="modelo" type="xs:string" minOccurs="0" />
+              <xs:element name="cantidad_ventas" msprop:Generator_ColumnVarNameInTable="columncantidad_ventas" msprop:Generator_ColumnPropNameInRow="cantidad_ventas" msprop:Generator_ColumnPropNameInTable="cantidad_ventasColumn" msprop:Generator_UserColumnName="cantidad_ventas" type="xs:int" minOccurs="0" />
+              <xs:element name="monto_ventas" msprop:Generator_ColumnVarNameInTable="columnmonto_ventas" msprop:Generator_ColumnPropNameInRow="monto_ventas" msprop:Generator_ColumnPropNameInTable="monto_ventasColumn" msprop:Generator_UserColumnName="monto_ventas" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1">

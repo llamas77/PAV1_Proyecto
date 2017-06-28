@@ -1,10 +1,9 @@
-﻿Public Class repEstComprasFGF
+﻿Public Class repEstVentaEMP
     Private Sub RepGrupos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim ctrl_list As New List(Of Campo)
-        ctrl_list.Add(New Campo With {._id = "familia", ._name = "Familia", ._maskType = Campo.MaskType.comboBox,
-                      ._objetoDAO = New FamiliaDAO})
-        ctrl_list.Add(New Campo With {._id = "grupo", ._name = "Grupo", ._maskType = Campo.MaskType.comboBox,
-                      ._objetoDAO = New GrupoDAO})
+        ctrl_list.Add(New Campo With {._id = "marca", ._name = "Marca", ._maskType = Campo.MaskType.comboBox,
+                      ._objetoDAO = New MarcaDAO})
+        ctrl_list.Add(New Campo With {._id = "modelo", ._name = "Modelo"})
         ctrl_list.Add(New Campo With {._id = "fecha_desde", ._name = "Desde", ._maskType = Campo.MaskType.fecha})
         ctrl_list.Add(New Campo With {._id = "fecha_hasta", ._name = "Hasta", ._maskType = Campo.MaskType.fecha})
         For Each campo In ctrl_list
@@ -24,43 +23,46 @@
             filtros(campo._id) = campo._value
         Next
 
-        Dim sql = "SELECT MONTH(c.fechaCompra) as mes, SUM(dc.cantidad * dc.costo) as monto_compras "
-        sql &= "FROM compras c "
-        sql &= "JOIN detalle_compras dc ON c.idCompra = dc.idCompra "
-        sql &= "JOIN productos p ON dc.codigoProducto = p.codigoProducto "
-        sql &= "JOIN grupos g ON p.idGrupo = g.idGrupo "
+
+        Dim sql = "SELECT m.nombre as nombre_marca, e.modelo, ISNULL(SUM(dv.cantidad),0) as cantidad_ventas, ISNULL(SUM(dv.cantidad * dv.precio),0) as monto_ventas "
+        sql &= "FROM equipos e "
+        sql &= "JOIN marcas m ON e.idMarca = m.idMarca "
+        sql &= "LEFT JOIN productosxequipos pxe ON e.id = pxe.idEquipo "
+        sql &= "LEFT JOIN productos p ON p.codigoProducto = pxe.codigoProducto "
+        sql &= "LEFT JOIN detalleVentas dv ON p.codigoProducto = dv.codigoProducto "
+        sql &= "LEFT JOIN ventas v ON dv.idVenta = v.idVenta "
+
 
         Dim hay_where = False
-        If Not filtros("familia") Is Nothing Then
+        If Not filtros("marca") Is Nothing Then
             sql &= IIf(hay_where, " AND ", " WHERE ")
-            With DirectCast(filtros("familia"), FamiliaVO)
-                sql &= " g.idFamilia=" & ._id
+            With DirectCast(filtros("marca"), MarcaVO)
+                sql &= " e.idMarca=" & ._id
             End With
             hay_where = True
         End If
 
-        If Not filtros("grupo") Is Nothing Then
+        If Not filtros("modelo") Is Nothing Then
             sql &= IIf(hay_where, " AND ", " WHERE ")
-            With DirectCast(filtros("grupo"), GrupoVO)
-                sql &= " p.idGrupo=" & ._id
-            End With
+            sql &= " e.modelo LIKE '%" & filtros("modelo") & "%'"
             hay_where = True
         End If
+
 
 
         If Not filtros("fecha_desde") = "/  /" Then
             sql &= IIf(hay_where, " AND ", " WHERE ")
-            sql &= " c.fechaCompra >= convert(date,'" & filtros("fecha_desde") & "', 103) "
+            sql &= " v.fechaVenta >= convert(date,'" & filtros("fecha_desde") & "', 103) "
             hay_where = True
         End If
         If Not filtros("fecha_hasta") = "/  /" Then
             sql &= IIf(hay_where, " AND ", " WHERE ")
-            sql &= " c.fechaCompra <= convert(date,'" & filtros("fecha_hasta") & "', 103) "
+            sql &= " v.fechaVenta <= convert(date,'" & filtros("fecha_hasta") & "', 103) "
             hay_where = True
         End If
 
+        sql &= "GROUP BY m.nombre, e.modelo"
 
-        sql &= " GROUP BY MONTH(c.fechaCompra)"
 
 
         'If Not filtros("nombre") Is Nothing Then
@@ -73,7 +75,7 @@
         Dim response As DataTable = db.consulta_sql(sql)
 
 
-        ReinitializeViewer("PAV1_Proyecto.repEstComprasFGF.rdlc")
+        ReinitializeViewer("PAV1_Proyecto.repEstVentaEMP.rdlc")
         BindingSource1.DataSource = response
         Me.ReportViewer1.RefreshReport()
 

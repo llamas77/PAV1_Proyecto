@@ -196,6 +196,12 @@
     <Compile Include="Reportes\Estadisticas\FormsEst\repEstMovXGrupo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reportes\Estadisticas\FormsEst\repEstVentaEMP.Designer.vb">
+      <DependentUpon>repEstVentaEMP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Estadisticas\FormsEst\repEstVentaEMP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reportes\Estadisticas\FormsEst\repEstVentasFGF.Designer.vb">
       <DependentUpon>repEstVentasFGF.vb</DependentUpon>
     </Compile>
@@ -372,6 +378,10 @@
     <EmbeddedResource Include="Reportes\Estadisticas\FormsEst\repEstMovXGrupo.resx">
       <DependentUpon>repEstMovXGrupo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estadisticas\FormsEst\repEstVentaEMP.resx">
+      <DependentUpon>repEstVentaEMP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estadisticas\repEstVentaEMP.rdlc" />
     <EmbeddedResource Include="Reportes\Estadisticas\FormsEst\repEstVentasFGF.resx">
       <DependentUpon>repEstVentasFGF.vb</DependentUpon>
     </EmbeddedResource>

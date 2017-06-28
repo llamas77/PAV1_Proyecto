@@ -210,4 +210,10 @@
             End If
         End With
     End Sub
+
+    Private Sub VentasPorProductosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VentasPorProductosToolStripMenuItem.Click
+        Dim frm As New repEstVentaEMP()
+        frm.Text = "Ventas de productos por equipo, marca y período"
+        frm.Show()
+    End Sub
 End Class
