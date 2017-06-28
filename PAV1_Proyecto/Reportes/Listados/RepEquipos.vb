@@ -14,8 +14,18 @@
     Private Sub btn_buscar_Click(sender As Object, e As EventArgs) Handles btn_buscar.Click
         buscar()
     End Sub
-
+    Private Function validar_filtros() As Boolean
+        Dim valido = True
+        For Each campo As Validable In panel_control.Controls
+            valido = IIf(campo.is_valid, valido, False)
+        Next
+        Return valido
+    End Function
     Private Sub buscar()
+        If Not validar_filtros() Then
+            MsgBox("Algun/os campos de filtro son invalidos.")
+            Exit Sub
+        End If
         Dim db = DataBase.getInstance()
         Dim filtros As New Dictionary(Of String, Object)
         For Each campo As ObjetoCampo In panel_control.Controls

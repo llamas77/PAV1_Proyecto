@@ -19,8 +19,18 @@
     Private Sub btn_buscar_Click(sender As Object, e As EventArgs) Handles btn_buscar.Click
         buscar()
     End Sub
-
+    Private Function validar_filtros() As Boolean
+        Dim valido = True
+        For Each campo As Validable In panel_control.Controls
+            valido = IIf(campo.is_valid, valido, False)
+        Next
+        Return valido
+    End Function
     Private Sub buscar()
+        If Not validar_filtros() Then
+            MsgBox("Algun/os campos de filtro son invalidos.")
+            Exit Sub
+        End If
         Dim db = DataBase.getInstance()
         Dim filtros As New Dictionary(Of String, Object)
         For Each campo As ObjetoCampo In panel_control.Controls
@@ -105,5 +115,11 @@
 
     Private Sub btn_imprimir_Click_1(sender As Object, e As EventArgs) Handles btn_imprimir.Click
         PrintDocument1.Print()
+    End Sub
+
+    Private Sub btn_limpiar_Click(sender As Object, e As EventArgs) Handles btn_limpiar.Click
+        For Each campo As Control In panel_control.Controls
+            campo.ResetText()
+        Next
     End Sub
 End Class
