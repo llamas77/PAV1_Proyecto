@@ -21,6 +21,7 @@
         ctrl_list.Add(New Campo With {._id = "stock_min", ._name = "Stock Min.", ._numeric = True})
         ctrl_list.Add(New Campo With {._id = "ubicacion", ._name = "Ubicacion"})
         ctrl_list.Add(New Campo With {._id = "stock_max", ._name = "Stock Max.", ._numeric = True})
+        ctrl_list.Add(New Campo With {._id = "codigo", ._name = "Código"})
 
 
         For Each campo In ctrl_list
@@ -89,6 +90,11 @@
             sql &= " p.stock < p.nivelReposicion "
             hay_where = True
         End If
+        If Not filtros("codigo") Is Nothing Then
+            sql &= IIf(hay_where, " AND ", " WHERE ")
+            sql &= " p.codigoProducto LIKE '%" & filtros("codigo") & "%' "
+            hay_where = True
+        End If
         If Not filtros("ubicacion") Is Nothing Then
             sql &= IIf(hay_where, " AND ", " WHERE ")
             sql &= " p.ubicacion LIKE '%" & filtros("ubicacion") & "%' "
@@ -138,5 +144,11 @@
             Case Keys.Escape
                 Me.Close()
         End Select
+    End Sub
+
+    Private Sub btn_limpiar_Click(sender As Object, e As EventArgs) Handles btn_limpiar.Click
+        For Each campo As Control In panel_control.Controls
+            campo.ResetText()
+        Next
     End Sub
 End Class

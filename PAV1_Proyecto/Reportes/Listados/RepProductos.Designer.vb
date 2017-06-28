@@ -34,13 +34,14 @@ Partial Class RepProductos
         Me.stock = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nivel_reposicion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ubicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btn_limpiar = New System.Windows.Forms.Button()
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lbl_resultados
         '
         Me.lbl_resultados.AutoSize = True
-        Me.lbl_resultados.Location = New System.Drawing.Point(12, 226)
+        Me.lbl_resultados.Location = New System.Drawing.Point(12, 263)
         Me.lbl_resultados.Name = "lbl_resultados"
         Me.lbl_resultados.Size = New System.Drawing.Size(91, 17)
         Me.lbl_resultados.TabIndex = 8
@@ -48,7 +49,7 @@ Partial Class RepProductos
         '
         'btn_buscar
         '
-        Me.btn_buscar.Location = New System.Drawing.Point(450, 196)
+        Me.btn_buscar.Location = New System.Drawing.Point(434, 233)
         Me.btn_buscar.Name = "btn_buscar"
         Me.btn_buscar.Size = New System.Drawing.Size(153, 34)
         Me.btn_buscar.TabIndex = 6
@@ -59,7 +60,7 @@ Partial Class RepProductos
         '
         Me.panel_control.Location = New System.Drawing.Point(12, 12)
         Me.panel_control.Name = "panel_control"
-        Me.panel_control.Size = New System.Drawing.Size(652, 178)
+        Me.panel_control.Size = New System.Drawing.Size(652, 215)
         Me.panel_control.TabIndex = 5
         '
         'grid_datos
@@ -74,13 +75,13 @@ Partial Class RepProductos
         Me.grid_datos.BackgroundColor = System.Drawing.Color.White
         Me.grid_datos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.grid_datos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.codigo, Me.nombre_grupo, Me.nombre_familia, Me.costo, Me.fecha_lista, Me.stock, Me.nivel_reposicion, Me.ubicacion})
-        Me.grid_datos.Location = New System.Drawing.Point(11, 246)
+        Me.grid_datos.Location = New System.Drawing.Point(11, 283)
         Me.grid_datos.MultiSelect = False
         Me.grid_datos.Name = "grid_datos"
         Me.grid_datos.ReadOnly = True
         Me.grid_datos.RowTemplate.Height = 24
         Me.grid_datos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.grid_datos.Size = New System.Drawing.Size(791, 197)
+        Me.grid_datos.Size = New System.Drawing.Size(791, 236)
         Me.grid_datos.TabIndex = 7
         '
         'codigo
@@ -139,11 +140,21 @@ Partial Class RepProductos
         Me.ubicacion.Name = "ubicacion"
         Me.ubicacion.ReadOnly = True
         '
+        'btn_limpiar
+        '
+        Me.btn_limpiar.Location = New System.Drawing.Point(593, 233)
+        Me.btn_limpiar.Name = "btn_limpiar"
+        Me.btn_limpiar.Size = New System.Drawing.Size(71, 34)
+        Me.btn_limpiar.TabIndex = 9
+        Me.btn_limpiar.Text = "Limpiar"
+        Me.btn_limpiar.UseVisualStyleBackColor = True
+        '
         'RepProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(812, 455)
+        Me.ClientSize = New System.Drawing.Size(812, 531)
+        Me.Controls.Add(Me.btn_limpiar)
         Me.Controls.Add(Me.lbl_resultados)
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
@@ -171,4 +182,5 @@ Partial Class RepProductos
     Friend WithEvents stock As DataGridViewTextBoxColumn
     Friend WithEvents nivel_reposicion As DataGridViewTextBoxColumn
     Friend WithEvents ubicacion As DataGridViewTextBoxColumn
+    Friend WithEvents btn_limpiar As Button
 End Class

@@ -28,6 +28,7 @@ Partial Class RepEquipos
         Me.grid_datos = New System.Windows.Forms.DataGridView()
         Me.nombre_marca = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.modelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btn_limpiar = New System.Windows.Forms.Button()
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -42,7 +43,7 @@ Partial Class RepEquipos
         '
         'btn_buscar
         '
-        Me.btn_buscar.Location = New System.Drawing.Point(199, 83)
+        Me.btn_buscar.Location = New System.Drawing.Point(122, 83)
         Me.btn_buscar.Name = "btn_buscar"
         Me.btn_buscar.Size = New System.Drawing.Size(153, 33)
         Me.btn_buscar.TabIndex = 10
@@ -91,11 +92,21 @@ Partial Class RepEquipos
         Me.modelo.Name = "modelo"
         Me.modelo.ReadOnly = True
         '
+        'btn_limpiar
+        '
+        Me.btn_limpiar.Location = New System.Drawing.Point(281, 82)
+        Me.btn_limpiar.Name = "btn_limpiar"
+        Me.btn_limpiar.Size = New System.Drawing.Size(71, 34)
+        Me.btn_limpiar.TabIndex = 13
+        Me.btn_limpiar.Text = "Limpiar"
+        Me.btn_limpiar.UseVisualStyleBackColor = True
+        '
         'RepEquipos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(364, 324)
+        Me.Controls.Add(Me.btn_limpiar)
         Me.Controls.Add(Me.lbl_resultados)
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
@@ -117,4 +128,5 @@ Partial Class RepEquipos
     Friend WithEvents grid_datos As DataGridView
     Friend WithEvents nombre_marca As DataGridViewTextBoxColumn
     Friend WithEvents modelo As DataGridViewTextBoxColumn
+    Friend WithEvents btn_limpiar As Button
 End Class

@@ -31,6 +31,7 @@ Partial Class RepProveedores
         Me.telefono = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.email = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.monto_compras = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btn_limpiar = New System.Windows.Forms.Button()
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -45,7 +46,7 @@ Partial Class RepProveedores
         '
         'btn_buscar
         '
-        Me.btn_buscar.Location = New System.Drawing.Point(419, 163)
+        Me.btn_buscar.Location = New System.Drawing.Point(434, 163)
         Me.btn_buscar.Name = "btn_buscar"
         Me.btn_buscar.Size = New System.Drawing.Size(153, 33)
         Me.btn_buscar.TabIndex = 14
@@ -115,11 +116,21 @@ Partial Class RepProveedores
         Me.monto_compras.Name = "monto_compras"
         Me.monto_compras.ReadOnly = True
         '
+        'btn_limpiar
+        '
+        Me.btn_limpiar.Location = New System.Drawing.Point(593, 162)
+        Me.btn_limpiar.Name = "btn_limpiar"
+        Me.btn_limpiar.Size = New System.Drawing.Size(71, 34)
+        Me.btn_limpiar.TabIndex = 17
+        Me.btn_limpiar.Text = "Limpiar"
+        Me.btn_limpiar.UseVisualStyleBackColor = True
+        '
         'RepProveedores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(678, 575)
+        Me.Controls.Add(Me.btn_limpiar)
         Me.Controls.Add(Me.lbl_resultados)
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
@@ -144,4 +155,5 @@ Partial Class RepProveedores
     Friend WithEvents telefono As DataGridViewTextBoxColumn
     Friend WithEvents email As DataGridViewTextBoxColumn
     Friend WithEvents monto_compras As DataGridViewTextBoxColumn
+    Friend WithEvents btn_limpiar As Button
 End Class

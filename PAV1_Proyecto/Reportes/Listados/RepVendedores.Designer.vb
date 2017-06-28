@@ -34,6 +34,7 @@ Partial Class RepVendedores
         Me.monto_ventas = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btn_imprimir = New System.Windows.Forms.Button()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
+        Me.btn_limpiar = New System.Windows.Forms.Button()
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -48,7 +49,7 @@ Partial Class RepVendedores
         '
         'btn_buscar
         '
-        Me.btn_buscar.Location = New System.Drawing.Point(419, 154)
+        Me.btn_buscar.Location = New System.Drawing.Point(434, 154)
         Me.btn_buscar.Name = "btn_buscar"
         Me.btn_buscar.Size = New System.Drawing.Size(153, 33)
         Me.btn_buscar.TabIndex = 10
@@ -127,7 +128,7 @@ Partial Class RepVendedores
         '
         'btn_imprimir
         '
-        Me.btn_imprimir.Location = New System.Drawing.Point(300, 154)
+        Me.btn_imprimir.Location = New System.Drawing.Point(328, 154)
         Me.btn_imprimir.Name = "btn_imprimir"
         Me.btn_imprimir.Size = New System.Drawing.Size(100, 33)
         Me.btn_imprimir.TabIndex = 13
@@ -137,11 +138,21 @@ Partial Class RepVendedores
         'PrintDocument1
         '
         '
+        'btn_limpiar
+        '
+        Me.btn_limpiar.Location = New System.Drawing.Point(593, 154)
+        Me.btn_limpiar.Name = "btn_limpiar"
+        Me.btn_limpiar.Size = New System.Drawing.Size(71, 34)
+        Me.btn_limpiar.TabIndex = 14
+        Me.btn_limpiar.Text = "Limpiar"
+        Me.btn_limpiar.UseVisualStyleBackColor = True
+        '
         'RepVendedores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(679, 455)
+        Me.Controls.Add(Me.btn_limpiar)
         Me.Controls.Add(Me.btn_imprimir)
         Me.Controls.Add(Me.lbl_resultados)
         Me.Controls.Add(Me.btn_buscar)
@@ -170,4 +181,5 @@ Partial Class RepVendedores
     Friend WithEvents monto_ventas As DataGridViewTextBoxColumn
     Friend WithEvents btn_imprimir As Button
     Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents btn_limpiar As Button
 End Class

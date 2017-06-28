@@ -28,6 +28,7 @@ Partial Class RepGrupos
         Me.grid_datos = New System.Windows.Forms.DataGridView()
         Me.nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nombre_familia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btn_limpiar = New System.Windows.Forms.Button()
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -42,7 +43,7 @@ Partial Class RepGrupos
         '
         'btn_buscar
         '
-        Me.btn_buscar.Location = New System.Drawing.Point(207, 81)
+        Me.btn_buscar.Location = New System.Drawing.Point(126, 81)
         Me.btn_buscar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btn_buscar.Name = "btn_buscar"
         Me.btn_buscar.Size = New System.Drawing.Size(153, 33)
@@ -94,16 +95,26 @@ Partial Class RepGrupos
         Me.nombre_familia.Name = "nombre_familia"
         Me.nombre_familia.ReadOnly = True
         '
+        'btn_limpiar
+        '
+        Me.btn_limpiar.Location = New System.Drawing.Point(289, 80)
+        Me.btn_limpiar.Name = "btn_limpiar"
+        Me.btn_limpiar.Size = New System.Drawing.Size(71, 34)
+        Me.btn_limpiar.TabIndex = 17
+        Me.btn_limpiar.Text = "Limpiar"
+        Me.btn_limpiar.UseVisualStyleBackColor = True
+        '
         'RepGrupos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(379, 321)
+        Me.Controls.Add(Me.btn_limpiar)
         Me.Controls.Add(Me.lbl_resultados)
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
         Me.Controls.Add(Me.grid_datos)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximumSize = New System.Drawing.Size(397, 9999)
         Me.MinimumSize = New System.Drawing.Size(397, 300)
         Me.Name = "RepGrupos"
@@ -121,4 +132,5 @@ Partial Class RepGrupos
     Friend WithEvents grid_datos As DataGridView
     Friend WithEvents nombre As DataGridViewTextBoxColumn
     Friend WithEvents nombre_familia As DataGridViewTextBoxColumn
+    Friend WithEvents btn_limpiar As Button
 End Class

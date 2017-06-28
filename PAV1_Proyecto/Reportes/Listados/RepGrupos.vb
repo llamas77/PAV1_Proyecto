@@ -57,10 +57,14 @@
 
     End Sub
 
-    Private Sub repCompras_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+    Private Sub repCompras_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Select Case e.KeyCode
             Case Keys.Escape
                 Me.Close()
         End Select
+    End Sub
+
+    Private Sub btn_limpiar_Click(sender As Object, e As EventArgs) Handles btn_limpiar.Click
+
     End Sub
 End Class

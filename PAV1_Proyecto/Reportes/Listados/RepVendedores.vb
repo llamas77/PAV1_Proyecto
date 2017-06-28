@@ -95,8 +95,8 @@
         End Select
     End Sub
 
-    Private Sub PrintDocument1_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) _
-        Handles PrintDocument1.PrintPage
+    Private Sub PrintDocument1_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
+
 
         Dim argumentosImpresion As New PaintEventArgs(e.Graphics, New Rectangle(New Point(0, 0), grid_datos.Size))
         Me.InvokePaint(grid_datos, argumentosImpresion)
@@ -104,5 +104,9 @@
 
     Private Sub btn_imprimir_Click(sender As Object, e As EventArgs)
         PrintDocument1.Print()
+    End Sub
+
+    Private Sub btn_limpiar_Click(sender As Object, e As EventArgs) Handles btn_limpiar.Click
+
     End Sub
 End Class
