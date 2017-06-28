@@ -49,7 +49,7 @@
                 End If
 
                 tabla = db.consulta_sql(sql)
-                ReinitializeViewer("PAV1_Proyecto.repEstGananciasXTipoC.rdlc")
+                ReinitializeViewer(bindingSource, "PAV1_Proyecto.repEstGananciasXTipoC.rdlc")
 
             Case tipo_reporte.ganancias_por_vendedor
                 lblFechaInf.Visible = True
@@ -69,7 +69,7 @@
 
 
                 tabla = db.consulta_sql(sql)
-                ReinitializeViewer("PAV1_Proyecto.repEstGananciasXVendedor.rdlc")
+                ReinitializeViewer(bindingSource, "PAV1_Proyecto.repEstGananciasXVendedor.rdlc")
 
             Case tipo_reporte.ganancias_por_cliente
                 lblFechaInf.Visible = True
@@ -86,7 +86,7 @@
                 sql += "group by nombre"
 
                 tabla = db.consulta_sql(sql)
-                ReinitializeViewer("PAV1_Proyecto.repEstGananciasXCliente.rdlc")
+                ReinitializeViewer(bindingSource, "PAV1_Proyecto.repEstGananciasXCliente.rdlc")
         End Select
 
         bindingSource.DataSource = tabla
@@ -95,7 +95,7 @@
 
     End Sub
 
-    Private Sub ReinitializeViewer(ByVal tsReport As String)
+    Private Sub ReinitializeViewer(ByRef bindingSource As BindingSource, ByVal tsReport As String)
 
         Dim ReportDataSourceX = New Microsoft.Reporting.WinForms.ReportDataSource()
 
