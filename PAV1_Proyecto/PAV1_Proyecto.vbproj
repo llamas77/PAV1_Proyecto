@@ -166,12 +166,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Interfaces\ObjetoCampo.vb" />
-    <Compile Include="InterfazUsuario\Forms\frm_reporte.Designer.vb">
-      <DependentUpon>frm_reporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InterfazUsuario\Forms\frm_reporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Reportes\Estadisticas\FormsEst\repEstComprasFGF.Designer.vb">
       <DependentUpon>repEstComprasFGF.vb</DependentUpon>
     </Compile>
@@ -369,9 +363,6 @@
     <EmbeddedResource Include="InterfazUsuario\Forms\frm_menu.resx">
       <DependentUpon>frm_menu.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InterfazUsuario\Forms\frm_reporte.resx">
-      <DependentUpon>frm_reporte.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -433,9 +424,7 @@
     <EmbeddedResource Include="Reportes\Listados\RepVentas.resx">
       <DependentUpon>RepVentas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\Estadisticas\repEstGananciasXCliente.rdlc" />
     <EmbeddedResource Include="Reportes\Estadisticas\repEstGananciasXTipoC.rdlc" />
-    <EmbeddedResource Include="Reportes\Estadisticas\repEstGananciasXVendedor.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSets\GrillaCompras.xsc">
