@@ -118,6 +118,8 @@ Partial Class RepCompras
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
         Me.Controls.Add(Me.grid_datos)
+        Me.MaximumSize = New System.Drawing.Size(690, 9999)
+        Me.MinimumSize = New System.Drawing.Size(690, 400)
         Me.Name = "RepCompras"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RepCompras"

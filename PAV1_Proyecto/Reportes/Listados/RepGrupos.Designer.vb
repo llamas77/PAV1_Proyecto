@@ -34,29 +34,28 @@ Partial Class RepGrupos
         'lbl_resultados
         '
         Me.lbl_resultados.AutoSize = True
-        Me.lbl_resultados.Location = New System.Drawing.Point(15, 79)
-        Me.lbl_resultados.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbl_resultados.Location = New System.Drawing.Point(20, 97)
         Me.lbl_resultados.Name = "lbl_resultados"
-        Me.lbl_resultados.Size = New System.Drawing.Size(69, 13)
+        Me.lbl_resultados.Size = New System.Drawing.Size(91, 17)
         Me.lbl_resultados.TabIndex = 16
         Me.lbl_resultados.Text = "0 Resultados"
         '
         'btn_buscar
         '
-        Me.btn_buscar.Location = New System.Drawing.Point(155, 66)
-        Me.btn_buscar.Margin = New System.Windows.Forms.Padding(2)
+        Me.btn_buscar.Location = New System.Drawing.Point(207, 81)
+        Me.btn_buscar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btn_buscar.Name = "btn_buscar"
-        Me.btn_buscar.Size = New System.Drawing.Size(115, 27)
+        Me.btn_buscar.Size = New System.Drawing.Size(153, 33)
         Me.btn_buscar.TabIndex = 14
         Me.btn_buscar.Text = "Buscar"
         Me.btn_buscar.UseVisualStyleBackColor = True
         '
         'panel_control
         '
-        Me.panel_control.Location = New System.Drawing.Point(15, 9)
-        Me.panel_control.Margin = New System.Windows.Forms.Padding(2)
+        Me.panel_control.Location = New System.Drawing.Point(20, 11)
+        Me.panel_control.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.panel_control.Name = "panel_control"
-        Me.panel_control.Size = New System.Drawing.Size(255, 53)
+        Me.panel_control.Size = New System.Drawing.Size(340, 65)
         Me.panel_control.TabIndex = 13
         '
         'grid_datos
@@ -71,14 +70,14 @@ Partial Class RepGrupos
         Me.grid_datos.BackgroundColor = System.Drawing.Color.White
         Me.grid_datos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.grid_datos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.nombre, Me.nombre_familia})
-        Me.grid_datos.Location = New System.Drawing.Point(15, 98)
-        Me.grid_datos.Margin = New System.Windows.Forms.Padding(2)
+        Me.grid_datos.Location = New System.Drawing.Point(20, 121)
+        Me.grid_datos.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.grid_datos.MultiSelect = False
         Me.grid_datos.Name = "grid_datos"
         Me.grid_datos.ReadOnly = True
         Me.grid_datos.RowTemplate.Height = 24
         Me.grid_datos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.grid_datos.Size = New System.Drawing.Size(255, 154)
+        Me.grid_datos.Size = New System.Drawing.Size(340, 190)
         Me.grid_datos.TabIndex = 15
         '
         'nombre
@@ -86,25 +85,29 @@ Partial Class RepGrupos
         Me.nombre.HeaderText = "Grupo"
         Me.nombre.Name = "nombre"
         Me.nombre.ReadOnly = True
-        Me.nombre.Width = 61
+        Me.nombre.Width = 77
         '
         'nombre_familia
         '
+        Me.nombre_familia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.nombre_familia.HeaderText = "Familia"
         Me.nombre_familia.Name = "nombre_familia"
         Me.nombre_familia.ReadOnly = True
-        Me.nombre_familia.Width = 64
         '
         'RepGrupos
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 261)
+        Me.ClientSize = New System.Drawing.Size(379, 321)
         Me.Controls.Add(Me.lbl_resultados)
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
         Me.Controls.Add(Me.grid_datos)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MaximumSize = New System.Drawing.Size(397, 9999)
+        Me.MinimumSize = New System.Drawing.Size(397, 300)
         Me.Name = "RepGrupos"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RepGrupos"
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

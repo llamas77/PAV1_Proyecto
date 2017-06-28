@@ -100,6 +100,8 @@ Partial Class RepEquipos
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
         Me.Controls.Add(Me.grid_datos)
+        Me.MaximumSize = New System.Drawing.Size(382, 9999)
+        Me.MinimumSize = New System.Drawing.Size(382, 369)
         Me.Name = "RepEquipos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RepEquipos"

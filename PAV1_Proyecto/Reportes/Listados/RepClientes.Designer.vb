@@ -79,7 +79,7 @@ Partial Class RepClientes
         Me.grid_datos.ReadOnly = True
         Me.grid_datos.RowTemplate.Height = 24
         Me.grid_datos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.grid_datos.Size = New System.Drawing.Size(737, 327)
+        Me.grid_datos.Size = New System.Drawing.Size(737, 374)
         Me.grid_datos.TabIndex = 11
         '
         'nroCliente
@@ -87,7 +87,7 @@ Partial Class RepClientes
         Me.nroCliente.HeaderText = "Nro Cliente"
         Me.nroCliente.Name = "nroCliente"
         Me.nroCliente.ReadOnly = True
-        Me.nroCliente.Width = 107
+        Me.nroCliente.Width = 99
         '
         'nombre
         '
@@ -135,12 +135,15 @@ Partial Class RepClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(763, 561)
+        Me.ClientSize = New System.Drawing.Size(763, 608)
         Me.Controls.Add(Me.lbl_resultados)
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
         Me.Controls.Add(Me.grid_datos)
+        Me.MaximumSize = New System.Drawing.Size(781, 9999)
+        Me.MinimumSize = New System.Drawing.Size(781, 500)
         Me.Name = "RepClientes"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RepClientes"
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

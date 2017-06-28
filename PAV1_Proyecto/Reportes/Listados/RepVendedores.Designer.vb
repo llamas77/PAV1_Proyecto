@@ -80,7 +80,7 @@ Partial Class RepVendedores
         Me.grid_datos.ReadOnly = True
         Me.grid_datos.RowTemplate.Height = 24
         Me.grid_datos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.grid_datos.Size = New System.Drawing.Size(653, 338)
+        Me.grid_datos.Size = New System.Drawing.Size(653, 253)
         Me.grid_datos.TabIndex = 11
         '
         'idVendedor
@@ -134,17 +134,23 @@ Partial Class RepVendedores
         Me.btn_imprimir.Text = "Imprimir"
         Me.btn_imprimir.UseVisualStyleBackColor = True
         '
+        'PrintDocument1
+        '
+        '
         'RepVendedores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(679, 540)
+        Me.ClientSize = New System.Drawing.Size(679, 455)
         Me.Controls.Add(Me.btn_imprimir)
         Me.Controls.Add(Me.lbl_resultados)
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
         Me.Controls.Add(Me.grid_datos)
+        Me.MaximumSize = New System.Drawing.Size(697, 9999)
+        Me.MinimumSize = New System.Drawing.Size(697, 400)
         Me.Name = "RepVendedores"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RepVendedores"
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

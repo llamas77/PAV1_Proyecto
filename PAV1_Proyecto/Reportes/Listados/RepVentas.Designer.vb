@@ -132,7 +132,7 @@ Partial Class RepVentas
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
         Me.Controls.Add(Me.grid_datos)
-        Me.MaximumSize = New System.Drawing.Size(695, 9000)
+        Me.MaximumSize = New System.Drawing.Size(695, 9999)
         Me.MinimumSize = New System.Drawing.Size(695, 395)
         Me.Name = "RepVentas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

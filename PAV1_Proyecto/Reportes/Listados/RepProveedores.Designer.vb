@@ -85,7 +85,7 @@ Partial Class RepProveedores
         Me.razon_social.HeaderText = "Razon Social"
         Me.razon_social.Name = "razon_social"
         Me.razon_social.ReadOnly = True
-        Me.razon_social.Width = 120
+        Me.razon_social.Width = 110
         '
         'domicilio
         '
@@ -124,7 +124,10 @@ Partial Class RepProveedores
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.panel_control)
         Me.Controls.Add(Me.grid_datos)
+        Me.MaximumSize = New System.Drawing.Size(696, 9999)
+        Me.MinimumSize = New System.Drawing.Size(696, 400)
         Me.Name = "RepProveedores"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RepProveedores"
         CType(Me.grid_datos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
