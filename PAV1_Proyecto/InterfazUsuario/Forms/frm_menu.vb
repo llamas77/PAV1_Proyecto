@@ -151,15 +151,9 @@
         frm.Show()
     End Sub
 
-    Private Sub ComparacionDeMovimientosPorFamiliaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComparacionDeMovimientosPorFamiliaToolStripMenuItem.Click
-        Dim frm As New repEstMovXFlia()
-        frm.Text = "Estadisticas de Movimientos por Familia"
-        frm.Show()
-    End Sub
-
-    Private Sub ComparacionDeMovimientosPorGrupoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComparacionDeMovimientosPorGrupoToolStripMenuItem.Click
-        Dim frm As New repEstMovXGrupo()
-        frm.Text = "Estadisticas de Movimientos por Grupo"
+    Private Sub ListadoDeGruposToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListadoDeGruposToolStripMenuItem.Click
+        Dim frm As New RepGrupos()
+        frm.Text = "Listado de Grupos"
         frm.Show()
     End Sub
 End Class

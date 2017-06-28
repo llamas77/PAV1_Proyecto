@@ -4,9 +4,9 @@
         ctrl_list.Add(New Campo With {._id = "proveedor", ._name = "Proveedor", ._maskType = Campo.MaskType.comboBox,
                       ._objetoDAO = New ProveedorDAO})
         ctrl_list.Add(New Campo With {._id = "fecha_desde", ._name = "Desde", ._maskType = Campo.MaskType.fecha})
-        ctrl_list.Add(New Campo With {._id = "monto_min", ._name = "Monto Max.", ._numeric = True})
+        ctrl_list.Add(New Campo With {._id = "monto_min", ._name = "Monto Min.", ._numeric = True})
         ctrl_list.Add(New Campo With {._id = "fecha_hasta", ._name = "Hasta", ._maskType = Campo.MaskType.fecha})
-        ctrl_list.Add(New Campo With {._id = "monto_max", ._name = "Monto Min.", ._numeric = True})
+        ctrl_list.Add(New Campo With {._id = "monto_max", ._name = "Monto Max.", ._numeric = True})
 
         For Each campo In ctrl_list
             panel_control.Controls.Add(campo.get_UserControl)

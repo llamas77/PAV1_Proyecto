@@ -5,8 +5,8 @@
         ctrl_list.Add(New Campo With {._id = "domicilio", ._name = "Domicilio"})
         ctrl_list.Add(New Campo With {._id = "fecha_desde", ._name = "Compras desde", ._maskType = Campo.MaskType.fecha})
         ctrl_list.Add(New Campo With {._id = "fecha_hasta", ._name = "Compras hasta", ._maskType = Campo.MaskType.fecha})
-        ctrl_list.Add(New Campo With {._id = "monto_min", ._name = "Monto Compras Max.", ._numeric = True})
-        ctrl_list.Add(New Campo With {._id = "monto_max", ._name = "Monto Compras Min.", ._numeric = True})
+        ctrl_list.Add(New Campo With {._id = "monto_min", ._name = "Monto Compras Min.", ._numeric = True})
+        ctrl_list.Add(New Campo With {._id = "monto_max", ._name = "Monto Compras Max.", ._numeric = True})
 
         For Each campo In ctrl_list
             panel_control.Controls.Add(campo.get_UserControl)
@@ -56,12 +56,12 @@
         Dim hay_having = False
         If filtros("monto_min") <> 0 Then
             sql &= IIf(hay_having, " AND ", " HAVING ")
-            sql &= " SUM(dc.cantidad * dc.precio) >= " & filtros("monto_min")
+            sql &= " SUM(dc.cantidad * dc.costo) >= " & filtros("monto_min")
             hay_having = True
         End If
         If filtros("monto_max") <> 0 Then
             sql &= IIf(hay_having, " AND ", " HAVING ")
-            sql &= " SUM(dc.cantidad * dc.precio) <= " & filtros("monto_max")
+            sql &= " SUM(dc.cantidad * dc.costo) <= " & filtros("monto_max")
             hay_having = True
         End If
         Dim response = db.consulta_sql(sql)
