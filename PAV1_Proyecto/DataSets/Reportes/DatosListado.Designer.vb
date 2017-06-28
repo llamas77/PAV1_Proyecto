@@ -5654,7 +5654,7 @@ Partial Public Class DatosListado
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function Addmovimientos_por_fliaRow(ByVal nombre As String, ByVal cantidadMov As String) As movimientos_por_fliaRow
+        Public Overloads Function Addmovimientos_por_fliaRow(ByVal nombre As String, ByVal cantidadMov As Integer) As movimientos_por_fliaRow
             Dim rowmovimientos_por_fliaRow As movimientos_por_fliaRow = CType(Me.NewRow,movimientos_por_fliaRow)
             Dim columnValuesArray() As Object = New Object() {nombre, cantidadMov}
             rowmovimientos_por_fliaRow.ItemArray = columnValuesArray
@@ -5688,7 +5688,7 @@ Partial Public Class DatosListado
         Private Sub InitClass()
             Me.columnnombre = New Global.System.Data.DataColumn("nombre", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnnombre)
-            Me.columncantidadMov = New Global.System.Data.DataColumn("cantidadMov", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columncantidadMov = New Global.System.Data.DataColumn("cantidadMov", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncantidadMov)
         End Sub
         
@@ -5919,7 +5919,7 @@ Partial Public Class DatosListado
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function Addmovimientos_por_grupoRow(ByVal nombre As String, ByVal cantidadMov As String) As movimientos_por_grupoRow
+        Public Overloads Function Addmovimientos_por_grupoRow(ByVal nombre As String, ByVal cantidadMov As Integer) As movimientos_por_grupoRow
             Dim rowmovimientos_por_grupoRow As movimientos_por_grupoRow = CType(Me.NewRow,movimientos_por_grupoRow)
             Dim columnValuesArray() As Object = New Object() {nombre, cantidadMov}
             rowmovimientos_por_grupoRow.ItemArray = columnValuesArray
@@ -5953,7 +5953,7 @@ Partial Public Class DatosListado
         Private Sub InitClass()
             Me.columnnombre = New Global.System.Data.DataColumn("nombre", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnnombre)
-            Me.columncantidadMov = New Global.System.Data.DataColumn("cantidadMov", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columncantidadMov = New Global.System.Data.DataColumn("cantidadMov", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncantidadMov)
         End Sub
         
@@ -7760,10 +7760,10 @@ Partial Public Class DatosListado
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property cantidadMov() As String
+        Public Property cantidadMov() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tablemovimientos_por_flia.cantidadMovColumn),String)
+                    Return CType(Me(Me.tablemovimientos_por_flia.cantidadMovColumn),Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("El valor de la columna 'cantidadMov' de la tabla 'movimientos_por_flia' es DBNull"& _ 
                             ".", e)
@@ -7831,10 +7831,10 @@ Partial Public Class DatosListado
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property cantidadMov() As String
+        Public Property cantidadMov() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tablemovimientos_por_grupo.cantidadMovColumn),String)
+                    Return CType(Me(Me.tablemovimientos_por_grupo.cantidadMovColumn),Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("El valor de la columna 'cantidadMov' de la tabla 'movimientos_por_grupo' es DBNul"& _ 
                             "l.", e)

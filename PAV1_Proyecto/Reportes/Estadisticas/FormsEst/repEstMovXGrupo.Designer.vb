@@ -22,22 +22,16 @@ Partial Class repEstMovXGrupo
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.components = New System.ComponentModel.Container()
         Me.lblLimiteInf = New System.Windows.Forms.Label()
         Me.txt_lim_inf = New System.Windows.Forms.TextBox()
         Me.lblLimiteSup = New System.Windows.Forms.Label()
         Me.txt_lim_sup = New System.Windows.Forms.TextBox()
         Me.btn_buscar = New System.Windows.Forms.Button()
+        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'ReportViewer1
-        '
-        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "PAV1_Proyecto.repEstMovXGrupo.rdlc"
-        Me.ReportViewer1.Location = New System.Drawing.Point(9, 41)
-        Me.ReportViewer1.Name = "ReportViewer1"
-        Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(430, 238)
-        Me.ReportViewer1.TabIndex = 0
         '
         'lblLimiteInf
         '
@@ -80,28 +74,40 @@ Partial Class repEstMovXGrupo
         Me.btn_buscar.Text = "Buscar"
         Me.btn_buscar.UseVisualStyleBackColor = True
         '
+        'ReportViewer1
+        '
+        Me.ReportViewer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ReportViewer1.Location = New System.Drawing.Point(9, 36)
+        Me.ReportViewer1.Name = "ReportViewer1"
+        Me.ReportViewer1.ServerReport.BearerToken = Nothing
+        Me.ReportViewer1.Size = New System.Drawing.Size(424, 244)
+        Me.ReportViewer1.TabIndex = 21
+        '
         'repEstMovXGrupo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(444, 285)
+        Me.ClientSize = New System.Drawing.Size(445, 292)
+        Me.Controls.Add(Me.ReportViewer1)
         Me.Controls.Add(Me.btn_buscar)
         Me.Controls.Add(Me.lblLimiteSup)
         Me.Controls.Add(Me.txt_lim_sup)
         Me.Controls.Add(Me.lblLimiteInf)
         Me.Controls.Add(Me.txt_lim_inf)
-        Me.Controls.Add(Me.ReportViewer1)
         Me.Name = "repEstMovXGrupo"
         Me.Text = "repEstMovXGrupo"
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
     Friend WithEvents lblLimiteInf As Label
     Friend WithEvents txt_lim_inf As TextBox
     Friend WithEvents lblLimiteSup As Label
     Friend WithEvents txt_lim_sup As TextBox
     Friend WithEvents btn_buscar As Button
+    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
+    Friend WithEvents BindingSource1 As BindingSource
 End Class

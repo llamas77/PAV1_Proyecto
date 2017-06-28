@@ -77,22 +77,22 @@
         frm.Show()
     End Sub
 
-    Private Sub VentasPorVendedorMenuItem1_Click(sender As Object, e As EventArgs) Handles VentasPorVendedorToolStripMenuItem.Click
-        Dim frm As New frm_reporte("ventas por vendedor")
-        frm.Text = "Grafico de Ventas por Vendedor"
-        frm.Show()
-    End Sub
+    '   Private Sub VentasPorVendedorMenuItem1_Click(sender As Object, e As EventArgs) Handles VentasPorVendedorToolStripMenuItem.Click
+    '   Dim frm As New frm_reporte("ventas por vendedor")
+    '       frm.Text = "Grafico de Ventas por Vendedor"
+    '       frm.Show()
+    '   End Sub
 
-    Private Sub VentasPorClienteMenuItem1_Click(sender As Object, e As EventArgs) Handles VentasPorClienteToolStripMenuItem.Click
-        Dim frm As New frm_reporte("ventas por cliente")
-        frm.Text = "Grafico de Ventas por Cliente"
-        frm.Show()
-    End Sub
-    Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GananciasPorTipoDeClienteToolStripMenuItem.Click
-        Dim frm As New frm_reporte("ganancias por tipo de cliente")
-        frm.Text = "Grafico de Ganancias por tipo de cliente"
-        frm.Show()
-    End Sub
+    '  Private Sub VentasPorClienteMenuItem1_Click(sender As Object, e As EventArgs) Handles VentasPorClienteToolStripMenuItem.Click
+    '  Dim frm As New frm_reporte("ventas por cliente")
+    '      frm.Text = "Grafico de Ventas por Cliente"
+    '      frm.Show()
+    '  End Sub
+    '  Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GananciasPorTipoDeClienteToolStripMenuItem.Click
+    '  Dim frm As New frm_reporte("ganancias por tipo de cliente")
+    '      frm.Text = "Grafico de Ganancias por tipo de cliente"
+    '      frm.Show()
+    '  End Sub
 
     Private Sub ComprasToolStripMenuItem2_Click_1(sender As Object, e As EventArgs) Handles ComprasToolStripMenuItem2.Click
         Dim frm As New RepCompras()
@@ -168,6 +168,18 @@
 
     Private Sub mostrar(frm As Form)
         frm_hijo = frm
+        frm.Show()
+    End Sub
+
+    Private Sub MovimientosPorFamiliaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MovimientosPorFamiliaToolStripMenuItem.Click
+        Dim frm As New repEstMovXFlia()
+        frm.Text = "Movimientos por Familia"
+        frm.Show()
+    End Sub
+
+    Private Sub MovimientosPorGrupoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MovimientosPorGrupoToolStripMenuItem.Click
+        Dim frm As New repEstMovXGrupo()
+        frm.Text = "Movimientos por Grupo"
         frm.Show()
     End Sub
 End Class

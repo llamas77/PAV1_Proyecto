@@ -23,12 +23,12 @@
         </Field>
         <Field Name="cantidadMov">
           <DataField>cantidadMov</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DatosListado</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Usuario\Source\Repos\PAV1_Proyecto\PAV1_Proyecto\DataSets\Reportes\DatosListado.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\Documents\facultad\tercero\PAV1\PAV1_Proyecto\PAV1_Proyecto\DataSets\Reportes\DatosListado.xsd</rd:SchemaPath>
         <rd:TableName>movimientos_por_grupo</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -71,7 +71,7 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Count(Fields!cantidadMov.Value)</Y>
+                        <Y>=Sum(Fields!cantidadMov.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -386,8 +386,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
-            <Height>5cm</Height>
-            <Width>7.5cm</Width>
+            <Height>6.79917cm</Height>
+            <Width>13.91708cm</Width>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
@@ -398,10 +398,10 @@
             </Style>
           </Chart>
         </ReportItems>
-        <Height>1.9685in</Height>
+        <Height>2.67684in</Height>
         <Style />
       </Body>
-      <Width>3in</Width>
+      <Width>5.47917in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
