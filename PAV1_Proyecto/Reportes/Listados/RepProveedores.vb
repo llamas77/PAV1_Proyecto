@@ -26,10 +26,10 @@
         Next
 
         Dim sql = "SELECT p.razonSocial as razon_social, p.domicilio, p.telefono, p.email, "
-        sql &= " SUM(dc.cantidad * dc.costo) as monto_compras "
+        sql &= " ISNULL(SUM(dc.cantidad * dc.costo),0) as monto_compras " 'Si no hay compras la suma es NULL y se reemplaza por 0
         sql &= " FROM proveedores p "
-        sql &= " JOIN compras c ON c.idProveedor = p.idProveedor"
-        sql &= " JOIN detalle_compras dc ON c.idCompra = dc.idCompra"
+        sql &= " LEFT JOIN compras c ON c.idProveedor = p.idProveedor"
+        sql &= " LEFT JOIN detalle_compras dc ON c.idCompra = dc.idCompra"
 
         Dim hay_where = False
         If Not filtros("razon_social") Is Nothing Then

@@ -32,11 +32,12 @@
         Next
 
         Dim sql = "SELECT c.nroCliente, c.nombre, c.apellido, c.direccion, c.telefono, "
-        sql &= " tc.nombre as nombre_tipo, SUM(dv.cantidad * dv.precio) as monto_ventas "
+        'Si no hay ventas la suma es NULL y se reemplaza por 0
+        sql &= " tc.nombre as nombre_tipo, ISNULL(SUM(dv.cantidad * dv.precio), 0) as monto_ventas "
         sql &= " FROM clientes c "
         sql &= " JOIN tipos_cliente tc ON c.idTipoCliente = tc.idTipo"
-        sql &= " JOIN ventas v ON c.nroCliente = v.nroCliente"
-        sql &= " JOIN detalleVentas dv ON v.idVenta = dv.idVenta"
+        sql &= " LEFT JOIN ventas v ON c.nroCliente = v.nroCliente"
+        sql &= " LEFT JOIN detalleVentas dv ON v.idVenta = dv.idVenta"
 
         Dim hay_where = False
         If Not filtros("nombre") Is Nothing Then

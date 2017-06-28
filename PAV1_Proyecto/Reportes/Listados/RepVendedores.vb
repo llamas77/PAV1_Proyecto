@@ -28,10 +28,10 @@
         Next
 
         Dim sql = "SELECT v.idVendedor, v.nombre, v.apellido, v.direccion, v.telefono, v.comision * 100 as comision, "
-        sql &= " SUM(dv.cantidad * dv.precio) as monto_ventas "
+        sql &= " ISNULL(SUM(dv.cantidad * dv.precio),0) as monto_ventas "
         sql &= " FROM vendedores v "
-        sql &= " JOIN ventas vta ON v.idVendedor = vta.idVendedor"
-        sql &= " JOIN detalleVentas dv ON vta.idVenta = dv.idVenta"
+        sql &= " LEFT JOIN ventas vta ON v.idVendedor = vta.idVendedor"
+        sql &= " LEFT JOIN detalleVentas dv ON vta.idVenta = dv.idVenta"
 
         Dim hay_where = False
         If Not filtros("nombre") Is Nothing Then
