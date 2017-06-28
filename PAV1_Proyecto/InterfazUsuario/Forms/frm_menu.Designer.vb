@@ -26,8 +26,8 @@ Partial Class frm_menu
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EstadísticasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GananciasPorTipoDeClienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GananciasPorVendedorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GananciasPorClienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VentasPorVendedorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VentasPorClienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FamiliasDeProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GruposToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -81,9 +81,9 @@ Partial Class frm_menu
         '
         'EstadísticasToolStripMenuItem
         '
-        Me.EstadísticasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GananciasPorTipoDeClienteToolStripMenuItem, Me.GananciasPorVendedorToolStripMenuItem, Me.GananciasPorClienteToolStripMenuItem})
+        Me.EstadísticasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GananciasPorTipoDeClienteToolStripMenuItem, Me.VentasPorVendedorToolStripMenuItem, Me.VentasPorClienteToolStripMenuItem})
         Me.EstadísticasToolStripMenuItem.Name = "EstadísticasToolStripMenuItem"
-        Me.EstadísticasToolStripMenuItem.Size = New System.Drawing.Size(160, 26)
+        Me.EstadísticasToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
         Me.EstadísticasToolStripMenuItem.Text = "Estadísticas"
         '
         'GananciasPorTipoDeClienteToolStripMenuItem
@@ -92,17 +92,17 @@ Partial Class frm_menu
         Me.GananciasPorTipoDeClienteToolStripMenuItem.Size = New System.Drawing.Size(283, 26)
         Me.GananciasPorTipoDeClienteToolStripMenuItem.Text = "Ganancias por Tipo de Cliente"
         '
-        'GananciasPorVendedorToolStripMenuItem
+        'VentasPorVendedorToolStripMenuItem
         '
-        Me.GananciasPorVendedorToolStripMenuItem.Name = "GananciasPorVendedorToolStripMenuItem"
-        Me.GananciasPorVendedorToolStripMenuItem.Size = New System.Drawing.Size(283, 26)
-        Me.GananciasPorVendedorToolStripMenuItem.Text = "Ganancias por Vendedor"
+        Me.VentasPorVendedorToolStripMenuItem.Name = "VentasPorVendedorToolStripMenuItem"
+        Me.VentasPorVendedorToolStripMenuItem.Size = New System.Drawing.Size(283, 26)
+        Me.VentasPorVendedorToolStripMenuItem.Text = "Ventas por Vendedor"
         '
-        'GananciasPorClienteToolStripMenuItem
+        'VentasPorClienteToolStripMenuItem
         '
-        Me.GananciasPorClienteToolStripMenuItem.Name = "GananciasPorClienteToolStripMenuItem"
-        Me.GananciasPorClienteToolStripMenuItem.Size = New System.Drawing.Size(283, 26)
-        Me.GananciasPorClienteToolStripMenuItem.Text = "Ganancias por Cliente"
+        Me.VentasPorClienteToolStripMenuItem.Name = "VentasPorClienteToolStripMenuItem"
+        Me.VentasPorClienteToolStripMenuItem.Size = New System.Drawing.Size(283, 26)
+        Me.VentasPorClienteToolStripMenuItem.Text = "Ventas por Cliente"
         '
         'ProductosToolStripMenuItem
         '
@@ -340,8 +340,8 @@ Partial Class frm_menu
     Friend WithEvents ReportesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EstadísticasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GananciasPorTipoDeClienteToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GananciasPorVendedorToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GananciasPorClienteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VentasPorVendedorToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VentasPorClienteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ComprasToolStripMenuItem2 As ToolStripMenuItem
     Friend WithEvents VentasToolStripMenuItem2 As ToolStripMenuItem
     Friend WithEvents ListadoToolStripMenuItem As ToolStripMenuItem

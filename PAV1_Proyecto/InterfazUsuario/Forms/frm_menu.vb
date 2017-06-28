@@ -77,23 +77,21 @@
         frm.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GananciasPorTipoDeClienteToolStripMenuItem.Click, GananciasPorVendedorToolStripMenuItem.Click, GananciasPorClienteToolStripMenuItem.Click
-        Dim itemMenu As ToolStripMenuItem
-        itemMenu = sender
+    Private Sub VentasPorVendedorMenuItem1_Click(sender As Object, e As EventArgs) Handles VentasPorVendedorToolStripMenuItem.Click
+        Dim frm As New frm_reporte("ventas por vendedor")
+        frm.Text = "Grafico de Ventas por Vendedor"
+        frm.Show()
+    End Sub
 
-        Dim listaNombres As New List(Of String)
-        listaNombres.Add(GananciasPorTipoDeClienteToolStripMenuItem.Text)
-        listaNombres.Add(GananciasPorVendedorToolStripMenuItem.Text)
-        listaNombres.Add(GananciasPorClienteToolStripMenuItem.Text)
-
-        Dim i As Integer
-        For i = 0 To listaNombres.Count - 1
-            If listaNombres(i) = itemMenu.Text Then
-                Dim frm As New frm_reporte(itemMenu.Text)
-                frm.Show()
-                Exit For
-            End If
-        Next
+    Private Sub VentasPorClienteMenuItem1_Click(sender As Object, e As EventArgs) Handles VentasPorClienteToolStripMenuItem.Click
+        Dim frm As New frm_reporte("ventas por cliente")
+        frm.Text = "Grafico de Ventas por Cliente"
+        frm.Show()
+    End Sub
+    Private Sub ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GananciasPorTipoDeClienteToolStripMenuItem.Click
+        Dim frm As New frm_reporte("ganancias por tipo de cliente")
+        frm.Text = "Grafico de Ganancias por tipo de cliente"
+        frm.Show()
     End Sub
 
     Private Sub ComprasToolStripMenuItem2_Click_1(sender As Object, e As EventArgs) Handles ComprasToolStripMenuItem2.Click
