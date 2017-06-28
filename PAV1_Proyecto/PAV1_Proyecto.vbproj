@@ -60,6 +60,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -480,6 +483,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="con_strings.txt" />
+    <Content Include="icon.ico" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

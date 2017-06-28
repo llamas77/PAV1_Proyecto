@@ -22,6 +22,7 @@ Partial Class frm_menu
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_menu))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FamiliasDeProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -60,15 +61,13 @@ Partial Class frm_menu
         Me.ComprasPorPeríodoGrupoYFamiliaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VentasPorProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VentasPorTipoDeClienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductosToolStripMenuItem, Me.EquiposToolStripMenuItem, Me.ClientesToolStripMenuItem, Me.VendedoresToolStripMenuItem, Me.ProveedoresToolStripMenuItem, Me.ComprasToolStripMenuItem, Me.VentasToolStripMenuItem, Me.ReportesToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductosToolStripMenuItem, Me.EquiposToolStripMenuItem, Me.ClientesToolStripMenuItem, Me.VendedoresToolStripMenuItem, Me.ProveedoresToolStripMenuItem, Me.ComprasToolStripMenuItem, Me.VentasToolStripMenuItem, Me.ReportesToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(694, 24)
@@ -306,27 +305,15 @@ Partial Class frm_menu
         Me.VentasPorTipoDeClienteToolStripMenuItem.Size = New System.Drawing.Size(334, 22)
         Me.VentasPorTipoDeClienteToolStripMenuItem.Text = "Ventas por tipo de cliente"
         '
-        'AyudaToolStripMenuItem
-        '
-        Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AcercaDeToolStripMenuItem})
-        Me.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
-        Me.AyudaToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
-        Me.AyudaToolStripMenuItem.Text = "Ayuda"
-        '
-        'AcercaDeToolStripMenuItem
-        '
-        Me.AcercaDeToolStripMenuItem.Enabled = False
-        Me.AcercaDeToolStripMenuItem.Name = "AcercaDeToolStripMenuItem"
-        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
-        Me.AcercaDeToolStripMenuItem.Text = "Acerca de..."
-        '
         'frm_menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(694, 448)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MinimumSize = New System.Drawing.Size(710, 487)
         Me.Name = "frm_menu"
@@ -360,8 +347,6 @@ Partial Class frm_menu
     Friend WithEvents ComprasToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents VentasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VentasToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AcercaDeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ComprasToolStripMenuItem2 As ToolStripMenuItem
     Friend WithEvents VentasToolStripMenuItem2 As ToolStripMenuItem

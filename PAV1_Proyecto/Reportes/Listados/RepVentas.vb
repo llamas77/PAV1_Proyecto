@@ -102,7 +102,4 @@
         End Select
     End Sub
 
-    Private Sub btn_limpiar_Click(sender As Object, e As EventArgs) Handles btn_limpiar.Click
-
-    End Sub
 End Class

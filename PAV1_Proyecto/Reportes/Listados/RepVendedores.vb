@@ -102,11 +102,8 @@
         Me.InvokePaint(grid_datos, argumentosImpresion)
     End Sub
 
-    Private Sub btn_imprimir_Click(sender As Object, e As EventArgs)
+
+    Private Sub btn_imprimir_Click_1(sender As Object, e As EventArgs) Handles btn_imprimir.Click
         PrintDocument1.Print()
-    End Sub
-
-    Private Sub btn_limpiar_Click(sender As Object, e As EventArgs) Handles btn_limpiar.Click
-
     End Sub
 End Class
