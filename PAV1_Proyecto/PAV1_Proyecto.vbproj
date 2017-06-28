@@ -172,6 +172,18 @@
     <Compile Include="InterfazUsuario\Forms\frm_reporte.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reportes\Estadisticas\FormsEst\repEstMovXFlia.Designer.vb">
+      <DependentUpon>repEstMovXFlia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Estadisticas\FormsEst\repEstMovXFlia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Estadisticas\FormsEst\repEstMovXGrupo.Designer.vb">
+      <DependentUpon>repEstMovXGrupo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Estadisticas\FormsEst\repEstMovXGrupo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reportes\Listados\RepClientes.Designer.vb">
       <DependentUpon>RepClientes.vb</DependentUpon>
     </Compile>
@@ -324,6 +336,14 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estadisticas\FormsEst\repEstMovXFlia.resx">
+      <DependentUpon>repEstMovXFlia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estadisticas\FormsEst\repEstMovXGrupo.resx">
+      <DependentUpon>repEstMovXGrupo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estadisticas\repEstMovXFlia.rdlc" />
+    <EmbeddedResource Include="Reportes\Estadisticas\repEstMovXGrupo.rdlc" />
     <EmbeddedResource Include="Reportes\Listados\RepClientes.resx">
       <DependentUpon>RepClientes.vb</DependentUpon>
     </EmbeddedResource>
@@ -345,9 +365,9 @@
     <EmbeddedResource Include="Reportes\Listados\RepVentas.resx">
       <DependentUpon>RepVentas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\repEstGananciasXCliente.rdlc" />
-    <EmbeddedResource Include="Reportes\repEstGananciasXTipoC.rdlc" />
-    <EmbeddedResource Include="Reportes\repEstGananciasXVendedor.rdlc" />
+    <EmbeddedResource Include="Reportes\Estadisticas\repEstGananciasXCliente.rdlc" />
+    <EmbeddedResource Include="Reportes\Estadisticas\repEstGananciasXTipoC.rdlc" />
+    <EmbeddedResource Include="Reportes\Estadisticas\repEstGananciasXVendedor.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSets\GrillaCompras.xsc">
