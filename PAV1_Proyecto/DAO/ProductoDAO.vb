@@ -259,21 +259,18 @@ Public Class ProductoDAO
             Return "No puede borrar un producto que no existe. [Sin Codigo]"
         End If
 
-
         Dim sql = "SELECT TOP 1 0 FROM detalle_compras WHERE codigoProducto='" & producto._codigo & "'"
         Dim response = db.consulta_sql(sql)
         If response.Rows.Count = 1 Then
-            db.desconectar()
             Return "El producto existe en al menos una compra. Imposible borrar."
         End If
 
         sql = "SELECT TOP 1 0 FROM detalle_ventas WHERE codigoProducto='" & producto._codigo & "'"
+        db.conectar() ' Hay que reconectar porque cuando hace una consulta cierra automaticamente.
         response = db.consulta_sql(sql)
         If response.Rows.Count = 1 Then
-            db.desconectar()
             Return "El producto existe en al menos una venta. Imposible borrar."
         End If
-
         Return Nothing
     End Function
 End Class
